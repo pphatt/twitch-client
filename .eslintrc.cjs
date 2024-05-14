@@ -1,42 +1,48 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require("path")
+
 /** @type {import("eslint").Linter.Config} */
 const config = {
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": true
+  overrides: [
+    {
+      extends: [
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+      ],
+      files: ["*.ts", "*.tsx"],
+      parserOptions: {
+        project: path.join(__dirname, "tsconfig.json"),
+      },
+    },
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: path.join(__dirname, "tsconfig.json"),
   },
-  "plugins": [
-    "@typescript-eslint"
-  ],
-  "extends": [
+  plugins: ["@typescript-eslint"],
+  extends: [
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked"
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
   ],
-  "rules": {
-    "@typescript-eslint/array-type": "off",
-    "@typescript-eslint/consistent-type-definitions": "off",
+  rules: {
     "@typescript-eslint/consistent-type-imports": [
       "warn",
       {
-        "prefer": "type-imports",
-        "fixStyle": "inline-type-imports"
-      }
+        prefer: "type-imports",
+        fixStyle: "inline-type-imports",
+      },
     ],
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "@typescript-eslint/require-await": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
+    "@next/next/no-html-link-for-pages": "off",
+    "@next/next/no-img-element": "off",
     "@typescript-eslint/no-misused-promises": [
-      "error",
+      2,
       {
-        "checksVoidReturn": {
-          "attributes": false
-        }
-      }
-    ]
-  }
+        checksVoidReturn: { attributes: false },
+      },
+    ],
+    "react/jsx-key": "off",
+  },
 }
-module.exports = config;
+
+module.exports = config
