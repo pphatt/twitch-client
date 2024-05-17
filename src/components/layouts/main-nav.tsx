@@ -1,22 +1,34 @@
+"use client"
+
 import * as React from "react"
 import Link from "next/link"
-import type { MainNavItem } from "@/types"
+import { MainNavItem, SupportNavItem } from "@/types"
 
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/main-nav.module.scss"
 
 interface MainNavProps {
-  items?: MainNavItem[]
+  items: MainNavItem[]
+  supportItem: SupportNavItem[]
 }
 
-export function MainNav({ items }: MainNavProps) {
+export function MainNav({ items, supportItem }: MainNavProps) {
   return (
     <div className={styles["main-nav-wrapper"]}>
       <Link href={"/"} className={styles["home-link"]}>
         <Icons.logo />
       </Link>
       <div className={styles["main-nav-items"]}>
-        {items?.map(({ title, href }) => (
+        {items.map(({ title, href }) => (
           <div className={styles["item-wrapper"]}>
             <div className={styles["item-container"]}>
               <Link href={`${href}`} className={styles["item-link"]}>
@@ -32,7 +44,42 @@ export function MainNav({ items }: MainNavProps) {
           </div>
         ))}
       </div>
-      <div></div>
+      <div className={styles["option-items"]}>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button className={styles["option-items-trigger"]}>
+              <div className={styles["svg-wrapper"]}>
+                <div className={styles["svg-container"]}>
+                  <Icons.ellipsisVertical />
+                </div>
+              </div>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent
+            align={"start"}
+            className={styles["dropdown-menu"]}
+            asChild
+          >
+            <ScrollArea className={styles["dropdown-menu-wrapper"]}>
+              {supportItem.map(({ title, items }, index) => (
+                <div key={index}>
+                  <DropdownMenuLabel className={styles["item-label"]}>{title}</DropdownMenuLabel>
+                  {items.map(({ title, href }) => (
+                    <div
+                      className={styles["dropdown-menu-item"]}
+                    >
+                      <Link href={href}>{title}</Link>
+                    </div>
+                  ))}
+                  {index !== supportItem.length - 1 && (
+                    <DropdownMenuSeparator className={styles["item-separator"]} />
+                  )}
+                </div>
+              ))}
+            </ScrollArea>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
     </div>
   )
 }

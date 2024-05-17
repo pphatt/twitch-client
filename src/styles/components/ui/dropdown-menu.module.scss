@@ -2,21 +2,23 @@
 
 .dropdown-menu-content,
 .dropdown-menu-sub-content {
-  color: hsl(var(--popover-foreground));
-  background-color: hsl(var(--popover));
+  color: #fff;
+  background-color: rgb(36 39 44);
 
   width: 14rem;
   min-width: 8rem;
 
+  border-color: rgb(36 39 44);
   border-width: 1px;
   border-radius: calc(0.5rem - 2px);
 
   overflow: hidden;
 
-  padding: 0.25rem;
+  padding: 10px;
 
-  box-shadow: 0 0 #000, 0 0 #000, 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-  0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 4px rgba(0, 0, 0, 0.4);
 
   will-change: transform, opacity;
 
@@ -74,7 +76,7 @@
   cursor: default;
 
   transition-property: color, background-color, border-color,
-  text-decoration-color, fill, stroke;
+    text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;
 
@@ -119,7 +121,7 @@
   cursor: default;
 
   transition-property: color, background-color, border-color,
-  text-decoration-color, fill, stroke;
+    text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;
 
@@ -196,7 +198,7 @@
   outline-offset: 2px;
 
   transition-property: color, background-color, border-color,
-  text-decoration-color, fill, stroke;
+    text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 0.15s;
 
