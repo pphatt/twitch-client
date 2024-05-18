@@ -28,8 +28,8 @@ export function MainNav({ items, supportItem }: MainNavProps) {
         <Icons.logo />
       </Link>
       <div className={styles["main-nav-items"]}>
-        {items.map(({ title, href }) => (
-          <div className={styles["item-wrapper"]}>
+        {items.map(({ title, href }, index) => (
+          <div className={styles["item-wrapper"]} key={index}>
             <div className={styles["item-container"]}>
               <Link href={`${href}`} className={styles["item-link"]}>
                 <div>
@@ -63,16 +63,18 @@ export function MainNav({ items, supportItem }: MainNavProps) {
             <ScrollArea className={styles["dropdown-menu-wrapper"]}>
               {supportItem.map(({ title, items }, index) => (
                 <div key={index}>
-                  <DropdownMenuLabel className={styles["item-label"]}>{title}</DropdownMenuLabel>
-                  {items.map(({ title, href }) => (
-                    <div
-                      className={styles["dropdown-menu-item"]}
-                    >
+                  <DropdownMenuLabel className={styles["item-label"]}>
+                    {title}
+                  </DropdownMenuLabel>
+                  {items.map(({ title, href }, index) => (
+                    <div className={styles["dropdown-menu-item"]} key={index}>
                       <Link href={href}>{title}</Link>
                     </div>
                   ))}
                   {index !== supportItem.length - 1 && (
-                    <DropdownMenuSeparator className={styles["item-separator"]} />
+                    <DropdownMenuSeparator
+                      className={styles["item-separator"]}
+                    />
                   )}
                 </div>
               ))}

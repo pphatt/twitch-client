@@ -1,7 +1,11 @@
-import * as React from 'react';
+import * as React from "react"
+
+import styles from "@/styles/lobby/page.module.scss"
 
 export default function LobbyPage() {
   return (
-    <div></div>
-  );
+    <div className={styles["page"]}>
+      <div></div>
+    </div>
+  )
 }

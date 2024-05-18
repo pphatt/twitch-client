@@ -1,0 +1,17 @@
+.layout {
+  display: flex;
+  flex-flow: column;
+
+  height: 100%;
+}
+
+.content-layout {
+  position: relative;
+
+  display: flex;
+  flex-wrap: nowrap;
+
+  height: 100%;
+
+  overflow: hidden;
+}

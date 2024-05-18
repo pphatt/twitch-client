@@ -3,6 +3,7 @@ import "@/styles/globals.scss"
 import { GeistSans } from "geist/font/sans"
 
 import { siteConfig } from "@/config/site"
+import styles from "@/styles/root-layout/layout.module.scss"
 
 export const metadata = {
   title: siteConfig.name,
@@ -17,7 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>{children}</body>
+      <body className={GeistSans.className}>
+        <div className={styles["root"]}>
+          <div className={styles["root-layout-wrapper"]}>
+            <div className={styles["root-layout-container"]}>{children}</div>
+          </div>
+        </div>
+      </body>
     </html>
   )
 }

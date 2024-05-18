@@ -2,8 +2,6 @@
   flex-shrink: 0 !important;
 
   height: 50px;
-
-  z-index: 1000;
 }
 
 .site-header-container {
@@ -168,6 +166,8 @@
   max-height: calc(100vh - 5rem);
 
   padding: 10px !important;
+
+  overflow-y: scroll;
 }
 
 .dropdown-menu-wrapper {
