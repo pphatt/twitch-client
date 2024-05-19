@@ -13,7 +13,7 @@ export default function LobbyLayout({
     <>
       <SiteHeader />
       <main className={styles["content-layout"]}>
-        <div>
+        <div className={styles["side-navbar"]}>
           <SideNavBar />
         </div>
 

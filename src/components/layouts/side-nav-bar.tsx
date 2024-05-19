@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import { channelsData } from "@/config/data"
-import { cn } from "@/lib/utils"
+import { cn, formatViewCount } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -113,6 +113,7 @@ export function SideNavBar() {
                           <TooltipProvider
                             delayDuration={0}
                             skipDelayDuration={0}
+                            disableHoverableContent={true}
                           >
                             <Tooltip>
                               <TooltipTrigger asChild>
@@ -202,29 +203,10 @@ export function SideNavBar() {
                                                   }
                                                 >
                                                   <span>
-                                                    {Intl.NumberFormat(
-                                                      "en-US",
-                                                      {
-                                                        notation: "compact",
-                                                        maximumFractionDigits: 1,
-                                                      }
-                                                    )
-                                                      .format(view)
-                                                      .replace(/\.\d*/, "") ??
-                                                      "Not available"}
+                                                    {formatViewCount(view)}
                                                   </span>
                                                   <p className={styles["seo"]}>
-                                                    {Intl.NumberFormat(
-                                                      "en-US",
-                                                      {
-                                                        notation: "compact",
-                                                        maximumFractionDigits: 1,
-                                                      }
-                                                    )
-                                                      .format(view)
-                                                      .replace(/\.\d*/, "") ??
-                                                      "Not available"}{" "}
-                                                    Viewers
+                                                    {formatViewCount(view)} Viewers
                                                   </p>
                                                 </div>
                                               </div>
@@ -240,6 +222,7 @@ export function SideNavBar() {
                               <TooltipContent
                                 align={"start"}
                                 side={"right"}
+                                sideOffset={8}
                                 className={styles["tooltip-body"]}
                               >
                                 <div className={styles["tooltip-content"]}>
@@ -269,15 +252,7 @@ export function SideNavBar() {
                                         }
                                       ></div>
                                       <span>
-                                        Live |{" "}
-                                        {Intl.NumberFormat("en-US", {
-                                          notation: "compact",
-                                          maximumFractionDigits: 1,
-                                        })
-                                          .format(view)
-                                          .replace(/\.\d*/, "") ??
-                                          "Not available"}{" "}
-                                        Viewers
+                                        Live | {formatViewCount(view)} Viewers
                                       </span>
                                     </div>
                                   )}

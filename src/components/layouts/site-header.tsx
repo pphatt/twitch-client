@@ -73,7 +73,7 @@ export function SiteHeader() {
                     <div className={styles["user-item-trigger-wrapper"]}>
                       <img
                         alt={"User Avatar"}
-                        src={"user-default-picture.png"}
+                        src={"/avatar/user-default-picture.png"}
                         className={styles["user-image"]}
                       />
                     </div>
