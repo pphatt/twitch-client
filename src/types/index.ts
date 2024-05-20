@@ -50,7 +50,7 @@ export interface ICategoryData {
   currentTotalView: number
   slug: string
   image: string
-  tags: { name: string }[]
+  tags: ITag[]
 }
 
 export interface IRecommendedLiveChannel {
@@ -63,5 +63,10 @@ export interface IRecommendedLiveChannel {
   isLive: boolean
   category: string
   livePreviewImage: string
-  tags: { name: string }[]
+  tags: ITag[]
+}
+
+export interface ITag {
+  name: string
+  slug: string
 }

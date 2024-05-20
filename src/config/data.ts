@@ -88,9 +88,11 @@ export const categoryData = {
       tags: [
         {
           name: "FPS",
+          slug: "",
         },
         {
           name: "Shooter",
+          slug: "",
         },
       ],
     },
@@ -102,6 +104,7 @@ export const categoryData = {
       tags: [
         {
           name: "IRL",
+          slug: "",
         },
       ],
     },
@@ -113,9 +116,11 @@ export const categoryData = {
       tags: [
         {
           name: "MOBA",
+          slug: "",
         },
         {
           name: "Action",
+          slug: "",
         },
       ],
     },
@@ -127,6 +132,7 @@ export const categoryData = {
       tags: [
         {
           name: "RPG",
+          slug: "",
         },
       ],
     },
@@ -138,9 +144,11 @@ export const categoryData = {
       tags: [
         {
           name: "FPS",
+          slug: "",
         },
         {
           name: "Shooter",
+          slug: "",
         },
       ],
     },
@@ -152,9 +160,11 @@ export const categoryData = {
       tags: [
         {
           name: "FPS",
+          slug: "",
         },
         {
           name: "Shooter",
+          slug: "",
         },
       ],
     },
@@ -166,9 +176,11 @@ export const categoryData = {
       tags: [
         {
           name: "FPS",
+          slug: "",
         },
         {
           name: "Shooter",
+          slug: "",
         },
       ],
     },
@@ -180,6 +192,7 @@ export const categoryData = {
       tags: [
         {
           name: "Strategy",
+          slug: "",
         },
       ],
     },
@@ -191,6 +204,7 @@ export const categoryData = {
       tags: [
         {
           name: "IRL",
+          slug: "",
         },
       ],
     },
@@ -202,9 +216,11 @@ export const categoryData = {
       tags: [
         {
           name: "IRL",
+          slug: "",
         },
         {
           name: "Creative",
+          slug: "",
         },
       ],
     },
@@ -226,12 +242,15 @@ export const liveChannels = {
       tags: [
         {
           name: "woman",
+          slug: "",
         },
         {
           name: "missu",
+          slug: "",
         },
         {
           name: "chatty",
+          slug: "",
         },
       ],
     },
@@ -248,12 +267,15 @@ export const liveChannels = {
       tags: [
         {
           name: "Anime",
+          slug: "",
         },
         {
           name: "FPS",
+          slug: "",
         },
         {
           name: "English",
+          slug: "",
         },
       ],
     },
@@ -271,6 +293,7 @@ export const liveChannels = {
       tags: [
         {
           name: "English",
+          slug: "",
         },
       ],
     },
@@ -279,8 +302,7 @@ export const liveChannels = {
         name: "Thầy Giáo Ba",
         image: "/avatar/thay-giao-ba-avatar.png",
       },
-      title:
-        "Đồng hành cùng MSI !!",
+      title: "Đồng hành cùng MSI !!",
       totalView: 1_700,
       isLive: true,
       category: "League of Legend",
@@ -288,6 +310,7 @@ export const liveChannels = {
       tags: [
         {
           name: "English",
+          slug: "",
         },
       ],
     },
@@ -304,6 +327,7 @@ export const liveChannels = {
       tags: [
         {
           name: "한국어",
+          slug: "",
         },
       ],
     },
