@@ -35,3 +35,33 @@ export type MainNavItem = NavItemWithOptionalChildren
 export interface SearchParams {
   [key: string]: string | string[] | undefined
 }
+
+export interface IChannelsData {
+  channelName: string
+  category: string
+  isLive: boolean
+  view: number
+  title: string
+  image: string
+}
+
+export interface ICategoryData {
+  title: string
+  currentTotalView: number
+  slug: string
+  image: string
+  tags: { name: string }[]
+}
+
+export interface IRecommendedLiveChannel {
+  channel: {
+    name: string
+    image: string
+  }
+  title: string
+  totalView: number
+  isLive: boolean
+  category: string
+  livePreviewImage: string
+  tags: { name: string }[]
+}

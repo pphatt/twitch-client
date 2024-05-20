@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
+import type { IChannelsData } from "@/types"
 
-import { channelsData } from "@/config/data"
 import { cn, formatViewCount } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -16,7 +16,7 @@ import {
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
 
-export function SideNavBar() {
+export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
   const [isExpand, setIsExpand] = React.useState(true)
 
   return (
@@ -35,7 +35,7 @@ export function SideNavBar() {
                 [`${styles["side-nav--collapse"]}`]: !isExpand,
               })}
             >
-              <TooltipProvider delayDuration={200}>
+              <TooltipProvider delayDuration={200} skipDelayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <div
@@ -104,7 +104,7 @@ export function SideNavBar() {
                   )}
 
                   <div className={styles["channels-group"]}>
-                    {channelsData.channels.map(
+                    {channels.map(
                       (
                         { channelName, title, category, view, image },
                         index
@@ -206,7 +206,8 @@ export function SideNavBar() {
                                                     {formatViewCount(view)}
                                                   </span>
                                                   <p className={styles["seo"]}>
-                                                    {formatViewCount(view)} Viewers
+                                                    {formatViewCount(view)}{" "}
+                                                    Viewers
                                                   </p>
                                                 </div>
                                               </div>

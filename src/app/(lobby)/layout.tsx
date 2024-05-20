@@ -1,7 +1,8 @@
 import * as React from "react"
 
-import { SiteHeader } from "@/components/layouts/site-header"
+import { channelsData } from "@/config/data"
 import { SideNavBar } from "@/components/layouts/side-nav-bar"
+import { SiteHeader } from "@/components/layouts/site-header"
 import styles from "@/styles/lobby/layout.module.scss"
 
 export default function LobbyLayout({
@@ -14,7 +15,7 @@ export default function LobbyLayout({
       <SiteHeader />
       <main className={styles["content-layout"]}>
         <div className={styles["side-navbar"]}>
-          <SideNavBar />
+          <SideNavBar channels={channelsData.channels} />
         </div>
 
         <>{children}</>

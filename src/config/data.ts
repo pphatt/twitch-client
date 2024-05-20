@@ -210,3 +210,102 @@ export const categoryData = {
     },
   ],
 }
+
+export const liveChannels = {
+  channels: [
+    {
+      channel: {
+        name: "xull",
+        image: "/avatar/xull-avatar.png",
+      },
+      title: "idc ♡",
+      totalView: 1_700,
+      isLive: true,
+      category: "League of Legend",
+      livePreviewImage: "/recommend-live-channel/live-xull-preview.jpg",
+      tags: [
+        {
+          name: "woman",
+        },
+        {
+          name: "missu",
+        },
+        {
+          name: "chatty",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "Tenz",
+        image: "/avatar/tenz-avatar.png",
+      },
+      title: "valorant then variety",
+      totalView: 8_600,
+      isLive: true,
+      category: "HELLDIVERS 2",
+      livePreviewImage: "/recommend-live-channel/live-tenz-preview.jpg",
+      tags: [
+        {
+          name: "Anime",
+        },
+        {
+          name: "FPS",
+        },
+        {
+          name: "English",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "Grimm",
+        image: "/avatar/grimm-avatar.png",
+      },
+      title:
+        "🟥SAGE MAIN RETURNS🟥T1 GRIM🟥BEST VALORANT EXPERIENCE🟥DERUSTING GETTING BETTER🟥HOPEFULLY WE CAN STILL GAME AT A HIGHT LEVEL🟥",
+      totalView: 1_900,
+      isLive: true,
+      category: "Valorant",
+      livePreviewImage: "/recommend-live-channel/live-grimm-preview.jpg",
+      tags: [
+        {
+          name: "English",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "Thầy Giáo Ba",
+        image: "/avatar/thay-giao-ba-avatar.png",
+      },
+      title:
+        "Đồng hành cùng MSI !!",
+      totalView: 1_700,
+      isLive: true,
+      category: "League of Legend",
+      livePreviewImage: "/recommend-live-channel/live-thay-giao-ba-preview.jpg",
+      tags: [
+        {
+          name: "English",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "한갱 (woohankyung)",
+        image: "/avatar/woohankyung-avatar.png",
+      },
+      title: "낭만을 찾아서,,",
+      totalView: 4_412,
+      isLive: true,
+      category: "Just Chatting",
+      livePreviewImage: "/recommend-live-channel/live-woohankyung-preview.jpg",
+      tags: [
+        {
+          name: "한국어",
+        },
+      ],
+    },
+  ],
+}
