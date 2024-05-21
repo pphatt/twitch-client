@@ -5,6 +5,8 @@ import Link from "next/link"
 import type { IChannelsData } from "@/types"
 
 import { cn, formatViewCount } from "@/lib/utils"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { useMounted } from "@/hooks/use-mounted"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -17,12 +19,20 @@ import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
 
 export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
+  const mounted = useMounted()
+
   const [isExpand, setIsExpand] = React.useState(true)
+
+  const isScreenWidthAbove1200 = useMediaQuery("(min-width: 1200px)")
+
+  if (!mounted) {
+    return <></>
+  }
 
   return (
     <div
       className={cn(styles["side-navbar"], {
-        [`${styles["side-nav--expand"]}`]: isExpand,
+        [`${styles["side-nav--expand"]}`]: isExpand && isScreenWidthAbove1200,
         [`${styles["side-nav--collapse"]}`]: !isExpand,
       })}
     >
@@ -31,8 +41,10 @@ export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
           <ScrollArea className={styles["scroll-area"]}>
             <div
               className={cn(styles["content-layout"], {
-                [`${styles["side-nav--expand"]}`]: isExpand,
-                [`${styles["side-nav--collapse"]}`]: !isExpand,
+                [`${styles["side-nav--expand"]}`]:
+                  isExpand && isScreenWidthAbove1200,
+                [`${styles["side-nav--collapse"]}`]:
+                  !isExpand || !isScreenWidthAbove1200,
               })}
             >
               <TooltipProvider delayDuration={200} skipDelayDuration={0}>
@@ -41,9 +53,9 @@ export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
                     <div
                       className={cn({
                         [`${styles["collapse-toggle-wrapper--expand"]}`]:
-                          isExpand,
+                          isExpand && isScreenWidthAbove1200,
                         [`${styles["collapse-toggle-wrapper--collapse"]}`]:
-                          !isExpand,
+                          !isExpand || !isScreenWidthAbove1200,
                       })}
                     >
                       <div className={styles["collapse-toggle-container"]}>
@@ -53,7 +65,7 @@ export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
                         >
                           <div className={styles["svg-wrapper"]}>
                             <div className={styles["svg-container"]}>
-                              {isExpand ? (
+                              {isExpand && isScreenWidthAbove1200 ? (
                                 <Icons.collapse className={styles["svg"]} />
                               ) : (
                                 <Icons.expandArrow className={styles["svg"]} />
@@ -65,20 +77,24 @@ export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
                     </div>
                   </TooltipTrigger>
                   <TooltipContent side={"right"}>
-                    <p>{isExpand ? "Collapse" : "Expand"}</p>
+                    <p>
+                      {isExpand && isScreenWidthAbove1200
+                        ? "Collapse"
+                        : "Expand"}
+                    </p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
 
               <div className={styles["side-navbar-contents"]}>
-                {isExpand && (
+                {isExpand && isScreenWidthAbove1200 && (
                   <div className={styles["side-navbar-title"]}>
                     <p>For You</p>
                   </div>
                 )}
 
                 <div className={styles["side-navbar-section"]}>
-                  {isExpand ? (
+                  {isExpand && isScreenWidthAbove1200 ? (
                     <div className={styles["side-navbar-section-header"]}>
                       <h2>Recommended Channels</h2>
                     </div>
@@ -227,7 +243,7 @@ export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
                                 className={styles["tooltip-body"]}
                               >
                                 <div className={styles["tooltip-content"]}>
-                                  {!isExpand && (
+                                  {!isExpand && isScreenWidthAbove1200 && (
                                     <p
                                       className={
                                         styles["tooltip-text-collapse"]
@@ -241,7 +257,7 @@ export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
                                     {title}
                                   </p>
 
-                                  {!isExpand && (
+                                  {!isExpand && isScreenWidthAbove1200 && (
                                     <div
                                       className={
                                         styles["tooltip-live-collapse"]
