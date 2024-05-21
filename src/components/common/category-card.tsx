@@ -23,7 +23,12 @@ export function CategoryCard({ category }: { category: ICategoryData }) {
               <div className={styles["left-bar"]}></div>
               <div className={styles["bottom-bar"]}></div>
               <div className={styles["card-image-container"]}>
-                <img src={image} alt={title} className={styles["card-image"]} />
+                <div className={styles["card-image-placeholder-wrapper"]}>
+                  <div className={styles["card-image-placeholder-container"]}>
+                    <div className={styles["card-image-placeholder"]}></div>
+                    <img src={image} alt={title} className={styles["card-image"]}/>
+                  </div>
+                </div>
               </div>
             </Link>
 

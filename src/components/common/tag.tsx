@@ -7,8 +7,8 @@ import styles from "@/styles/components/common/tag.module.scss"
 export function Tag({ tags }: { tags: ITag[] }) {
   return (
     <div className={styles["tags"]}>
-      {tags.map(({ name }) => (
-        <Link href={"/"} className={styles["tag-link"]}>
+      {tags.map(({ name }, index) => (
+        <Link key={index} href={"/"} className={styles["tag-link"]}>
           {name}
         </Link>
       ))}

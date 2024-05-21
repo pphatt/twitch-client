@@ -1,7 +1,8 @@
 import * as React from "react"
+import { Suspense } from "react"
 
 import { categoryData, liveChannels } from "@/config/data"
-import { CategorySection } from "@/components/category-section"
+import CategorySection from "@/components/category-section"
 import { RecommendLiveChannels } from "@/components/recommend-live-channels"
 import styles from "@/styles/lobby/page.module.scss"
 
@@ -17,7 +18,9 @@ export default function LobbyPage() {
               </div>
 
               <div>
-                <CategorySection categories={categoryData.categories} />
+                <Suspense fallback={""}>
+                  <CategorySection categories={categoryData.categories} />
+                </Suspense>
               </div>
             </section>
           </div>

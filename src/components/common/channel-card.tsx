@@ -29,11 +29,18 @@ export function ChannelCard({ channel }: { channel: IRecommendedLiveChannel }) {
               <Link href={"/"} className={styles["card-image-overlay"]}>
                 <div className={styles["card-image-overlay"]}>
                   <div className={styles["card-image-container"]}>
-                    <img
-                      src={livePreviewImage}
-                      alt={title}
-                      className={styles["card-image"]}
-                    />
+                    <div className={styles["card-image-placeholder-wrapper"]}>
+                      <div
+                        className={styles["card-image-placeholder-container"]}
+                      >
+                        <div className={styles["card-image-placeholder"]}></div>
+                        <img
+                          src={livePreviewImage}
+                          alt={title}
+                          className={styles["card-image"]}
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   <div className={styles["live-section-wrapper"]}>

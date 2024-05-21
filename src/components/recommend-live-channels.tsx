@@ -1,7 +1,11 @@
+"use client"
+
 import * as React from "react"
 import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { useMounted } from "@/hooks/use-mounted"
 import { Separator } from "@/components/ui/separator"
 import { ChannelCard } from "@/components/common/channel-card"
 import styles from "@/styles/components/recommend-live-channels.module.scss"
@@ -11,6 +15,36 @@ export function RecommendLiveChannels({
 }: {
   channels: IRecommendedLiveChannel[]
 }) {
+  const mounted = useMounted()
+
+  const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
+  const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
+  const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")
+  const isScreenWidthAbove983 = useMediaQuery("(min-width: 983px)")
+
+  const getNumberByScreenWidth = React.useMemo(() => {
+    if (isScreenWidthAbove2073) {
+      return 6
+    } else if (isScreenWidthAbove1773) {
+      return 5
+    } else if (isScreenWidthAbove1473) {
+      return 4
+    } else if (isScreenWidthAbove983) {
+      return 3
+    }
+
+    return 2
+  }, [
+    isScreenWidthAbove1473,
+    isScreenWidthAbove1773,
+    isScreenWidthAbove2073,
+    isScreenWidthAbove983,
+  ])
+
+  if (!mounted) {
+    return <></>
+  }
+
   return (
     <div className={styles["content-section"]}>
       <div className={styles["content-section-header"]}>
@@ -22,7 +56,7 @@ export function RecommendLiveChannels({
 
       <div className={styles["content-list-wrapper"]}>
         <div className={styles["content-list-container"]}>
-          {channels.map((channel, index) => (
+          {channels.slice(0, getNumberByScreenWidth).map((channel, index) => (
             <ChannelCard key={index} channel={channel} />
           ))}
         </div>
