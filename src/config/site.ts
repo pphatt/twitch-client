@@ -20,7 +20,7 @@ export const siteConfig = {
     },
     {
       title: "Browse",
-      href: "/director",
+      href: "/directory",
       items: [],
     },
   ] as MainNavItem[],
@@ -86,6 +86,19 @@ export const supportSite: MainNavSupportItem = {
           href: "/terms",
         },
       ],
+    },
+  ],
+}
+
+export const directorySite = {
+  sites: [
+    {
+      title: "Categories",
+      slug: "/directory",
+    },
+    {
+      title: "Live Channels",
+      slug: "/directory/all",
     },
   ],
 }
