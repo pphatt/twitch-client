@@ -3,6 +3,7 @@ import * as React from "react"
 import { categoryData } from "@/config/data"
 import { CategoryCard } from "@/components/common/category-card"
 import { CategoryCardSkeleton } from "@/components/loading/category-card-skeleton"
+import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder"
 import styles from "@/styles/directory/page.module.scss"
 
 export default function DirectoryPage() {
@@ -28,10 +29,7 @@ export default function DirectoryPage() {
       ))}
 
       {[...(Array(20) as number[])].map((_, index) => (
-        <div
-          key={index}
-          style={{ order: 4000 }}
-          className={styles["skeleton-placeholder"]}></div>
+        <CategoryPlaceholder key={index} style={{ order: 4000 }} />
       ))}
     </>
   )
