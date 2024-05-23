@@ -2,6 +2,7 @@ import * as React from "react"
 import {
   AlertCircle,
   AlignJustify,
+  ArrowDownWideNarrow,
   ArrowUpFromDot,
   AudioWaveform,
   Ban,
@@ -9,6 +10,7 @@ import {
   Bookmark,
   BookMarked,
   BookOpen,
+  Check,
   CheckSquare,
   ChevronDown,
   ChevronLeft,
@@ -58,6 +60,7 @@ export const Icons = {
   close: X,
   user: User,
   users: Users,
+  check: Check,
   terminal: FileTerminal,
   expand: Expand,
   all: GalleryVerticalEnd,
@@ -73,6 +76,7 @@ export const Icons = {
   arrowDown: ChevronDown,
   arrowRight: ChevronRight,
   arrowLeft: ChevronLeft,
+  arrowDownWideNarrow: ArrowDownWideNarrow,
   view: Eye,
   hide: EyeOff,
   alignJustify: AlignJustify,
@@ -290,6 +294,16 @@ export const Icons = {
       <path
         fillRule="evenodd"
         d="M12.002 3.999a2 2 0 0 1 2 2v2L18 6v8l-3.998-2v2a2 2 0 0 1-2 1.999h-8a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h8zM12 6H4v8h8V6z"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+  ),
+  starBling: ({ ...props }: LucideProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props} fill={"currentColor"}>
+      <path d="M13.39 4.305 12 5l1.404.702a2 2 0 0 1 .894.894L15 8l.702-1.404a2 2 0 0 1 .894-.894L18 5l-1.418-.709a2 2 0 0 1-.881-.869L14.964 2l-.668 1.385a2 2 0 0 1-.907.92z"></path>
+      <path
+        fillRule="evenodd"
+        d="M5.404 9.298a2 2 0 0 0 .894-.894L8 5h1l1.702 3.404a2 2 0 0 0 .894.894L15 11v1l-3.404 1.702a2 2 0 0 0-.894.894L9 18H8l-1.702-3.404a2 2 0 0 0-.894-.894L2 12v-1l3.404-1.702zm2.683 0 .413-.826.413.826a4 4 0 0 0 1.789 1.789l.826.413-.826.413a4 4 0 0 0-1.789 1.789l-.413.826-.413-.826a4 4 0 0 0-1.789-1.789l-.826-.413.826-.413a4 4 0 0 0 1.789-1.789z"
         clipRule="evenodd"
       ></path>
     </svg>

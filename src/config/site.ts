@@ -1,4 +1,4 @@
-import type { MainNavItem, MainNavSupportItem } from "@/types"
+import type { MainNavItem, MainNavSupportItem, NavItem } from "@/types"
 
 export type SiteConfig = typeof siteConfig
 
@@ -90,7 +90,7 @@ export const supportSite: MainNavSupportItem = {
   ],
 }
 
-export const directorySite = {
+export const directorySite: { sites: NavItem[] } = {
   sites: [
     {
       title: "Categories",

@@ -23,7 +23,7 @@ export function SearchCommandMenu() {
 
   const [query, setQuery] = React.useState("")
   const debouncedQuery = useDebounce(query, 300)
-  const [data, setData] = React.useState<SearchMangaResponse[] | null>(null)
+  const [data, setData] = React.useState<null>(null)
   const [isPending, startTransition] = React.useTransition()
 
   // const [recentSearch, setRecentSearch] = useLocalStorage<IRecentSearch[]>({

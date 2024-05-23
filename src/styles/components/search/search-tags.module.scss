@@ -1,15 +1,17 @@
-@use "../variables" as var;
+@use "../../variables" as var;
+
+.search-categories-tags {
+  max-width: 220px;
+  min-width: 220px;
+
+  margin-right: 5px;
+}
 
 .command {
-  flex-basis: 400px !important;
-
   color: rgb(255 255 255) !important;
   background-color: rgb(23 28 30) !important;
 
-  max-width: 400px !important;
-  height: 2.25rem !important;
-
-  margin: 0 2rem !important;
+  height: 30px !important;
 
   overflow: initial !important;
 
@@ -38,7 +40,11 @@
 }
 
 .command-input {
-  height: 2.25rem !important;
+  height: 100% !important;
+
+  font-size: 13px !important;
+
+  padding: 0.5rem 0 !important;
 
   border-bottom-width: 0 !important;
 }

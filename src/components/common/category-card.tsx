@@ -2,15 +2,23 @@ import * as React from "react"
 import Link from "next/link"
 import type { ICategoryData } from "@/types"
 
-import { formatViewCount } from "@/lib/utils"
+import { cn, formatViewCount } from "@/lib/utils"
 import { Tag } from "@/components/common/tag"
 import styles from "@/styles/components/common/category-card.module.scss"
 
-export function CategoryCard({ category }: { category: ICategoryData }) {
+interface CategoryCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  category: ICategoryData
+}
+
+export function CategoryCard({
+  category,
+  className,
+  ...props
+}: CategoryCardProps) {
   const { title, image, currentTotalView, slug, tags } = category
 
   return (
-    <div className={styles["card-wrapper"]}>
+    <div className={cn(styles["card-wrapper"], className)} {...props}>
       <div className={styles["card-container"]}>
         <div className={styles["card"]}>
           <div className={styles["card-info"]}>
@@ -26,7 +34,11 @@ export function CategoryCard({ category }: { category: ICategoryData }) {
                 <div className={styles["card-image-placeholder-wrapper"]}>
                   <div className={styles["card-image-placeholder-container"]}>
                     <div className={styles["card-image-placeholder"]}></div>
-                    <img src={image} alt={title} className={styles["card-image"]}/>
+                    <img
+                      src={image}
+                      alt={title}
+                      className={styles["card-image"]}
+                    />
                   </div>
                 </div>
               </div>
