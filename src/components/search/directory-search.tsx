@@ -61,7 +61,7 @@ export function DirectorySearch({ slug }: DirectorySearchProps) {
                   })}
                 >
                   <Link
-                    href={"/directory?sort=RELEVANCE"}
+                    href={`${slug}?sort=RELEVANCE`}
                     className={styles["dropdown-item-link"]}
                   >
                     <div className={styles["dropdown-item"]}>
@@ -87,7 +87,7 @@ export function DirectorySearch({ slug }: DirectorySearchProps) {
                   })}
                 >
                   <Link
-                    href={"/directory?sort=VIEWER_COUNT"}
+                    href={`${slug}?sort=VIEWER_COUNT`}
                     className={styles["dropdown-item-link"]}
                   >
                     <div className={styles["dropdown-item"]}>

@@ -2,11 +2,19 @@ import * as React from "react"
 import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
-import { formatViewCount } from "@/lib/utils"
+import { cn, formatViewCount } from "@/lib/utils"
 import { Tag } from "@/components/common/tag"
 import styles from "@/styles/components/common/channel-card.module.scss"
 
-export function ChannelCard({ channel }: { channel: IRecommendedLiveChannel }) {
+interface ChannelCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  channel: IRecommendedLiveChannel
+}
+
+export function ChannelCard({
+  channel,
+  className,
+  ...props
+}: ChannelCardProps) {
   const {
     channel: currentChannel,
     title,
@@ -17,7 +25,7 @@ export function ChannelCard({ channel }: { channel: IRecommendedLiveChannel }) {
   } = channel
 
   return (
-    <div className={styles["card-wrapper"]}>
+    <div className={cn(styles["card-wrapper"], className)} {...props}>
       <div className={styles["card-container"]}>
         <div className={styles["card"]}>
           <article className={styles["card-info"]}>

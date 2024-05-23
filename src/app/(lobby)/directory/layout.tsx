@@ -19,9 +19,7 @@ export default function DirectLayout({
               <DirectorySideNav sites={directorySite.sites} />
 
               <div className={styles["content"]}>
-                <div className={styles["main-content"]}>
-                  <Suspense fallback={<div></div>}>{children}</Suspense>
-                </div>
+                <div className={styles["main-content"]}>{children}</div>
               </div>
             </section>
           </div>
