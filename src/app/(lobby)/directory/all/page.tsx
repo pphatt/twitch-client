@@ -5,8 +5,10 @@ import { ChannelCard } from "@/components/common/channel-card"
 import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
 import styles from "@/styles/live-channel/page.module.scss"
 
-export default function LiveChannelsPage() {
+export default async function LiveChannelsPage() {
   const channels = liveChannels.channels
+
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   return (
     <>

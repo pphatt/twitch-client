@@ -5,7 +5,6 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type { NavItem } from "@/types"
 
-import { useMounted } from "@/hooks/use-mounted"
 import { DirectorySearch } from "@/components/search/directory-search"
 import styles from "@/styles/components/directory-side-nav.module.scss"
 
@@ -13,14 +12,8 @@ interface DirectorySideNavProps {
   sites: NavItem[]
 }
 
-export function DirectorySideNav({ sites }: DirectorySideNavProps) {
-  const mounted = useMounted()
-
+export default function DirectorySideNav({ sites }: DirectorySideNavProps) {
   const pathname = usePathname()
-
-  if (!mounted) {
-    return <></>
-  }
 
   return (
     <>

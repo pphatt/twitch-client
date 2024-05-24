@@ -1,5 +1,6 @@
 import "@/styles/globals.scss"
 
+import TanStackProviders from "@/providers/tanstack-provider"
 import { GeistSans } from "geist/font/sans"
 
 import { siteConfig } from "@/config/site"
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={GeistSans.className}>
-        <div className={styles["root"]}>
-          <div className={styles["root-layout-wrapper"]}>
-            <div className={styles["root-layout-container"]}>{children}</div>
+        <TanStackProviders>
+          <div className={styles["root"]}>
+            <div className={styles["root-layout-wrapper"]}>
+              <div className={styles["root-layout-container"]}>{children}</div>
+            </div>
           </div>
-        </div>
+        </TanStackProviders>
       </body>
     </html>
   )

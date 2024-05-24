@@ -1,9 +1,13 @@
 import * as React from "react"
+import dynamic from "next/dynamic"
 
 import { channelsData } from "@/config/data"
-import { SideNavBar } from "@/components/layouts/side-nav-bar"
 import { SiteHeader } from "@/components/layouts/site-header"
 import styles from "@/styles/lobby/layout.module.scss"
+
+const SideNavBar = dynamic(() => import("@/components/layouts/side-nav-bar"), {
+  ssr: false,
+})
 
 export default function LobbyLayout({
   children,

@@ -6,7 +6,6 @@ import type { IChannelsData } from "@/types"
 
 import { cn, formatViewCount } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { useMounted } from "@/hooks/use-mounted"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
@@ -18,16 +17,10 @@ import {
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
 
-export function SideNavBar({ channels }: { channels: IChannelsData[] }) {
-  const mounted = useMounted()
-
+export default function SideNavBar({ channels }: { channels: IChannelsData[] }) {
   const [isExpand, setIsExpand] = React.useState(true)
 
   const isScreenWidthAbove1200 = useMediaQuery("(min-width: 1200px)")
-
-  if (!mounted) {
-    return <></>
-  }
 
   return (
     <div

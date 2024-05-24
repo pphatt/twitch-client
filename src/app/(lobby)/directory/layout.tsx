@@ -1,15 +1,26 @@
 import * as React from "react"
-import { Suspense } from "react"
+import dynamic from "next/dynamic"
 
 import { directorySite } from "@/config/site"
-import { DirectorySideNav } from "@/components/directory-side-nav"
+// import { DirectorySideNav } from "@/components/directory-side-nav"
 import styles from "@/styles/directory/layout.module.scss"
+
+const DirectorySideNav = dynamic(
+  () => import("@/components/directory-side-nav"),
+  { ssr: false }
+)
 
 export default function DirectLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  /*
+   * trong trang page ko can` phai fetch du lieu
+   * co the de fetch o trong 1 server component rieng xong suspense no trong page
+   * maybe this is the solution ????
+   * */
+
   return (
     <div className={styles["page-wrapper"]}>
       <div className={styles["page-container"]}>

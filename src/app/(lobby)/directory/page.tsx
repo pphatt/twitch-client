@@ -6,8 +6,10 @@ import { CategoryCardSkeleton } from "@/components/loading/category-card-skeleto
 import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder"
 import styles from "@/styles/directory/page.module.scss"
 
-export default function DirectoryPage() {
+export default async function DirectoryPage() {
   const categories = categoryData.categories
+
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   return (
     <>
