@@ -565,7 +565,7 @@ export const liveChannels = {
       totalView: 4_300,
       isLive: true,
       category: "League of Legend",
-      livePreviewImage: "/recommend-live-channel/live-jankos-preview.jpg",
+      livePreviewImage: "/recommend-live-channel/live-nemesis-preview.jpg",
       tags: [
         {
           name: "English",
@@ -615,7 +615,7 @@ export const liveChannels = {
     {
       channel: {
         name: "mago2dgod",
-        image: "/avatar/mago2dgod-avatar.jpeg",
+        image: "/avatar/mago2dgod-avatar.png",
       },
       title: "【SF6】寝て起きたらゴウキが上手くなっていた件について",
       totalView: 6_600,

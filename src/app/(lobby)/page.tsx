@@ -16,6 +16,13 @@ const CategorySection = dynamic(() => import("@/components/category-section"), {
   ssr: false,
 })
 
+const CurrentLiveChannels = dynamic(
+  () => import("@/components/current-live-channels"),
+  {
+    ssr: false,
+  }
+)
+
 export default async function LobbyPage() {
   const [] = await Promise.all([sleep(1000), sleep(1000)])
 
@@ -31,6 +38,10 @@ export default async function LobbyPage() {
 
               <div>
                 <CategorySection categories={categoryData.categories} />
+              </div>
+
+              <div>
+                <CurrentLiveChannels channels={liveChannels.channels} />
               </div>
             </section>
           </div>

@@ -9,11 +9,11 @@ import { Separator } from "@/components/ui/separator"
 import { CategoryCard } from "@/components/common/category-card"
 import styles from "@/styles/components/category-section.module.scss"
 
-export default function CategorySection({
-  categories,
-}: {
+interface CategorySectionProps {
   categories: ICategoryData[]
-}) {
+}
+
+export default function CategorySection({ categories }: CategorySectionProps) {
   const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
   const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
   const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")
@@ -26,12 +26,17 @@ export default function CategorySection({
       return 10
     } else if (isScreenWidthAbove1473) {
       return 8
-    }else if (isScreenWidthAbove983) {
+    } else if (isScreenWidthAbove983) {
       return 6
     }
 
     return 4
-  }, [isScreenWidthAbove1473, isScreenWidthAbove1773, isScreenWidthAbove2073, isScreenWidthAbove983])
+  }, [
+    isScreenWidthAbove1473,
+    isScreenWidthAbove1773,
+    isScreenWidthAbove2073,
+    isScreenWidthAbove983,
+  ])
 
   return (
     <div className={styles["content-section"]}>
