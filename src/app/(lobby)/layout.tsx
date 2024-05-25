@@ -2,14 +2,10 @@ import * as React from "react"
 import dynamic from "next/dynamic"
 
 import { SiteHeader } from "@/components/layouts/site-header"
-import SideNavBarSkeleton from "@/components/loading/side-nav-bar-skeleton"
 import styles from "@/styles/lobby/layout.module.scss"
 
 const SideNavBar = dynamic(() => import("@/components/layouts/side-nav-bar"), {
   ssr: false,
-  loading: () => {
-    return <SideNavBarSkeleton />
-  },
 })
 
 export default function LobbyLayout({

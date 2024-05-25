@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import dynamic from "next/dynamic"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
@@ -13,12 +12,10 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import FollowedLiveChannelSideBar from "@/components/followed-live-channel-side-bar"
 import { Icons } from "@/components/icons"
+import RecommendLiveChanelSideBar from "@/components/recommend-live-chanel-side-bar"
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
-
-const RecommendLiveChanelSideBar = dynamic(
-  () => import("@/components/recommend-live-chanel-side-bar")
-)
 
 export default function SideNavBar() {
   const [isExpand, setIsExpand] = React.useState(true)
@@ -88,6 +85,11 @@ export default function SideNavBar() {
                     <p>For You</p>
                   </div>
                 )}
+
+                <FollowedLiveChannelSideBar
+                  isExpand={isExpand}
+                  isScreenWidthAbove1200={isScreenWidthAbove1200}
+                />
 
                 <RecommendLiveChanelSideBar
                   isExpand={isExpand}

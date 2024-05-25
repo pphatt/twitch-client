@@ -1,6 +1,6 @@
-import type { IChannelsData } from "@/types"
+import type { IChannelsData, IFollowChannelsData } from "@/types"
 
-export const channelsData: { channels: IChannelsData[] } = {
+export const followedChannels: { channels: IFollowChannelsData[] } = {
   channels: [
     {
       channelName: "Riot Games",
@@ -11,6 +11,55 @@ export const channelsData: { channels: IChannelsData[] } = {
       image: "/avatar/riot-games-avatar.png",
     },
     {
+      channelName: "Thầy Giáo Ba",
+      category: "League of Legend",
+      isLive: true,
+      view: 8_856,
+      title: "T1 vs BLG | DAY 16 | MSI 2024",
+      image: "/avatar/thay-giao-ba-avatar.png",
+    },
+    {
+      channelName: "ironmouse",
+      category: "Fallout: New Vegas",
+      isLive: true,
+      view: 9_283,
+      title:
+        "FRIDAY!!! GAMES PLAY ME BUY MY CUP OK THANK| !angel | !concert | !devil | !rodent | #VSHOJO | !tts | !merch | !YouTube | !razer |!gamersupps",
+      image: "/avatar/ironmouse-avatar.png",
+    },
+    {
+      channelName: "Jynxzi",
+      category: "Tom Clancy's Rainbow Six Siege",
+      isLive: true,
+      view: 78_012,
+      title: "I said huh",
+      image: "/avatar/jynxzi-avatar.png",
+    },
+    {
+      channelName: "xull",
+      isLive: false,
+      image: "/avatar/xull-avatar.png",
+    },
+    {
+      channelName: "Sweetily",
+      category: "Wuthering Waves",
+      isLive: true,
+      view: 2_012,
+      title:
+        "UL31 🏮 200 HOURS PLAYED IN CBTS AMA !YT Gift 2 Subs for Rewards IN-Game ✦ 5 star selector sent tomorrow 「EN/中文」!WutheringWaves #ad",
+      image: "/avatar/sweetily-avatar.png",
+    },
+    {
+      channelName: "喬希啊 (josie5297)",
+      isLive: false,
+      image: "/avatar/josie5297-avatar.png",
+    },
+  ],
+}
+
+export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
+  channels: [
+    {
       channelName: "xQc",
       category: "Just Chatting",
       isLive: true,
@@ -18,14 +67,6 @@ export const channelsData: { channels: IChannelsData[] } = {
       title:
         "📕LIVE📕CLICK📕HERE📕REACT📕VIDEOS📕GAMEPLAY📕#1 AT EVERYTHING📕POGCHAMPION📕",
       image: "/avatar/xqc-avatar.jpeg",
-    },
-    {
-      channelName: "Thầy Giáo Ba",
-      category: "League of Legend",
-      isLive: true,
-      view: 8_856,
-      title: "T1 vs BLG | DAY 16 | MSI 2024",
-      image: "/avatar/thay-giao-ba-avatar.png",
     },
     {
       channelName: "Kei",
@@ -43,15 +84,6 @@ export const channelsData: { channels: IChannelsData[] } = {
       title:
         "⚔️100+ HR STREAM⚔️ELDEN RING⚔️CLICK HERE⚔️GAMER⚔️BIGGEST DWARF⚔️ELITE⚔️PRAY 4 ME⚔️",
       image: "/avatar/kai-cenat-avatar.png",
-    },
-    {
-      channelName: "ironmouse",
-      category: "Fallout: New Vegas",
-      isLive: true,
-      view: 9_283,
-      title:
-        "FRIDAY!!! GAMES PLAY ME BUY MY CUP OK THANK| !angel | !concert | !devil | !rodent | #VSHOJO | !tts | !merch | !YouTube | !razer |!gamersupps\n",
-      image: "/avatar/ironmouse-avatar.png",
     },
     {
       channelName: "Tenz",
@@ -226,6 +258,158 @@ export const categoryData = {
         },
       ],
     },
+    {
+      title: "Dota 2",
+      currentTotalView: 111_000,
+      slug: "dota-2",
+      image: "/category/dota-2.png",
+      tags: [
+        {
+          name: "Strategy",
+          slug: "",
+        },
+        {
+          name: "MOBA",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "Tom Clancy's Rainbow Six Siege",
+      currentTotalView: 79_100,
+      slug: "tom-clancys-rainbow-six-siege",
+      image: "/category/tom-clancys-rainbow-six-siege.jpg",
+      tags: [
+        {
+          name: "FPS",
+          slug: "",
+        },
+        {
+          name: "Shooter",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "Wuthering Waves",
+      currentTotalView: 54_000,
+      slug: "wuthering-waves",
+      image: "/category/wuthering-waves.jpg",
+      tags: [
+        {
+          name: "RPG",
+          slug: "",
+        },
+        {
+          name: "Adventure Game",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "Minecraft",
+      currentTotalView: 53_400,
+      slug: "minecraft",
+      image: "/category/minecraft.jpg",
+      tags: [
+        {
+          name: "Simulation",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "EA Sports FC 24",
+      currentTotalView: 49_900,
+      slug: "ea-sports-fc-24",
+      image: "/category/ea-sports-fc-24.jpg",
+      tags: [
+        {
+          name: "Simulation",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "World of Warcraft",
+      currentTotalView: 47_900,
+      slug: "world-of-warcraft",
+      image: "/category/world-of-warcraft.png",
+      tags: [
+        {
+          name: "RPG",
+          slug: "",
+        },
+        {
+          name: "Adventure Game",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "Apex Legends",
+      currentTotalView: 40_800,
+      slug: "apex-legends",
+      image: "/category/apex-legends.jpg",
+      tags: [
+        {
+          name: "FPS",
+          slug: "",
+        },
+        {
+          name: "Shooter",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "Chess",
+      currentTotalView: 37_800,
+      slug: "chess",
+      image: "/category/chess.jpg",
+      tags: [
+        {
+          name: "Strategy",
+          slug: "",
+        },
+        {
+          name: "Action",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "ASMR",
+      currentTotalView: 11_400,
+      slug: "asmr",
+      image: "/category/asmr.jpg",
+      tags: [
+        {
+          name: "IRL",
+          slug: "",
+        },
+      ],
+    },
+    {
+      title: "Rust",
+      currentTotalView: 10_800,
+      slug: "rust",
+      image: "/category/rust.jpg",
+      tags: [
+        {
+          name: "FPS",
+          slug: "",
+        },
+        {
+          name: "Shooter",
+          slug: "",
+        },
+        {
+          name: "RPG",
+          slug: "",
+        },
+      ],
+    },
   ],
 }
 
@@ -329,6 +513,122 @@ export const liveChannels = {
       tags: [
         {
           name: "한국어",
+          slug: "",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "喬希啊 (josie5297)",
+        image: "/avatar/josie5297-avatar.png",
+      },
+      title: "欸黑:D  !SNS",
+      totalView: 3_400,
+      isLive: true,
+      category: "Just Chatting",
+      livePreviewImage: "/recommend-live-channel/live-josie5297-preview.jpg",
+      tags: [
+        {
+          name: "中文",
+          slug: "",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "Jankos",
+        image: "/avatar/jankos-avatar.png",
+      },
+      title:
+        "❗❗EDUCATION?!  POSITIVE VIBES ❗ ❗ !YOUTUBE !CLIPS !DISCORD !PRIME !TIERLIST !DUO",
+      totalView: 4_600,
+      isLive: true,
+      category: "League of Legend",
+      livePreviewImage: "/recommend-live-channel/live-jankos-preview.jpg",
+      tags: [
+        {
+          name: "English",
+          slug: "",
+        },
+        {
+          name: "Educational",
+          slug: "",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "lol_nemesis",
+        image: "/avatar/nemesis-avatar.png",
+      },
+      title: "euw soloqqq !patreon !discord !nordvpn",
+      totalView: 4_300,
+      isLive: true,
+      category: "League of Legend",
+      livePreviewImage: "/recommend-live-channel/live-jankos-preview.jpg",
+      tags: [
+        {
+          name: "English",
+          slug: "",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "HasanAbi",
+        image: "/avatar/hasanabi-avatar.jpeg",
+      },
+      title:
+        "ICJ ISSUES CEASEFIRE ORDER, ISRAEL RESPONDS W/ MORE FIRE -LOUISIANA RECLASSIFIES ABORTION DRUG - BATMAN FINALE LATER!",
+      totalView: 53_000,
+      isLive: true,
+      category: "Just Chatting",
+      livePreviewImage: "/recommend-live-channel/live-hasanabi-preview.jpg",
+      tags: [
+        {
+          name: "English",
+          slug: "",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "ESL_DOTA2",
+        image: "/avatar/dota-2-avatar.jpeg",
+      },
+      title: "LIVE: BetBoom Team vs Xtreme Gaming - DreamLeague S23 - LB3",
+      totalView: 21_000,
+      isLive: true,
+      category: "Dota 2",
+      livePreviewImage: "/recommend-live-channel/live-dota-2-preview.jpg",
+      tags: [
+        {
+          name: "Esports",
+          slug: "",
+        },
+        {
+          name: "English",
+          slug: "",
+        },
+      ],
+    },
+    {
+      channel: {
+        name: "mago2dgod",
+        image: "/avatar/mago2dgod-avatar.jpeg",
+      },
+      title: "【SF6】寝て起きたらゴウキが上手くなっていた件について",
+      totalView: 6_600,
+      isLive: true,
+      category: "Street Fighter 6",
+      livePreviewImage: "/recommend-live-channel/live-mago2dgod-preview.jpg",
+      tags: [
+        {
+          name: "格闘ゲーマー",
+          slug: "",
+        },
+        {
+          name: "日本語",
           slug: "",
         },
       ],

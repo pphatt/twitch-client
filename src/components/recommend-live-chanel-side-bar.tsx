@@ -3,7 +3,7 @@ import Link from "next/link"
 import { type IChannelsData } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 
-import { channelsData } from "@/config/data"
+import { recommendedLiveChannelsData } from "@/config/data"
 import { formatViewCount, sleep } from "@/lib/utils"
 import {
   Tooltip,
@@ -23,18 +23,18 @@ export default function RecommendLiveChanelSideBar({
   isExpand,
   isScreenWidthAbove1200,
 }: RecommendLiveChanelSideBarProps) {
-  const { data: channels } = useQuery<IChannelsData[]>({
+  const { data: channels, isFetching } = useQuery<IChannelsData[]>({
     queryKey: ["recommend-live-channels"],
-    queryFn: async ({ pageParam = 1 }) => {
-      if (pageParam === 10) {
-        return []
-      }
-
+    queryFn: async () => {
       await sleep(300)
-      return channelsData.channels
+      return recommendedLiveChannelsData.channels
     },
     refetchOnWindowFocus: false,
   })
+
+  if (isFetching) {
+    return <></>
+  }
 
   return (
     <div className={styles["side-navbar-section"]}>

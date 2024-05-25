@@ -19,7 +19,7 @@ export function CategoryList({ categories }: CategoryListProps) {
     useInfiniteQuery({
       queryKey: ["category-list"],
       queryFn: async ({ pageParam = 1 }) => {
-        if (pageParam === 10) {
+        if (pageParam === 2) {
           return []
         }
 
@@ -34,7 +34,7 @@ export function CategoryList({ categories }: CategoryListProps) {
       },
       initialPageParam: 1,
       getNextPageParam: (_, pages) => {
-        if (pages.length === 10) {
+        if (pages.length === 2) {
           return undefined
         }
 

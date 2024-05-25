@@ -45,6 +45,15 @@ export interface IChannelsData {
   image: string
 }
 
+export interface IFollowChannelsData {
+  channelName: string
+  category?: string
+  isLive: boolean
+  view?: number
+  title?: string
+  image: string
+}
+
 export interface ICategoryData {
   title: string
   currentTotalView: number
