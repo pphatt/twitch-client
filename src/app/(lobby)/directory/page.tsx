@@ -1,13 +1,14 @@
 import * as React from "react"
 
 import { categoryData } from "@/config/data"
+import { sleep } from "@/lib/utils"
 import { CategoryList } from "@/components/category-list"
 import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder"
 
 export default async function DirectoryPage() {
   const categories = categoryData.categories
 
-  await new Promise((resolve) => setTimeout(resolve, 500))
+  await sleep(1000)
 
   return (
     <>

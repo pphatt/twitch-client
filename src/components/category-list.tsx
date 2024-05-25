@@ -4,8 +4,9 @@ import * as React from "react"
 import type { ICategoryData } from "@/types"
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-import { useIntersection } from "@/hooks/use-intersection-observer"
+import { sleep } from "@/lib/utils"
 import { CategoryCard } from "@/components/common/category-card"
+import InfiniteScroll from "@/components/infinite-scroll"
 import { CategoryCardSkeleton } from "@/components/loading/category-card-skeleton"
 import styles from "@/styles/components/category-list.module.scss"
 
@@ -14,7 +15,7 @@ interface CategoryListProps {
 }
 
 export function CategoryList({ categories }: CategoryListProps) {
-  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } =
+  const { data, isLoading, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery({
       queryKey: ["category-list"],
       queryFn: async ({ pageParam = 1 }) => {
@@ -22,7 +23,7 @@ export function CategoryList({ categories }: CategoryListProps) {
           return []
         }
 
-        await new Promise((resolve) => setTimeout(resolve, 1000))
+        await sleep(1000)
         return categories
       },
       initialData: () => {
@@ -32,7 +33,13 @@ export function CategoryList({ categories }: CategoryListProps) {
         }
       },
       initialPageParam: 1,
-      getNextPageParam: (_, pages) => pages.length + 1,
+      getNextPageParam: (_, pages) => {
+        if (pages.length === 10) {
+          return undefined
+        }
+
+        return pages.length + 1
+      },
       refetchOnWindowFocus: false,
     })
 
@@ -40,32 +47,38 @@ export function CategoryList({ categories }: CategoryListProps) {
     return data.pages.flatMap((category) => category)
   }, [data])
 
-  const lastRow = React.useRef<HTMLDivElement>(null)
-  const { ref: lastRowRef, entry: lastRowEntry } = useIntersection({
-    root: lastRow.current,
-    threshold: 1,
-  })
-
-  React.useEffect(() => {
-    if (lastRowEntry?.isIntersecting) {
-      void fetchNextPage() // ignore return promise value by using void
-      return
-    }
-  }, [lastRowEntry, fetchNextPage])
+  if (isLoading) {
+    return (
+      <>
+        {[...(Array(20) as number[])].map((_, index) => (
+          <CategoryCardSkeleton
+            key={index + categoryData.length}
+            style={{ order: index + categoryData.length }}
+            className={styles["category-card-skeleton"]}
+          />
+        ))}
+      </>
+    )
+  }
 
   return (
-    <>
+    <InfiniteScroll
+      next={fetchNextPage}
+      isFetchingNextPage={isFetchingNextPage}
+      hasNextPage={hasNextPage}
+      refClassName={styles["category-placeholder"]}
+    >
       {categoryData.map((category, index) => (
         <CategoryCard
           key={index}
+          data-index={index}
           category={category}
           className={styles["category-card"]}
           style={{ order: index }}
-          ref={index === categoryData.length - 1 ? lastRowRef : null}
         />
       ))}
 
-      {(isLoading || isFetchingNextPage) &&
+      {isFetchingNextPage &&
         [...(Array(8) as number[])].map((_, index) => (
           <CategoryCardSkeleton
             key={index + categoryData.length}
@@ -73,6 +86,6 @@ export function CategoryList({ categories }: CategoryListProps) {
             className={styles["category-card-skeleton"]}
           />
         ))}
-    </>
+    </InfiniteScroll>
   )
 }

@@ -2,16 +2,14 @@
   flex: 1 0 auto;
 
   max-width: 100%;
-  width: 12rem;
+  width: 30rem;
 
   padding: 0 5px;
 }
 
 .card-skeleton-container {
-  position: relative;
-
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-flow: column;
 }
 
 .card-image-skeleton-wrapper {
@@ -19,13 +17,11 @@
 
   width: 100%;
 
-  margin-bottom: 5px;
-
   overflow: hidden;
 }
 
 .card-image-skeleton-overlay {
-  padding-bottom: 133.333%;
+  padding-bottom: 56.25%;
 }
 
 .card-image-skeleton-container {
@@ -63,7 +59,71 @@
   }
 }
 
-.name-skeleton-wrapper {
+.description-skeleton-wrapper {
+  position: relative;
+}
+
+.description-skeleton-container {
+  display: flex;
+
+  margin-bottom: 20px;
+}
+
+.avatar-skeleton-wrapper {
+  display: inline-block;
+
+  height: 40px;
+
+  border-radius: 9999px;
+
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+
+  overflow: hidden;
+}
+
+.avatar-skeleton-container {
+  display: flex;
+  align-items: center;
+
+  max-width: 100%;
+  width: 40px;
+  height: 40px;
+  min-height: 0;
+
+  &:before {
+    display: block;
+
+    background-color: rgba(83, 83, 95, 0.38);
+
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    min-height: 0;
+
+    border-radius: 2px;
+
+    content: "";
+  }
+}
+
+.content-skeleton-wrapper {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.content-skeleton-container {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.content-smaller-skeleton-container {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.title-skeleton-wrapper {
   display: flex;
   align-items: center;
 
@@ -88,15 +148,14 @@
   }
 }
 
-.view-skeleton-wrapper {
+.common-skeleton-wrapper {
   display: flex;
   align-items: center;
+
   max-width: 100%;
   width: 100px;
   height: 100%;
   min-height: 1.7em;
-
-  padding-bottom: 20px;
 
   &:before {
     display: block;
@@ -105,8 +164,8 @@
 
     width: 100%;
     max-width: 100%;
-    min-height: calc(1em);
     height: 100%;
+    min-height: calc(1em);
 
     border-radius: 2px;
 

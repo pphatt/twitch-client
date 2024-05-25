@@ -1,24 +1,18 @@
 import * as React from "react"
 
 import { liveChannels } from "@/config/data"
-import { ChannelCard } from "@/components/common/channel-card"
+import { sleep } from "@/lib/utils"
+import LiveChannelsList from "@/components/live-channels-list"
 import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
-import styles from "@/styles/live-channel/page.module.scss"
 
 export default async function LiveChannelsPage() {
   const channels = liveChannels.channels
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await sleep(1000)
 
   return (
     <>
-      {channels.map((channel, index) => (
-        <ChannelCard
-          key={index}
-          channel={channel}
-          className={styles["live-channel-card"]}
-        />
-      ))}
+      <LiveChannelsList channels={channels} />
 
       {[...(Array(20) as number[])].map((_, index) => (
         <LiveChannelPlaceholder key={index} style={{ order: 4000 }} />

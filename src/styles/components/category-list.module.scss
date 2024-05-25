@@ -1,12 +1,10 @@
-.container {
-  display: flex;
-  flex-wrap: wrap;
+.category-placeholder {
+  flex: 1 0 auto;
 
-  min-width: 100%;
+  max-width: 100%;
+  width: 180px;
 
-  margin: 0 -5px;
-
-  list-style: none;
+  padding: 0 5px;
 }
 
 .category-card {
