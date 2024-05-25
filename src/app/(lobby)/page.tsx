@@ -1,9 +1,19 @@
 import * as React from "react"
+import dynamic from "next/dynamic"
 
 import { categoryData, liveChannels } from "@/config/data"
-import CategorySection from "@/components/category-section"
-import { RecommendLiveChannels } from "@/components/recommend-live-channels"
 import styles from "@/styles/lobby/page.module.scss"
+
+const RecommendLiveChannels = dynamic(
+  () => import("@/components/recommend-live-channels"),
+  {
+    ssr: false,
+  }
+)
+
+const CategorySection = dynamic(() => import("@/components/category-section"), {
+  ssr: false,
+})
 
 export default function LobbyPage() {
   return (

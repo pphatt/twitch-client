@@ -1,4 +1,6 @@
-export const channelsData = {
+import type { IChannelsData } from "@/types"
+
+export const channelsData: { channels: IChannelsData[] } = {
   channels: [
     {
       channelName: "Riot Games",

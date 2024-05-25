@@ -5,18 +5,15 @@ import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { useMounted } from "@/hooks/use-mounted"
 import { Separator } from "@/components/ui/separator"
 import { ChannelCard } from "@/components/common/channel-card"
 import styles from "@/styles/components/recommend-live-channels.module.scss"
 
-export function RecommendLiveChannels({
+export default function RecommendLiveChannels({
   channels,
 }: {
   channels: IRecommendedLiveChannel[]
 }) {
-  const mounted = useMounted()
-
   const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
   const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
   const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")
@@ -40,10 +37,6 @@ export function RecommendLiveChannels({
     isScreenWidthAbove2073,
     isScreenWidthAbove983,
   ])
-
-  if (!mounted) {
-    return <></>
-  }
 
   return (
     <div className={styles["content-section"]}>

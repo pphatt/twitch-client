@@ -5,7 +5,6 @@ import Link from "next/link"
 import type { ICategoryData } from "@/types"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { useMounted } from "@/hooks/use-mounted"
 import { Separator } from "@/components/ui/separator"
 import { CategoryCard } from "@/components/common/category-card"
 import styles from "@/styles/components/category-section.module.scss"
@@ -15,8 +14,6 @@ export default function CategorySection({
 }: {
   categories: ICategoryData[]
 }) {
-  const mounted = useMounted()
-
   const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
   const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
   const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")
@@ -35,10 +32,6 @@ export default function CategorySection({
 
     return 4
   }, [isScreenWidthAbove1473, isScreenWidthAbove1773, isScreenWidthAbove2073, isScreenWidthAbove983])
-
-  if (!mounted) {
-    return <></>
-  }
 
   return (
     <div className={styles["content-section"]}>
