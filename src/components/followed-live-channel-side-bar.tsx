@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 
 import { followedChannels } from "@/config/data"
 import { cn, formatViewCount, orderFollowedChannel, sleep } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
@@ -23,6 +24,8 @@ export default function FollowedLiveChannelSideBar({
   isExpand,
   isScreenWidthAbove1200,
 }: FollowedLiveChannelSideBarProps) {
+  const [isShowMore, setIsShowMore] = React.useState(false)
+
   const { data: dataChannels, isFetching } = useQuery<IFollowChannelsData[]>({
     queryKey: ["followed-channels"],
     queryFn: async () => {
@@ -38,9 +41,9 @@ export default function FollowedLiveChannelSideBar({
     }
 
     return orderFollowedChannel(dataChannels)
-      .slice(0, 10)
+      .slice(0, isShowMore ? 10 : 5)
       .sort((a, b) => b.view! - a.view!)
-  }, [dataChannels])
+  }, [dataChannels, isShowMore])
 
   if (isFetching || !dataChannels) {
     return <></>
@@ -208,7 +211,17 @@ export default function FollowedLiveChannelSideBar({
           )
         )}
       </div>
-      <div></div>
+
+      {isExpand && isScreenWidthAbove1200 && (
+        <div className={styles["show-more-wrapper"]}>
+          <Button
+            className={styles["show-more-btn"]}
+            onClick={() => setIsShowMore((showMore) => !showMore)}
+          >
+            {isShowMore ? "Show Less" : "Show More"}
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

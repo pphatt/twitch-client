@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 
 import { recommendedLiveChannelsData } from "@/config/data"
 import { formatViewCount, sleep } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
@@ -23,7 +24,9 @@ export default function RecommendLiveChanelSideBar({
   isExpand,
   isScreenWidthAbove1200,
 }: RecommendLiveChanelSideBarProps) {
-  const { data: channels, isFetching } = useQuery<IChannelsData[]>({
+  const [isShowMore, setIsShowMore] = React.useState(false)
+
+  const { data: dataChannels, isFetching } = useQuery<IChannelsData[]>({
     queryKey: ["recommend-live-channels"],
     queryFn: async () => {
       await sleep(300)
@@ -31,6 +34,14 @@ export default function RecommendLiveChanelSideBar({
     },
     refetchOnWindowFocus: false,
   })
+
+  const channels = React.useMemo(() => {
+    if (!dataChannels) {
+      return []
+    }
+
+    return dataChannels.slice(0, isShowMore ? 10 : 5)
+  }, [dataChannels, isShowMore])
 
   if (isFetching) {
     return <></>
@@ -160,7 +171,17 @@ export default function RecommendLiveChanelSideBar({
           )
         )}
       </div>
-      <div></div>
+
+      {isExpand && isScreenWidthAbove1200 && (
+        <div className={styles["show-more-wrapper"]}>
+          <Button
+            className={styles["show-more-btn"]}
+            onClick={() => setIsShowMore((showMore) => !showMore)}
+          >
+            {isShowMore ? "Show Less" : "Show More"}
+          </Button>
+        </div>
+      )}
     </div>
   )
 }

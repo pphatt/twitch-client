@@ -193,6 +193,15 @@
   border-radius: 9999px;
 }
 
+.total-live-view {
+  margin-left: 5px;
+
+  span {
+    color: #dedee3;
+    font-size: 13px;
+  }
+}
+
 .seo {
   position: absolute;
   clip: rect(0px, 0px, 0px, 0px);
@@ -209,15 +218,6 @@
   padding: 0;
 
   overflow: hidden;
-}
-
-.total-live-view {
-  margin-left: 5px;
-
-  span {
-    color: #dedee3;
-    font-size: 13px;
-  }
 }
 
 .tooltip-body {
@@ -279,5 +279,35 @@
     padding-left: 5px;
 
     white-space: nowrap;
+  }
+}
+
+.show-more-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+
+  padding: 8px 10px 5px;
+
+  line-height: 1.7;
+
+  text-align: left;
+
+  text-transform: capitalize;
+
+  overflow: hidden;
+}
+
+.show-more-btn {
+  color: rgb(255, 103, 64) !important;
+  background: transparent !important;
+
+  height: fit-content !important;
+
+  padding: 0 !important;
+
+  &:hover {
+    text-decoration: underline;
   }
 }
