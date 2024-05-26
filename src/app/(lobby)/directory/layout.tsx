@@ -10,20 +10,18 @@ export default function DirectLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className={styles["page-wrapper"]}>
-      <div className={styles["page-container"]}>
-        <div className={styles["content-wrapper"]}>
-          <div className={styles["content-container"]}>
-            <section className={styles["layout-wrapper"]}>
-              <DirectorySideNav sites={directorySite.sites} />
+    <>
+      <div className={styles["page-wrapper"]}>
+        <div className={styles["page-container"]}>
+          <section className={styles["layout-wrapper"]}>
+            <DirectorySideNav sites={directorySite.sites} />
 
-              <div className={styles["content"]}>
-                <div className={styles["main-content"]}>{children}</div>
-              </div>
-            </section>
-          </div>
+            <div className={styles["content"]}>
+              <div className={styles["main-content"]}>{children}</div>
+            </div>
+          </section>
         </div>
       </div>
-    </div>
+    </>
   )
 }
