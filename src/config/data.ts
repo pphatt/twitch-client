@@ -594,7 +594,7 @@ export const liveChannels = {
     {
       channel: {
         name: "ESL_DOTA2",
-        image: "/avatar/dota-2-avatar.jpeg",
+        image: "/avatar/dota-2-avatar.png",
       },
       title: "LIVE: BetBoom Team vs Xtreme Gaming - DreamLeague S23 - LB3",
       totalView: 21_000,
