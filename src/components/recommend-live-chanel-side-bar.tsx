@@ -13,7 +13,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/recommend-live-channel-side-bar.module.scss"
+import styles from "@/styles/components/share/side-bar-content.module.scss"
 
 interface RecommendLiveChanelSideBarProps {
   isExpand: boolean
@@ -172,7 +172,7 @@ export default function RecommendLiveChanelSideBar({
         )}
       </div>
 
-      {isExpand && isScreenWidthAbove1200 && (
+      {isExpand && isScreenWidthAbove1200 ? (
         <div className={styles["show-more-wrapper"]}>
           <Button
             className={styles["show-more-btn"]}
@@ -181,6 +181,8 @@ export default function RecommendLiveChanelSideBar({
             {isShowMore ? "Show Less" : "Show More"}
           </Button>
         </div>
+      ) : (
+        <div className={styles["divider"]}></div>
       )}
     </div>
   )

@@ -12,7 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import FollowedLiveChannelSideBar from "@/components/followed-live-channel-side-bar"
+import FollowedChannelSideBar from "@/components/followed-channel-side-bar"
 import { Icons } from "@/components/icons"
 import RecommendLiveChanelSideBar from "@/components/recommend-live-chanel-side-bar"
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
@@ -86,7 +86,7 @@ export default function SideNavBar() {
                   </div>
                 )}
 
-                <FollowedLiveChannelSideBar
+                <FollowedChannelSideBar
                   isExpand={isExpand}
                   isScreenWidthAbove1200={isScreenWidthAbove1200}
                 />

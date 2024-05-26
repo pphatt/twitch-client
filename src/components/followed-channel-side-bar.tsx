@@ -13,17 +13,17 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/followed-live-channel-side-bar.module.scss"
+import styles from "@/styles/components/share/side-bar-content.module.scss"
 
-interface FollowedLiveChannelSideBarProps {
+interface FollowedChannelSideBarProps {
   isExpand: boolean
   isScreenWidthAbove1200: boolean
 }
 
-export default function FollowedLiveChannelSideBar({
+export default function FollowedChannelSideBar({
   isExpand,
   isScreenWidthAbove1200,
-}: FollowedLiveChannelSideBarProps) {
+}: FollowedChannelSideBarProps) {
   const [isShowMore, setIsShowMore] = React.useState(false)
 
   const { data: dataChannels, isFetching } = useQuery<IFollowChannelsData[]>({
@@ -74,7 +74,10 @@ export default function FollowedLiveChannelSideBar({
 
       <div className={styles["channels-group"]}>
         {channels.map(
-          ({ channelName, slug, title, isLive, category, view, image }, index) => (
+          (
+            { channelName, slug, title, isLive, category, view, image },
+            index
+          ) => (
             <div key={index}>
               <TooltipProvider
                 delayDuration={0}
@@ -212,7 +215,7 @@ export default function FollowedLiveChannelSideBar({
         )}
       </div>
 
-      {isExpand && isScreenWidthAbove1200 && (
+      {isExpand && isScreenWidthAbove1200 ? (
         <div className={styles["show-more-wrapper"]}>
           <Button
             className={styles["show-more-btn"]}
@@ -221,6 +224,8 @@ export default function FollowedLiveChannelSideBar({
             {isShowMore ? "Show Less" : "Show More"}
           </Button>
         </div>
+      ) : (
+        <div className={styles["divider"]}></div>
       )}
     </div>
   )

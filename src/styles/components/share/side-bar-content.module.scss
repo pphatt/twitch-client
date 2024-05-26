@@ -1,3 +1,11 @@
+/**
+*
+* Shared between component
+*   - recommend-live-channel-side-bar
+*   - followed-channel-side-bar
+*
+*/
+
 .side-navbar-section {
   display: flex;
   flex-direction: column;
@@ -282,6 +290,56 @@
   }
 }
 
+/**
+* Below only used for followed-channel-side-bar
+*/
+
+.channel--offline {
+  filter: grayscale(100%) contrast(85%);
+  opacity: 0.8;
+}
+
+.offline-text {
+  display: flex;
+  align-items: center;
+
+  color: #dedee3;
+  font-size: 13px;
+}
+
+.tooltip-link-wrapper {
+  display: block;
+
+  width: 100%;
+
+  border-radius: 4px;
+
+  &:hover {
+    background-color: rgba(83, 83, 95, 0.48);
+  }
+
+  &:active {
+    background-color: rgba(83, 83, 95, 0.55);
+  }
+}
+
+.tooltip-link-container {
+  padding: 5px;
+
+  text-align: center;
+}
+
+.tooltip-link-text {
+  color: #efeff1;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/**
+* Above only used for followed-channel-side-bar
+*/
+
 .show-more-wrapper {
   display: flex;
   justify-content: space-between;
@@ -310,4 +368,14 @@
   &:hover {
     text-decoration: underline;
   }
+}
+
+.divider {
+  background-color: rgb(36 39 44);
+
+  height: 0.125rem;
+
+  margin-top: 5px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
