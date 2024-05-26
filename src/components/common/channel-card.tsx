@@ -18,6 +18,7 @@ export function ChannelCard({
   const {
     channel: currentChannel,
     title,
+    slug,
     livePreviewImage,
     totalView,
     category,
@@ -34,7 +35,7 @@ export function ChannelCard({
               <div className={styles["bottom-right-corner"]}></div>
               <div className={styles["left-bar"]}></div>
               <div className={styles["bottom-bar"]}></div>
-              <Link href={"/"} className={styles["card-image-overlay"]}>
+              <Link href={slug} className={styles["card-image-overlay"]}>
                 <div className={styles["card-image-overlay"]}>
                   <div className={styles["card-image-container"]}>
                     <div className={styles["card-image-placeholder-wrapper"]}>
@@ -69,7 +70,7 @@ export function ChannelCard({
             <div className={styles["channel-content-wrapper"]}>
               <div className={styles["channel-content-container"]}>
                 <div className={styles["channel-image-wrapper"]}>
-                  <Link href={"/"} className={styles["channel-image-link"]}>
+                  <Link href={slug} className={styles["channel-image-link"]}>
                     <div className={styles["channel-image-overlay"]}></div>
                     <div className={styles["channel-image-container"]}>
                       <img
@@ -82,7 +83,7 @@ export function ChannelCard({
                 </div>
                 <div className={styles["channel-info-wrapper"]}>
                   <div className={styles["channel-info-container"]}>
-                    <Link href={"/"} className={styles["channel-info-link"]}>
+                    <Link href={slug} className={styles["channel-info-link"]}>
                       <div className={styles["stream-title"]}>
                         <h3>{title}</h3>
                       </div>

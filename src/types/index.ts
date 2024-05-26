@@ -38,6 +38,7 @@ export interface SearchParams {
 
 export interface IChannelsData {
   channelName: string
+  slug: string
   category: string
   isLive: boolean
   view: number
@@ -47,6 +48,7 @@ export interface IChannelsData {
 
 export interface IFollowChannelsData {
   channelName: string
+  slug: string
   category?: string
   isLive: boolean
   view?: number
@@ -66,8 +68,10 @@ export interface IRecommendedLiveChannel {
   channel: {
     name: string
     image: string
+    slug: string
   }
   title: string
+  slug: string
   totalView: number
   isLive: boolean
   category: string

@@ -74,7 +74,7 @@ export default function FollowedLiveChannelSideBar({
 
       <div className={styles["channels-group"]}>
         {channels.map(
-          ({ channelName, title, isLive, category, view, image }, index) => (
+          ({ channelName, slug, title, isLive, category, view, image }, index) => (
             <div key={index}>
               <TooltipProvider
                 delayDuration={0}
@@ -85,7 +85,7 @@ export default function FollowedLiveChannelSideBar({
                   <TooltipTrigger asChild>
                     <div className={styles["channel-wrapper"]}>
                       <div className={styles["channel-container"]}>
-                        <Link href={"/"} className={styles["channel"]}>
+                        <Link href={slug} className={styles["channel"]}>
                           <div
                             className={cn(styles["channel-avatar"], {
                               [`${styles["channel--offline"]}`]: !isLive,
@@ -193,7 +193,7 @@ export default function FollowedLiveChannelSideBar({
                         </>
                       ) : (
                         <Link
-                          href={"/"}
+                          href={slug}
                           className={styles["tooltip-link-wrapper"]}
                         >
                           <div className={styles["tooltip-link-container"]}>

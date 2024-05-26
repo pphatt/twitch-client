@@ -72,7 +72,7 @@ export default function RecommendLiveChanelSideBar({
 
       <div className={styles["channels-group"]}>
         {channels?.map(
-          ({ channelName, title, category, view, image }, index) => (
+          ({ channelName, slug, title, category, view, image }, index) => (
             <div key={index}>
               <TooltipProvider
                 delayDuration={0}
@@ -83,7 +83,7 @@ export default function RecommendLiveChanelSideBar({
                   <TooltipTrigger asChild>
                     <div className={styles["channel-wrapper"]}>
                       <div className={styles["channel-container"]}>
-                        <Link href={"/"} className={styles["channel"]}>
+                        <Link href={slug} className={styles["channel"]}>
                           <div className={styles["channel-avatar"]}>
                             <picture className={styles["avatar-wrapper"]}>
                               <img

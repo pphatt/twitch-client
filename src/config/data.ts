@@ -4,6 +4,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
   channels: [
     {
       channelName: "Riot Games",
+      slug: "riot-games",
       category: "League of Legend",
       isLive: true,
       view: 100_000,
@@ -12,6 +13,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
     },
     {
       channelName: "Thầy Giáo Ba",
+      slug: "thay-giao-ba",
       category: "League of Legend",
       isLive: true,
       view: 8_856,
@@ -20,6 +22,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
     },
     {
       channelName: "ironmouse",
+      slug: "ironmouse",
       category: "Fallout: New Vegas",
       isLive: true,
       view: 9_283,
@@ -29,6 +32,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
     },
     {
       channelName: "Jynxzi",
+      slug: "jynxzi",
       category: "Tom Clancy's Rainbow Six Siege",
       isLive: true,
       view: 78_012,
@@ -37,11 +41,13 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
     },
     {
       channelName: "xull",
+      slug: "xull",
       isLive: false,
       image: "/avatar/xull-avatar.png",
     },
     {
       channelName: "Sweetily",
+      slug: "sweetily",
       category: "Wuthering Waves",
       isLive: true,
       view: 2_012,
@@ -51,6 +57,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
     },
     {
       channelName: "喬希啊 (josie5297)",
+      slug: "josie5297",
       isLive: false,
       image: "/avatar/josie5297-avatar.png",
     },
@@ -61,6 +68,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
   channels: [
     {
       channelName: "xQc",
+      slug: "xqc",
       category: "Just Chatting",
       isLive: true,
       view: 163_120,
@@ -70,6 +78,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
     },
     {
       channelName: "Kei",
+      slug: "kei",
       category: "League of Legend",
       isLive: true,
       view: 10_234,
@@ -78,6 +87,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
     },
     {
       channelName: "Kai Cenat",
+      slug: "kai-cenat",
       category: "Elden Ring",
       isLive: true,
       view: 90_245,
@@ -87,6 +97,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
     },
     {
       channelName: "Tenz",
+      slug: "tenz",
       category: "Valorant",
       isLive: true,
       view: 5_999,
@@ -95,6 +106,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
     },
     {
       channelName: "Misanthrope",
+      slug: "misanthrope",
       category: "Valorant",
       isLive: true,
       view: 9_283,
@@ -103,6 +115,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
     },
     {
       channelName: "CDawgVA",
+      slug: "cdawgva",
       category: "IRL",
       isLive: true,
       view: 10_906,
@@ -419,8 +432,10 @@ export const liveChannels = {
       channel: {
         name: "xull",
         image: "/avatar/xull-avatar.png",
+        slug: "/xull",
       },
       title: "idc ♡",
+      slug: "/xull",
       totalView: 1_700,
       isLive: true,
       category: "League of Legend",
@@ -444,8 +459,10 @@ export const liveChannels = {
       channel: {
         name: "Tenz",
         image: "/avatar/tenz-avatar.png",
+        slug: "/tenz",
       },
       title: "valorant then variety",
+      slug: "/tenz",
       totalView: 8_600,
       isLive: true,
       category: "HELLDIVERS 2",
@@ -469,9 +486,11 @@ export const liveChannels = {
       channel: {
         name: "Grimm",
         image: "/avatar/grimm-avatar.png",
+        slug: "/grimm",
       },
       title:
         "🟥SAGE MAIN RETURNS🟥T1 GRIM🟥BEST VALORANT EXPERIENCE🟥DERUSTING GETTING BETTER🟥HOPEFULLY WE CAN STILL GAME AT A HIGHT LEVEL🟥",
+      slug: "/grimm",
       totalView: 1_900,
       isLive: true,
       category: "Valorant",
@@ -487,8 +506,10 @@ export const liveChannels = {
       channel: {
         name: "Thầy Giáo Ba",
         image: "/avatar/thay-giao-ba-avatar.png",
+        slug: "/thay-giao-ba",
       },
       title: "Đồng hành cùng MSI !!",
+      slug: "/thay-giao-ba",
       totalView: 1_700,
       isLive: true,
       category: "League of Legend",
@@ -504,8 +525,10 @@ export const liveChannels = {
       channel: {
         name: "한갱 (woohankyung)",
         image: "/avatar/woohankyung-avatar.png",
+        slug: "/woohankyung",
       },
       title: "낭만을 찾아서,,",
+      slug: "/woohankyung",
       totalView: 4_412,
       isLive: true,
       category: "Just Chatting",
@@ -521,8 +544,10 @@ export const liveChannels = {
       channel: {
         name: "喬希啊 (josie5297)",
         image: "/avatar/josie5297-avatar.png",
+        slug: "/josie5297",
       },
       title: "欸黑:D  !SNS",
+      slug: "/josie5297",
       totalView: 3_400,
       isLive: true,
       category: "Just Chatting",
@@ -538,9 +563,11 @@ export const liveChannels = {
       channel: {
         name: "Jankos",
         image: "/avatar/jankos-avatar.png",
+        slug: "/jankos",
       },
       title:
         "❗❗EDUCATION?!  POSITIVE VIBES ❗ ❗ !YOUTUBE !CLIPS !DISCORD !PRIME !TIERLIST !DUO",
+      slug: "/jankos",
       totalView: 4_600,
       isLive: true,
       category: "League of Legend",
@@ -560,8 +587,10 @@ export const liveChannels = {
       channel: {
         name: "lol_nemesis",
         image: "/avatar/nemesis-avatar.png",
+        slug: "/nemesis",
       },
       title: "euw soloqqq !patreon !discord !nordvpn",
+      slug: "/nemesis",
       totalView: 4_300,
       isLive: true,
       category: "League of Legend",
@@ -577,9 +606,11 @@ export const liveChannels = {
       channel: {
         name: "HasanAbi",
         image: "/avatar/hasanabi-avatar.jpeg",
+        slug: "/hasanabi",
       },
       title:
         "ICJ ISSUES CEASEFIRE ORDER, ISRAEL RESPONDS W/ MORE FIRE -LOUISIANA RECLASSIFIES ABORTION DRUG - BATMAN FINALE LATER!",
+      slug: "/hasanabi",
       totalView: 53_000,
       isLive: true,
       category: "Just Chatting",
@@ -595,8 +626,10 @@ export const liveChannels = {
       channel: {
         name: "ESL_DOTA2",
         image: "/avatar/dota-2-avatar.png",
+        slug: "/dota-2",
       },
       title: "LIVE: BetBoom Team vs Xtreme Gaming - DreamLeague S23 - LB3",
+      slug: "/dota-2",
       totalView: 21_000,
       isLive: true,
       category: "Dota 2",
@@ -616,8 +649,10 @@ export const liveChannels = {
       channel: {
         name: "mago2dgod",
         image: "/avatar/mago2dgod-avatar.png",
+        slug: "/mago2dgod",
       },
       title: "【SF6】寝て起きたらゴウキが上手くなっていた件について",
+      slug: "/mago2dgod",
       totalView: 6_600,
       isLive: true,
       category: "Street Fighter 6",
