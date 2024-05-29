@@ -1,9 +1,56 @@
-import * as React from "react";
-import { AlertCircle, AlignJustify, ArrowDownWideNarrow, ArrowUpFromDot, AudioWaveform, Ban, BarChart3, Bookmark, BookMarked, BookOpen, Check, CheckSquare, ChevronDown, ChevronLeft, ChevronRight, ChevronsUpDown, ChevronUp, Circle, CircleUserRound, Clock, EllipsisVertical, Expand, Eye, EyeOff, File, FilePen, FileTerminal, Filter, GalleryVerticalEnd, Globe, History, Home, Laptop2, Loader2, LogIn, Moon, MoveHorizontal, MoveVertical, Play, Search, Settings, Star, SunMedium, User, Users, X, ZoomIn, ZoomOut, type IconNode as LucideIcon, type LucideProps } from "lucide-react";
-
-
-
-
+import * as React from "react"
+import {
+  AlertCircle,
+  AlignJustify,
+  ArrowDownWideNarrow,
+  ArrowUpFromDot,
+  AudioWaveform,
+  Ban,
+  BarChart3,
+  Bookmark,
+  BookMarked,
+  BookOpen,
+  Check,
+  CheckSquare,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsUpDown,
+  ChevronUp,
+  Circle,
+  CircleUserRound,
+  Clock,
+  EllipsisVertical,
+  Expand,
+  Eye,
+  EyeOff,
+  File,
+  FilePen,
+  FileTerminal,
+  Filter,
+  GalleryVerticalEnd,
+  Globe,
+  History,
+  Home,
+  Laptop2,
+  Loader2,
+  LogIn,
+  Moon,
+  MoveHorizontal,
+  MoveVertical,
+  Play,
+  Search,
+  Settings,
+  Star,
+  SunMedium,
+  User,
+  Users,
+  X,
+  ZoomIn,
+  ZoomOut,
+  type IconNode as LucideIcon,
+  type LucideProps,
+} from "lucide-react"
 
 export type Icon = LucideIcon
 
@@ -206,7 +253,7 @@ export const Icons = {
       </g>
     </svg>
   ),
-  expandArrow: ({ ...props }: LucideProps) => (
+  expandArrowFromLine: ({ ...props }: LucideProps) => (
     <svg
       width="100%"
       height="100%"

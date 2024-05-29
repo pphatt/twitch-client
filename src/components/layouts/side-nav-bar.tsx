@@ -61,7 +61,7 @@ export default function SideNavBar() {
                               {isExpand && isScreenWidthAbove1200 ? (
                                 <Icons.collapse className={styles["svg"]} />
                               ) : (
-                                <Icons.expandArrow className={styles["svg"]} />
+                                <Icons.expandArrowFromLine className={styles["svg"]} />
                               )}
                             </div>
                           </div>

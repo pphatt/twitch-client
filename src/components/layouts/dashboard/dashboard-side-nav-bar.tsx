@@ -87,7 +87,7 @@ export default function DashboardSideNavBar({
                       >
                         <div className={styles["svg-wrapper"]}>
                           <div className={styles["svg-container"]}>
-                            <Icons.expandArrow className={styles["svg"]} />
+                            <Icons.expandArrowFromLine className={styles["svg"]} />
                           </div>
                         </div>
                       </Button>
