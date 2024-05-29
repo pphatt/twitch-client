@@ -109,6 +109,27 @@ export function SiteHeader() {
                   className={styles["dropdown-menu"]}
                 >
                   <ScrollArea className={styles["dropdown-menu-wrapper"]}>
+                    <div className={styles["account-item-wrapper"]}>
+                      <div className={styles["account-item-container"]}>
+                        <div className={styles["account-image-wrapper"]}>
+                          <div className={styles["account-image-container"]}>
+                            <img
+                              className={styles["account-image"]}
+                              src={"/avatar/user-default-picture.png"}
+                              alt={""}
+                            />
+                          </div>
+                        </div>
+                        <div className={styles["account-details"]}>
+                          <p className={styles['account-text']}>tienphat</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <DropdownMenuSeparator
+                      className={styles["item-separator"]}
+                    />
+
                     <DropdownMenuItem
                       className={styles["dropdown-item"]}
                       asChild
@@ -118,7 +139,7 @@ export function SiteHeader() {
                         href={"/u/tienphat"}
                       >
                         <span>Channel</span>
-                        <Icons.channel />
+                        <Icons.channel/>
                       </Link>
                     </DropdownMenuItem>
 
@@ -131,7 +152,7 @@ export function SiteHeader() {
                         href={"/u/tienphat/content/video-producer"}
                       >
                         <span>Video Producer</span>
-                        <Icons.videoProducer />
+                        <Icons.videoProducer/>
                       </Link>
                     </DropdownMenuItem>
 
@@ -144,7 +165,7 @@ export function SiteHeader() {
                         href={"/u/tienphat/home"}
                       >
                         <span>Creator Dashboard</span>
-                        <Icons.creatorDashboard />
+                        <Icons.creatorDashboard/>
                       </Link>
                     </DropdownMenuItem>
 
@@ -157,7 +178,7 @@ export function SiteHeader() {
                         href={"/privacy"}
                       >
                         <span>Privacy Center</span>
-                        <Icons.privacy />
+                        <Icons.privacy/>
                       </Link>
                     </DropdownMenuItem>
 
@@ -170,7 +191,7 @@ export function SiteHeader() {
                         href={"/safety"}
                       >
                         <span>Safety</span>
-                        <Icons.safety />
+                        <Icons.safety/>
                       </Link>
                     </DropdownMenuItem>
 
@@ -187,7 +208,7 @@ export function SiteHeader() {
                         href={"/safety"}
                       >
                         <span>Emote Attribution</span>
-                        <Icons.emoteContribution />
+                        <Icons.emoteContribution/>
                       </Link>
                     </DropdownMenuItem>
 
@@ -204,7 +225,7 @@ export function SiteHeader() {
                         href={"/safety"}
                       >
                         <span>Log Out</span>
-                        <Icons.logout />
+                        <Icons.logout/>
                       </Link>
                     </DropdownMenuItem>
                   </ScrollArea>

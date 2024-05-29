@@ -53,8 +53,8 @@
 
   padding: 0 !important;
 
-  margin-left: 0.5rem !important;
-  margin-right: 0.5rem !important;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
 
   user-select: none;
 
@@ -223,15 +223,59 @@
   min-width: 160px;
   max-height: calc(100vh - 5rem);
 
-  padding: 10px !important;
+  padding: 10px 5px 10px 10px !important;
 
   overflow-y: scroll;
 }
 
 .dropdown-menu-wrapper {
   height: 100%;
+}
 
-  overflow-y: scroll;
+
+.account-item-wrapper {
+  width: 100%;
+}
+
+.account-item-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin: 5px;
+}
+
+.account-image-wrapper {
+  margin-right: 10px;
+}
+
+.account-image-container {
+  position: relative;
+
+  width: 40px;
+  max-height: 100%;
+  height: 40px;
+}
+
+.account-image {
+  display: block;
+
+  width: 100%;
+
+  border-radius: 9999px;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-text {
+  color: #efeff1;
+
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
 }
 
 .dropdown-item {
@@ -256,12 +300,12 @@
 
   svg {
     display: block;
-    vertical-align: middle;
+    vertical-align: middle !important;
 
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
 
-    margin-right: 5px;
+    margin-right: 5px !important;
 
     fill: #fff;
   }

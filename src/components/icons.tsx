@@ -323,4 +323,9 @@ export const Icons = {
       ></path>
     </svg>
   ),
+  hideNavigator: ({ ...props }: LucideProps) => (
+    <svg viewBox="0 0 20 20" {...props}>
+      <path d="M17 7H3V5h14v2zm0 4H3V9h14v2zM3 15h14v-2H3v2z"></path>
+    </svg>
+  ),
 }
