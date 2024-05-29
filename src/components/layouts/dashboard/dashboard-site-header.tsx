@@ -18,13 +18,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import styles from "@/styles/components/layouts/dashboard-site-header.module.scss"
+import styles from "@/styles/components/layouts/dashboard/dashboard-site-header.module.scss"
 
-import { Icons } from "../icons"
-import { Button } from "../ui/button"
+import { Icons } from "../../icons"
+import { Button } from "../../ui/button"
 
 const DashboardTitle = dynamic(
-  () => import("@/components/layouts/dashboard-title"),
+  () => import("@/components/layouts/dashboard/dashboard-title"),
   {
     ssr: false,
     loading: () => {

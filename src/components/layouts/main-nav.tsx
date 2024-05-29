@@ -28,10 +28,10 @@ export function MainNav({ items, supportItem }: MainNavProps) {
         <Icons.logo />
       </Link>
       <div className={styles["main-nav-items"]}>
-        {items.map(({ title, href }, index) => (
+        {items.map(({ title, slug }, index) => (
           <div className={styles["item-wrapper"]} key={index}>
             <div className={styles["item-container"]}>
-              <Link href={`${href}`} className={styles["item-link"]}>
+              <Link href={`${slug}`} className={styles["item-link"]}>
                 <div>
                   <div className={styles["item-text-wrapper"]}>
                     <div className={styles["item-text"]}>

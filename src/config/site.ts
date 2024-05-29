@@ -14,13 +14,13 @@ export const siteConfig = {
   mainNav: [
     {
       title: "Following",
-      href: "/director/following",
+      slug: "/director/following",
       items: [],
       auth: true,
     },
     {
       title: "Browse",
-      href: "/directory",
+      slug: "/directory",
       items: [],
     },
   ] as MainNavItem[],
@@ -99,6 +99,62 @@ export const directorySite: { sites: NavItem[] } = {
     {
       title: "Live Channels",
       slug: "/directory/all",
+    },
+  ],
+}
+
+export const dashboardSite: { sites: MainNavItem[] } = {
+  sites: [
+    {
+      title: "Home",
+      slug: "/home",
+      icon: "home",
+      auth: true,
+    },
+    {
+      title: "Stream Manager",
+      slug: "/stream-manager",
+      icon: "stream",
+      auth: true,
+    },
+    {
+      title: "Analytics",
+      icon: "analytics",
+      auth: true,
+      items: [
+        {
+          title: "Overview",
+          slug: "/analytics",
+          items: [],
+        },
+        {
+          title: "Research",
+          slug: "/analytics/research",
+          items: [],
+        },
+        {
+          title: "Stream Summary",
+          slug: "/analytics/stream-summary",
+          items: [],
+        },
+      ],
+    },
+    {
+      title: "Settings",
+      icon: "settings",
+      auth: true,
+      items: [
+        {
+          title: "Stream",
+          slug: "/settings/stream",
+          items: [],
+        },
+        {
+          title: "Channel",
+          slug: "/settings/channel",
+          items: [],
+        },
+      ],
     },
   ],
 }

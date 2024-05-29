@@ -1,56 +1,9 @@
-import * as React from "react"
-import {
-  AlertCircle,
-  AlignJustify,
-  ArrowDownWideNarrow,
-  ArrowUpFromDot,
-  AudioWaveform,
-  Ban,
-  BarChart3,
-  Bookmark,
-  BookMarked,
-  BookOpen,
-  Check,
-  CheckSquare,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronsUpDown,
-  ChevronUp,
-  Circle,
-  CircleUserRound,
-  Clock,
-  EllipsisVertical,
-  Expand,
-  Eye,
-  EyeOff,
-  File,
-  FilePen,
-  FileTerminal,
-  Filter,
-  GalleryVerticalEnd,
-  Globe,
-  History,
-  Home,
-  Laptop2,
-  Loader2,
-  LogIn,
-  Moon,
-  MoveHorizontal,
-  MoveVertical,
-  Play,
-  Search,
-  Settings,
-  Star,
-  SunMedium,
-  User,
-  Users,
-  X,
-  ZoomIn,
-  ZoomOut,
-  type IconNode as LucideIcon,
-  type LucideProps,
-} from "lucide-react"
+import * as React from "react";
+import { AlertCircle, AlignJustify, ArrowDownWideNarrow, ArrowUpFromDot, AudioWaveform, Ban, BarChart3, Bookmark, BookMarked, BookOpen, Check, CheckSquare, ChevronDown, ChevronLeft, ChevronRight, ChevronsUpDown, ChevronUp, Circle, CircleUserRound, Clock, EllipsisVertical, Expand, Eye, EyeOff, File, FilePen, FileTerminal, Filter, GalleryVerticalEnd, Globe, History, Home, Laptop2, Loader2, LogIn, Moon, MoveHorizontal, MoveVertical, Play, Search, Settings, Star, SunMedium, User, Users, X, ZoomIn, ZoomOut, type IconNode as LucideIcon, type LucideProps } from "lucide-react";
+
+
+
+
 
 export type Icon = LucideIcon
 
@@ -326,6 +279,26 @@ export const Icons = {
   hideNavigator: ({ ...props }: LucideProps) => (
     <svg viewBox="0 0 20 20" {...props}>
       <path d="M17 7H3V5h14v2zm0 4H3V9h14v2zM3 15h14v-2H3v2z"></path>
+    </svg>
+  ),
+  stream: ({ ...props }: LucideProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <path d="M11.414 8.586c.362.362.586.862.586 1.414 0 .552-.224 1.052-.586 1.414l1.414 1.415A3.987 3.987 0 0 0 14 10a3.987 3.987 0 0 0-1.172-2.828l-1.414 1.414zM5.757 5.757 4.343 4.343A7.975 7.975 0 0 0 2 10c0 2.21.895 4.21 2.343 5.657l1.414-1.414A5.981 5.981 0 0 1 4 10c0-1.657.672-3.157 1.757-4.243zm1.415 7.072 1.414-1.415A1.994 1.994 0 0 1 8 10c0-.552.224-1.052.586-1.414L7.172 7.172A3.987 3.987 0 0 0 6 10c0 1.105.448 2.105 1.172 2.829zm7.071 1.414 1.414 1.414A7.975 7.975 0 0 0 18 10a7.975 7.975 0 0 0-2.343-5.657l-1.414 1.414A5.981 5.981 0 0 1 16 10a5.981 5.981 0 0 1-1.757 4.243z"></path>
+    </svg>
+  ),
+  expandArrow: ({ ...props }: LucideProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <path d="M6.5 5.5 11 10l-4.5 4.5L8 16l6-6-6-6-1.5 1.5z"></path>
+    </svg>
+  ),
+  analytics: ({ ...props }: LucideProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <path d="M7 10h2v4H7v-4zm6-4h-2v8h2V6z"></path>
+      <path
+        fillRule="evenodd"
+        d="M4 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4zm12 2H4v12h12V4z"
+        clipRule="evenodd"
+      ></path>
     </svg>
   ),
 }

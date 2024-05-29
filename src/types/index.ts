@@ -8,7 +8,7 @@ export interface NavItem {
   icon?: keyof typeof Icons
   label?: string
   description?: string
-  auth?: false
+  auth?: boolean
 }
 
 export interface SupportNavItem {

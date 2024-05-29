@@ -17,3 +17,24 @@
   width: 100%;
   height: 100%;
 }
+
+.content-wrapper {
+  position: relative;
+
+  display: flex;
+  flex-grow: 1;
+
+  width: 100%;
+  min-height: 0;
+}
+
+.content-container {
+  flex-grow: 1;
+
+  min-width: 0;
+}
+
+.content-overlay {
+  width: 100% ;
+  height: 100% ;
+}
