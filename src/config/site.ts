@@ -140,6 +140,28 @@ export const dashboardSite: { sites: MainNavItem[] } = {
       ],
     },
     {
+      title: "Community",
+      icon: "community",
+      auth: true,
+      items: [
+        {
+          title: "Roles Manager",
+          slug: "/community/roles",
+          items: [],
+        },
+        {
+          title: "Activity",
+          slug: "/community/activity",
+          items: [],
+        },
+        {
+          title: "Followers List",
+          slug: "/community/followers-list",
+          items: [],
+        },
+      ],
+    },
+    {
       title: "Settings",
       icon: "settings",
       auth: true,
