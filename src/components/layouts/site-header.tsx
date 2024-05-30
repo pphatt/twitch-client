@@ -88,7 +88,7 @@ export function SiteHeader() {
               </div>
             </div>
             <div className={styles["user-item-container"]}>
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant={"outline"}

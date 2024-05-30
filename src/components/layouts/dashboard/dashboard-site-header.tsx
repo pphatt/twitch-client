@@ -51,7 +51,7 @@ export default function DashboardSiteHeader() {
 
             <div className={styles["current-page-title-wrapper"]}>
               <Suspense>
-                <DashboardTitle/>
+                <DashboardTitle />
               </Suspense>
             </div>
           </div>
@@ -92,7 +92,7 @@ export default function DashboardSiteHeader() {
 
             <div className={styles["user-item-wrapper"]}>
               <div className={styles["user-item-container"]}>
-                <DropdownMenu>
+                <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant={"outline"}
