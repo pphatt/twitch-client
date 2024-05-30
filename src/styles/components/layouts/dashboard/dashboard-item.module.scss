@@ -207,3 +207,13 @@
     width: 15px;
   }
 }
+
+.current-active {
+  color: #fff !important;
+  background-color: rgb(255, 103, 64) !important;
+
+  &:hover {
+    color: #fff !important;
+    background-color: rgb(255, 103, 64) !important;
+  }
+}

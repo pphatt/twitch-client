@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import type { MainNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
@@ -33,6 +34,16 @@ export function DashboardItem({ item, options, ...props }: DashboardItemProps) {
 
   const Icon = Icons[item.icon!]
 
+  const pathname = usePathname()
+
+  const isCurrentRoute = React.useMemo(() => {
+    return item.slug ? pathname.includes(item.slug) : false
+  }, [item.slug, pathname])
+
+  const route = React.useMemo(() => {
+    return pathname.split("/").splice(0, 3).join("/")
+  }, [pathname])
+
   // if the side-nav is currently expanded or not in mobile screen solution
   if (isExpand && isScreenWidthAbove1200) {
     return (
@@ -47,8 +58,10 @@ export function DashboardItem({ item, options, ...props }: DashboardItemProps) {
       >
         <div className={styles["content-item-wrapper"]}>
           <Link
-            href={item.slug ?? "/"}
-            className={styles["content-item-container"]}
+            href={item.slug ? `${route.concat(item.slug)}` : "/"}
+            className={cn(styles["content-item-container"], {
+              [`${styles["current-active"]}`]: isCurrentRoute,
+            })}
           >
             <div className={styles["content-item-overlay"]}>
               <div className={styles["content-item-svg-wrapper"]}>
@@ -72,11 +85,17 @@ export function DashboardItem({ item, options, ...props }: DashboardItemProps) {
       <Tooltip>
         <TooltipTrigger asChild>
           <Link
-            href={item.slug ?? "/"}
-            className={styles["content-item-container"]}
             style={{ marginTop: "2px" }}
+            href={item.slug ? `${route.concat(item.slug)}` : "/"}
+            className={cn(styles["content-item-container"], {
+              [`${styles["current-active"]}`]: isCurrentRoute,
+            })}
           >
-            <div className={styles["svg-content-wrapper"]}>
+            <div
+              className={cn(styles["svg-content-wrapper"], {
+                [`${styles["current-active"]}`]: isCurrentRoute,
+              })}
+            >
               <div className={styles["svg-content-container"]}>
                 <div className={styles["svg-wrapper"]}>
                   <div className={styles["svg-container"]}>
@@ -102,6 +121,16 @@ export function DashboardItemGroup({ item, options }: DashboardItemProps) {
 
   const Icon = Icons[item.icon!]
 
+  const pathname = usePathname()
+
+  const isCurrentRoute = React.useMemo(() => {
+    return item.items.some((item) => pathname.includes(item.slug))
+  }, [item.items, pathname])
+
+  const route = React.useMemo(() => {
+    return pathname.split("/").splice(0, 3).join("/")
+  }, [pathname])
+
   React.useEffect(() => setIsOpen(false), [isExpand])
 
   if (isExpand && isScreenWidthAbove1200) {
@@ -119,7 +148,8 @@ export function DashboardItemGroup({ item, options }: DashboardItemProps) {
             <Button
               className={cn(
                 styles["content-item-container"],
-                styles["expand-group-trigger"]
+                styles["expand-group-trigger"],
+                { [`${styles["current-active"]}`]: isCurrentRoute && !isOpen }
               )}
               onClick={() => setIsOpen(!isOpen)}
               data-state={isOpen ? "open" : "closed"}
@@ -166,12 +196,17 @@ export function DashboardItemGroup({ item, options }: DashboardItemProps) {
           <Button
             className={cn(
               styles["content-item-container"],
-              styles["expand-group-trigger"]
+              styles["expand-group-trigger"],
+              { [`${styles["current-active"]}`]: isCurrentRoute }
             )}
             onClick={() => setIsOpen(!isOpen)}
             data-state={isOpen ? "open" : "closed"}
           >
-            <div className={styles["svg-content-wrapper"]}>
+            <div
+              className={cn(styles["svg-content-wrapper"], {
+                [`${styles["current-active"]}`]: isCurrentRoute,
+              })}
+            >
               <div className={styles["svg-content-container"]}>
                 <div className={styles["svg-wrapper"]}>
                   <div className={styles["svg-container"]}>
@@ -192,8 +227,12 @@ export function DashboardItemGroup({ item, options }: DashboardItemProps) {
           {item.items?.map((item, index) => (
             <div className={styles["dropdown-content-container"]} key={index}>
               <Link
-                href={item.slug ?? "/"}
-                className={styles["content-item-container"]}
+                href={item.slug ? `${route.concat(item.slug)}` : "/"}
+                className={cn(styles["content-item-container"], {
+                  [`${styles["current-active"]}`]: item.slug
+                    ? pathname.includes(item.slug)
+                    : false,
+                })}
               >
                 <div className={styles["content-item-overlay"]}>
                   <div className={styles["content-item-text-wrapper"]}>
