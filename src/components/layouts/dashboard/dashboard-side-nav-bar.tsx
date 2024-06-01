@@ -35,7 +35,8 @@ export default function DashboardSideNavBar({
     <div
       className={cn(styles["side-navbar"], {
         [`${styles["side-nav--expand"]}`]: isExpand && isScreenWidthAbove1200,
-        [`${styles["side-nav--collapse"]}`]: !isExpand,
+        [`${styles["side-nav--collapse"]}`]:
+          !isExpand || !isScreenWidthAbove1200,
       })}
     >
       <div className={styles["side-navbar-wrapper"]}>
@@ -87,7 +88,9 @@ export default function DashboardSideNavBar({
                       >
                         <div className={styles["svg-wrapper"]}>
                           <div className={styles["svg-container"]}>
-                            <Icons.expandArrowFromLine className={styles["svg"]} />
+                            <Icons.expandArrowFromLine
+                              className={styles["svg"]}
+                            />
                           </div>
                         </div>
                       </Button>

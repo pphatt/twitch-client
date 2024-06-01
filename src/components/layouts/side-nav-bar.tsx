@@ -26,7 +26,8 @@ export default function SideNavBar() {
     <div
       className={cn(styles["side-navbar"], {
         [`${styles["side-nav--expand"]}`]: isExpand && isScreenWidthAbove1200,
-        [`${styles["side-nav--collapse"]}`]: !isExpand,
+        [`${styles["side-nav--collapse"]}`]:
+          !isExpand || !isScreenWidthAbove1200,
       })}
     >
       <div className={styles["side-navbar-wrapper"]}>
@@ -61,7 +62,9 @@ export default function SideNavBar() {
                               {isExpand && isScreenWidthAbove1200 ? (
                                 <Icons.collapse className={styles["svg"]} />
                               ) : (
-                                <Icons.expandArrowFromLine className={styles["svg"]} />
+                                <Icons.expandArrowFromLine
+                                  className={styles["svg"]}
+                                />
                               )}
                             </div>
                           </div>
