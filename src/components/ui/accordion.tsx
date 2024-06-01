@@ -28,10 +28,7 @@ const AccordionTrigger = React.forwardRef<
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       ref={ref}
-      className={cn(
-        styles["expand-trigger"],
-        className
-      )}
+      className={cn(styles["expand-trigger"], className)}
       {...props}
     >
       {children}

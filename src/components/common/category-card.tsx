@@ -53,8 +53,7 @@ export const CategoryCard = React.forwardRef<HTMLDivElement, CategoryCardProps>(
                 </div>
                 <div className={styles["category-current-total-view"]}>
                   <Link href={`/directory/category/${slug}`}>
-                    {formatViewCount(currentTotalView)}{" "}
-                    viewers
+                    {formatViewCount(currentTotalView)} viewers
                   </Link>
                 </div>
               </div>

@@ -2,10 +2,10 @@ import "@/styles/globals.scss"
 
 import TanStackProviders from "@/providers/tanstack-provider"
 import { GeistSans } from "geist/font/sans"
+import { Toaster } from "sonner"
 
 import { siteConfig } from "@/config/site"
 import styles from "@/styles/root-layout/layout.module.scss"
-import {Toaster} from "sonner";
 
 export const metadata = {
   title: siteConfig.name,

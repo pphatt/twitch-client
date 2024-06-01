@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf --glob node_modules && rimraf --glob .next",
     "build": "next build",
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

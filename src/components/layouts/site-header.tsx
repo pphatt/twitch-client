@@ -121,7 +121,7 @@ export function SiteHeader() {
                           </div>
                         </div>
                         <div className={styles["account-details"]}>
-                          <p className={styles['account-text']}>tienphat</p>
+                          <p className={styles["account-text"]}>tienphat</p>
                         </div>
                       </div>
                     </div>
@@ -139,7 +139,7 @@ export function SiteHeader() {
                         href={"/u/tienphat"}
                       >
                         <span>Channel</span>
-                        <Icons.channel/>
+                        <Icons.channel />
                       </Link>
                     </DropdownMenuItem>
 
@@ -152,7 +152,7 @@ export function SiteHeader() {
                         href={"/u/tienphat/content/video-producer"}
                       >
                         <span>Video Producer</span>
-                        <Icons.videoProducer/>
+                        <Icons.videoProducer />
                       </Link>
                     </DropdownMenuItem>
 
@@ -165,7 +165,7 @@ export function SiteHeader() {
                         href={"/u/tienphat/home"}
                       >
                         <span>Creator Dashboard</span>
-                        <Icons.creatorDashboard/>
+                        <Icons.creatorDashboard />
                       </Link>
                     </DropdownMenuItem>
 
@@ -178,7 +178,7 @@ export function SiteHeader() {
                         href={"/privacy"}
                       >
                         <span>Privacy Center</span>
-                        <Icons.privacy/>
+                        <Icons.privacy />
                       </Link>
                     </DropdownMenuItem>
 
@@ -191,7 +191,7 @@ export function SiteHeader() {
                         href={"/safety"}
                       >
                         <span>Safety</span>
-                        <Icons.safety/>
+                        <Icons.safety />
                       </Link>
                     </DropdownMenuItem>
 
@@ -208,7 +208,7 @@ export function SiteHeader() {
                         href={"/safety"}
                       >
                         <span>Emote Attribution</span>
-                        <Icons.emoteContribution/>
+                        <Icons.emoteContribution />
                       </Link>
                     </DropdownMenuItem>
 
@@ -225,7 +225,7 @@ export function SiteHeader() {
                         href={"/safety"}
                       >
                         <span>Log Out</span>
-                        <Icons.logout/>
+                        <Icons.logout />
                       </Link>
                     </DropdownMenuItem>
                   </ScrollArea>

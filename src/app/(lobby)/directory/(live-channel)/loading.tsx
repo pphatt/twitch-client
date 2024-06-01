@@ -1,8 +1,8 @@
 import * as React from "react"
 
 import { LiveChannelCardSkeleton } from "@/components/loading/live-channel-card-skeleton"
+import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
 import styles from "@/styles/live-channel/loading.module.scss"
-import {LiveChannelPlaceholder} from "@/components/placeholder/live-channel-placeholder";
 
 export default function LiveChannelsLoading() {
   return (
