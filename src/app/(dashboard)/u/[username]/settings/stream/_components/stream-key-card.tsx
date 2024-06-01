@@ -61,7 +61,7 @@ export const StreamKeyCard = React.forwardRef<
 
       <Button
         className={cn(styles["button"], styles["copy-button"])}
-        onClick={() => void handleCopy(key)}
+        onClick={() => void handleCopy(streamKey)}
       >
         Copy
       </Button>
