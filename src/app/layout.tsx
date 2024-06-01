@@ -5,6 +5,7 @@ import { GeistSans } from "geist/font/sans"
 
 import { siteConfig } from "@/config/site"
 import styles from "@/styles/root-layout/layout.module.scss"
+import {Toaster} from "sonner";
 
 export const metadata = {
   title: siteConfig.name,
@@ -23,7 +24,10 @@ export default function RootLayout({
         <TanStackProviders>
           <div className={styles["root"]}>
             <div className={styles["root-layout-wrapper"]}>
-              <div className={styles["root-layout-container"]}>{children}</div>
+              <div className={styles["root-layout-container"]}>
+                {children}
+                <Toaster position="top-right" richColors />
+              </div>
             </div>
           </div>
         </TanStackProviders>

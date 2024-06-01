@@ -124,7 +124,7 @@ export function DashboardItemGroup({ item, options }: DashboardItemProps) {
   const pathname = usePathname()
 
   const isCurrentRoute = React.useMemo(() => {
-    return item.items.some((item) => pathname.includes(item.slug))
+    return item.items?.some((item) => pathname.includes(item.slug!))
   }, [item.items, pathname])
 
   const route = React.useMemo(() => {
