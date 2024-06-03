@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -9,6 +10,13 @@ import type { z } from "zod"
 import { sleep } from "@/lib/utils"
 import { authSchema } from "@/lib/validation/auth"
 import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import {
   Form,
   FormControl,
@@ -53,14 +61,14 @@ export default function LogInForm() {
   }
 
   return (
-    <div className={styles["login-form-layout"]}>
-      <div className={styles["modal-header-wrapper"]}>
-        <div className={styles["modal-header-container"]}>
+    <Card className={styles["auth-form-layout"]}>
+      <CardHeader className={styles["modal-header-wrapper"]}>
+        <CardTitle className={styles["modal-header-container"]}>
           <h2>Log in</h2>
-        </div>
-      </div>
+        </CardTitle>
+      </CardHeader>
 
-      <div className={styles["form-layout-wrapper"]}>
+      <CardContent className={styles["form-layout-wrapper"]}>
         <Form {...form}>
           <form
             className={styles["form-layout-container"]}
@@ -83,7 +91,7 @@ export default function LogInForm() {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder="username"
+                        placeholder="Username"
                         className={styles["form-content-input"]}
                       />
                     </FormControl>
@@ -122,6 +130,12 @@ export default function LogInForm() {
               )}
             />
 
+            <div className={styles["reset-password-layout"]}>
+              <Link href={"/signin/reset-password"}>
+                <p>Forgot Password?</p>
+              </Link>
+            </div>
+
             <div className={styles["submit-layout-wrapper"]}>
               <Button
                 type={"submit"}
@@ -142,7 +156,17 @@ export default function LogInForm() {
             </div>
           </form>
         </Form>
-      </div>
-    </div>
+      </CardContent>
+
+      <CardFooter className={styles["auth-layout-footer"]}>
+        <Link
+          aria-label="Sign up"
+          href={"/signup"}
+          className={styles["auth-signup"]}
+        >
+          Don&apos;t have an account? Sign up
+        </Link>
+      </CardFooter>
+    </Card>
   )
 }

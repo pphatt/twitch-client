@@ -1,20 +1,23 @@
 @use "../../variables" as var;
 
-.login-form-layout {
+.auth-form-layout {
   display: flex;
   flex-direction: column;
 
   background-color: #18181b;
 
+  width: 100% !important;
+
+  border: 0 !important;
   border-radius: 4px;
 
   padding: 30px;
 }
 
 .modal-header-wrapper {
-  display: flex;
-  flex-direction: column;
+  color: #fff;
 
+  padding: 0 !important;
   margin-top: 5px;
 }
 
@@ -25,7 +28,7 @@
 }
 
 .form-layout-wrapper {
-  margin-bottom: 10px;
+  padding: 0 !important;
 }
 
 .form-layout-container {
@@ -66,12 +69,10 @@
   background-color: #18181b !important;
 
   max-width: 100% !important;
-  height: 30px !important;
+  height: 40px !important;
 
   border: transparent !important;
   border-radius: 4px;
-
-  padding: 5px 10px !important;
 
   appearance: none;
 
@@ -101,6 +102,22 @@
   margin-top: 8px;
 }
 
+.reset-password-layout {
+  color: rgb(255, 103, 64);
+
+  width: fit-content;
+
+  margin-top: 10px;
+
+  font-size: 14px;
+
+  &:hover {
+    text-underline-offset: 4px;
+
+    text-decoration: underline;
+  }
+}
+
 .submit-layout-wrapper {
   margin-top: 20px;
 }
@@ -112,6 +129,8 @@
   max-width: 100% !important;
   width: 100%;
   height: 30px !important;
+
+  padding: 5px 8px !important;
 }
 
 .icon {
@@ -125,4 +144,46 @@
   animation-iteration-count: infinite;
 
   @include var.spin();
+}
+
+.auth-layout-footer {
+  color: rgb(255, 103, 64);
+
+  padding: 0 !important;
+  margin-top: 20px;
+}
+
+.auth-signup {
+  position: relative;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 30px;
+
+  border-radius: 4px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  vertical-align: middle;
+
+  text-decoration: none;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  user-select: none;
+
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.1s;
+
+  &:hover {
+    color: #efeff1;
+    background-color: rgba(83, 83, 95, 0.48);
+  }
 }

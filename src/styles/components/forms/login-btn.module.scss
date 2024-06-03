@@ -38,7 +38,8 @@
 .login-modal-wrapper {
   background-color: #18181b !important;
 
-  width: 50rem !important;
+  max-width: 100% !important;
+  width: 500px !important;
 
   border: 0 solid transparent !important;
   border-radius: 4px !important;
