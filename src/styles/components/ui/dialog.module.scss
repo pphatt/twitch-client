@@ -5,7 +5,7 @@
   inset: 0;
 
   backdrop-filter: blur(4px);
-  background-color: hsl(var(--background)/.8);
+  background-color: hsl(var(--background)/.85);
 
   z-index: 50;
 
@@ -149,15 +149,24 @@
   top: 1rem;
   right: 1rem;
 
-  -webkit-appearance: button;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #efeff1;
   background-color: transparent;
   background-image: none;
 
-  border-radius: calc(0.5rem - 4px);
+  width: 30px;
+  height: 30px;
+
+  border-radius: 4px;
 
   cursor: pointer;
 
   opacity: 0.7;
+
+  user-select: none;
 
   transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -181,6 +190,8 @@
   }
 
   &:hover {
+    background-color: rgba(83, 83, 95, 0.48);
+
     opacity: 1;
   }
 }

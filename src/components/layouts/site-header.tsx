@@ -2,7 +2,6 @@ import * as React from "react"
 import Link from "next/link"
 
 import { siteConfig, supportSite } from "@/config/site"
-import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -18,6 +17,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import LoginBtn from "@/components/forms/login-btn"
+import SignupBtn from "@/components/forms/signup-btn"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/layouts/main-nav"
 import { SearchCommandMenu } from "@/components/search-command-menu"
@@ -66,25 +67,11 @@ export function SiteHeader() {
           <div className={styles["user-item-wrapper"]}>
             <div className={styles["auth-wrapper"]}>
               <div className={styles["auth-container"]}>
-                <Button
-                  className={cn(styles["auth-button"], styles["login-button"])}
-                >
-                  <div className={styles["auth-inner-button"]}>
-                    <div>Login</div>
-                  </div>
-                </Button>
+                <LoginBtn />
               </div>
+
               <div className={styles["auth-container"]}>
-                <Button
-                  className={cn(
-                    styles["auth-button"],
-                    styles["sign-up-button"]
-                  )}
-                >
-                  <div className={styles["auth-inner-button"]}>
-                    <div>Sign Up</div>
-                  </div>
-                </Button>
+                <SignupBtn />
               </div>
             </div>
             <div className={styles["user-item-container"]}>

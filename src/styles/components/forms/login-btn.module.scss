@@ -1,0 +1,47 @@
+.login-button {
+  color: #efeff1 !important;
+  background-color: rgba(83, 83, 95, 0.38) !important;
+
+  height: 30px !important;
+
+  border-radius: 4px !important;
+
+  padding: 0 !important;
+
+  font-size: 13px !important;
+  font-weight: 600 !important;
+
+  user-select: none;
+
+  vertical-align: middle;
+
+  overflow: hidden;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.auth-inner-button {
+  display: flex;
+  align-items: center;
+  flex-grow: 0;
+
+  padding: 0 10px;
+
+  div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-grow: 0;
+  }
+}
+
+.login-modal-wrapper {
+  background-color: #18181b !important;
+
+  width: 50rem !important;
+
+  border: 0 solid transparent !important;
+  border-radius: 4px !important;
+
+  padding: 0 !important;
+}
