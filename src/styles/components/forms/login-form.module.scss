@@ -1,36 +1,5 @@
 @use "../../variables" as var;
 
-.auth-form-layout {
-  display: flex;
-  flex-direction: column;
-
-  background-color: #18181b;
-
-  width: 100% !important;
-
-  border: 0 !important;
-  border-radius: 4px;
-
-  padding: 30px;
-}
-
-.modal-header-wrapper {
-  color: #fff;
-
-  padding: 0 !important;
-  margin-top: 5px;
-}
-
-.modal-header-container {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.form-layout-wrapper {
-  padding: 0 !important;
-}
-
 .form-layout-container {
   display: flex;
   flex-direction: column;
@@ -39,7 +8,13 @@
 }
 
 .form-content-wrapper {
-  margin-top: 20px !important;
+  &:first-child {
+    margin-top: 10px !important;
+  }
+
+  &:not(:first-child) {
+    margin-top: 20px !important;
+  }
 }
 
 .form-content-label-wrapper {
@@ -144,46 +119,4 @@
   animation-iteration-count: infinite;
 
   @include var.spin();
-}
-
-.auth-layout-footer {
-  color: rgb(255, 103, 64);
-
-  padding: 0 !important;
-  margin-top: 20px;
-}
-
-.auth-signup {
-  position: relative;
-
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
-  height: 30px;
-
-  border-radius: 4px;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  vertical-align: middle;
-
-  text-decoration: none;
-
-  overflow: hidden;
-  white-space: nowrap;
-
-  user-select: none;
-
-  transition-property: color, background-color, border-color,
-    text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.1s;
-
-  &:hover {
-    color: #efeff1;
-    background-color: rgba(83, 83, 95, 0.48);
-  }
 }

@@ -61,112 +61,89 @@ export default function LogInForm() {
   }
 
   return (
-    <Card className={styles["auth-form-layout"]}>
-      <CardHeader className={styles["modal-header-wrapper"]}>
-        <CardTitle className={styles["modal-header-container"]}>
-          <h2>Log in</h2>
-        </CardTitle>
-      </CardHeader>
+    <Form {...form}>
+      <form
+        className={styles["form-layout-container"]}
+        onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+      >
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem className={styles["form-content-wrapper"]}>
+              <div className={styles["form-content-label-wrapper"]}>
+                <div className={styles["form-content-label-container"]}>
+                  <FormLabel className={styles["form-content-label"]}>
+                    Username
+                  </FormLabel>
+                </div>
+              </div>
 
-      <CardContent className={styles["form-layout-wrapper"]}>
-        <Form {...form}>
-          <form
-            className={styles["form-layout-container"]}
-            onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
-          >
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem className={styles["form-content-wrapper"]}>
-                  <div className={styles["form-content-label-wrapper"]}>
-                    <div className={styles["form-content-label-container"]}>
-                      <FormLabel className={styles["form-content-label"]}>
-                        Username
-                      </FormLabel>
-                    </div>
-                  </div>
-
-                  <div className={styles["form-content-input-wrapper"]}>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="Username"
-                        className={styles["form-content-input"]}
-                      />
-                    </FormControl>
-                  </div>
-
-                  <FormMessage className={styles["form-message"]} />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem className={styles["form-content-wrapper"]}>
-                  <div className={styles["form-content-label-wrapper"]}>
-                    <div className={styles["form-content-label-container"]}>
-                      <FormLabel className={styles["form-content-label"]}>
-                        Password
-                      </FormLabel>
-                    </div>
-                  </div>
-
-                  <div className={styles["form-content-input-wrapper"]}>
-                    <FormControl>
-                      <PasswordInput
-                        placeholder="**********"
-                        {...field}
-                        className={styles["form-content-input"]}
-                      />
-                    </FormControl>
-                  </div>
-
-                  <FormMessage className={styles["form-message"]} />
-                </FormItem>
-              )}
-            />
-
-            <div className={styles["reset-password-layout"]}>
-              <Link href={"/signin/reset-password"}>
-                <p>Forgot Password?</p>
-              </Link>
-            </div>
-
-            <div className={styles["submit-layout-wrapper"]}>
-              <Button
-                type={"submit"}
-                className={styles["submit-btn"]}
-                disabled={
-                  !(form.getValues("username") && form.getValues("password")) ||
-                  isPending
-                }
-              >
-                {isPending && (
-                  <Icons.spinner
-                    className={styles["icon"]}
-                    aria-hidden="true"
+              <div className={styles["form-content-input-wrapper"]}>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Username"
+                    className={styles["form-content-input"]}
                   />
-                )}
-                Sign in
-              </Button>
-            </div>
-          </form>
-        </Form>
-      </CardContent>
+                </FormControl>
+              </div>
 
-      <CardFooter className={styles["auth-layout-footer"]}>
-        <Link
-          aria-label="Sign up"
-          href={"/signup"}
-          className={styles["auth-signup"]}
-        >
-          Don&apos;t have an account? Sign up
-        </Link>
-      </CardFooter>
-    </Card>
+              <FormMessage className={styles["form-message"]} />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem className={styles["form-content-wrapper"]}>
+              <div className={styles["form-content-label-wrapper"]}>
+                <div className={styles["form-content-label-container"]}>
+                  <FormLabel className={styles["form-content-label"]}>
+                    Password
+                  </FormLabel>
+                </div>
+              </div>
+
+              <div className={styles["form-content-input-wrapper"]}>
+                <FormControl>
+                  <PasswordInput
+                    placeholder="**********"
+                    {...field}
+                    className={styles["form-content-input"]}
+                  />
+                </FormControl>
+              </div>
+
+              <FormMessage className={styles["form-message"]} />
+            </FormItem>
+          )}
+        />
+
+        <div className={styles["reset-password-layout"]}>
+          <Link href={"/signin/reset-password"}>
+            <p>Forgot Password?</p>
+          </Link>
+        </div>
+
+        <div className={styles["submit-layout-wrapper"]}>
+          <Button
+            type={"submit"}
+            className={styles["submit-btn"]}
+            disabled={
+              !(form.getValues("username") && form.getValues("password")) ||
+              isPending
+            }
+          >
+            {isPending && (
+              <Icons.spinner className={styles["icon"]} aria-hidden="true" />
+            )}
+            Sign in
+          </Button>
+        </div>
+      </form>
+    </Form>
   )
 }

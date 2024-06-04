@@ -20,6 +20,7 @@ import {
 import LoginBtn from "@/components/forms/login-btn"
 import SignupBtn from "@/components/forms/signup-btn"
 import { Icons } from "@/components/icons"
+import AuthDialog from "@/components/layouts/auth-dialog"
 import { MainNav } from "@/components/layouts/main-nav"
 import { SearchCommandMenu } from "@/components/search-command-menu"
 import styles from "@/styles/components/layouts/site-header.module.scss"
@@ -67,7 +68,13 @@ export function SiteHeader() {
           <div className={styles["user-item-wrapper"]}>
             <div className={styles["auth-wrapper"]}>
               <div className={styles["auth-container"]}>
-                <LoginBtn />
+                <AuthDialog currentTab={"log-in"}>
+                  <Button className={styles["login-button"]}>
+                    <div className={styles["auth-inner-button"]}>
+                      <div>Login</div>
+                    </div>
+                  </Button>
+                </AuthDialog>
               </div>
 
               <div className={styles["auth-container"]}>

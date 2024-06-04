@@ -1,0 +1,65 @@
+.auth-form-layout {
+  display: flex;
+  flex-direction: column;
+
+  background-color: #18181b;
+
+  width: 100% !important;
+
+  border: 0 !important;
+  border-radius: 4px;
+
+  padding: 30px;
+}
+
+.modal-header-wrapper {
+  color: #fff;
+
+  padding: 0 !important;
+  margin-top: 5px;
+}
+
+.modal-header-container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-control-wrapper {
+  justify-content: flex-start !important;
+  gap: 1rem !important;
+
+  color: initial !important;
+  background-color: transparent !important;
+
+  height: 40px !important;
+
+  padding: 0 !important;
+}
+
+.tab-control {
+  align-self: center;
+
+  padding: 0 !important;
+
+  height: fit-content !important;
+
+  cursor: pointer;
+
+  &[data-state="active"] {
+    color: rgb(255, 103, 64) !important;
+    background-color: transparent !important;
+
+    text-underline-offset: 4px;
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 103, 64);
+  }
+}
+
+.form-layout-wrapper {
+  margin: 0 !important;
+}
+
+.form-layout-container {
+  padding: 0 !important;
+}
