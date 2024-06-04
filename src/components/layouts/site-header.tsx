@@ -17,8 +17,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import LoginBtn from "@/components/forms/login-btn"
-import SignupBtn from "@/components/forms/signup-btn"
 import { Icons } from "@/components/icons"
 import AuthDialog from "@/components/layouts/auth-dialog"
 import { MainNav } from "@/components/layouts/main-nav"
@@ -78,7 +76,13 @@ export function SiteHeader() {
               </div>
 
               <div className={styles["auth-container"]}>
-                <SignupBtn />
+                <AuthDialog currentTab={"sign-up"}>
+                  <Button className={styles["sign-up-button"]}>
+                    <div className={styles["auth-inner-button"]}>
+                      <div>Sign Up</div>
+                    </div>
+                  </Button>
+                </AuthDialog>
               </div>
             </div>
             <div className={styles["user-item-container"]}>

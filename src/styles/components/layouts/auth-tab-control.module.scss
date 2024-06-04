@@ -44,15 +44,19 @@
 
   height: fit-content !important;
 
+  border-radius: 0 !important;
+
   cursor: pointer;
 
+  transition: none !important;
+
   &[data-state="active"] {
-    color: rgb(255, 103, 64) !important;
+    color: initial;
     background-color: transparent !important;
 
-    text-underline-offset: 4px;
-    text-decoration: underline;
-    text-decoration-color: rgb(255, 103, 64);
+    border-bottom: 2px solid rgb(255, 103, 64);
+
+    padding: 2px 0 !important;
   }
 }
 

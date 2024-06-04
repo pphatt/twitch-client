@@ -5,6 +5,7 @@ import * as React from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import LogInForm from "@/components/forms/login-form"
+import SignUpForm from "@/components/forms/signup-form"
 import styles from "@/styles/components/layouts/auth-tab-control.module.scss"
 
 interface AuthTabControlProps {
@@ -35,7 +36,9 @@ export default function AuthTabControl({ currentTab }: AuthTabControlProps) {
           </CardContent>
         </TabsContent>
         <TabsContent value="sign-up" className={styles["form-layout-wrapper"]}>
-          <CardContent className={styles["form-layout-container"]}></CardContent>
+          <CardContent className={styles["form-layout-container"]}>
+            <SignUpForm />
+          </CardContent>
         </TabsContent>
       </Card>
     </Tabs>

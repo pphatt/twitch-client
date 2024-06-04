@@ -1,0 +1,122 @@
+@use "../../variables" as var;
+
+.form-layout-container {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.form-content-wrapper {
+  &:first-child {
+    margin-top: 10px !important;
+  }
+
+  &:not(:first-child) {
+    margin-top: 20px !important;
+  }
+}
+
+.form-content-label-wrapper {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 5px;
+}
+
+.form-content-label-container {
+  flex: 1;
+}
+
+.form-content-label {
+  color: #f7f7f8;
+
+  margin-left: 0 !important;
+
+  font-weight: 700;
+}
+
+.form-content-input-wrapper {
+  position: relative;
+}
+
+.form-content-input {
+  background-color: #18181b !important;
+
+  max-width: 100% !important;
+  height: 40px !important;
+
+  border: transparent !important;
+  border-radius: 4px;
+
+  appearance: none;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  transition:
+    border 100ms ease-in,
+    background-color 100ms ease-in !important;
+
+  box-shadow: inset 0 0 0 1px rgba(222, 222, 227, 0.4) !important;
+
+  &:focus,
+  &:focus:hover {
+    border-color: rgb(255, 103, 64) !important;
+
+    outline-offset: -1px;
+
+    box-shadow:
+      0 0 0 2px rgb(255, 103, 64),
+      inset 0 0 0 2px rgb(255, 103, 64) !important;
+  }
+}
+
+.form-message {
+  margin-top: 8px;
+}
+
+.term-layout-wrapper {
+  margin-top: 20px;
+}
+
+.term-text {
+  color: #adadb8;
+
+  font-size: 12px;
+
+  a {
+    color: rgb(255, 103, 64);
+
+    text-decoration: underline;
+  }
+}
+
+.submit-layout-wrapper {
+  margin-top: 20px;
+}
+
+.submit-btn {
+  color: #adadb8 !important;
+  background-color: rgba(83, 83, 95, 0.38) !important;
+
+  max-width: 100% !important;
+  width: 100%;
+  height: 30px !important;
+
+  padding: 5px 8px !important;
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+
+  margin-right: 0.5rem;
+
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  @include var.spin();
+}

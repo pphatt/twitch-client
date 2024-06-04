@@ -130,6 +130,32 @@
   white-space: nowrap;
 }
 
+.sign-up-button {
+  color: #fff !important;
+  background-color: rgb(255, 103, 64) !important;
+
+  height: 30px !important;
+
+  border-radius: 4px !important;
+
+  padding: 0 !important;
+
+  font-size: 13px !important;
+  font-weight: 600 !important;
+
+  user-select: none;
+
+  vertical-align: middle;
+
+  overflow: hidden;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: #ed5732 !important;
+  }
+}
+
 .auth-inner-button {
   display: flex;
   align-items: center;

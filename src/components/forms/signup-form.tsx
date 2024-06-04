@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form"
 import type { z } from "zod"
 
 import { sleep } from "@/lib/utils"
-import { authSchema } from "@/lib/validation/auth"
+import { authSignUpSchema } from "@/lib/validation/auth"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -21,18 +21,18 @@ import {
 import { Input } from "@/components/ui/input"
 import { PasswordInput } from "@/components/forms/password-input"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/forms/login-form.module.scss"
+import styles from "@/styles/components/forms/signup-form.module.scss"
 
-type Inputs = z.infer<typeof authSchema>
+type Inputs = z.infer<typeof authSignUpSchema>
 
-export default function LogInForm() {
+export default function SignUpForm() {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
   // register, handleSubmit, formState
   // default-values for controlled form
   const form = useForm<Inputs>({
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(authSignUpSchema),
     defaultValues: {
       username: "",
       password: "",
@@ -89,6 +89,34 @@ export default function LogInForm() {
 
         <FormField
           control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem className={styles["form-content-wrapper"]}>
+              <div className={styles["form-content-label-wrapper"]}>
+                <div className={styles["form-content-label-container"]}>
+                  <FormLabel className={styles["form-content-label"]}>
+                    Email
+                  </FormLabel>
+                </div>
+              </div>
+
+              <div className={styles["form-content-input-wrapper"]}>
+                <FormControl>
+                  <Input
+                    {...field}
+                    placeholder="Email"
+                    className={styles["form-content-input"]}
+                  />
+                </FormControl>
+              </div>
+
+              <FormMessage className={styles["form-message"]} />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="password"
           render={({ field }) => (
             <FormItem className={styles["form-content-wrapper"]}>
@@ -115,10 +143,16 @@ export default function LogInForm() {
           )}
         />
 
-        <div className={styles["reset-password-layout"]}>
-          <Link href={"/signin/reset-password"}>
-            <p>Forgot Password?</p>
-          </Link>
+        <div className={styles["term-layout-wrapper"]}>
+          <p className={styles["term-text"]}>
+            <span>
+              By clicking Sign Up, you are agreeing to Stream site service’s{" "}
+            </span>
+            <Link href={"/"}>Terms of Service</Link>
+            <span> and are acknowledging our </span>
+            <Link href={"/"}>Privacy Notice</Link>
+            <span> applies.</span>
+          </p>
         </div>
 
         <div className={styles["submit-layout-wrapper"]}>
@@ -133,7 +167,7 @@ export default function LogInForm() {
             {isPending && (
               <Icons.spinner className={styles["icon"]} aria-hidden="true" />
             )}
-            Sign in
+            Sign Up
           </Button>
         </div>
       </form>
