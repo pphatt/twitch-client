@@ -1,4 +1,5 @@
 import "@/styles/globals.scss"
+import "@/styles/react-mosaic-component.scss"
 
 import TanStackProviders from "@/providers/tanstack-provider"
 import { GeistSans } from "geist/font/sans"

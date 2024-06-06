@@ -365,4 +365,17 @@ export const Icons = {
       <path d="M3 7.5a1.5 1.5 0 1 1 2 1.415V18H2v-6.667C2 10.597 2.597 10 3.333 10A.667.667 0 0 0 4 9.333v-.418A1.5 1.5 0 0 1 3 7.5zM15.5 6a1.5 1.5 0 0 1 .5 2.915v.418c0 .369.299.667.667.667.736 0 1.333.597 1.333 1.333V18h-3V8.915A1.5 1.5 0 0 1 15.5 6z"></path>
     </svg>
   ),
+  closePanel: ({ ...props }: LucideProps) => (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      focusable="false"
+      aria-hidden="true"
+      role="presentation"
+      {...props}
+    >
+      <path d="M8.5 10 4 5.5 5.5 4 10 8.5 14.5 4 16 5.5 11.5 10l4.5 4.5-1.5 1.5-4.5-4.5L5.5 16 4 14.5 8.5 10z"></path>
+    </svg>
+  ),
 }

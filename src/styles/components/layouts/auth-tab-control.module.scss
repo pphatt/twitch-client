@@ -10,6 +10,12 @@
   border-radius: 4px;
 
   padding: 30px;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .modal-header-wrapper {
@@ -17,12 +23,11 @@
 
   padding: 0 !important;
   margin-top: 5px;
+  margin-bottom: 2.5rem !important;
 }
 
 .modal-header-container {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 
 .tab-control-wrapper {
@@ -32,21 +37,23 @@
   color: initial !important;
   background-color: transparent !important;
 
-  height: 40px !important;
-
   padding: 0 !important;
 }
 
 .tab-control {
   align-self: center;
 
-  padding: 0 !important;
-
-  height: fit-content !important;
+  height: 100% !important;
 
   border-radius: 0 !important;
 
+  padding: 0.5rem 0 !important;
+
+  font-size: 1rem !important;
+
   cursor: pointer;
+
+  font-weight: 700;
 
   transition: none !important;
 
@@ -55,13 +62,11 @@
     background-color: transparent !important;
 
     border-bottom: 2px solid rgb(255, 103, 64);
-
-    padding: 2px 0 !important;
   }
 }
 
 .form-layout-wrapper {
-  margin: 0 !important;
+  margin: 2.5rem 0 0 !important;
 }
 
 .form-layout-container {
