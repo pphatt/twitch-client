@@ -12,12 +12,6 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/dashboard/dashboard-item.module.scss"
 
@@ -81,36 +75,27 @@ export function DashboardItem({ item, options, ...props }: DashboardItemProps) {
   }
 
   return (
-    <TooltipProvider delayDuration={0} skipDelayDuration={0}>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Link
-            style={{ marginTop: "2px" }}
-            href={item.slug ? `${route.concat(item.slug)}` : "/"}
-            className={cn(styles["content-item-container"], {
-              [`${styles["current-active"]}`]: isCurrentRoute,
-            })}
-          >
-            <div
-              className={cn(styles["svg-content-wrapper"], {
-                [`${styles["current-active"]}`]: isCurrentRoute,
-              })}
-            >
-              <div className={styles["svg-content-container"]}>
-                <div className={styles["svg-wrapper"]}>
-                  <div className={styles["svg-container"]}>
-                    {Icon && <Icon />}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </TooltipTrigger>
-        <TooltipContent side={"right"} sideOffset={10}>
-          <p>{item.title}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+    <Link
+      aria-label={item.title}
+      title={item.title}
+      style={{ marginTop: "2px" }}
+      href={item.slug ? `${route.concat(item.slug)}` : "/"}
+      className={cn(styles["content-item-container"], {
+        [`${styles["current-active"]}`]: isCurrentRoute,
+      })}
+    >
+      <div
+        className={cn(styles["svg-content-wrapper"], {
+          [`${styles["current-active"]}`]: isCurrentRoute,
+        })}
+      >
+        <div className={styles["svg-content-container"]}>
+          <div className={styles["svg-wrapper"]}>
+            <div className={styles["svg-container"]}>{Icon && <Icon />}</div>
+          </div>
+        </div>
+      </div>
+    </Link>
   )
 }
 

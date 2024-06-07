@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useCacheLayout } from "@/store/dashboard"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
@@ -18,7 +19,9 @@ import RecommendLiveChanelSideBar from "@/components/recommend-live-chanel-side-
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
 
 export default function SideNavBar() {
-  const [isExpand, setIsExpand] = React.useState(true)
+  const { isSocialColumnOpen, setIsSocialColumnOpen } = useCacheLayout()
+
+  const isExpand = React.useMemo(() => isSocialColumnOpen, [isSocialColumnOpen])
 
   const isScreenWidthAbove1200 = useMediaQuery("(min-width: 1200px)")
 
@@ -55,7 +58,7 @@ export default function SideNavBar() {
                       <div className={styles["collapse-toggle-container"]}>
                         <Button
                           className={styles["collapse-toggle"]}
-                          onClick={() => setIsExpand(!isExpand)}
+                          onClick={setIsSocialColumnOpen}
                         >
                           <div className={styles["svg-wrapper"]}>
                             <div className={styles["svg-container"]}>

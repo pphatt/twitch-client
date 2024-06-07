@@ -19,6 +19,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import styles from "@/styles/components/layouts/dashboard/dashboard-site-header.module.scss"
+import HideNavigatorBtn from "@/app/(dashboard)/_components/hide-navigator-btn"
 
 import { Icons } from "../../icons"
 import { Button } from "../../ui/button"
@@ -39,15 +40,7 @@ export default function DashboardSiteHeader() {
       <div className={styles["site-header-container"]}>
         <div className={styles["site-header-overlay"]}>
           <div className={styles["site-header-text-wrapper"]}>
-            <div className={styles["site-header-btn-wrapper"]}>
-              <div className={styles["site-header-btn-container"]}>
-                <Button className={styles["site-header-btn"]}>
-                  <div>
-                    <Icons.hideNavigator />
-                  </div>
-                </Button>
-              </div>
-            </div>
+            <HideNavigatorBtn />
 
             <div className={styles["current-page-title-wrapper"]}>
               <Suspense>
