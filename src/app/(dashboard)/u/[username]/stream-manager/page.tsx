@@ -4,12 +4,13 @@ import * as React from "react"
 import { Mosaic, MosaicWindow } from "react-mosaic-component"
 
 import styles from "@/styles/dashboard/stream-manager/page.module.scss"
+import ActivityFeed from "@/app/(dashboard)/u/[username]/stream-manager/_components/activity-feed"
 import PanelHeader from "@/app/(dashboard)/u/[username]/stream-manager/_components/panel-header"
 
 const TITLE_MAP = {
   "Stream Preview": "Stream Preview",
   "Quick Action": "Quick Action",
-  "Activity Feed": "Activity Feed",
+  "Activity Feed": <ActivityFeed />,
   "My Chat": "My Chat",
   new: "New Window",
 }
@@ -32,11 +33,11 @@ export default function StreamManagerPage() {
                   pointerEvents: "all",
                 }}
               >
-                <PanelHeader>{TITLE_MAP[id]}</PanelHeader>
+                <PanelHeader>{id}</PanelHeader>
               </span>
             )}
           >
-            <h1>{TITLE_MAP[id]}</h1>
+            {TITLE_MAP[id]}
           </MosaicWindow>
         )}
         initialValue={{
