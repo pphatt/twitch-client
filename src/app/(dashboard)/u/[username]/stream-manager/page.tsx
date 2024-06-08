@@ -1,10 +1,13 @@
 "use client"
 
 import * as React from "react"
+import { useEditLayout } from "@/store/state/dashboard"
 import { Mosaic, MosaicWindow } from "react-mosaic-component"
 
+import { cn } from "@/lib/utils"
 import styles from "@/styles/dashboard/stream-manager/page.module.scss"
 import ActivityFeed from "@/app/(dashboard)/u/[username]/stream-manager/_components/activity-feed"
+import AddPanel from "@/app/(dashboard)/u/[username]/stream-manager/_components/add-panel"
 import PanelHeader from "@/app/(dashboard)/u/[username]/stream-manager/_components/panel-header"
 
 const TITLE_MAP = {
@@ -16,10 +19,27 @@ const TITLE_MAP = {
 }
 
 export default function StreamManagerPage() {
+  const { isEditing } = useEditLayout()
+
+  // const [layout, setLayout] = React.useState(() => {
+  //   const savedLayout = localStorage.getItem('mosaicLayout');
+  //   return savedLayout ? JSON.parse(savedLayout) : null;
+  // });
+  //
+  // React.useEffect(() => {
+  //   localStorage.setItem('mosaicLayout', JSON.stringify(layout));
+  // }, [layout]);
+
   return (
     <div className="stream-manager--page-view">
       <Mosaic
-        className={styles["test"]}
+        // value={layout}
+        onChange={(event) => {
+          console.log(event)
+        }}
+        className={cn(styles["test"], {
+          ["sm-mosaic--editing"]: isEditing,
+        })}
         renderTile={(id, path) => (
           <MosaicWindow
             path={path}
@@ -33,7 +53,7 @@ export default function StreamManagerPage() {
                   pointerEvents: "all",
                 }}
               >
-                <PanelHeader>{id}</PanelHeader>
+                <PanelHeader title={id} />
               </span>
             )}
           >
@@ -55,6 +75,8 @@ export default function StreamManagerPage() {
           },
         }}
       />
+
+      {isEditing && <AddPanel />}
     </div>
   )
 }

@@ -57,6 +57,11 @@
   }
 }
 
+.stream-manager-layout-wrapper {
+  min-width: fit-content;
+  height: 100%;
+}
+
 .site-header-items {
   display: flex;
   justify-content: flex-end;

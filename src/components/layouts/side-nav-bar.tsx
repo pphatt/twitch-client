@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useCacheLayout } from "@/store/dashboard"
+import { useCacheLayout } from "@/store/persistant/dashboard"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"

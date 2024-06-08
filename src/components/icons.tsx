@@ -378,4 +378,53 @@ export const Icons = {
       <path d="M8.5 10 4 5.5 5.5 4 10 8.5 14.5 4 16 5.5 11.5 10l4.5 4.5-1.5 1.5-4.5-4.5L5.5 16 4 14.5 8.5 10z"></path>
     </svg>
   ),
+  arrowUpDashboard: ({ ...props }: LucideProps) => (
+    <svg
+      width="100%"
+      height="100%"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      {...props}
+    >
+      <g>
+        <path d="M5.5 13.5L10 9l4.5 4.5L16 12l-6-6-6 6 1.5 1.5z"></path>
+      </g>
+    </svg>
+  ),
+  arrowDownDashboard: ({ ...props }: LucideProps) => (
+    <svg
+      width="100%"
+      height="100%"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      {...props}
+    >
+      <g>
+        <path d="M14.5 6.5L10 11 5.5 6.5 4 8l6 6 6-6-1.5-1.5z"></path>
+      </g>
+    </svg>
+  ),
+  addPanelPlus: ({ ...props }: LucideProps) => (
+    <svg
+      width="20px"
+      height="20px"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      {...props}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          d="M9 11v5h2v-5h5V9h-5V4H9v5H4v2h5z"
+          clipRule="evenodd"
+        ></path>
+      </g>
+    </svg>
+  ),
 }

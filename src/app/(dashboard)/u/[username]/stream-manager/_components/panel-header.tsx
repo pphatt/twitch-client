@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useEditLayout } from "@/store/state/dashboard"
 import {
   MosaicContext,
   MosaicWindowContext,
@@ -9,12 +10,22 @@ import {
 import type { MosaicKey } from "react-mosaic-component/lib/types"
 
 import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/dashboard/stream-manager/_components/panel-header.module.scss"
 
-interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {}
+interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
+  title: string
+}
 
-export default function PanelHeader({ children, ...props }: PanelHeaderProps) {
+export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
+  const { isEditing, setIsEditing } = useEditLayout()
+
   const context = React.useContext(MosaicWindowContext)
 
   const createRemove = React.useCallback(
@@ -27,26 +38,65 @@ export default function PanelHeader({ children, ...props }: PanelHeaderProps) {
   return (
     <div className={styles["panel-header-wrapper"]} {...props}>
       <div className={styles["panel-header-text-wrapper"]}>
-        <h2 className={styles["panel-header-text"]}>{children}</h2>
+        <h2 className={styles["panel-header-text"]}>{title}</h2>
       </div>
 
       <div className={styles["panel-header-control"]}>
-        <div className={styles["panel-header-close"]}>
-          <MosaicContext.Consumer>
-            {({ mosaicActions }) => (
-              <Button
-                className={styles["close-btn"]}
-                onClick={createRemove(mosaicActions)}
-              >
-                <div className={styles["close-btn-wrapper"]}>
-                  <div className={styles["close-btn-container"]}>
-                    <Icons.closePanel />
+        {isEditing ? (
+          <div className={styles["panel-header-close"]}>
+            <MosaicContext.Consumer>
+              {({ mosaicActions }) => (
+                <Button
+                  className={styles["close-btn"]}
+                  onClick={createRemove(mosaicActions)}
+                >
+                  <div className={styles["close-btn-wrapper"]}>
+                    <div className={styles["close-btn-container"]}>
+                      <Icons.closePanel />
+                    </div>
                   </div>
+                </Button>
+              )}
+            </MosaicContext.Consumer>
+          </div>
+        ) : (
+          <DropdownMenu modal={false}>
+            <DropdownMenuTrigger asChild>
+              <Button
+                aria-label={title}
+                className={styles["dropdown-trigger"]}
+              >
+                <div className={styles["dropdown-trigger-wrapper"]}>
+                  <Icons.ellipsisVertical />
                 </div>
               </Button>
-            )}
-          </MosaicContext.Consumer>
-        </div>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align={"end"}
+              sideOffset={-1}
+              className={styles["dropdown-content"]}
+            >
+              <DropdownMenuItem className={styles["dropdown-item"]} asChild>
+                <Button>
+                  <span>Pop-out {title}</span>
+                </Button>
+              </DropdownMenuItem>
+
+              <DropdownMenuItem className={styles["dropdown-item"]} asChild>
+                <Button
+                  disabled={isEditing ?? true}
+                  onClick={() => {
+                    if (!isEditing) {
+                      setIsEditing(!isEditing)
+                    }
+                  }}
+                >
+                  <span>Edit Layout</span>
+                </Button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </div>
     </div>
   )

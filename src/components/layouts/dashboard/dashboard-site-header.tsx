@@ -34,6 +34,10 @@ const DashboardTitle = dynamic(
   }
 )
 
+const DashboardLayoutControl = dynamic(
+  () => import("@/components/layouts/dashboard/dashboard-layout-control")
+)
+
 export default function DashboardSiteHeader() {
   return (
     <nav className={styles["site-header-wrapper"]}>
@@ -45,6 +49,12 @@ export default function DashboardSiteHeader() {
             <div className={styles["current-page-title-wrapper"]}>
               <Suspense>
                 <DashboardTitle />
+              </Suspense>
+            </div>
+
+            <div className={styles["stream-manager-layout-wrapper"]}>
+              <Suspense>
+                <DashboardLayoutControl />
               </Suspense>
             </div>
           </div>

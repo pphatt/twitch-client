@@ -1,4 +1,4 @@
-import type { IFollowChannelsData } from "@/types"
+import type {IFollowChannelsData, MainNavItem} from "@/types"
 import classNames, { type ArgumentArray } from "classnames"
 
 export function cn(...inputs: ArgumentArray) {
@@ -26,12 +26,44 @@ export const orderFollowedChannel = (channels: IFollowChannelsData[]) => {
       if (a.isLive) {
         return (b.view || 0) - (a.view || 0)
       }
+
       // If both are not live, keep original order (or apply different sorting if needed)
       return 0
     }
+
     // Otherwise, sort by isLive (true comes before false)
     return (b.isLive ? 1 : 0) - (a.isLive ? 1 : 0)
   })
 
   return sortedChannels
+}
+
+/**
+ * Return the current route information in dashboard by recursive search
+ *
+ * @param pathname current pathname
+ * @param sites dashboard route config
+ * @return current route information in the dashboard route config
+ * */
+export const findMatchingSite = (
+  pathname: string,
+  sites: MainNavItem[]
+): MainNavItem | null => {
+  const findInItems = (items: MainNavItem[]): MainNavItem | null => {
+    for (const item of items) {
+      if (item.slug && pathname.includes(item.slug)) {
+        return item
+      }
+
+      if (item.items && item.items.length > 0) {
+        const found = findInItems(item.items)
+
+        if (found) return found
+      }
+    }
+
+    return null
+  }
+
+  return findInItems(sites)
 }
