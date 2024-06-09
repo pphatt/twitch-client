@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useEditLayout } from "@/store/state/dashboard"
+import {useEditLayout, useEditLayoutState} from "@/store/state/dashboard"
 import {
   MosaicContext,
   MosaicWindowContext,
@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/dashboard/stream-manager/_components/panel-header.module.scss"
+import {useMosaicUpdateLayout} from "@/hooks/use-mosaic-update-layout";
 
 interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
   title: string
@@ -25,6 +26,10 @@ interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
 
 export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
   const { isEditing, setIsEditing } = useEditLayout()
+
+  const { layout } = useMosaicUpdateLayout()
+
+  const { setEditLayout } = useEditLayoutState()
 
   const context = React.useContext(MosaicWindowContext)
 
@@ -87,6 +92,7 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
                   disabled={isEditing ?? true}
                   onClick={() => {
                     if (!isEditing) {
+                      setEditLayout(layout)
                       setIsEditing(!isEditing)
                     }
                   }}

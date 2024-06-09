@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useEditLayout } from "@/store/state/dashboard"
+import { useEditLayout, useEditLayoutState } from "@/store/state/dashboard"
 import { Mosaic, MosaicWindow } from "react-mosaic-component"
 import { toast } from "sonner"
 
@@ -13,6 +13,7 @@ import styles from "@/styles/dashboard/stream-manager/page.module.scss"
 import ActivityFeed from "@/app/(dashboard)/u/[username]/stream-manager/_components/activity-feed"
 import AddPanel from "@/app/(dashboard)/u/[username]/stream-manager/_components/add-panel"
 import PanelHeader from "@/app/(dashboard)/u/[username]/stream-manager/_components/panel-header"
+import {DEFAULT_LAYOUT} from "@/constant";
 
 const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
   "Stream Preview": "Stream Preview",
@@ -27,15 +28,22 @@ export default function StreamManagerPage() {
 
   const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
+  const { setEditLayout } = useEditLayoutState()
+
   return (
     <div className="stream-manager--page-view">
       <Mosaic
         initialValue={layout}
-        onChange={(layout) =>
-          debounceUpdateLayout(layout, () => {
-            toast.custom(() => <ToastSuccess>Layout 1 updated</ToastSuccess>)
-          })
-        }
+        value={layout}
+        onChange={(layout) => {
+          if (!isEditing) {
+            debounceUpdateLayout(layout, () => {
+              toast.custom(() => <ToastSuccess>Layout 1 updated</ToastSuccess>)
+            })
+          } else {
+            setEditLayout(layout)
+          }
+        }}
         zeroStateView={<SpinnerLoading />}
         className={cn(styles["test"], {
           ["sm-mosaic--editing"]: isEditing,

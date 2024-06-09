@@ -11,19 +11,37 @@ export const LayoutContext = React.createContext<{
   setLayout: (
     val:
       | MosaicNode<string>
-      | ((prevState: MosaicNode<string>) => MosaicNode<string>)
+      | null
+      | ((prevState: MosaicNode<string> | null) => MosaicNode<string> | null)
   ) => void
-}>()
+}>({
+  layout: null,
+  setLayout: () => {},
+})
 
 export default function UpdateLayoutContext({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [layout, setLayout] = useLocalStorage<MosaicNode<string>>({
+  const [layout, setLayout] = useLocalStorage<MosaicNode<string> | null>({
     key: "stream-manager-drag-and-drop-layout",
-    defaultValue: DEFAULT_LAYOUT,
+    defaultValue: null,
   })
+
+  React.useEffect(() => {
+    const localStorageValue = window["localStorage"].getItem(
+      "stream-manager-drag-and-drop-layout"
+    )
+
+    let parsedValue: MosaicNode<string> = DEFAULT_LAYOUT
+
+    if (localStorageValue) {
+      parsedValue = JSON.parse(localStorageValue) as MosaicNode<string>
+    }
+
+    setLayout(parsedValue)
+  }, [])
 
   return (
     <LayoutContext.Provider

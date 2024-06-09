@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { DEFAULT_LAYOUT } from "@/constant"
-import { useEditLayout } from "@/store/state/dashboard"
+import { useEditLayout, useEditLayoutState } from "@/store/state/dashboard"
 import { toast } from "sonner"
 
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
@@ -22,7 +22,9 @@ export default function DashboardStreamLayout() {
 
   const [open, setOpen] = React.useState(false)
 
-  const { debounceUpdateLayout } = useMosaicUpdateLayout()
+  const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
+
+  const { setEditLayout } = useEditLayoutState()
 
   return (
     <DropdownMenu
@@ -56,6 +58,7 @@ export default function DashboardStreamLayout() {
             disabled={isEditing ?? true}
             onClick={() => {
               if (!isEditing) {
+                setEditLayout(layout)
                 setIsEditing(!isEditing)
               }
             }}
