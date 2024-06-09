@@ -1,9 +1,21 @@
+import type { MosaicNode } from "react-mosaic-component"
+
+import { useDebounceCallback } from "@/hooks/use-debounce-callback"
+import { useUpdateLayoutContext } from "@/hooks/use-update-layout-context"
+
 export const useMosaicUpdateLayout = () => {
-  /*
-  * return [layout, updateLayout]
-  * updateLayout have to handle
-  * - add to lc
-  * - debounce input (lodash debounce)
-  * - update successful notify
-  * */
+  const { layout, setLayout } = useUpdateLayoutContext()
+
+  const debounceUpdateLayout = useDebounceCallback(
+    (layout: MosaicNode<string> | null, callback?: () => void) => {
+      setLayout(layout)
+
+      if (callback) {
+        callback()
+      }
+    },
+    500
+  )
+
+  return { layout, setLayout, debounceUpdateLayout }
 }

@@ -191,6 +191,15 @@ export const Icons = {
       />
     </svg>
   ),
+  success: ({ ...props }: LucideProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <path
+        fillRule="evenodd"
+        d="M10 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm3 5 1.5 1.5L9 14l-3.5-3.5L7 9l2 2 4-4z"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+  ),
   channel: ({ ...props }: LucideProps) => (
     <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
       <path

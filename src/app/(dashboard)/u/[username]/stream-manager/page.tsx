@@ -3,14 +3,18 @@
 import * as React from "react"
 import { useEditLayout } from "@/store/state/dashboard"
 import { Mosaic, MosaicWindow } from "react-mosaic-component"
+import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
+import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
+import ToastSuccess from "@/components/custom-toast/toast-success"
+import SpinnerLoading from "@/components/loading/spinner-loading"
 import styles from "@/styles/dashboard/stream-manager/page.module.scss"
 import ActivityFeed from "@/app/(dashboard)/u/[username]/stream-manager/_components/activity-feed"
 import AddPanel from "@/app/(dashboard)/u/[username]/stream-manager/_components/add-panel"
 import PanelHeader from "@/app/(dashboard)/u/[username]/stream-manager/_components/panel-header"
 
-const TITLE_MAP = {
+const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
   "Stream Preview": "Stream Preview",
   "Quick Action": "Quick Action",
   "Activity Feed": <ActivityFeed />,
@@ -21,22 +25,18 @@ const TITLE_MAP = {
 export default function StreamManagerPage() {
   const { isEditing } = useEditLayout()
 
-  // const [layout, setLayout] = React.useState(() => {
-  //   const savedLayout = localStorage.getItem('mosaicLayout');
-  //   return savedLayout ? JSON.parse(savedLayout) : null;
-  // });
-  //
-  // React.useEffect(() => {
-  //   localStorage.setItem('mosaicLayout', JSON.stringify(layout));
-  // }, [layout]);
+  const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
   return (
     <div className="stream-manager--page-view">
       <Mosaic
-        // value={layout}
-        onChange={(event) => {
-          console.log(event)
-        }}
+        initialValue={layout}
+        onChange={(layout) =>
+          debounceUpdateLayout(layout, () => {
+            toast.custom(() => <ToastSuccess>Layout 1 updated</ToastSuccess>)
+          })
+        }
+        zeroStateView={<SpinnerLoading />}
         className={cn(styles["test"], {
           ["sm-mosaic--editing"]: isEditing,
         })}
@@ -60,20 +60,6 @@ export default function StreamManagerPage() {
             {TITLE_MAP[id]}
           </MosaicWindow>
         )}
-        initialValue={{
-          direction: "row",
-          first: {
-            direction: "column",
-            first: "Stream Preview",
-            second: "Quick Action",
-            splitPercentage: 70,
-          },
-          second: {
-            direction: "row",
-            first: "Activity Feed",
-            second: "My Chat",
-          },
-        }}
       />
 
       {isEditing && <AddPanel />}

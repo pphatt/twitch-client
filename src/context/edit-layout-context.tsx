@@ -4,6 +4,9 @@ import * as React from "react"
 import { usePathname, useSearchParams } from "next/navigation"
 import { useEditLayout } from "@/store/state/dashboard"
 
+/*
+* Reset editing state when navigating to another route
+* */
 export default function EditLayoutContext({
   children,
 }: {

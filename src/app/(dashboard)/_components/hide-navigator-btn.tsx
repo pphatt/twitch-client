@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useDashboardOpen } from "@/store/persistant/dashboard"
+import { useDashboardOpen } from "@/store/persistent/dashboard"
 
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"

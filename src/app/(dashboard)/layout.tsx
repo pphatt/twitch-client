@@ -1,6 +1,7 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 import EditLayoutContext from "@/context/edit-layout-context"
+import UpdateLayoutContext from "@/context/update-layout-context"
 
 import { dashboardSite } from "@/config/site"
 import DashboardSiteHeader from "@/components/layouts/dashboard/dashboard-site-header"
@@ -18,19 +19,21 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <EditLayoutContext>
-      <div className={styles["layout-wrapper"]}>
-        <div className={styles["layout-container"]}>
-          <DashboardSiteHeader />
+      <UpdateLayoutContext>
+        <div className={styles["layout-wrapper"]}>
+          <div className={styles["layout-container"]}>
+            <DashboardSiteHeader />
 
-          <div className={styles["content-wrapper"]}>
-            <DashboardSideNavBar sites={dashboardSite.sites} />
+            <div className={styles["content-wrapper"]}>
+              <DashboardSideNavBar sites={dashboardSite.sites} />
 
-            <div className={styles["content-container"]}>
-              <div className={styles["content-overlay"]}>{children}</div>
+              <div className={styles["content-container"]}>
+                <div className={styles["content-overlay"]}>{children}</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </UpdateLayoutContext>
     </EditLayoutContext>
   )
 }

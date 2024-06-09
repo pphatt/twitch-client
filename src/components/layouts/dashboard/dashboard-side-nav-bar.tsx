@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useDashboardOpen } from "@/store/persistant/dashboard"
+import { useDashboardOpen } from "@/store/persistent/dashboard"
 import type { MainNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"

@@ -1,6 +1,7 @@
 import "@/styles/globals.scss"
 import "@/styles/react-mosaic-component.scss"
 
+import * as React from "react"
 import TanStackProviders from "@/providers/tanstack-provider"
 import { GeistSans } from "geist/font/sans"
 import { Toaster } from "sonner"
@@ -27,7 +28,13 @@ export default function RootLayout({
             <div className={styles["root-layout-wrapper"]}>
               <div className={styles["root-layout-container"]}>
                 {children}
-                <Toaster position="top-right" richColors />
+
+                <Toaster
+                  position="top-center"
+                  richColors
+                  visibleToasts={1}
+                  expand={false}
+                />
               </div>
             </div>
           </div>

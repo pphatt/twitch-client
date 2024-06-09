@@ -1,8 +1,11 @@
 "use client"
 
 import * as React from "react"
+import { DEFAULT_LAYOUT } from "@/constant"
 import { useEditLayout } from "@/store/state/dashboard"
+import { toast } from "sonner"
 
+import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -10,6 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import ToastSuccess from "@/components/custom-toast/toast-success"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/dashboard/dashboard-stream-layout.module.scss"
 
@@ -17,6 +21,8 @@ export default function DashboardStreamLayout() {
   const { isEditing, setIsEditing } = useEditLayout()
 
   const [open, setOpen] = React.useState(false)
+
+  const { debounceUpdateLayout } = useMosaicUpdateLayout()
 
   return (
     <DropdownMenu
@@ -59,7 +65,15 @@ export default function DashboardStreamLayout() {
         </DropdownMenuItem>
 
         <DropdownMenuItem className={styles["dropdown-item"]} asChild>
-          <Button>
+          <Button
+            onClick={() => {
+              debounceUpdateLayout(DEFAULT_LAYOUT, () => {
+                toast.custom(() => (
+                  <ToastSuccess>Layout 1 updated</ToastSuccess>
+                ))
+              })
+            }}
+          >
             <span>Reset to Default</span>
           </Button>
         </DropdownMenuItem>
