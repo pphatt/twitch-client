@@ -24,7 +24,7 @@ export default function DashboardStreamLayout() {
 
   const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
-  const { setEditLayout } = useEditLayoutState()
+  const { editLayout, setEditLayout } = useEditLayoutState()
 
   return (
     <DropdownMenu

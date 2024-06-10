@@ -24,11 +24,19 @@ export default function UpdateLayoutContext({
 }: {
   children: React.ReactNode
 }) {
+  /*
+   * ignore the defaultValue because it acts like an initial value and that make the UI/UX not great
+   *
+   * setting this null act like a useState + useContext
+   * */
   const [layout, setLayout] = useLocalStorage<MosaicNode<string> | null>({
     key: "stream-manager-drag-and-drop-layout",
     defaultValue: null,
   })
 
+  /*
+  * when client mounted get the value from local storage
+  * */
   React.useEffect(() => {
     const localStorageValue = window["localStorage"].getItem(
       "stream-manager-drag-and-drop-layout"
@@ -36,7 +44,7 @@ export default function UpdateLayoutContext({
 
     let parsedValue: MosaicNode<string> = DEFAULT_LAYOUT
 
-    if (localStorageValue) {
+    if (localStorageValue && localStorageValue !== "null" && localStorageValue !== "undefined") {
       parsedValue = JSON.parse(localStorageValue) as MosaicNode<string>
     }
 
