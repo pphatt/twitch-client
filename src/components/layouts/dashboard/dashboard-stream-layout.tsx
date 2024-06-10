@@ -2,7 +2,11 @@
 
 import * as React from "react"
 import { DEFAULT_LAYOUT } from "@/constant"
-import { useEditLayout, useEditLayoutState } from "@/store/state/dashboard"
+import {
+  useEditLayout,
+  useEditLayoutState,
+  useTempNodeLayout,
+} from "@/store/state/dashboard"
 import { toast } from "sonner"
 
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
@@ -24,7 +28,9 @@ export default function DashboardStreamLayout() {
 
   const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
-  const { editLayout, setEditLayout } = useEditLayoutState()
+  const { setTempNodeLayout } = useTempNodeLayout()
+
+  const { setEditLayout } = useEditLayoutState()
 
   return (
     <DropdownMenu
@@ -59,6 +65,7 @@ export default function DashboardStreamLayout() {
             onClick={() => {
               if (!isEditing) {
                 setEditLayout(layout)
+                setTempNodeLayout(layout)
                 setIsEditing(!isEditing)
               }
             }}

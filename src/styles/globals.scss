@@ -244,8 +244,6 @@ ul {
   right: 0;
 
   padding-right: 2px;
-
-  z-index: 1000000;
 }
 
 .sm--edit-menu__container {
@@ -269,7 +267,7 @@ ul {
 }
 
 .sm--edit-menu__full {
-  width: 440px;
+  width: calc(440px - 2px);
 }
 
 .sm--edit-menu__slider {

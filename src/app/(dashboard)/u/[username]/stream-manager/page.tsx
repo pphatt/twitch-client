@@ -22,12 +22,33 @@ const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
   new: "New Window",
 }
 
+/*
+ * There are 3 nodes for managing react-mosaic state
+ *
+ * LAYOUT_NODE (layout): this node is from local storage
+ * EDITING_NODE (useEditLayout): this node is for when react-mosaic container change, this state will update to date
+ * TEMP_NODE (useTempNodeLayout): this node is hold the LAYOUT_NODE original data when user start editing
+ *
+ * explain the architecture behind react-mosaic:
+ *
+ * first load it will use the LAYOUT_NODE as the default layout
+ *
+ * when user change the layout without editing, it would update the LAYOUT_NODE direct to the local storage
+ *
+ * when user change the layout via edit, some notes for this:
+ * - first it will set the TEMP_NODE as LAYOUT_NODE (TEMP_NODE = LAYOUT_NODE)
+ * - it will update the EDITING_NODE as LAYOUT_NODE (EDITING_NODE = LAYOUT_NODE)
+ * - when the ui change, it updates both EDITING_NODE and LAYOUT_NODE.
+ * - this is where thing get tricky, SOMEHOW, the react-mosaic only updates when update the LAYOUT_NODE, so when editing we have to update the LAYOUT_NODE too.
+ *
+ * - one downside of this is that when user edits and refresh the page, it will keep the new change layout
+ * */
 export default function StreamManagerPage() {
   const { isEditing } = useEditLayout()
 
   const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
-  const { editLayout, setEditLayout } = useEditLayoutState()
+  const { setEditLayout } = useEditLayoutState()
 
   /*
    * this controls the mosaic root onChange action
@@ -54,7 +75,6 @@ export default function StreamManagerPage() {
     <div className="stream-manager--page-view">
       <Mosaic
         initialValue={layout}
-        value={isEditing ? editLayout : layout}
         onChange={onLayoutChange}
         zeroStateView={<SpinnerLoading />}
         className={cn(styles["test"], {

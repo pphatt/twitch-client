@@ -436,4 +436,26 @@ export const Icons = {
       </g>
     </svg>
   ),
+  explainationMark: ({ ...props }: LucideProps) => (
+    <svg
+      width="100%"
+      height="100%"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      role="presentation"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zM9 8V6h2v2H9zm0 6V9h2v5H9z"
+          clipRule="evenodd"
+        ></path>
+      </g>
+    </svg>
+  ),
 }

@@ -8,5 +8,10 @@ export const DEFAULT_LAYOUT: MosaicNode<string> = {
     second: "Quick Action",
     splitPercentage: 70,
   },
-  second: { direction: "row", first: "Activity Feed", second: "My Chat" },
+  second: {
+    direction: "row",
+    first: "Activity Feed",
+    second: "My Chat",
+    splitPercentage: 50,
+  },
 }
