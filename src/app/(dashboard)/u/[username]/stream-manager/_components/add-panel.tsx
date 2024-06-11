@@ -96,8 +96,8 @@ export default function AddPanel() {
 
                       <div className={styles["content-wrapper"]}>
                         {ALL_AVAILABLE_PANEL.filter(
-                          (name) => !leaves.includes(name)
-                        ).map((value, index) => (
+                          ({ title }) => !leaves.includes(title)
+                        ).map(({ title, description }, index) => (
                           <div
                             className={styles["content-container"]}
                             key={index}
@@ -105,7 +105,7 @@ export default function AddPanel() {
                             <div className={styles["content-text-wrapper"]}>
                               <div className={styles["content-text-container"]}>
                                 <div className={styles["content-text"]}>
-                                  <p>{value}</p>
+                                  <p>{title}</p>
                                 </div>
 
                                 <TooltipProvider delayDuration={100}>
@@ -127,10 +127,7 @@ export default function AddPanel() {
                                       alignOffset={-10}
                                       className={styles["tooltip-content"]}
                                     >
-                                      <p>
-                                        Displays editable Stream Info for your
-                                        stream
-                                      </p>
+                                      <p>{description}</p>
                                     </TooltipContent>
                                   </Tooltip>
                                 </TooltipProvider>
