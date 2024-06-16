@@ -1,4 +1,5 @@
 import { DEFAULT_LAYOUT } from "@/constant"
+import type { IPopOutPanel } from "@/types"
 import type { MosaicNode } from "react-mosaic-component"
 import { create } from "zustand"
 

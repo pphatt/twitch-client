@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 
 import styles from "@/styles/dashboard/stream-manager/_components/activity-feed.module.scss"

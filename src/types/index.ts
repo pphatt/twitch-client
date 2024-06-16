@@ -83,3 +83,8 @@ export interface ITag {
   name: string
   slug: string
 }
+
+export interface IPopOutPanel {
+  title: string
+  element: Window
+}

@@ -137,7 +137,7 @@ export default function AddPanel() {
                             <div className={styles["add-btn-layout-wrapper"]}>
                               <Button
                                 className={styles["content-btn"]}
-                                onClick={() => addWindowPanel(value)}
+                                onClick={() => addWindowPanel(title)}
                               >
                                 <div className={styles["content-btn-wrapper"]}>
                                   <Icons.addPanelPlus />

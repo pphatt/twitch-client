@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import {useEditLayout, useEditLayoutState} from "@/store/state/dashboard"
+import { useEditLayout, useEditLayoutState } from "@/store/state/dashboard"
 import {
   MosaicContext,
   MosaicWindowContext,
@@ -9,6 +9,7 @@ import {
 } from "react-mosaic-component"
 import type { MosaicKey } from "react-mosaic-component/lib/types"
 
+import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -18,7 +19,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/dashboard/stream-manager/_components/panel-header.module.scss"
-import {useMosaicUpdateLayout} from "@/hooks/use-mosaic-update-layout";
 
 interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
   title: string
@@ -39,6 +39,20 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
     },
     [context.mosaicWindowActions]
   )
+
+  const handlePopOut = React.useCallback(() => {
+    switch (title) {
+      case "Activity Feed": {
+        window.open(
+          "/u/tienphat/stream-manager/activity-feed",
+          "_blank",
+          "top=600,left=800,width=360,height=450,popup=true"
+        )
+
+        break
+      }
+    }
+  }, [title])
 
   return (
     <div className={styles["panel-header-wrapper"]} {...props}>
@@ -67,10 +81,7 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
         ) : (
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-              <Button
-                aria-label={title}
-                className={styles["dropdown-trigger"]}
-              >
+              <Button aria-label={title} className={styles["dropdown-trigger"]}>
                 <div className={styles["dropdown-trigger-wrapper"]}>
                   <Icons.ellipsisVertical />
                 </div>
@@ -82,7 +93,7 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
               className={styles["dropdown-content"]}
             >
               <DropdownMenuItem className={styles["dropdown-item"]} asChild>
-                <Button>
+                <Button onClick={handlePopOut}>
                   <span>Pop-out {title}</span>
                 </Button>
               </DropdownMenuItem>
