@@ -29,10 +29,13 @@ export default function AuthDialog({ children, currentTab }: AuthDialogProps) {
           <div className={styles["auth-text-container"]}>
             <div className={styles["auth-text-overlay"]}>
               <span className={styles["text-default"]}>
-                <span className={styles["text-highlight"]}>Limitless</span> entertainment awaits
+                <span className={styles["text-highlight"]}>Limitless</span>{" "}
+                entertainment awaits
               </span>
 
-              <span className={styles["text-sm"]}>where boredom bites the dust</span>
+              <span className={styles["text-sm"]}>
+                where boredom bites the dust
+              </span>
             </div>
           </div>
         </div>

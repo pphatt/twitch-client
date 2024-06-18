@@ -35,8 +35,8 @@ export default function UpdateLayoutContext({
   })
 
   /*
-  * when client mounted get the value from local storage
-  * */
+   * when client mounted get the value from local storage
+   * */
   React.useEffect(() => {
     const localStorageValue = window["localStorage"].getItem(
       "stream-manager-drag-and-drop-layout"
@@ -44,7 +44,11 @@ export default function UpdateLayoutContext({
 
     let parsedValue: MosaicNode<string> = DEFAULT_LAYOUT
 
-    if (localStorageValue && localStorageValue !== "null" && localStorageValue !== "undefined") {
+    if (
+      localStorageValue &&
+      localStorageValue !== "null" &&
+      localStorageValue !== "undefined"
+    ) {
       parsedValue = JSON.parse(localStorageValue) as MosaicNode<string>
     }
 

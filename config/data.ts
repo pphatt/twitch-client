@@ -688,18 +688,18 @@ export const chatMessages = [
     message:
       "If I have seen further it is by standing on the shoulders of Giants.",
     username: "Issac Newton",
-    color: "rgb(255, 105, 180)"
+    color: "rgb(255, 105, 180)",
   },
   {
     message:
       "If a cluttered desk is a sign of a cluttered mind, of what, then, is an empty desk a sign?",
     username: "Albert Einstein",
-    color: "rgb(255, 0, 0)"
+    color: "rgb(255, 0, 0)",
   },
   {
     message:
       "Our virtues and our failures are inseparable, like force and matter. When they separate, man is no more.",
     username: "Nikola Tesla",
-    color: "rgb(139, 88, 255)"
+    color: "rgb(139, 88, 255)",
   },
 ]

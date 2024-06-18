@@ -1,4 +1,4 @@
-import type {IFollowChannelsData, MainNavItem} from "@/types"
+import type { IFollowChannelsData, MainNavItem } from "@/types"
 import classNames, { type ArgumentArray } from "classnames"
 
 export function cn(...inputs: ArgumentArray) {

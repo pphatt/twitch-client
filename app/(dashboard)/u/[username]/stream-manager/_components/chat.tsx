@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import {chatMessages} from "@/config/data"
-import {ScrollArea} from "@/components/ui/scroll-area"
+import { chatMessages } from "@/config/data"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import styles from "@/styles/dashboard/stream-manager/_components/chat.module.scss"
 
 export default function Chat() {
@@ -18,7 +18,7 @@ export default function Chat() {
                 <span>Welcome to the chat room!</span>
               </div>
 
-              {chatMessages.map(({message, username, color}, index) => (
+              {chatMessages.map(({ message, username, color }, index) => (
                 <div
                   key={index}
                   className={styles["chat-line__message"]}
@@ -27,18 +27,22 @@ export default function Chat() {
                   tabIndex={0}
                 >
                   <div className={styles["chat-line-wrapper"]}>
-                    <div className={styles["chat-line__message-highlight"]}></div>
+                    <div
+                      className={styles["chat-line__message-highlight"]}
+                    ></div>
 
                     <div className={styles["chat-line-container"]}>
                       <div className={styles["chat-line__username-wrapper"]}>
-                        <span className={styles["chat-line__username-container"]}>
+                        <span
+                          className={styles["chat-line__username-container"]}
+                        >
                           <span>
                             <span
                               className={styles["chat-author__display-name"]}
                               data-a-target={"chat-message-username"}
                               data-a-username={username}
                               data-test-selector={"message-username"}
-                              style={{color}}
+                              style={{ color }}
                             >
                               {username}
                             </span>
