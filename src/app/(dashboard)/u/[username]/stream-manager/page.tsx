@@ -12,13 +12,14 @@ import SpinnerLoading from "@/components/loading/spinner-loading"
 import styles from "@/styles/dashboard/stream-manager/page.module.scss"
 import ActivityFeed from "@/app/(dashboard)/u/[username]/stream-manager/_components/activity-feed"
 import AddPanel from "@/app/(dashboard)/u/[username]/stream-manager/_components/add-panel"
+import Chat from "@/app/(dashboard)/u/[username]/stream-manager/_components/chat"
 import PanelHeader from "@/app/(dashboard)/u/[username]/stream-manager/_components/panel-header"
 
 const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
   "Stream Preview": "Stream Preview",
   "Quick Action": "Quick Action",
   "Activity Feed": <ActivityFeed />,
-  "My Chat": "My Chat",
+  "My Chat": <Chat />,
   new: "New Window",
 }
 

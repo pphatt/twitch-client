@@ -670,3 +670,36 @@ export const liveChannels = {
     },
   ],
 }
+
+export const chatMessages = [
+  {
+    message:
+      "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less.",
+    username: "Marie Curie",
+    color: "rgb(0, 187, 204)",
+  },
+  {
+    message:
+      "All matter originates and exists only by virtue of a force... We must assume behind this force the existence of a conscious and intelligent Mind. This Mind is the matrix of all matter.",
+    username: "Max Planck",
+    color: "rgb(255, 69, 0)",
+  },
+  {
+    message:
+      "If I have seen further it is by standing on the shoulders of Giants.",
+    username: "Issac Newton",
+    color: "rgb(255, 105, 180)"
+  },
+  {
+    message:
+      "If a cluttered desk is a sign of a cluttered mind, of what, then, is an empty desk a sign?",
+    username: "Albert Einstein",
+    color: "rgb(255, 0, 0)"
+  },
+  {
+    message:
+      "Our virtues and our failures are inseparable, like force and matter. When they separate, man is no more.",
+    username: "Nikola Tesla",
+    color: "rgb(139, 88, 255)"
+  },
+]
