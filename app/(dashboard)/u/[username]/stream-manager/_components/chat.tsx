@@ -2,6 +2,7 @@ import * as React from "react"
 
 import { chatMessages } from "@/config/data"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import ChatInputForm from "@/components/forms/chat-input-form"
 import styles from "@/styles/dashboard/stream-manager/_components/chat.module.scss"
 
 export default function Chat() {
@@ -66,15 +67,7 @@ export default function Chat() {
         </ScrollArea>
       </div>
 
-      <div className={styles["chat-input-wrapper"]}>
-        <div></div>
-
-        <div>
-          <div className={styles["chat-input-container"]}></div>
-
-          <div className={styles["chat-input-setting-wrapper"]}></div>
-        </div>
-      </div>
+      <ChatInputForm />
     </section>
   )
 }
