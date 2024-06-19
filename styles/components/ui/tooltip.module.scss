@@ -2,7 +2,7 @@
 
 .tooltip-content {
   color: inherit;
-  background-color: #1f1f23;
+  background-color: hsl(var(--background-alt));
 
   border-width: 0;
   border-radius: calc(0.5rem - 2px);

@@ -17,14 +17,14 @@
   font-weight: 600;
 
   a {
-    color: rgb(255, 103, 64);
+    color: hsl(var(--color-twitch-orange-11));
 
     &:hover {
       text-decoration: underline;
     }
 
     &:visited {
-      color: rgb(255, 103, 64);
+      color: hsl(var(--color-twitch-orange-11));
     }
   }
 }

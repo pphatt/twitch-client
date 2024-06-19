@@ -48,7 +48,7 @@
 
   min-height: min(600px, var(--cmdk-list-height) + 2px) !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   margin-top: 4px !important;
 

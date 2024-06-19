@@ -57,7 +57,7 @@
     min-height: calc(1em);
     height: 100%;
 
-    border-radius: 2px;
+    border-radius: calc(var(--radius) - 2px);
 
     content: "";
   }
@@ -82,7 +82,7 @@
     height: 100%;
     min-height: calc(1em);
 
-    border-radius: 2px;
+    border-radius: calc(var(--radius) - 2px);
 
     content: "";
   }
@@ -108,7 +108,7 @@
     min-height: calc(1em);
     height: 100%;
 
-    border-radius: 2px;
+    border-radius: calc(var(--radius) - 2px);
 
     content: "";
   }

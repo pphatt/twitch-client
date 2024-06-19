@@ -39,7 +39,7 @@
 }
 
 .content-header-text {
-  color: #dedee3;
+  color: hsl(var(--foreground-alt));
 
   font-size: 18px;
   line-height: 1.2;
@@ -47,10 +47,10 @@
 }
 
 .content-block-wrapper {
-  background-color: #18181b;
+  background-color: hsl(var(--background));
 
   border: 1px solid rgba(83, 83, 95, 0.48);
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   margin-bottom: 40px;
 }

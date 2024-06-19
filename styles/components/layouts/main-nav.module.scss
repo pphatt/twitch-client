@@ -56,7 +56,7 @@
   display: flex;
   align-items: center;
 
-  color: #efeff1;
+  color: hsl(var(--foreground));
 
   height: 100%;
 
@@ -107,7 +107,7 @@
 }
 
 .option-items-trigger {
-  color: #efeff1 !important;
+  color: hsl(var(--foreground)) !important;
   background-color: transparent !important;
 
   width: 30px !important;
@@ -120,7 +120,7 @@
   user-select: none;
 
   &:hover {
-    color: #efeff1 !important;
+    color: hsl(var(--foreground)) !important;
     background-color: rgb(71 79 84) !important;
   }
 
@@ -168,7 +168,7 @@
 }
 
 .item-label {
-  color: #adadb8 !important;
+  color: hsl(var(--foreground-alt-2)) !important;
 
   padding: 0.375rem 0.25rem !important;
 

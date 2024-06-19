@@ -4,13 +4,13 @@
   align-items: center;
   gap: 0 !important;
 
-  background-color: #18181b !important;
+  background-color: hsl(var(--background)) !important;
 
   max-width: 100% !important;
   width: 100% !important;
 
   border: 0 solid transparent !important;
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 0 !important;
 
@@ -108,7 +108,7 @@
 }
 
 .text-highlight {
-  color: rgb(255, 103, 64);
+  color: hsl(var(--color-twitch-orange-11));
 }
 
 .text-sm {

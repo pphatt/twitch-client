@@ -74,7 +74,7 @@
 }
 
 .menu-description-text {
-  color: #adadb8;
+  color: hsl(var(--foreground-alt-2));
 
   font-size: 13px;
   line-height: 1.5;
@@ -118,13 +118,13 @@
   display: flex;
   align-items: center;
 
-  background-color: #26262c;
+  background-color: hsl(var(--background-alt-2));
 
   width: 100%;
 
   padding: 10px 10px 10px 5px;
 
-  border-radius: 6px;
+  border-radius: calc(var(--radius) + 2px);
 
   user-select: none;
 }
@@ -151,13 +151,13 @@
 }
 
 .content-btn {
-  color: #efeff1 !important;
+  color: hsl(var(--foreground)) !important;
   background-color: transparent !important;
 
   width: 30px !important;
   height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 0 !important;
 
@@ -179,12 +179,12 @@
 .tooltip-content {
   display: inline-block;
 
-  color: #0e0e10 !important;
+  color: hsl(var(--color-hinted-grey-1)) !important;
   background-color: #fff !important;
 
   max-width: 300px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 5px;
 

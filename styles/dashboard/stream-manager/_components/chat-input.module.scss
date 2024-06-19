@@ -1,9 +1,9 @@
 .chat-wysiwyg-input__box {
-  color: #efeff1;
-  background-color: #18181b;
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
   background-clip: padding-box;
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   padding-bottom: 0;
   padding-top: 0;
@@ -19,11 +19,11 @@
     background-color 100ms ease-in;
 
   &:focus-within {
-    border-color: #ff6740;
+    border-color: hsl(var(--color-twitch-orange-11));
 
     box-shadow:
-      0 0 0 2px #ff6740,
-      inset 0 0 0 2px #ff6740;
+      0 0 0 2px hsl(var(--color-twitch-orange-11)),
+      inset 0 0 0 2px hsl(var(--color-twitch-orange-11));
   }
 }
 

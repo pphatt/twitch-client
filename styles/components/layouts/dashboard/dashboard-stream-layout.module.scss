@@ -38,7 +38,7 @@
 }
 
 .layout-text {
-  color: #adadb8;
+  color: hsl(var(--foreground-alt-2));
 
   font-size: 12px;
   line-height: 1.5;
@@ -91,7 +91,7 @@
   height: 100% !important;
   min-height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 5px !important;
 

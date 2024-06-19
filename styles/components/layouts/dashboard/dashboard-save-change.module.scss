@@ -11,13 +11,13 @@
 }
 
 .cancel-change-btn {
-  color: #efeff1 !important;
+  color: hsl(var(--foreground)) !important;
   background-color: rgba(83, 83, 95, 0.38) !important;
 
   width: max-content !important;
   height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 0 !important;
 

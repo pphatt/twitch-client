@@ -1,7 +1,7 @@
 .side-navbar {
   flex-shrink: 0;
 
-  background-color: #1f1f23;
+  background-color: hsl(var(--background-alt));
 
   height: 100%;
 }
@@ -90,20 +90,20 @@
 }
 
 .collapse-toggle {
-  color: #efeff1 !important;
+  color: hsl(var(--foreground)) !important;
   background-color: transparent !important;
 
   width: 30px !important;
   height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 0 !important;
 
   user-select: none;
 
   &:hover {
-    color: #efeff1 !important;
+    color: hsl(var(--foreground)) !important;
     background-color: rgb(71, 79, 84) !important;
   }
 }

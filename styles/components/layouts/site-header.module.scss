@@ -43,13 +43,13 @@
 }
 
 .additional-item {
-  color: #efeff1 !important;
+  color: hsl(var(--foreground)) !important;
   background-color: transparent !important;
 
   width: 30px !important;
   height: 30px !important;
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   padding: 0 !important;
 
@@ -61,7 +61,7 @@
   cursor: pointer;
 
   &:hover {
-    color: #efeff1 !important;
+    color: hsl(var(--foreground)) !important;
     background-color: rgb(71 79 84) !important;
   }
 }
@@ -109,12 +109,12 @@
 }
 
 .login-button {
-  color: #efeff1 !important;
+  color: hsl(var(--foreground)) !important;
   background-color: rgba(83, 83, 95, 0.38) !important;
 
   height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 0 !important;
 
@@ -132,11 +132,11 @@
 
 .sign-up-button {
   color: #fff !important;
-  background-color: rgb(255, 103, 64) !important;
+  background-color: hsl(var(--color-twitch-orange-11)) !important;
 
   height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 0 !important;
 
@@ -152,7 +152,7 @@
   white-space: nowrap;
 
   &:hover {
-    background-color: #ed5732 !important;
+    background-color: hsl(var(--color-twitch-orange-12)) !important;
   }
 }
 
@@ -210,7 +210,7 @@
 }
 
 .user-item-trigger-wrapper {
-  background-color: #18181b;
+  background-color: hsl(var(--background));
 }
 
 .user-item-trigger-container {
@@ -286,7 +286,7 @@
 }
 
 .account-text {
-  color: #efeff1;
+  color: hsl(var(--foreground));
 
   font-size: 14px;
   line-height: 1.5;

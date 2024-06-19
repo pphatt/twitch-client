@@ -54,7 +54,7 @@
   padding: 2px;
 
   &[data-selected="true"] {
-    color: rgb(255, 103, 64);
+    color: hsl(var(--color-twitch-orange-11));
   }
 }
 

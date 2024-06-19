@@ -23,7 +23,7 @@
   flex-grow: 0;
   flex-shrink: 0;
 
-  color: #f7f7f8;
+  color: hsl(var(--color-hinted-grey));
 
   padding-right: 5px;
 
@@ -95,7 +95,7 @@
   display: flex;
   align-items: center;
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   font-size: 14px;
   line-height: 1.2;
@@ -125,11 +125,11 @@
 
 .current-select {
   color: initial !important;
-  background-color: rgb(255, 103, 64) !important;
+  background-color: hsl(var(--color-twitch-orange-11)) !important;
 
   &:hover {
     color: initial !important;
-    background-color: rgb(255, 103, 64) !important;
+    background-color: hsl(var(--color-twitch-orange-11)) !important;
   }
 }
 

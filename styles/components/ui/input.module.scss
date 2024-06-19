@@ -37,8 +37,8 @@
 }
 
 .dashboard-variant {
-  color: #efeff1;
-  background-color: #18181b;
+  color: hsl(var(--foreground));
+  background-color: hsl(var(--background));
   background-clip: padding-box;
 }
 

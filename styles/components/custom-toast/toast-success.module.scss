@@ -2,7 +2,7 @@
   display: inline-block;
 
   color: #000;
-  background-color: #00f593;
+  background-color: hsl(var(--color-background-success));
 
   max-width: 520px;
   min-width: 280px;
@@ -10,7 +10,7 @@
 
   padding: 10px !important;
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   text-align: center;
 

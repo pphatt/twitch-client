@@ -73,7 +73,7 @@
 
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-  border-right: 6px solid rgb(255, 103, 64);
+  border-right: 6px solid hsl(var(--color-twitch-orange-11));
 
   transform-origin: left center;
   transform: translateY(-6px) scale(0);
@@ -93,7 +93,7 @@
 
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid rgb(255, 103, 64);
+  border-top: 6px solid hsl(var(--color-twitch-orange-11));
 
   transform-origin: center bottom;
   transform: translateX(6px) scale(0);
@@ -109,7 +109,7 @@
   bottom: 0;
   left: 0;
 
-  background: rgb(255, 103, 64);
+  background: hsl(var(--color-twitch-orange-11));
 
   width: 6px;
 
@@ -127,7 +127,7 @@
   left: 0;
   right: 0;
 
-  background: rgb(255, 103, 64);
+  background: hsl(var(--color-twitch-orange-11));
 
   height: 6px;
 
@@ -203,7 +203,7 @@
     color: inherit;
 
     &:hover {
-      color: rgb(255, 103, 64);
+      color: hsl(var(--color-twitch-orange-11));
     }
   }
 
@@ -223,7 +223,7 @@
 }
 
 .category-current-total-view {
-  color: #adadb8;
+  color: hsl(var(--foreground-alt-2));
 
   font-size: 13px;
   line-height: 1.5;

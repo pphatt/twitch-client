@@ -19,7 +19,7 @@
 .chat-input-layout-wrapper {
   display: block;
 
-  border-radius: 6px;
+  border-radius: calc(var(--radius) + 2px);
 }
 
 .chat-input-layout-container {
@@ -31,9 +31,9 @@
 }
 
 .chat-input__wrapper {
-  background-color: #18181b;
+  background-color: hsl(var(--background));
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 .chat-input__container {
@@ -41,7 +41,7 @@
 
   width: 100%;
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 .chat-input__buttons-wrapper {
@@ -66,13 +66,13 @@
 }
 
 .chat-setting-button {
-  color: #efeff1 !important;
+  color: hsl(var(--foreground)) !important;
   background-color: transparent !important;
 
   width: 30px !important;
   height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   font-size: 13px !important;
   font-weight: 600 !important;
@@ -111,11 +111,11 @@
 
 .chat-button {
   color: #fff !important;
-  background-color: #ff6740 !important;
+  background-color: hsl(var(--color-twitch-orange-11)) !important;
 
   height: 30px !important;
 
-  border-radius: 4px !important;
+  border-radius: var(--radius) !important;
 
   padding: 0 !important;
 
@@ -123,7 +123,7 @@
   font-weight: 600 !important;
 
   &:hover {
-    background-color: #da4725 !important;
+    background-color: hsl(var(--color-twitch-orange-12)) !important;
   }
 }
 

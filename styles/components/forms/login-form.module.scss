@@ -29,7 +29,7 @@
 }
 
 .form-content-label {
-  color: #f7f7f8;
+  color: hsl(var(--color-hinted-grey));
 
   margin-left: 0 !important;
 
@@ -41,13 +41,13 @@
 }
 
 .form-content-input {
-  background-color: #18181b !important;
+  background-color: hsl(var(--background)) !important;
 
   max-width: 100% !important;
   height: 40px !important;
 
   border: transparent !important;
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   appearance: none;
 
@@ -63,13 +63,13 @@
 
   &:focus,
   &:focus:hover {
-    border-color: rgb(255, 103, 64) !important;
+    border-color: hsl(var(--color-twitch-orange-11)) !important;
 
     outline-offset: -1px;
 
     box-shadow:
-      0 0 0 2px rgb(255, 103, 64),
-      inset 0 0 0 2px rgb(255, 103, 64) !important;
+      0 0 0 2px hsl(var(--color-twitch-orange-11)),
+      inset 0 0 0 2px hsl(var(--color-twitch-orange-11)) !important;
   }
 }
 
@@ -78,7 +78,7 @@
 }
 
 .reset-password-layout {
-  color: rgb(255, 103, 64);
+  color: hsl(var(--color-twitch-orange-11));
 
   width: fit-content;
 
@@ -98,7 +98,7 @@
 }
 
 .submit-btn {
-  color: #adadb8 !important;
+  color: hsl(var(--foreground-alt-2)) !important;
   background-color: rgba(83, 83, 95, 0.38) !important;
 
   max-width: 100% !important;

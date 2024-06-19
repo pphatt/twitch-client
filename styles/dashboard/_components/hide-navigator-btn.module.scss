@@ -14,7 +14,7 @@
   width: 36px !important;
   height: 36px !important;
 
-  border-radius: 6px !important;
+  border-radius: calc(var(--radius) + 2px) !important;
 
   padding: 6px !important;
 

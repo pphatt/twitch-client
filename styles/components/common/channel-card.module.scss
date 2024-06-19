@@ -72,7 +72,7 @@
 
   border-top: 6px solid transparent;
   border-bottom: 6px solid transparent;
-  border-right: 6px solid rgb(255, 103, 64);
+  border-right: 6px solid hsl(var(--color-twitch-orange-11));
 
   transform-origin: left center;
   transform: translateY(-6px) scale(0);
@@ -92,7 +92,7 @@
 
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
-  border-top: 6px solid rgb(255, 103, 64);
+  border-top: 6px solid hsl(var(--color-twitch-orange-11));
 
   transform-origin: center bottom;
   transform: translateX(6px) scale(0);
@@ -108,7 +108,7 @@
   bottom: 0;
   left: 0;
 
-  background: rgb(255, 103, 64);
+  background: hsl(var(--color-twitch-orange-11));
 
   width: 6px;
 
@@ -126,7 +126,7 @@
   left: 0;
   right: 0;
 
-  background: rgb(255, 103, 64);
+  background: hsl(var(--color-twitch-orange-11));
 
   height: 6px;
 
@@ -198,9 +198,9 @@
   text-align: center;
 
   color: #fff;
-  background-color: #eb0400;
+  background-color: hsl(var(--color-fill-live));
 
-  border-radius: 4px;
+  border-radius: var(--radius);
 
   padding: 0 5px;
 
@@ -236,7 +236,7 @@
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
 
-  border-radius: 2px;
+  border-radius: calc(var(--radius) - 2px);
 
   padding: 0 4px;
 
@@ -322,7 +322,7 @@
 }
 
 .stream-title {
-  color: #dedee3;
+  color: hsl(var(--foreground-alt));
 
   width: 100%;
 
@@ -338,7 +338,7 @@
   }
 
   &:hover {
-    color: rgb(255, 103, 64);
+    color: hsl(var(--color-twitch-orange-11));
   }
 }
 
@@ -348,7 +348,7 @@
   flex-wrap: nowrap;
 
   p {
-    color: #adadb8;
+    color: hsl(var(--foreground-alt-2));
 
     font-size: 13px;
     line-height: 1.5;
@@ -360,7 +360,7 @@
 }
 
 .category-wrapper {
-  color: #adadb8;
+  color: hsl(var(--foreground-alt-2));
 
   font-size: 13px;
   line-height: 1.5;
@@ -370,6 +370,6 @@
   text-overflow: ellipsis;
 
   &:hover {
-    color: rgb(255, 103, 64);
+    color: hsl(var(--color-twitch-orange-11));
   }
 }
