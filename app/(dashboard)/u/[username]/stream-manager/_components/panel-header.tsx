@@ -51,6 +51,15 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
 
         break
       }
+      case "My Chat": {
+        window.open(
+          "/u/tienphat/stream-manager/chat",
+          "_blank",
+          "top=600,left=800,width=360,height=450,popup=true"
+        )
+
+        break
+      }
     }
   }, [title])
 
