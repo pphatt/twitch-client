@@ -1,7 +1,7 @@
-import { useIsomorphicEffect } from "@/hooks/use-isomorphic-effect"
+import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-effect"
 
 export function useDocumentTitle(title: string) {
-  useIsomorphicEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (title.trim().length > 0) {
       document.title = title.trim()
     }

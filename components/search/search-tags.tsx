@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
-import { cn } from "@/lib/utils"
+import { cn, sleep } from "@/lib/utils"
 import { useDebounce } from "@/hooks/use-debounce"
 import {
   Command,
@@ -19,7 +20,7 @@ interface SearchTagsProps {
 }
 
 export function SearchTags({ slug }: SearchTagsProps) {
-  // const router = useRouter()
+  const router = useRouter()
 
   const [focus, setFocus] = React.useState(false)
 
@@ -37,6 +38,11 @@ export function SearchTags({ slug }: SearchTagsProps) {
     async function fetchData() {
       try {
         setData(null)
+        await sleep(500)
+        console.log(data)
+        console.log(isPending)
+        console.log(slug)
+        console.log(router)
       } catch (err) {
         throw new Error("Something went wrong...")
       }

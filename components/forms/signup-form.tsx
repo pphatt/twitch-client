@@ -45,6 +45,7 @@ export default function SignUpForm() {
     startTransition(async () => {
       try {
         console.log(data)
+        console.log(router)
         await sleep(1000)
       } catch (err) {
         // catchError(err)

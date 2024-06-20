@@ -2,8 +2,9 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 
-import { cn } from "@/lib/utils"
+import { cn, sleep } from "@/lib/utils"
 import { useDebounce } from "@/hooks/use-debounce"
 import useWindowEvent from "@/hooks/use-window-event"
 import {
@@ -16,7 +17,7 @@ import {
 import styles from "@/styles/components/search-command-menu.module.scss"
 
 export function SearchCommandMenu() {
-  // const router = useRouter()
+  const router = useRouter()
 
   const [open, setOpen] = React.useState(false)
   const [focus, setFocus] = React.useState(false)
@@ -45,6 +46,10 @@ export function SearchCommandMenu() {
     async function fetchData() {
       try {
         setData(null)
+        await sleep(500)
+        console.log(data)
+        console.log(isPending)
+        console.log(router)
       } catch (err) {
         throw new Error("Something went wrong...")
       }
