@@ -24,17 +24,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={GeistSans.className}>
         <TanStackProviders>
+          <Toaster
+            position="top-center"
+            richColors
+            visibleToasts={1}
+            expand={false}
+          />
+
           <div className={styles["root"]}>
             <div className={styles["root-layout-wrapper"]}>
               <div className={styles["root-layout-container"]}>
                 {children}
-
-                <Toaster
-                  position="top-center"
-                  richColors
-                  visibleToasts={1}
-                  expand={false}
-                />
               </div>
             </div>
           </div>
