@@ -1,4 +1,4 @@
-import MillionLint from '@million/lint';
+import million from 'million/compiler';
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
@@ -6,12 +6,15 @@ import MillionLint from '@million/lint';
 await import("./env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {
+const nextConfig = {
   experimental: {
     optimizeCss: true
   }
 };
 
-export default MillionLint.next({
-  rsc: true
-})(config);
+const millionConfig = {
+  auto: { rsc: true },
+}
+
+// initiate million.js bundle
+export default million.next(nextConfig, millionConfig);
