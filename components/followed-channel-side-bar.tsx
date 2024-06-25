@@ -2,6 +2,7 @@ import * as React from "react"
 import Link from "next/link"
 import type { IFollowChannelsData } from "@/types"
 import { useQuery } from "@tanstack/react-query"
+import { For } from "million/react"
 
 import { followedChannels } from "@/config/data"
 import { cn, formatViewCount, orderFollowedChannel, sleep } from "@/lib/utils"
@@ -73,8 +74,8 @@ export default function FollowedChannelSideBar({
       )}
 
       <div className={styles["channels-group"]}>
-        {channels.map(
-          (
+        <For each={channels}>
+          {(
             { channelName, slug, title, isLive, category, view, image },
             index
           ) => (
@@ -211,8 +212,8 @@ export default function FollowedChannelSideBar({
                 </Tooltip>
               </TooltipProvider>
             </div>
-          )
-        )}
+          )}
+        </For>
       </div>
 
       {isExpand && isScreenWidthAbove1200 ? (

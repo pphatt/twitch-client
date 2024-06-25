@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useDashboardOpen } from "@/store/persistent/dashboard"
 import type { MainNavItem } from "@/types"
+import { For } from "million/react"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
@@ -95,25 +96,27 @@ export default function DashboardSideNavBar({
               )}
 
               <div className={styles["content-wrapper"]}>
-                {sites.map((site, index) => {
-                  if (site.items) {
+                <For each={sites}>
+                  {(site, index) => {
+                    if (site.items) {
+                      return (
+                        <DashboardItemGroup
+                          item={site}
+                          key={index}
+                          options={{ isExpand, isScreenWidthAbove1200 }}
+                        />
+                      )
+                    }
+
                     return (
-                      <DashboardItemGroup
+                      <DashboardItem
                         item={site}
                         key={index}
                         options={{ isExpand, isScreenWidthAbove1200 }}
                       />
                     )
-                  }
-
-                  return (
-                    <DashboardItem
-                      item={site}
-                      key={index}
-                      options={{ isExpand, isScreenWidthAbove1200 }}
-                    />
-                  )
-                })}
+                  }}
+                </For>
               </div>
             </div>
           </ScrollArea>

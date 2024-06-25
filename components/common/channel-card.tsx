@@ -3,7 +3,7 @@ import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
 import { cn, formatViewCount } from "@/lib/utils"
-import { Tag } from "@/components/common/tag"
+import { Tags } from "@/components/common/tag"
 import styles from "@/styles/components/common/channel-card.module.scss"
 
 interface ChannelCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -98,7 +98,7 @@ export function ChannelCard({
                     </p>
                   </div>
 
-                  <Tag tags={tags} />
+                  <Tags tags={tags} />
                 </div>
               </div>
             </div>

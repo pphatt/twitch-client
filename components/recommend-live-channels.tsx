@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
+import { For } from "million/react"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Separator } from "@/components/ui/separator"
@@ -51,9 +52,9 @@ export default function RecommendLiveChannels({
 
       <div className={styles["content-list-wrapper"]}>
         <div className={styles["content-list-container"]}>
-          {channels.slice(0, getNumberByScreenWidth).map((channel, index) => (
-            <ChannelCard key={index} channel={channel} />
-          ))}
+          <For each={channels.slice(0, getNumberByScreenWidth)}>
+            {(channel, index) => <ChannelCard key={index} channel={channel} />}
+          </For>
         </div>
 
         <Separator />

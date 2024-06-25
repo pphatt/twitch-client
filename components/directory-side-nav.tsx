@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type { NavItem } from "@/types"
+import { For } from "million/react"
 
 import { DirectorySearch } from "@/components/search/directory-search"
 import styles from "@/styles/components/directory-side-nav.module.scss"
@@ -25,31 +26,33 @@ export default function DirectorySideNav({ sites }: DirectorySideNavProps) {
         <div className={styles["navigation-wrapper"]}>
           <div className={styles["navigation-container"]}>
             <ul className={styles["navigation-list"]}>
-              {sites.map(({ title, slug }, index) => {
-                const currentTab = pathname === slug
+              <For each={sites}>
+                {({ title, slug }, index) => {
+                  const currentTab = pathname === slug
 
-                return (
-                  <li
-                    className={styles["list-item"]}
-                    data-selected={currentTab}
-                    data-index={currentTab ? 0 : -1}
-                    key={index}
-                  >
-                    <Link
-                      href={slug!}
-                      className={styles["list-item-link-wrapper"]}
+                  return (
+                    <li
+                      className={styles["list-item"]}
+                      data-selected={currentTab}
+                      data-index={currentTab ? 0 : -1}
+                      key={index}
                     >
-                      <p className={styles["list-item-text"]}>{title}</p>
-                    </Link>
+                      <Link
+                        href={slug!}
+                        className={styles["list-item-link-wrapper"]}
+                      >
+                        <p className={styles["list-item-text"]}>{title}</p>
+                      </Link>
 
-                    <div className={styles["list-item-underline-wrapper"]}>
-                      {currentTab && (
-                        <div className={styles["list-item-underline"]}></div>
-                      )}
-                    </div>
-                  </li>
-                )
-              })}
+                      <div className={styles["list-item-underline-wrapper"]}>
+                        {currentTab && (
+                          <div className={styles["list-item-underline"]}></div>
+                        )}
+                      </div>
+                    </li>
+                  )
+                }}
+              </For>
             </ul>
           </div>
         </div>

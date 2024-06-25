@@ -3,7 +3,7 @@ import Link from "next/link"
 import type { ICategoryData } from "@/types"
 
 import { cn, formatViewCount } from "@/lib/utils"
-import { Tag } from "@/components/common/tag"
+import { Tags } from "@/components/common/tag"
 import styles from "@/styles/components/common/category-card.module.scss"
 
 interface CategoryCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -59,7 +59,7 @@ export const CategoryCard = React.forwardRef<HTMLDivElement, CategoryCardProps>(
               </div>
             </div>
 
-            <Tag tags={tags} />
+            <Tags tags={tags} />
           </div>
         </div>
       </div>
