@@ -1,20 +1,25 @@
-import million from 'million/compiler';
+import million from "million/compiler"
+
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import("./env.js");
+await import("./env.js")
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   experimental: {
-    optimizeCss: true
-  }
-};
+    optimizeCss: true,
+  },
+  webpack(config) {
+    // Important: return the modified config
+    return config
+  },
+}
 
 const millionConfig = {
   auto: { rsc: true },
 }
 
 // initiate million.js bundle
-export default million.next(nextConfig, millionConfig);
+export default million.next(nextConfig, millionConfig)
