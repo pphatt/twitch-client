@@ -1,5 +1,4 @@
 import * as React from "react"
-import { For } from "million/react"
 
 import { chatMessages } from "@/config/data"
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -20,51 +19,49 @@ export default function Chat() {
                 <span>Welcome to the chat room!</span>
               </div>
 
-              <For each={chatMessages}>
-                {({ message, username, color }, index) => (
-                  <div
-                    key={index}
-                    className={styles["chat-line__message"]}
-                    data-a-target={"chat-line-message"}
-                    data-a-user={username}
-                    tabIndex={0}
-                  >
-                    <div className={styles["chat-line-wrapper"]}>
-                      <div
-                        className={styles["chat-line__message-highlight"]}
-                      ></div>
+              {chatMessages.map(({ message, username, color }, index) => (
+                <div
+                  key={index}
+                  className={styles["chat-line__message"]}
+                  data-a-target={"chat-line-message"}
+                  data-a-user={username}
+                  tabIndex={0}
+                >
+                  <div className={styles["chat-line-wrapper"]}>
+                    <div
+                      className={styles["chat-line__message-highlight"]}
+                    ></div>
 
-                      <div className={styles["chat-line-container"]}>
-                        <div className={styles["chat-line__username-wrapper"]}>
-                          <span
-                            className={styles["chat-line__username-container"]}
-                          >
-                            <span>
-                              <span
-                                className={styles["chat-author__display-name"]}
-                                data-a-target={"chat-message-username"}
-                                data-a-username={username}
-                                data-test-selector={"message-username"}
-                                style={{ color }}
-                              >
-                                {username}
-                              </span>
+                    <div className={styles["chat-line-container"]}>
+                      <div className={styles["chat-line__username-wrapper"]}>
+                        <span
+                          className={styles["chat-line__username-container"]}
+                        >
+                          <span>
+                            <span
+                              className={styles["chat-author__display-name"]}
+                              data-a-target={"chat-message-username"}
+                              data-a-username={username}
+                              data-test-selector={"message-username"}
+                              style={{ color }}
+                            >
+                              {username}
                             </span>
-                          </span>
-                        </div>
-
-                        <span aria-hidden={true}>: </span>
-
-                        <span data-a-target={"chat-line-message-body"}>
-                          <span data-a-target={"chat-message-text"}>
-                            {message}
                           </span>
                         </span>
                       </div>
+
+                      <span aria-hidden={true}>: </span>
+
+                      <span data-a-target={"chat-line-message-body"}>
+                        <span data-a-target={"chat-message-text"}>
+                          {message}
+                        </span>
+                      </span>
                     </div>
                   </div>
-                )}
-              </For>
+                </div>
+              ))}
             </div>
           </div>
         </ScrollArea>

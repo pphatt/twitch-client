@@ -3,7 +3,6 @@
 import * as React from "react"
 import type { IRecommendedLiveChannel } from "@/types"
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { For } from "million/react"
 
 import { sleep } from "@/lib/utils"
 import { ChannelCard } from "@/components/common/channel-card"
@@ -55,15 +54,13 @@ export default function LiveChannelsList({ channels }: LiveChannelsListProps) {
       hasNextPage={hasNextPage}
       refClassName={styles["live-channel-placeholder"]}
     >
-      <For each={channelsData}>
-        {(channel, index) => (
-          <ChannelCard
-            key={index}
-            channel={channel}
-            className={styles["live-channel-card"]}
-          />
-        )}
-      </For>
+      {channelsData.map((channel, index) => (
+        <ChannelCard
+          key={index}
+          channel={channel}
+          className={styles["live-channel-card"]}
+        />
+      ))}
 
       {isFetchingNextPage &&
         [...(Array(8) as number[])].map((_, index) => (

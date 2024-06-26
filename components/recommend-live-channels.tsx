@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
-import { For } from "million/react"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Separator } from "@/components/ui/separator"
@@ -15,8 +14,8 @@ interface RecommendLiveChannelsProps {
 }
 
 export default function RecommendLiveChannels({
-                                                channels,
-                                              }: RecommendLiveChannelsProps) {
+  channels,
+}: RecommendLiveChannelsProps) {
   const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
   const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
   const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")
@@ -52,9 +51,9 @@ export default function RecommendLiveChannels({
 
       <div className={styles["content-list-wrapper"]}>
         <div className={styles["content-list-container"]}>
-          <For each={channels.slice(0, getNumberByScreenWidth)}>
-            {(channel, index) => <ChannelCard key={index} channel={channel} />}
-          </For>
+          {channels.slice(0, getNumberByScreenWidth).map((channel, index) => (
+            <ChannelCard key={index} channel={channel} />
+          ))}
         </div>
 
         <Separator />

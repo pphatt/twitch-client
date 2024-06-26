@@ -3,7 +3,6 @@
 import * as React from "react"
 import type { ICategoryData } from "@/types"
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { For } from "million/react"
 
 import { sleep } from "@/lib/utils"
 import { CategoryCard } from "@/components/common/category-card"
@@ -69,17 +68,15 @@ export function CategoryList({ categories }: CategoryListProps) {
       hasNextPage={hasNextPage}
       refClassName={styles["category-placeholder"]}
     >
-      <For each={categoryData}>
-        {(category, index) => (
-          <CategoryCard
-            key={index}
-            data-index={index}
-            category={category}
-            className={styles["category-card"]}
-            style={{ order: index }}
-          />
-        )}
-      </For>
+      {categoryData.map((category, index) => (
+        <CategoryCard
+          key={index}
+          data-index={index}
+          category={category}
+          className={styles["category-card"]}
+          style={{ order: index }}
+        />
+      ))}
 
       {isFetchingNextPage &&
         [...(Array(8) as number[])].map((_, index) => (

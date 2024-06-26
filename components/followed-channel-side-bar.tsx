@@ -2,7 +2,6 @@ import * as React from "react"
 import Link from "next/link"
 import type { IFollowChannelsData } from "@/types"
 import { useQuery } from "@tanstack/react-query"
-import { For } from "million/react"
 
 import { followedChannels } from "@/config/data"
 import { cn, formatViewCount, orderFollowedChannel, sleep } from "@/lib/utils"
@@ -22,9 +21,9 @@ interface FollowedChannelSideBarProps {
 }
 
 export default function FollowedChannelSideBar({
-                                                 isExpand,
-                                                 isScreenWidthAbove1200,
-                                               }: FollowedChannelSideBarProps) {
+  isExpand,
+  isScreenWidthAbove1200,
+}: FollowedChannelSideBarProps) {
   const [isShowMore, setIsShowMore] = React.useState(false)
 
   const { data: dataChannels, isFetching } = useQuery<IFollowChannelsData[]>({
@@ -74,8 +73,8 @@ export default function FollowedChannelSideBar({
       )}
 
       <div className={styles["channels-group"]}>
-        <For each={channels}>
-          {(
+        {channels.map(
+          (
             { channelName, slug, title, isLive, category, view, image },
             index
           ) => (
@@ -212,8 +211,8 @@ export default function FollowedChannelSideBar({
                 </Tooltip>
               </TooltipProvider>
             </div>
-          )}
-        </For>
+          )
+        )}
       </div>
 
       {isExpand && isScreenWidthAbove1200 ? (

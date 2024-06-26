@@ -3,7 +3,6 @@
 import * as React from "react"
 import { ALL_AVAILABLE_PANEL } from "@/constant/panel"
 import { useEditLayoutState } from "@/store/state/dashboard"
-import { For } from "million/react"
 import {
   Corner,
   getLeaves,
@@ -96,67 +95,57 @@ export default function AddPanel() {
                       </div>
 
                       <div className={styles["content-wrapper"]}>
-                        <For
-                          each={ALL_AVAILABLE_PANEL.filter(
-                            ({ title }) => !leaves.includes(title)
-                          )}
-                        >
-                          {({ title, description }, index) => (
-                            <div
-                              className={styles["content-container"]}
-                              key={index}
-                            >
-                              <div className={styles["content-text-wrapper"]}>
-                                <div
-                                  className={styles["content-text-container"]}
-                                >
-                                  <div className={styles["content-text"]}>
-                                    <p>{title}</p>
-                                  </div>
-
-                                  <TooltipProvider delayDuration={100}>
-                                    <Tooltip>
-                                      <TooltipTrigger asChild>
-                                        <Button
-                                          className={styles["content-btn"]}
-                                        >
-                                          <div
-                                            className={
-                                              styles["content-btn-wrapper"]
-                                            }
-                                          >
-                                            <Icons.explainationMark />
-                                          </div>
-                                        </Button>
-                                      </TooltipTrigger>
-
-                                      <TooltipContent
-                                        align={"end"}
-                                        alignOffset={-10}
-                                        className={styles["tooltip-content"]}
-                                      >
-                                        <p>{description}</p>
-                                      </TooltipContent>
-                                    </Tooltip>
-                                  </TooltipProvider>
+                        {ALL_AVAILABLE_PANEL.filter(
+                          ({ title }) => !leaves.includes(title)
+                        ).map(({ title, description }, index) => (
+                          <div
+                            className={styles["content-container"]}
+                            key={index}
+                          >
+                            <div className={styles["content-text-wrapper"]}>
+                              <div className={styles["content-text-container"]}>
+                                <div className={styles["content-text"]}>
+                                  <p>{title}</p>
                                 </div>
-                              </div>
 
-                              <div className={styles["add-btn-layout-wrapper"]}>
-                                <Button
-                                  className={styles["content-btn"]}
-                                  onClick={() => addWindowPanel(title)}
-                                >
-                                  <div
-                                    className={styles["content-btn-wrapper"]}
-                                  >
-                                    <Icons.addPanelPlus />
-                                  </div>
-                                </Button>
+                                <TooltipProvider delayDuration={100}>
+                                  <Tooltip>
+                                    <TooltipTrigger asChild>
+                                      <Button className={styles["content-btn"]}>
+                                        <div
+                                          className={
+                                            styles["content-btn-wrapper"]
+                                          }
+                                        >
+                                          <Icons.explainationMark />
+                                        </div>
+                                      </Button>
+                                    </TooltipTrigger>
+
+                                    <TooltipContent
+                                      align={"end"}
+                                      alignOffset={-10}
+                                      className={styles["tooltip-content"]}
+                                    >
+                                      <p>{description}</p>
+                                    </TooltipContent>
+                                  </Tooltip>
+                                </TooltipProvider>
                               </div>
                             </div>
-                          )}
-                        </For>
+
+                            <div className={styles["add-btn-layout-wrapper"]}>
+                              <Button
+                                className={styles["content-btn"]}
+                                onClick={() => addWindowPanel(title)}
+                              >
+                                <div className={styles["content-btn-wrapper"]}>
+                                  <Icons.addPanelPlus />
+                                </div>
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>

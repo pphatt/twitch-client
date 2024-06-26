@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import type { ICategoryData } from "@/types"
-import { For } from "million/react"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Separator } from "@/components/ui/separator"
@@ -50,11 +49,11 @@ export default function CategorySection({ categories }: CategorySectionProps) {
 
       <div className={styles["content-list-wrapper"]}>
         <div className={styles["content-list-container"]}>
-          <For each={categories.slice(0, getNumberByScreenWidth)}>
-            {(category, index) => (
+          {categories
+            .slice(0, getNumberByScreenWidth)
+            .map((category, index) => (
               <CategoryCard key={index} category={category} />
-            )}
-          </For>
+            ))}
         </div>
 
         <Separator />

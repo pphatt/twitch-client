@@ -33,9 +33,7 @@ export default function RootLayout({
 
           <div className={styles["root"]}>
             <div className={styles["root-layout-wrapper"]}>
-              <div className={styles["root-layout-container"]}>
-                {children}
-              </div>
+              <div className={styles["root-layout-container"]}>{children}</div>
             </div>
           </div>
         </TanStackProviders>

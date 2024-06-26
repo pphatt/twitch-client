@@ -2,7 +2,6 @@ import * as React from "react"
 import Link from "next/link"
 import { type IChannelsData } from "@/types"
 import { useQuery } from "@tanstack/react-query"
-import { For } from "million/react"
 
 import { recommendedLiveChannelsData } from "@/config/data"
 import { formatViewCount, sleep } from "@/lib/utils"
@@ -22,9 +21,9 @@ interface RecommendLiveChanelSideBarProps {
 }
 
 export default function RecommendLiveChanelSideBar({
-                                                     isExpand,
-                                                     isScreenWidthAbove1200,
-                                                   }: RecommendLiveChanelSideBarProps) {
+  isExpand,
+  isScreenWidthAbove1200,
+}: RecommendLiveChanelSideBarProps) {
   const [isShowMore, setIsShowMore] = React.useState(false)
 
   const { data: dataChannels, isFetching } = useQuery<IChannelsData[]>({
@@ -72,8 +71,8 @@ export default function RecommendLiveChanelSideBar({
       )}
 
       <div className={styles["channels-group"]}>
-        <For each={channels}>
-          {({ channelName, slug, title, category, view, image }, index) => (
+        {channels?.map(
+          ({ channelName, slug, title, category, view, image }, index) => (
             <div key={index}>
               <TooltipProvider
                 delayDuration={0}
@@ -169,8 +168,8 @@ export default function RecommendLiveChanelSideBar({
                 </Tooltip>
               </TooltipProvider>
             </div>
-          )}
-        </For>
+          )
+        )}
       </div>
 
       {isExpand && isScreenWidthAbove1200 ? (

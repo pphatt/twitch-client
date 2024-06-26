@@ -3,7 +3,6 @@
 import * as React from "react"
 import Link from "next/link"
 import { MainNavItem, SupportNavItem } from "@/types"
-import { For } from "million/react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -29,23 +28,21 @@ export function MainNav({ items, supportItem }: MainNavProps) {
         <Icons.logo />
       </Link>
       <div className={styles["main-nav-items"]}>
-        <For each={items}>
-          {({ title, slug }, index) => (
-            <div className={styles["item-wrapper"]} key={index}>
-              <div className={styles["item-container"]}>
-                <Link href={`${slug}`} className={styles["item-link"]}>
-                  <div>
-                    <div className={styles["item-text-wrapper"]}>
-                      <div className={styles["item-text"]}>
-                        <p className={styles["text"]}>{title}</p>
-                      </div>
+        {items.map(({ title, slug }, index) => (
+          <div className={styles["item-wrapper"]} key={index}>
+            <div className={styles["item-container"]}>
+              <Link href={`${slug}`} className={styles["item-link"]}>
+                <div>
+                  <div className={styles["item-text-wrapper"]}>
+                    <div className={styles["item-text"]}>
+                      <p className={styles["text"]}>{title}</p>
                     </div>
                   </div>
-                </Link>
-              </div>
+                </div>
+              </Link>
             </div>
-          )}
-        </For>
+          </div>
+        ))}
       </div>
       <div className={styles["option-items"]}>
         <DropdownMenu>
@@ -64,32 +61,23 @@ export function MainNav({ items, supportItem }: MainNavProps) {
             asChild
           >
             <ScrollArea className={styles["dropdown-menu-wrapper"]}>
-              <For each={supportItem}>
-                {({ title, items }, index) => (
-                  <div key={index}>
-                    <DropdownMenuLabel className={styles["item-label"]}>
-                      {title}
-                    </DropdownMenuLabel>
-
-                    <For each={items}>
-                      {({ title, href }, index) => (
-                        <div
-                          className={styles["dropdown-menu-item"]}
-                          key={index}
-                        >
-                          <Link href={href}>{title}</Link>
-                        </div>
-                      )}
-                    </For>
-
-                    {index !== supportItem.length - 1 && (
-                      <DropdownMenuSeparator
-                        className={styles["item-separator"]}
-                      />
-                    )}
-                  </div>
-                )}
-              </For>
+              {supportItem.map(({ title, items }, index) => (
+                <div key={index}>
+                  <DropdownMenuLabel className={styles["item-label"]}>
+                    {title}
+                  </DropdownMenuLabel>
+                  {items.map(({ title, href }, index) => (
+                    <div className={styles["dropdown-menu-item"]} key={index}>
+                      <Link href={href}>{title}</Link>
+                    </div>
+                  ))}
+                  {index !== supportItem.length - 1 && (
+                    <DropdownMenuSeparator
+                      className={styles["item-separator"]}
+                    />
+                  )}
+                </div>
+              ))}
             </ScrollArea>
           </DropdownMenuContent>
         </DropdownMenu>

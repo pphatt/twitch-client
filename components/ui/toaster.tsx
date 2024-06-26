@@ -1,7 +1,5 @@
 "use client"
 
-import { For } from "million/react"
-
 import { useToast } from "@/hooks/use-toast"
 import {
   Toast,
@@ -18,22 +16,20 @@ export function Toaster() {
 
   return (
     <ToastProvider>
-      <For each={toasts}>
-        {({ id, title, description, action, ...props }) => {
-          return (
-            <Toast key={id} {...props}>
-              <div className={styles["layout"]}>
-                {title && <ToastTitle>{title}</ToastTitle>}
-                {description && (
-                  <ToastDescription>{description}</ToastDescription>
-                )}
-              </div>
-              {action}
-              <ToastClose />
-            </Toast>
-          )
-        }}
-      </For>
+      {toasts.map(function ({ id, title, description, action, ...props }) {
+        return (
+          <Toast key={id} {...props}>
+            <div className={styles["layout"]}>
+              {title && <ToastTitle>{title}</ToastTitle>}
+              {description && (
+                <ToastDescription>{description}</ToastDescription>
+              )}
+            </div>
+            {action}
+            <ToastClose />
+          </Toast>
+        )
+      })}
       <ToastViewport />
     </ToastProvider>
   )
