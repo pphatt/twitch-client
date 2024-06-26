@@ -22,9 +22,9 @@ interface RecommendLiveChanelSideBarProps {
 }
 
 export default function RecommendLiveChanelSideBar({
-  isExpand,
-  isScreenWidthAbove1200,
-}: RecommendLiveChanelSideBarProps) {
+                                                     isExpand,
+                                                     isScreenWidthAbove1200,
+                                                   }: RecommendLiveChanelSideBarProps) {
   const [isShowMore, setIsShowMore] = React.useState(false)
 
   const { data: dataChannels, isFetching } = useQuery<IChannelsData[]>({

@@ -4,7 +4,6 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type { MainNavItem } from "@/types"
-import { For } from "million/react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -163,17 +162,14 @@ export function DashboardItemGroup({ item, options }: DashboardItemProps) {
           </div>
         </div>
 
-        {isOpen && item.items && (
-          <For each={item.items}>
-            {(item, index) => (
-              <DashboardItem
-                key={index}
-                item={item}
-                options={{ isExpand, isScreenWidthAbove1200 }}
-              />
-            )}
-          </For>
-        )}
+        {isOpen &&
+          item.items?.map((item, index) => (
+            <DashboardItem
+              key={index}
+              item={item}
+              options={{ isExpand, isScreenWidthAbove1200 }}
+            />
+          ))}
       </>
     )
   }
@@ -213,31 +209,24 @@ export function DashboardItemGroup({ item, options }: DashboardItemProps) {
           sideOffset={10}
           className={styles["dropdown-content-wrapper"]}
         >
-          {item.items && (
-            <For each={item.items}>
-              {(item, index) => (
-                <div
-                  className={styles["dropdown-content-container"]}
-                  key={index}
-                >
-                  <Link
-                    href={item.slug ? `${route.concat(item.slug)}` : "/"}
-                    className={cn(styles["content-item-container"], {
-                      [`${styles["current-active"]}`]: item.slug
-                        ? pathname.includes(item.slug)
-                        : false,
-                    })}
-                  >
-                    <div className={styles["content-item-overlay"]}>
-                      <div className={styles["content-item-text-wrapper"]}>
-                        {item.title}
-                      </div>
-                    </div>
-                  </Link>
+          {item.items?.map((item, index) => (
+            <div className={styles["dropdown-content-container"]} key={index}>
+              <Link
+                href={item.slug ? `${route.concat(item.slug)}` : "/"}
+                className={cn(styles["content-item-container"], {
+                  [`${styles["current-active"]}`]: item.slug
+                    ? pathname.includes(item.slug)
+                    : false,
+                })}
+              >
+                <div className={styles["content-item-overlay"]}>
+                  <div className={styles["content-item-text-wrapper"]}>
+                    {item.title}
+                  </div>
                 </div>
-              )}
-            </For>
-          )}
+              </Link>
+            </div>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
 

@@ -15,8 +15,8 @@ interface RecommendLiveChannelsProps {
 }
 
 export default function RecommendLiveChannels({
-  channels,
-}: RecommendLiveChannelsProps) {
+                                                channels,
+                                              }: RecommendLiveChannelsProps) {
   const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
   const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
   const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")

@@ -22,9 +22,9 @@ interface FollowedChannelSideBarProps {
 }
 
 export default function FollowedChannelSideBar({
-  isExpand,
-  isScreenWidthAbove1200,
-}: FollowedChannelSideBarProps) {
+                                                 isExpand,
+                                                 isScreenWidthAbove1200,
+                                               }: FollowedChannelSideBarProps) {
   const [isShowMore, setIsShowMore] = React.useState(false)
 
   const { data: dataChannels, isFetching } = useQuery<IFollowChannelsData[]>({

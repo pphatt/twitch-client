@@ -3,7 +3,6 @@
 import * as React from "react"
 import { useDashboardOpen } from "@/store/persistent/dashboard"
 import type { MainNavItem } from "@/types"
-import { For } from "million/react"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
@@ -21,8 +20,8 @@ interface DashboardSideNavBarProps {
 }
 
 export default function DashboardSideNavBar({
-  sites,
-}: DashboardSideNavBarProps) {
+                                              sites,
+                                            }: DashboardSideNavBarProps) {
   const { mode, setMode } = useDashboardOpen()
 
   const isExpand = React.useMemo(() => mode === "default", [mode])
@@ -37,9 +36,9 @@ export default function DashboardSideNavBar({
     <div
       className={cn(styles["side-navbar"], {
         [`${styles["side-nav--expand"]}`]:
-          mode === "default" && isScreenWidthAbove1200,
+        mode === "default" && isScreenWidthAbove1200,
         [`${styles["side-nav--collapse"]}`]:
-          !isExpand || !isScreenWidthAbove1200,
+        !isExpand || !isScreenWidthAbove1200,
       })}
     >
       <div className={styles["side-navbar-wrapper"]}>
@@ -48,9 +47,9 @@ export default function DashboardSideNavBar({
             <div
               className={cn(styles["content-layout"], {
                 [`${styles["side-nav--expand"]}`]:
-                  isExpand && isScreenWidthAbove1200,
+                isExpand && isScreenWidthAbove1200,
                 [`${styles["side-nav--collapse"]}`]:
-                  !isExpand || !isScreenWidthAbove1200,
+                !isExpand || !isScreenWidthAbove1200,
               })}
             >
               {isExpand && isScreenWidthAbove1200 && (
@@ -96,27 +95,25 @@ export default function DashboardSideNavBar({
               )}
 
               <div className={styles["content-wrapper"]}>
-                <For each={sites}>
-                  {(site, index) => {
-                    if (site.items) {
-                      return (
-                        <DashboardItemGroup
-                          item={site}
-                          key={index}
-                          options={{ isExpand, isScreenWidthAbove1200 }}
-                        />
-                      )
-                    }
-
+                {sites.map((site, index) => {
+                  if (site.items) {
                     return (
-                      <DashboardItem
+                      <DashboardItemGroup
                         item={site}
                         key={index}
                         options={{ isExpand, isScreenWidthAbove1200 }}
                       />
                     )
-                  }}
-                </For>
+                  }
+
+                  return (
+                    <DashboardItem
+                      item={site}
+                      key={index}
+                      options={{ isExpand, isScreenWidthAbove1200 }}
+                    />
+                  )
+                })}
               </div>
             </div>
           </ScrollArea>
