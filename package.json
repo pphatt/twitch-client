@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "clean": "rimraf --glob node_modules && rimraf --glob .next",
+    "clean": "rimraf --glob **/node_modules **/dist **/.next pnpm-lock.yaml **/.million",
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
-    "check": "npm run lint && npm run typecheck && npm run format:write",
+    "check": "pnpm lint && pnpm typecheck && pnpm format:check && pnpm format:write",
     "prepare": "husky"
   },
   "dependencies": {
@@ -93,5 +93,5 @@
   "ct3aMetadata": {
     "initVersion": "7.33.1"
   },
-  "packageManager": "npm@10.3.0"
+  "packageManager": "pnpm@9.4.0"
 }
