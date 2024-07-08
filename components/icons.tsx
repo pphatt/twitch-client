@@ -458,4 +458,58 @@ export const Icons = {
       </g>
     </svg>
   ),
+  verifiedPartner: ({ ...props }: LucideProps) => (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      aria-label="Verified Partner"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        d="M12.5 3.5 8 2 3.5 3.5 2 8l1.5 4.5L8 14l4.5-1.5L14 8l-1.5-4.5ZM7 11l4.5-4.5L10 5 7 8 5.5 6.5 4 8l3 3Z"
+        clipRule="evenodd"
+      ></path>
+      <path fill="#fff" d="M11.5 6.5 7 11 4 8l1.5-1.5L7 8l3-3 1.5 1.5Z"></path>
+    </svg>
+  ),
+  heart: ({ ...props }: LucideProps) => (
+    <svg
+      width="20px"
+      height="20px"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      {...props}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          d="M9.171 4.171A4 4 0 006.343 3H6a4 4 0 00-4 4v.343a4 4 0 001.172 2.829L10 17l6.828-6.828A4 4 0 0018 7.343V7a4 4 0 00-4-4h-.343a4 4 0 00-2.829 1.172L10 5l-.829-.829zm.829 10l5.414-5.414A2 2 0 0016 7.343V7a2 2 0 00-2-2h-.343a2 2 0 00-1.414.586L10 7.828 7.757 5.586A2 2 0 006.343 5H6a2 2 0 00-2 2v.343a2 2 0 00.586 1.414L10 14.172z"
+          clipRule="evenodd"
+        ></path>
+      </g>
+    </svg>
+  ),
+  heartFill: ({ ...props }: LucideProps) => (
+    <svg
+      width="20px"
+      height="20px"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      {...props}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          d="M9.171 4.171A4 4 0 006.343 3H6a4 4 0 00-4 4v.343a4 4 0 001.172 2.829L10 17l6.828-6.828A4 4 0 0018 7.343V7a4 4 0 00-4-4h-.343a4 4 0 00-2.829 1.172L10 5l-.829-.829z"
+          clipRule="evenodd"
+        ></path>
+      </g>
+    </svg>
+  ),
 }

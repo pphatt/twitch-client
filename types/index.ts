@@ -36,6 +36,18 @@ export interface SearchParams {
   [key: string]: string | string[] | undefined
 }
 
+export interface IChannel {
+  channel: { name: string; image: string; slug: string }
+  title: string
+  slug: string
+  totalView: number
+  isLive: boolean
+  category: string
+  livePreviewImage: string
+  themeColor: string
+  tags: { name: string; slug: string }[]
+}
+
 export interface IChannelsData {
   channelName: string
   slug: string

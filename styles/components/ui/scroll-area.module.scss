@@ -1,3 +1,9 @@
+.scroll-area-wrapper {
+  position: relative;
+
+  overflow: hidden;
+}
+
 .scroll-area {
   width: 100%;
   height: 100%;
@@ -53,7 +59,7 @@
 
   flex: 1;
 
-  background: hsla(0, 0%, 100%, .5);
+  background: hsla(0, 0%, 100%, 0.5);
 
   border-radius: 9999px;
 }

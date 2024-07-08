@@ -440,6 +440,7 @@ export const liveChannels = {
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-xull-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "woman",
@@ -467,6 +468,7 @@ export const liveChannels = {
       isLive: true,
       category: "HELLDIVERS 2",
       livePreviewImage: "/recommend-live-channel/live-tenz-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "Anime",
@@ -495,6 +497,7 @@ export const liveChannels = {
       isLive: true,
       category: "Valorant",
       livePreviewImage: "/recommend-live-channel/live-grimm-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "English",
@@ -514,6 +517,7 @@ export const liveChannels = {
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-thay-giao-ba-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "English",
@@ -533,6 +537,7 @@ export const liveChannels = {
       isLive: true,
       category: "Just Chatting",
       livePreviewImage: "/recommend-live-channel/live-woohankyung-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "한국어",
@@ -552,6 +557,7 @@ export const liveChannels = {
       isLive: true,
       category: "Just Chatting",
       livePreviewImage: "/recommend-live-channel/live-josie5297-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "中文",
@@ -572,6 +578,7 @@ export const liveChannels = {
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-jankos-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "English",
@@ -595,6 +602,7 @@ export const liveChannels = {
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-nemesis-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "English",
@@ -615,6 +623,7 @@ export const liveChannels = {
       isLive: true,
       category: "Just Chatting",
       livePreviewImage: "/recommend-live-channel/live-hasanabi-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "English",
@@ -634,6 +643,7 @@ export const liveChannels = {
       isLive: true,
       category: "Dota 2",
       livePreviewImage: "/recommend-live-channel/live-dota-2-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "Esports",
@@ -657,6 +667,7 @@ export const liveChannels = {
       isLive: true,
       category: "Street Fighter 6",
       livePreviewImage: "/recommend-live-channel/live-mago2dgod-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
       tags: [
         {
           name: "格闘ゲーマー",
