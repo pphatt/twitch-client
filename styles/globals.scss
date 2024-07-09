@@ -20,8 +20,13 @@
   --color-twitch-orange-11: 12 100% 63%; // #ff6740
   --color-twitch-orange-12: 12 84% 56%; // #ed5732
 
+  --color-red-11: 1 100% 75%; // #ff8280
+
   --color-hinted-grey-1: 240 7% 6%; // #0e0e10
+  --color-hinted-grey-14: 240 7% 94%; // #efeff1
   --color-hinted-grey-15: 240 7% 97%; // #f7f7f8
+
+  --color-background-interactable-hover: 240, 7%, 35%, 0.47843137254901963; // #53535f7a, hsla(240, 7%, 35%, 0.47843137254901963)
 
   --color-red: 1 100% 46%; // #eb0400
 
@@ -87,6 +92,10 @@
     border: 4px solid transparent;
     //background-clip: padding-box;
   }
+}
+
+*[data-radix-popper-content-wrapper] {
+  z-index: 51 !important
 }
 
 html,

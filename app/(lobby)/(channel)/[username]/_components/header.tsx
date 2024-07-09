@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/channel/_components/header.module.scss"
+import ShareStreamBtn from "@/app/(lobby)/(channel)/[username]/_components/share-btn";
 
 interface ChannelHeaderProps {
   channel: IChannel
@@ -263,7 +264,41 @@ export default function ChannelHeader({ channel }: ChannelHeaderProps) {
                       </div>
                     </div>
 
-                    <div></div>
+                    <div className={styles["live-info-action-wrapper"]}>
+                      <div className={styles["live-info-action-container"]}>
+                        <div className={styles["live-info-action-overlay"]}>
+                          <div
+                            className={styles["view-and-time-count-wrapper"]}
+                          >
+                            <div className={styles["view-count-wrapper"]}>
+                              <div className={styles["view-count-container"]}>
+                                <div
+                                  className={styles["view-count-icon-wrapper"]}
+                                >
+                                  <Icons.viewer />
+                                </div>
+
+                                <p
+                                  className={styles["view-count-text-wrapper"]}
+                                >
+                                  <span>
+                                    {new Intl.NumberFormat("en-US").format(
+                                      channel.totalView
+                                    )}
+                                  </span>
+                                </p>
+                              </div>
+                            </div>
+
+                            <div
+                              className={styles["stream-time-wrapper"]}
+                            ></div>
+                          </div>
+
+                          <ShareStreamBtn />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
