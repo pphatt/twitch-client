@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { sleep } from "@/lib/utils"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import styles from "@/styles/dashboard/settings/stream/page.module.scss"
+import styles from "@/styles/application/dashboard/settings/stream/page.module.scss"
 import { StreamKeyCard } from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-key-card"
 import StreamUrlCard from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-url-card"
 

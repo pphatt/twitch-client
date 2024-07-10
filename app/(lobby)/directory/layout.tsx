@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { directorySite } from "@/config/site"
 import DirectorySideNav from "@/components/directory-side-nav"
-import styles from "@/styles/directory/layout.module.scss"
+import styles from "@/styles/application/directory/layout.module.scss"
 
 export default function DirectLayout({
   children,

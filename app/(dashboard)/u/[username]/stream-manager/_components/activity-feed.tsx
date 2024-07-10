@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import styles from "@/styles/dashboard/stream-manager/_components/activity-feed.module.scss"
+import styles from "@/styles/application/dashboard/stream-manager/_components/activity-feed.module.scss"
 
 export default function ActivityFeed() {
   return (

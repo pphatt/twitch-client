@@ -8,7 +8,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/components/ui/button"
 import { Input, type InputProps } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/dashboard/settings/stream/_components/stream-key-card.module.scss"
+import styles from "@/styles/application/dashboard/settings/stream/_components/stream-key-card.module.scss"
 
 interface StreamKeyCardProps extends InputProps {
   streamKey: string

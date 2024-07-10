@@ -5,7 +5,7 @@ import UpdateLayoutContext from "@/context/update-layout-context"
 
 import { dashboardSite } from "@/config/site"
 import DashboardSiteHeader from "@/components/layouts/dashboard/dashboard-site-header"
-import styles from "@/styles/dashboard/layout.module.scss"
+import styles from "@/styles/application/dashboard/layout.module.scss"
 
 const DashboardSideNavBar = dynamic(
   () => import("@/components/layouts/dashboard/dashboard-side-nav-bar"),

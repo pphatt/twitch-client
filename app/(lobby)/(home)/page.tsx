@@ -3,7 +3,7 @@ import dynamic from "next/dynamic"
 
 import { categoryData, liveChannels } from "@/config/data"
 import { sleep } from "@/lib/utils"
-import styles from "@/styles/lobby/page.module.scss"
+import styles from "@/styles/application/lobby/page.module.scss"
 
 const RecommendLiveChannels = dynamic(
   () => import("@/components/recommend-live-channels"),

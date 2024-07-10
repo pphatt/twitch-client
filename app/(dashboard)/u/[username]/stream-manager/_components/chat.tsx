@@ -3,7 +3,7 @@ import * as React from "react"
 import { chatMessages } from "@/config/data"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import ChatInputForm from "@/components/forms/chat-input-form"
-import styles from "@/styles/dashboard/stream-manager/_components/chat.module.scss"
+import styles from "@/styles/application/dashboard/stream-manager/_components/chat.module.scss"
 
 export default function Chat() {
   return (

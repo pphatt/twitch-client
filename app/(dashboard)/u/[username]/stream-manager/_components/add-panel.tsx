@@ -23,7 +23,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/dashboard/stream-manager/_components/add-panel.module.scss"
+import styles from "@/styles/application/dashboard/stream-manager/_components/add-panel.module.scss"
 
 export default function AddPanel() {
   const [isHoverOn, setIsHoverOn] = React.useState(false)

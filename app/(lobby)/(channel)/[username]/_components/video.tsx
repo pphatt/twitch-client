@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useVideoProperty } from "@/store/state/video"
 
-import styles from "@/styles/channel/_components/video.module.scss"
+import styles from "@/styles/application/channel/_components/video.module.scss"
 
 export default function ChannelVideo() {
   const videoRef = React.useRef<HTMLVideoElement | null>(null)

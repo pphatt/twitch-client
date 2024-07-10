@@ -16,7 +16,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/channel/_components/share-btn.module.scss"
+import styles from "@/styles/application/channel/_components/share-btn.module.scss"
 
 export default function ShareStreamBtn() {
   return (

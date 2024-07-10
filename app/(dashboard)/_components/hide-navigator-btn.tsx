@@ -5,7 +5,7 @@ import { useDashboardOpen } from "@/store/persistent/dashboard"
 
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/dashboard/_components/hide-navigator-btn.module.scss"
+import styles from "@/styles/application/dashboard/_components/hide-navigator-btn.module.scss"
 
 export default function HideNavigatorBtn() {
   const { mode, setMode } = useDashboardOpen()

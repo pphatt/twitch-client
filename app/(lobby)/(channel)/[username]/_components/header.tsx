@@ -8,7 +8,7 @@ import type { IChannel } from "@/types"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/channel/_components/header.module.scss"
+import styles from "@/styles/application/channel/_components/header.module.scss"
 import ReportBtn from "@/app/(lobby)/(channel)/[username]/_components/report-btn"
 import ShareStreamBtn from "@/app/(lobby)/(channel)/[username]/_components/share-btn"
 

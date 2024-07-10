@@ -7,7 +7,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/dashboard/settings/stream/_components/stream-url-card.module.scss"
+import styles from "@/styles/application/dashboard/settings/stream/_components/stream-url-card.module.scss"
 
 interface StreamUrlCardProps {
   url: string

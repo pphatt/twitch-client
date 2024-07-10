@@ -10,7 +10,7 @@ import {
 } from "slate-react"
 
 import { cn } from "@/lib/utils"
-import styles from "@/styles/dashboard/stream-manager/_components/chat-input.module.scss"
+import styles from "@/styles/application/dashboard/stream-manager/_components/chat-input.module.scss"
 
 const INITIAL_SLATE_VALUE = [
   {

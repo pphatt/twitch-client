@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { CategoryCardSkeleton } from "@/components/loading/category-card-skeleton"
 import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder"
-import styles from "@/styles/directory/loading.module.scss"
+import styles from "@/styles/application/directory/loading.module.scss"
 
 export default function CategoriesLoading() {
   return (

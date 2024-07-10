@@ -5,7 +5,7 @@ import * as React from "react"
 import { liveChannels } from "@/config/data"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
-import styles from "@/styles/channel/page.module.scss"
+import styles from "@/styles/application/channel/page.module.scss"
 import ChannelHeader from "@/app/(lobby)/(channel)/[username]/_components/header"
 
 export default function ChannelPage({
