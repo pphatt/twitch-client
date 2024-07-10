@@ -9,7 +9,8 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/channel/_components/header.module.scss"
-import ShareStreamBtn from "@/app/(lobby)/(channel)/[username]/_components/share-btn";
+import ReportBtn from "@/app/(lobby)/(channel)/[username]/_components/report-btn"
+import ShareStreamBtn from "@/app/(lobby)/(channel)/[username]/_components/share-btn"
 
 interface ChannelHeaderProps {
   channel: IChannel
@@ -295,7 +296,11 @@ export default function ChannelHeader({ channel }: ChannelHeaderProps) {
                             ></div>
                           </div>
 
-                          <ShareStreamBtn />
+                          <div className={styles["live-action-wrapper"]}>
+                            <ShareStreamBtn />
+
+                            <ReportBtn />
+                          </div>
                         </div>
                       </div>
                     </div>

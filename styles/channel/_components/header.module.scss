@@ -574,3 +574,11 @@
     font-feature-settings: "tnum";
   }
 }
+
+.live-action-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-right: 10px;
+}

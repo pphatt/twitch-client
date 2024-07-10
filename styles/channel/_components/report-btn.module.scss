@@ -1,0 +1,119 @@
+.report-btn-wrapper {
+  color: hsl(var(--color-hinted-grey-14)) !important;
+  background-color: transparent !important;
+
+  width: 30px !important;
+  height: 30px !important;
+
+  border-radius: 4px !important;
+
+  padding: 0 !important;
+
+  font-size: 13px !important;
+  font-weight: 600 !important;
+
+  vertical-align: middle;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  user-select: none;
+
+  &:hover {
+    background-color: hsla(
+      var(--color-background-interactable-hover)
+    ) !important;
+  }
+}
+
+.report-btn-container {
+  width: 20px;
+  height: 20px;
+
+  pointer-events: none;
+}
+
+.report-btn-overlay {
+  display: inline-flex;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  fill: currentColor;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.report-content-wrapper {
+  display: inline-block;
+  max-width: 90vw !important;
+  width: 200px !important;
+  min-width: 160px !important;
+
+  border-radius: 6px !important;
+
+  padding: 0 !important;
+}
+
+.report-content-container {
+  display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+
+  overflow: auto;
+}
+
+.report-option-wrapper {
+  position: relative;
+
+  width: 100%;
+}
+
+.report-option-container {
+  justify-content: flex-start !important;
+
+  background-color: transparent !important;
+
+  width: 100% !important;
+  height: fit-content !important;
+
+  border-radius: 4px !important;
+
+  padding: 0 !important;
+
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+
+  &:hover,
+  &:focus {
+    background-color: hsla(
+      var(--color-background-interactable-hover)
+    ) !important;
+  }
+
+  &:active {
+    background-color: hsla(
+      var(--color-background-interactable-active)
+    ) !important;
+  }
+}
+
+.report-option-overlay {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  padding: 5px;
+}
+
+.report-option {
+  flex-grow: 1;
+}
