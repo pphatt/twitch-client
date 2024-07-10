@@ -15,6 +15,10 @@
   &[data-radix-scroll-area-viewport] {
     scrollbar-width: none;
   }
+
+  & > div {
+    display: block !important;
+  }
 }
 
 .scroll-bar {

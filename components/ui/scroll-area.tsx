@@ -8,14 +8,18 @@ import styles from "@/styles/components/ui/scroll-area.module.scss"
 
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {
+    viewportClassName?: string
+  }
+>(({ className, viewportClassName, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
     className={cn(styles["scroll-area-wrapper"], className)}
     {...props}
   >
-    <ScrollAreaPrimitive.Viewport className={styles["scroll-area"]}>
+    <ScrollAreaPrimitive.Viewport
+      className={cn(styles["scroll-area"], viewportClassName)}
+    >
       {children}
     </ScrollAreaPrimitive.Viewport>
     <ScrollBar />
