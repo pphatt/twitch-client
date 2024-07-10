@@ -12,22 +12,50 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       image: "/avatar/riot-games-avatar.png",
     },
     {
-      channelName: "Thầy Giáo Ba",
-      slug: "thay-giao-ba",
+      channelName: "PirateSoftware",
+      slug: "piratesoftware",
+      category: "Once Human",
+      isLive: true,
+      view: 16_634,
+      title:
+        "Once Human 💜 Launch Day with Drops! 💛 @FerretSoftware !Heartbound !Website !TTS\n",
+      image: "/avatar/pirate-software-avatar.png",
+    },
+    {
+      channelName: "ewc_gold",
+      slug: "ewc_gold",
       category: "League of Legend",
       isLive: true,
-      view: 8_856,
-      title: "T1 vs BLG | DAY 16 | MSI 2024",
-      image: "/avatar/thay-giao-ba-avatar.png",
+      view: 321_298,
+      title: "EWC presenting LoL // Day 4 - Final",
+      image: "/avatar/ewc-gold-avatar.png",
+    },
+    {
+      channelName: "Kyedae",
+      slug: "kyedae",
+      category: "Valorant",
+      isLive: true,
+      view: 16_293,
+      title: "SHORT STREAM (OW at 7pm) -ending at 8pm for a dinner",
+      image: "/avatar/kyedae-avatar.png",
+    },
+    {
+      channelName: "vei",
+      slug: "vei",
+      category: "Elden Ring",
+      isLive: true,
+      view: 35_210,
+      title: "Elden Ring [Part 11] + GODDESS OF VICTORY: NIKKE",
+      image: "/avatar/vei-avatar.png",
     },
     {
       channelName: "ironmouse",
       slug: "ironmouse",
-      category: "Fallout: New Vegas",
+      category: "Just Chatting",
       isLive: true,
-      view: 9_283,
+      view: 19_123,
       title:
-        "FRIDAY!!! GAMES PLAY ME BUY MY CUP OK THANK| !angel | !concert | !devil | !rodent | #VSHOJO | !tts | !merch | !YouTube | !razer |!gamersupps",
+        "HANGING OUT YAPPING AND THEN GAMES. WHAT A DAY WE HAD YESTERDAY IM SO TIRED AHHH | #VSHOJO | !tts | !merch | !Youtube | !razer | !gamersupps",
       image: "/avatar/ironmouse-avatar.png",
     },
     {
@@ -54,6 +82,15 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       title:
         "UL31 🏮 200 HOURS PLAYED IN CBTS AMA !YT Gift 2 Subs for Rewards IN-Game ✦ 5 star selector sent tomorrow 「EN/中文」!WutheringWaves #ad",
       image: "/avatar/sweetily-avatar.png",
+    },
+    {
+      channelName: "Thầy Giáo Ba",
+      slug: "thay-giao-ba",
+      category: "League of Legend",
+      isLive: true,
+      view: 8_856,
+      title: "T1 vs BLG | DAY 16 | MSI 2024",
+      image: "/avatar/thay-giao-ba-avatar.png",
     },
     {
       channelName: "喬希啊 (josie5297)",
@@ -426,13 +463,65 @@ export const categoryData = {
   ],
 }
 
+export interface LiveChannelDataI {
+  channel: {
+    name: string
+    image: string
+    slug: string
+    follower: number
+    bio: string
+  }
+  title: string
+  slug: string
+  totalView: number
+  isLive: boolean
+  category: string
+  livePreviewImage: string
+  themeColor: string
+  tags: { name: string; slug: string }[]
+}
+
 export const liveChannels = {
   channels: [
+    {
+      channel: {
+        name: "PirateSoftware",
+        image: "/avatar/pirate-software-avatar.png",
+        slug: "/piratesoftware",
+        follower: 806_200,
+        bio: "Hi, my name is Thor. I've been in the games industry for 19 years. I worked for Blizzard Entertainment, Amazon Games Studios, the United States Department of Energy, and now I own my own studio called Pirate Software. I'm a game developer, a hacker, and a giant nerd. Ask me stuff!",
+      },
+      title:
+        "Once Human 💜 Launch Day with Drops! 💛 @FerretSoftware !Heartbound !Website !TTS",
+      slug: "/piratesoftware",
+      totalView: 16_257,
+      isLive: true,
+      category: "Once Human",
+      livePreviewImage:
+        "/recommend-live-channel/live-piratesoftware-preview.jpg",
+      themeColor: "rgb(243, 243, 79)",
+      tags: [
+        {
+          name: "Memes",
+          slug: "",
+        },
+        {
+          name: "PixelArt",
+          slug: "",
+        },
+        {
+          name: "Chatting",
+          slug: "",
+        },
+      ],
+    },
     {
       channel: {
         name: "xull",
         image: "/avatar/xull-avatar.png",
         slug: "/xull",
+        follower: 122_200,
+        bio: "",
       },
       title: "idc ♡",
       slug: "/xull",
@@ -461,6 +550,8 @@ export const liveChannels = {
         name: "Tenz",
         image: "/avatar/tenz-avatar.png",
         slug: "/tenz",
+        follower: 1_301_203,
+        bio: "",
       },
       title: "valorant then variety",
       slug: "/tenz",
@@ -489,6 +580,8 @@ export const liveChannels = {
         name: "Grimm",
         image: "/avatar/grimm-avatar.png",
         slug: "/grimm",
+        follower: 120_201,
+        bio: "",
       },
       title:
         "🟥SAGE MAIN RETURNS🟥T1 GRIM🟥BEST VALORANT EXPERIENCE🟥DERUSTING GETTING BETTER🟥HOPEFULLY WE CAN STILL GAME AT A HIGHT LEVEL🟥",
@@ -510,6 +603,8 @@ export const liveChannels = {
         name: "Thầy Giáo Ba",
         image: "/avatar/thay-giao-ba-avatar.png",
         slug: "/thay-giao-ba",
+        follower: 73_312,
+        bio: "",
       },
       title: "Đồng hành cùng MSI !!",
       slug: "/thay-giao-ba",
@@ -530,6 +625,8 @@ export const liveChannels = {
         name: "한갱 (woohankyung)",
         image: "/avatar/woohankyung-avatar.png",
         slug: "/woohankyung",
+        follower: 813_312,
+        bio: "",
       },
       title: "낭만을 찾아서,,",
       slug: "/woohankyung",
@@ -550,6 +647,8 @@ export const liveChannels = {
         name: "喬希啊 (josie5297)",
         image: "/avatar/josie5297-avatar.png",
         slug: "/josie5297",
+        follower: 873_312,
+        bio: "",
       },
       title: "欸黑:D  !SNS",
       slug: "/josie5297",
@@ -570,6 +669,8 @@ export const liveChannels = {
         name: "Jankos",
         image: "/avatar/jankos-avatar.png",
         slug: "/jankos",
+        follower: 243_312,
+        bio: "",
       },
       title:
         "❗❗EDUCATION?!  POSITIVE VIBES ❗ ❗ !YOUTUBE !CLIPS !DISCORD !PRIME !TIERLIST !DUO",
@@ -595,6 +696,8 @@ export const liveChannels = {
         name: "lol_nemesis",
         image: "/avatar/nemesis-avatar.png",
         slug: "/nemesis",
+        follower: 162_312,
+        bio: "",
       },
       title: "euw soloqqq !patreon !discord !nordvpn",
       slug: "/nemesis",
@@ -615,6 +718,8 @@ export const liveChannels = {
         name: "HasanAbi",
         image: "/avatar/hasanabi-avatar.jpeg",
         slug: "/hasanabi",
+        follower: 2_300_001,
+        bio: "",
       },
       title:
         "ICJ ISSUES CEASEFIRE ORDER, ISRAEL RESPONDS W/ MORE FIRE -LOUISIANA RECLASSIFIES ABORTION DRUG - BATMAN FINALE LATER!",
@@ -636,6 +741,8 @@ export const liveChannels = {
         name: "ESL_DOTA2",
         image: "/avatar/dota-2-avatar.png",
         slug: "/dota-2",
+        follower: 402_000,
+        bio: "",
       },
       title: "LIVE: BetBoom Team vs Xtreme Gaming - DreamLeague S23 - LB3",
       slug: "/dota-2",
@@ -660,6 +767,8 @@ export const liveChannels = {
         name: "mago2dgod",
         image: "/avatar/mago2dgod-avatar.png",
         slug: "/mago2dgod",
+        follower: 102_000,
+        bio: "",
       },
       title: "【SF6】寝て起きたらゴウキが上手くなっていた件について",
       slug: "/mago2dgod",

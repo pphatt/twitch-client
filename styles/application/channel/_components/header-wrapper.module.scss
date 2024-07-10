@@ -1,0 +1,15 @@
+.channel-root__info {
+  position: relative;
+
+  width: 100%;
+
+  z-index: 2;
+}
+
+.channel-root__info--with-chat .channel-info-content {
+  width: calc(100% - 340px);
+}
+
+.channel-info-content {
+  background-color: hsl(var(--color-hinted-grey-1));
+}

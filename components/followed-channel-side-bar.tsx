@@ -41,7 +41,7 @@ export default function FollowedChannelSideBar({
     }
 
     return orderFollowedChannel(dataChannels)
-      .slice(0, isShowMore ? 10 : 5)
+      .slice(0, isShowMore ? dataChannels.length : 5)
       .sort((a, b) => b.view! - a.view!)
   }, [dataChannels, isShowMore])
 

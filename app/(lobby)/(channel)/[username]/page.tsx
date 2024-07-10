@@ -6,7 +6,9 @@ import { liveChannels } from "@/config/data"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
 import styles from "@/styles/application/channel/page.module.scss"
+import About from "@/app/(lobby)/(channel)/[username]/_components/about"
 import ChannelHeader from "@/app/(lobby)/(channel)/[username]/_components/header"
+import HeaderWrapper from "@/app/(lobby)/(channel)/[username]/_components/header-wrapper"
 
 export default function ChannelPage({
   params,
@@ -21,7 +23,7 @@ export default function ChannelPage({
     ({ slug }) => slug === `/${username}`
   )!
 
-  if (!mounted) return null
+  if (!mounted || !channel) return null
 
   return (
     <div
@@ -40,7 +42,7 @@ export default function ChannelPage({
           <div className={styles["channel-root-layout"]}>
             <div
               style={{
-                transform: "scale(4)",
+                // transform: "scale(4)",
                 opacity: "1",
                 backgroundColor: "rgb(0, 0, 0)",
               }}
@@ -77,7 +79,11 @@ export default function ChannelPage({
           </div>
         </div>
 
-        <ChannelHeader channel={channel} />
+        <HeaderWrapper>
+          <ChannelHeader channel={channel} />
+
+          <About channel={channel} />
+        </HeaderWrapper>
       </div>
     </div>
   )
