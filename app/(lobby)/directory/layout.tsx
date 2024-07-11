@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { directorySite } from "@/config/site"
+import SharedLayout from "@/components/common/shared-layout"
 import DirectorySideNav from "@/components/directory-side-nav"
 import styles from "@/styles/application/directory/layout.module.scss"
 
@@ -10,7 +11,7 @@ export default function DirectLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    <SharedLayout>
       <div className={styles["page-wrapper"]}>
         <div className={styles["page-container"]}>
           <section className={styles["layout-wrapper"]}>
@@ -22,6 +23,6 @@ export default function DirectLayout({
           </section>
         </div>
       </div>
-    </>
+    </SharedLayout>
   )
 }

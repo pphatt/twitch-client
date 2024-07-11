@@ -1,7 +1,6 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 
-import SharedLayout from "@/components/common/shared-layout"
 import { SiteHeader } from "@/components/layouts/site-header"
 import styles from "@/styles/application/lobby/layout.module.scss"
 
@@ -18,11 +17,13 @@ export default function LobbyLayout({
     <>
       <SiteHeader />
       <main className={styles["content-layout"]}>
-        <div className={styles["side-navbar"]}>
-          <SideNavBar />
+        <div>
+          <div className={styles["side-navbar"]}>
+            <SideNavBar/>
+          </div>
         </div>
 
-        <SharedLayout>{children}</SharedLayout>
+        <>{children}</>
       </main>
     </>
   )
