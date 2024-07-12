@@ -16,12 +16,7 @@ import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/application/dashboard/stream-manager/_components/add-panel.module.scss"
 
@@ -108,29 +103,20 @@ export default function AddPanel() {
                                   <p>{title}</p>
                                 </div>
 
-                                <TooltipProvider delayDuration={100}>
-                                  <Tooltip>
-                                    <TooltipTrigger asChild>
-                                      <Button className={styles["content-btn"]}>
-                                        <div
-                                          className={
-                                            styles["content-btn-wrapper"]
-                                          }
-                                        >
-                                          <Icons.explainationMark />
-                                        </div>
-                                      </Button>
-                                    </TooltipTrigger>
-
-                                    <TooltipContent
-                                      align={"end"}
-                                      alignOffset={-10}
-                                      className={styles["tooltip-content"]}
+                                <Hint
+                                  delayDuration={100}
+                                  align={"end"}
+                                  alignOffset={-10}
+                                  label={description}
+                                >
+                                  <Button className={styles["content-btn"]}>
+                                    <div
+                                      className={styles["content-btn-wrapper"]}
                                     >
-                                      <p>{description}</p>
-                                    </TooltipContent>
-                                  </Tooltip>
-                                </TooltipProvider>
+                                      <Icons.explainationMark />
+                                    </div>
+                                  </Button>
+                                </Hint>
                               </div>
                             </div>
 

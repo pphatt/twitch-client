@@ -70,25 +70,6 @@
 
     z-index: -1;
   }
-
-  &:after {
-    position: absolute;
-    top: -3px;
-    left: 50%;
-    content: "";
-
-    background-color: hsl(var(--background-alt));
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 0 0 2px;
-    margin-left: -3px;
-
-    transform: rotate(45deg);
-
-    z-index: -1;
-  }
 }
 
 .share-content-wrapper {

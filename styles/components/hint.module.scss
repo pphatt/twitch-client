@@ -1,0 +1,16 @@
+.tooltip-content {
+  display: inline-block;
+
+  color: hsl(var(--color-hinted-grey-1)) !important;
+  background-color: #fff !important;
+
+  max-width: 300px !important;
+
+  border-radius: var(--radius) !important;
+
+  padding: 5px !important;
+
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+}

@@ -12,12 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Skeleton } from "@/components/ui/skeleton"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
+import { Hint } from "@/components/hint"
 import styles from "@/styles/components/layouts/dashboard/dashboard-site-header.module.scss"
 import HideNavigatorBtn from "@/app/(dashboard)/_components/hide-navigator-btn"
 
@@ -62,36 +57,29 @@ export default function DashboardSiteHeader() {
           <div></div>
 
           <div className={styles["site-header-items"]}>
-            <TooltipProvider delayDuration={250} skipDelayDuration={0}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button className={styles["additional-item"]}>
-                    <div className={styles["additional-item-wrapper"]}>
-                      <div className={styles["additional-item-container"]}>
-                        <Icons.notify />
-                      </div>
-                    </div>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Notifications</p>
-                </TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button className={styles["additional-item"]}>
-                    <div className={styles["additional-item-wrapper"]}>
-                      <div className={styles["additional-item-container"]}>
-                        <Icons.whispers />
-                      </div>
-                    </div>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Whispers</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <Hint
+              delayDuration={250}
+              skipDelayDuration={0}
+              label={"Notifications"}
+            >
+              <Button className={styles["additional-item"]}>
+                <div className={styles["additional-item-wrapper"]}>
+                  <div className={styles["additional-item-container"]}>
+                    <Icons.notify />
+                  </div>
+                </div>
+              </Button>
+            </Hint>
+
+            <Hint delayDuration={250} skipDelayDuration={0} label={"Whispers"}>
+              <Button className={styles["additional-item"]}>
+                <div className={styles["additional-item-wrapper"]}>
+                  <div className={styles["additional-item-container"]}>
+                    <Icons.whispers />
+                  </div>
+                </div>
+              </Button>
+            </Hint>
 
             <div className={styles["user-item-wrapper"]}>
               <div className={styles["user-item-container"]}>
