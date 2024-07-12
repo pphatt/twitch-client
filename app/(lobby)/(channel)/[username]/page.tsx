@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useChatSidebar } from "@/store/state/chat"
 
 import { liveChannels } from "@/config/data"
 import { cn } from "@/lib/utils"
@@ -15,6 +16,8 @@ export default function ChannelPage({
 }: {
   params: { username: string }
 }) {
+  const { collapsed } = useChatSidebar()
+
   const mounted = useMounted()
 
   const { username } = params
@@ -27,17 +30,18 @@ export default function ChannelPage({
 
   return (
     <div
-      className={styles["channel-root-wrapper"]}
+      className={cn(styles["channel-root-wrapper"], "channel-root", {
+        "channel-root--watch-chat": !collapsed,
+      })}
       style={{
         backgroundColor: channel?.themeColor,
       }}
     >
       <div className={styles["channel-root-container"]}>
         <div
-          className={cn(
-            styles["channel-root__player"],
-            styles["channel-root__player--with-chat"]
-          )}
+          className={cn(styles["channel-root__player"], {
+            [`${styles["channel-root__player--with-chat"]}`]: !collapsed,
+          })}
         >
           <div className={styles["channel-root-layout"]}>
             <div

@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useChatSidebar } from "@/store/state/chat"
 import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
@@ -11,14 +12,15 @@ interface HeaderWrapperProps {
 }
 
 export default function HeaderWrapper({ children }: HeaderWrapperProps) {
+  const { collapsed } = useChatSidebar()
+
   const { height } = useVideoProperty()
 
   return (
     <div
-      className={cn(
-        styles["channel-root__info"],
-        styles["channel-root__info--with-chat"]
-      )}
+      className={cn(styles["channel-root__info"], {
+        [`${styles["channel-root__info--with-chat"]}`]: !collapsed,
+      })}
       style={{
         opacity: "1",
         marginTop: `${height}px`,

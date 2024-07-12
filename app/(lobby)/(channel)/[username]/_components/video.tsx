@@ -1,19 +1,23 @@
 "use client"
 
 import * as React from "react"
+import { useChatSidebar } from "@/store/state/chat"
 import { useVideoProperty } from "@/store/state/video"
 
+import { cn } from "@/lib/utils"
 import styles from "@/styles/application/channel/_components/video.module.scss"
 
 export default function ChannelVideo() {
   const videoRef = React.useRef<HTMLVideoElement | null>(null)
 
+  const { collapsed } = useChatSidebar()
+
   const { setHeight } = useVideoProperty()
 
   /*
-  * README:
-  *  - should have a resize detector
-  * */
+   * README:
+   *  - should have a resize detector
+   * */
 
   // for the innit height
   React.useEffect(() => {
@@ -39,7 +43,17 @@ export default function ChannelVideo() {
   }, [setHeight, videoRef])
 
   return (
-    <div className={styles["layout-wrapper"]}>
+    <div
+      className={cn(
+        styles["persistent-player"],
+        {
+          [`${styles["expand"]}`]: !collapsed,
+        },
+        {
+          [`${styles["collapse"]}`]: collapsed,
+        }
+      )}
+    >
       <div className={styles["layout-container"]}>
         <div className={styles["layout-placeholder"]}></div>
 

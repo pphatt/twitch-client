@@ -1,4 +1,4 @@
-.layout-wrapper {
+.persistent-player {
   position: absolute;
   top: 0;
   left: 0;
@@ -15,10 +15,16 @@
   transition: 0s;
 
   z-index: 1;
+}
 
+.expand {
   @media screen and (min-width: 920px) {
     width: calc(100% - 340px);
   }
+}
+
+.collapse {
+  width: 100%;
 }
 
 .layout-container {
