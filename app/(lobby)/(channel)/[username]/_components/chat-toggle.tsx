@@ -5,6 +5,7 @@ import { useChatSidebar } from "@/store/state/chat"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/application/channel/_components/chat-toggle.module.scss"
 
@@ -39,30 +40,43 @@ export default function ChatToggle() {
       )}
     >
       <div className={styles["toggle-visibility__right-column-wrapper"]}>
-        <Button
-          className={styles["right-column__toggle-collapse-btn"]}
-          data-a-target="right-column__toggle-collapse-btn"
-          aria-label="Collapse Chat"
-          onClick={onToggle}
+        <Hint
+          delayDuration={200}
+          skipDelayDuration={0}
+          side={"right"}
+          label={label}
         >
-          <div className={styles["right-column__toggle-collapse-btn-wrapper"]}>
+          <Button
+            className={styles["right-column__toggle-collapse-btn"]}
+            data-a-target="right-column__toggle-collapse-btn"
+            aria-label="Collapse Chat"
+            onClick={onToggle}
+          >
             <div
-              className={styles["right-column__toggle-collapse-btn-container"]}
+              className={styles["right-column__toggle-collapse-btn-wrapper"]}
             >
               <div
-                className={styles["right-column__toggle-collapse-btn-overlay"]}
+                className={
+                  styles["right-column__toggle-collapse-btn-container"]
+                }
               >
                 <div
-                  style={{
-                    paddingBottom: "100%",
-                  }}
-                ></div>
+                  className={
+                    styles["right-column__toggle-collapse-btn-overlay"]
+                  }
+                >
+                  <div
+                    style={{
+                      paddingBottom: "100%",
+                    }}
+                  ></div>
 
-                <Icon />
+                  <Icon />
+                </div>
               </div>
             </div>
-          </div>
-        </Button>
+          </Button>
+        </Hint>
       </div>
     </div>
   )

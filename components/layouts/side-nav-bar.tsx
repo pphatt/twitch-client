@@ -7,13 +7,8 @@ import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import FollowedChannelSideBar from "@/components/followed-channel-side-bar"
+import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import RecommendLiveChanelSideBar from "@/components/recommend-live-chanel-side-bar"
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
@@ -24,6 +19,10 @@ export default function SideNavBar() {
   const isExpand = React.useMemo(() => isSocialColumnOpen, [isSocialColumnOpen])
 
   const isScreenWidthAbove1200 = useMediaQuery("(min-width: 1200px)")
+
+  const label = React.useMemo(() => {
+    return isExpand && isScreenWidthAbove1200 ? "Collapse" : "Expand"
+  }, [isExpand, isScreenWidthAbove1200])
 
   return (
     <div
@@ -44,46 +43,40 @@ export default function SideNavBar() {
                   !isExpand || !isScreenWidthAbove1200,
               })}
             >
-              <TooltipProvider delayDuration={200} skipDelayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <div
-                      className={cn({
-                        [`${styles["collapse-toggle-wrapper--expand"]}`]:
-                          isExpand && isScreenWidthAbove1200,
-                        [`${styles["collapse-toggle-wrapper--collapse"]}`]:
-                          !isExpand || !isScreenWidthAbove1200,
-                      })}
+              <Hint
+                delayDuration={200}
+                skipDelayDuration={0}
+                side={"right"}
+                label={label}
+              >
+                <div
+                  className={cn({
+                    [`${styles["collapse-toggle-wrapper--expand"]}`]:
+                      isExpand && isScreenWidthAbove1200,
+                    [`${styles["collapse-toggle-wrapper--collapse"]}`]:
+                      !isExpand || !isScreenWidthAbove1200,
+                  })}
+                >
+                  <div className={styles["collapse-toggle-container"]}>
+                    <Button
+                      className={styles["collapse-toggle"]}
+                      onClick={setIsSocialColumnOpen}
                     >
-                      <div className={styles["collapse-toggle-container"]}>
-                        <Button
-                          className={styles["collapse-toggle"]}
-                          onClick={setIsSocialColumnOpen}
-                        >
-                          <div className={styles["svg-wrapper"]}>
-                            <div className={styles["svg-container"]}>
-                              {isExpand && isScreenWidthAbove1200 ? (
-                                <Icons.collapse className={styles["svg"]} />
-                              ) : (
-                                <Icons.expandArrowFromLine
-                                  className={styles["svg"]}
-                                />
-                              )}
-                            </div>
-                          </div>
-                        </Button>
+                      <div className={styles["svg-wrapper"]}>
+                        <div className={styles["svg-container"]}>
+                          {isExpand && isScreenWidthAbove1200 ? (
+                            <Icons.collapse className={styles["svg"]} />
+                          ) : (
+                            <Icons.expandArrowFromLine
+                              className={styles["svg"]}
+                            />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent side={"right"}>
-                    <p>
-                      {isExpand && isScreenWidthAbove1200
-                        ? "Collapse"
-                        : "Expand"}
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+                    </Button>
+                  </div>
+                </div>
+              </Hint>
 
               <div className={styles["side-navbar-contents"]}>
                 {isExpand && isScreenWidthAbove1200 && (
