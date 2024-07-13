@@ -6,9 +6,9 @@ import type { IChannel } from "@/types"
 
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/channel/_components/header.module.scss"
-import ReportBtn from "@/app/(lobby)/(channel)/[username]/_components/report-btn"
-import ShareStreamBtn from "@/app/(lobby)/(channel)/[username]/_components/share-btn"
+import styles from "@/styles/components/stream/information/header.module.scss"
+import ReportBtn from "@/components/stream/information/report-btn"
+import ShareStreamBtn from "@/components/stream/information/share-btn"
 
 interface ChannelHeaderProps {
   channel: IChannel

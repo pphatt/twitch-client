@@ -7,9 +7,9 @@ import { liveChannels } from "@/config/data"
 import { cn } from "@/lib/utils"
 import { useMounted } from "@/hooks/use-mounted"
 import styles from "@/styles/application/channel/page.module.scss"
-import About from "@/app/(lobby)/(channel)/[username]/_components/about"
-import ChannelHeader from "@/app/(lobby)/(channel)/[username]/_components/header"
-import HeaderWrapper from "@/app/(lobby)/(channel)/[username]/_components/header-wrapper"
+import About from "@/components/stream/information/about"
+import ChannelHeader from "@/components/stream/information/header"
+import HeaderWrapper from "@/components/stream/information/header-wrapper"
 
 export default function ChannelPage({
   params,

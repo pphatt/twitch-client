@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/channel/_components/report-btn.module.scss"
+import styles from "@/styles/components/stream/information/report-btn.module.scss"
 
 export default function ReportBtn() {
   return (

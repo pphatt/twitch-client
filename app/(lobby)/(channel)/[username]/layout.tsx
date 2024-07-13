@@ -1,8 +1,8 @@
 import * as React from "react"
 
 import SharedLayout from "@/components/common/shared-layout"
-import Chat from "@/app/(lobby)/(channel)/[username]/_components/chat"
-import ChannelVideo from "@/app/(lobby)/(channel)/[username]/_components/video"
+import Chat from "@/components/stream/chat/chat"
+import ChannelVideo from "@/components/stream/video/video"
 
 export default function ChannelLayout({
   children,

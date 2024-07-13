@@ -4,7 +4,7 @@ import * as React from "react"
 
 import type { LiveChannelDataI } from "@/config/data"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/channel/_components/about.module.scss"
+import styles from "@/styles/components/stream/information/about.module.scss"
 
 interface AboutProps {
   channel: LiveChannelDataI

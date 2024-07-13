@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/channel/_components/chat-toggle.module.scss"
+import styles from "@/styles/components/stream/chat/chat-toggle.module.scss"
 
 export default function ChatToggle() {
   const { collapsed, onExpand, onCollapse } = useChatSidebar()

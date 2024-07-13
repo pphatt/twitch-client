@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/channel/_components/share-btn.module.scss"
+import styles from "@/styles/components/stream/information/share-btn.module.scss"
 
 export default function ShareStreamBtn() {
   return (

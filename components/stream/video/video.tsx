@@ -5,7 +5,7 @@ import { useChatSidebar } from "@/store/state/chat"
 import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
-import styles from "@/styles/application/channel/_components/video.module.scss"
+import styles from "@/styles/components/stream/video/video.module.scss"
 
 export default function ChannelVideo() {
   const videoRef = React.useRef<HTMLVideoElement | null>(null)

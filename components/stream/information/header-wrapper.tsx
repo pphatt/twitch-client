@@ -5,7 +5,7 @@ import { useChatSidebar } from "@/store/state/chat"
 import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
-import styles from "@/styles/application/channel/_components/header-wrapper.module.scss"
+import styles from "@/styles/components/stream/information/header-wrapper.module.scss"
 
 interface HeaderWrapperProps {
   children: React.ReactNode
