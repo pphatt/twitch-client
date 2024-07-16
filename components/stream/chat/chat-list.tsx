@@ -2,7 +2,6 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import styles from "@/styles/components/stream/chat/chat-list.module.scss"
-import 'simplebar-react/dist/simplebar.min.css';
 
 export default function ChatList() {
   return (
