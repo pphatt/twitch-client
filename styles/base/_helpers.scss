@@ -190,7 +190,15 @@
   position: relative;
 
   width: 100%;
+
+  /*
+    height: max(max-content, 100%)
+    equivalent to
+    height: max-content;
+    min-height: 100%;
+  */
   height: max-content;
+  min-height: 100%;
 }
 
 .simplebar-wrapper {
