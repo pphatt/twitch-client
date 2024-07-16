@@ -4,9 +4,10 @@ import * as React from "react"
 import { useChatSidebar } from "@/store/state/chat"
 
 import { cn } from "@/lib/utils"
+import ChatHeader from "@/components/stream/chat/chat-header"
+import ChatList from "@/components/stream/chat/chat-list"
 import ChatToggle from "@/components/stream/chat/chat-toggle"
 import styles from "@/styles/components/stream/chat/chat.module.scss"
-import ChatHeader from "@/components/stream/chat/chat-header";
 
 export default function Chat() {
   const { collapsed } = useChatSidebar()
@@ -63,7 +64,11 @@ export default function Chat() {
                     <div className={styles["stream-chat-wrapper"]}>
                       <ChatHeader />
 
-                      <div></div>
+                      <section className={styles["chat-room-component-layout"]}>
+                        <div className={styles["chat-room__content"]}>
+                          <ChatList />
+                        </div>
+                      </section>
                     </div>
                   </div>
                 </div>

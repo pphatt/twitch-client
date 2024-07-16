@@ -58,7 +58,304 @@
   border-top: 1px solid rgba(83, 83, 95, 0.48);
   border-bottom: 1px solid rgba(83, 83, 95, 0.48);
 
-  box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.4),
-    0 0 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4),
+  0 0 4px rgba(0, 0, 0, 0.4);
 }
+
+// simplebar
+
+[data-simplebar] {
+  position: relative;
+
+  z-index: 0;
+}
+
+[data-simplebar="init"] {
+  display: flex;
+}
+
+.scrollable-area {
+  position: relative;
+
+  height: 100%;
+
+  & .simplebar-track {
+    will-change: opacity;
+  }
+
+  & .simplebar-scroll-content {
+    max-height: inherit;
+  }
+
+  & .simplebar-track.vertical .simplebar-scrollbar {
+    width: 6px;
+  }
+
+  & .simplebar-track .simplebar-scrollbar {
+    background: hsla(0, 0%, 100%, 0.5) !important;
+  }
+}
+
+.simplebar-track {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  z-index: 1;
+
+  &.vertical {
+    top: 0;
+
+    width: 11px;
+  }
+
+  &.horizontal {
+    left: 0;
+
+    width: auto;
+    height: 11px;
+  }
+
+  &:hover > .simplebar-scrollbar {
+    opacity: 0.5;
+  }
+}
+
+.simplebar-scrollbar {
+  position: absolute;
+  right: 2px;
+
+  background: #000;
+  background-clip: padding-box;
+
+  width: 7px;
+  min-height: 10px;
+
+  border-radius: 7px;
+
+  opacity: 0;
+
+  transition: opacity 0.2s linear;
+
+  &.visible {
+    opacity: 0.7;
+  }
+}
+
+.scrollable-area--suppress-scroll-x {
+  & > .simplebar-scroll-content > .simplebar-content-wrapper {
+    overflow-x: hidden;
+  }
+
+  & > .simplebar-scroll-content,
+  & > .simplebar-scroll-content > .simplebar-content-wrapper {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.scrollable-area--suppress-scroll-y {
+  & > .simplebar-scroll-content {
+    overflow-y: hidden;
+  }
+
+  & > .simplebar-scroll-content,
+  & > .simplebar-scroll-content > .simplebar-content {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.simplebar-scroll-content {
+  min-width: 100%;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  box-sizing: content-box;
+}
+
+.simplebar-content-wrapper {
+  display: flex;
+
+  min-height: 100% !important;
+
+  overflow-x: hidden !important;
+  //overflow-y: hidden !important;
+
+  box-sizing: border-box !important;
+}
+
+.root-scrollable__wrapper {
+  position: relative;
+
+  width: 100%;
+  height: max-content;
+}
+
+.simplebar-wrapper {
+  overflow: hidden;
+  width: inherit;
+  height: inherit;
+  max-width: inherit;
+  max-height: inherit;
+}
+
+.simplebar-content-wrapper::-webkit-scrollbar,
+.simplebar-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.simplebar-height-auto-observer-wrapper {
+  box-sizing: inherit !important;
+  height: 100%;
+  width: 100%;
+  max-width: 1px;
+  position: relative;
+  float: left;
+  max-height: 1px;
+  overflow: hidden;
+  z-index: -1;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+  flex-grow: inherit;
+  flex-shrink: 0;
+  flex-basis: 0;
+}
+
+.simplebar-height-auto-observer {
+  box-sizing: inherit;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1000%;
+  width: 1000%;
+  min-height: 1px;
+  min-width: 1px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+[data-simplebar].dragging {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+[data-simplebar].dragging .simplebar-content {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.simplebar-dummy-scrollbar-size {
+  direction: rtl;
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  height: 500px;
+  width: 500px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style: scrollbar !important;
+}
+
+.simplebar-dummy-scrollbar-size > div {
+  width: 200%;
+  height: 200%;
+  margin: 10px 0;
+}
+
+.simplebar-hide-scrollbar {
+  position: fixed;
+  left: 0;
+  visibility: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+//
+//
+//.scrollable-area {
+//  height: 100%;
+//  position: relative;
+//}
+//
+//.scrollable-area .simplebar-scroll-content {
+//  max-height: inherit !important;
+//}
+//
+//.scrollable-area--suppress-scroll-x
+//  > .simplebar-scroll-content
+//  > .simplebar-content {
+//  overflow-x: hidden;
+//}
+//
+//.scrollable-area--suppress-scroll-x > .simplebar-scroll-content,
+//.scrollable-area--suppress-scroll-x
+//  > .simplebar-scroll-content
+//  > .simplebar-content {
+//  margin-bottom: 0 !important;
+//  padding-bottom: 0 !important;
+//}
+//
+//.scrollable-area--suppress-scroll-x > .simplebar-track.horizontal {
+//  visibility: hidden !important;
+//}
+//
+//.scrollable-area--suppress-scroll-y > .simplebar-scroll-content {
+//  overflow-y: hidden;
+//}
+//
+//.scrollable-area--suppress-scroll-y > .simplebar-scroll-content,
+//.scrollable-area--suppress-scroll-y
+//  > .simplebar-scroll-content
+//  > .simplebar-content {
+//  margin-right: 0 !important;
+//  padding-right: 0 !important;
+//}
+//
+//.scrollable-area--suppress-scroll-y > .simplebar-track.vertical {
+//  visibility: hidden !important;
+//}
+//
+//.scrollable-area .simplebar-track {
+//  will-change: opacity;
+//}
+//
+//.scrollable-area .simplebar-track .simplebar-scrollbar {
+//  background: rgba(0, 0, 0, 0.4);
+//}
+//
+//.tw-root--theme-dark .scrollable-area .simplebar-track .simplebar-scrollbar {
+//  background: hsla(0, 0%, 100%, 0.5);
+//}
+//
+//.tw-root--theme-light .scrollable-area .simplebar-track .simplebar-scrollbar {
+//  background: rgba(0, 0, 0, 0.4);
+//}
+//
+//.scrollable-area .simplebar-track .simplebar-scrollbar.visible {
+//  opacity: 0.7;
+//}
+//
+//.scrollable-area .simplebar-track.vertical .simplebar-scrollbar {
+//  width: 0.6rem;
+//}
+//
+//.scrollable-area .simplebar-track.horizontal .simplebar-scrollbar {
+//  height: 0.6rem;
+//}
