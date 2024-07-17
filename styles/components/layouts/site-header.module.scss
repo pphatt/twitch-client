@@ -238,9 +238,16 @@
   min-width: 160px;
   max-height: calc(100vh - 5rem);
 
-  padding: 10px 5px 10px 10px !important;
+  padding: 0 !important;
 
-  overflow-y: scroll;
+  overflow: auto !important;
+
+  &::-webkit-scrollbar {
+    display: none;
+
+    height: 0;
+    width: 0;
+  }
 }
 
 .dropdown-menu-wrapper {

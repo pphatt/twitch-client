@@ -141,8 +141,8 @@ importers:
         specifier: ^1.77.8
         version: 1.77.8
       simplebar:
-        specifier: https://github.com/pphatt/simplebar/tarball/master/v1.0.51
-        version: https://github.com/pphatt/simplebar/tarball/master/v1.0.51
+        specifier: link:C:/Dev/Typescript/simplebar
+        version: link:../simplebar
       simplebar-core:
         specifier: ^1.2.6
         version: 1.2.6
@@ -3486,10 +3486,6 @@ packages:
     resolution: {integrity: sha512-8jDiBuVCG86JmOrsmkA+4q77iFAEbhU9EX62PohLisg3dnxdLXFFhkxnx2Es3Cxt8IlZFlJsF9GaobFL3ukwiA==}
     peerDependencies:
       react: '>=16.8.0'
-
-  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.51:
-    resolution: {tarball: https://github.com/pphatt/simplebar/tarball/master/v1.0.51}
-    version: 1.0.51
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -7589,8 +7585,6 @@ snapshots:
     dependencies:
       react: 18.3.1
       simplebar-core: 1.2.6
-
-  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.51: {}
 
   sisteransi@1.0.5: {}
 

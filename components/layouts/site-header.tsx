@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import Link from "next/link"
 
@@ -10,12 +12,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import AuthDialog from "@/components/layouts/auth-dialog"
 import { MainNav } from "@/components/layouts/main-nav"
 import { SearchCommandMenu } from "@/components/search-command-menu"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/site-header.module.scss"
 
 export function SiteHeader() {
@@ -89,132 +91,142 @@ export function SiteHeader() {
                     </div>
                   </Button>
                 </DropdownMenuTrigger>
+
                 <DropdownMenuContent
                   align={"end"}
                   alignOffset={-3}
                   className={styles["dropdown-menu"]}
+                  asChild
                 >
-                  <ScrollArea className={styles["dropdown-menu-wrapper"]}>
-                    <div className={styles["account-item-wrapper"]}>
-                      <div className={styles["account-item-container"]}>
-                        <div className={styles["account-image-wrapper"]}>
-                          <div className={styles["account-image-container"]}>
-                            <img
-                              className={styles["account-image"]}
-                              src={"/avatar/user-default-picture.png"}
-                              alt={""}
-                            />
+                  <SimpleBar
+                    forceVisible={"y"}
+                    className={styles["dropdown-menu-wrapper"]}
+                    simpleContentWrapperStyle={{
+                      paddingBottom: "0",
+                    }}
+                  >
+                    <div style={{ padding: "10px" }}>
+                      <div className={styles["account-item-wrapper"]}>
+                        <div className={styles["account-item-container"]}>
+                          <div className={styles["account-image-wrapper"]}>
+                            <div className={styles["account-image-container"]}>
+                              <img
+                                className={styles["account-image"]}
+                                src={"/avatar/user-default-picture.png"}
+                                alt={""}
+                              />
+                            </div>
+                          </div>
+                          <div className={styles["account-details"]}>
+                            <p className={styles["account-text"]}>tienphat</p>
                           </div>
                         </div>
-                        <div className={styles["account-details"]}>
-                          <p className={styles["account-text"]}>tienphat</p>
-                        </div>
                       </div>
+
+                      <DropdownMenuSeparator
+                        className={styles["item-separator"]}
+                      />
+
+                      <DropdownMenuItem
+                        className={styles["dropdown-item"]}
+                        asChild
+                      >
+                        <Link
+                          className={styles["dropdown-item-link"]}
+                          href={"/u/tienphat"}
+                        >
+                          <span>Channel</span>
+                          <Icons.channel />
+                        </Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        className={styles["dropdown-item"]}
+                        asChild
+                      >
+                        <Link
+                          className={styles["dropdown-item-link"]}
+                          href={"/u/tienphat/content/video-producer"}
+                        >
+                          <span>Video Producer</span>
+                          <Icons.videoProducer />
+                        </Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        className={styles["dropdown-item"]}
+                        asChild
+                      >
+                        <Link
+                          className={styles["dropdown-item-link"]}
+                          href={"/u/tienphat/home"}
+                        >
+                          <span>Creator Dashboard</span>
+                          <Icons.creatorDashboard />
+                        </Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        className={styles["dropdown-item"]}
+                        asChild
+                      >
+                        <Link
+                          className={styles["dropdown-item-link"]}
+                          href={"/privacy"}
+                        >
+                          <span>Privacy Center</span>
+                          <Icons.privacy />
+                        </Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        className={styles["dropdown-item"]}
+                        asChild
+                      >
+                        <Link
+                          className={styles["dropdown-item-link"]}
+                          href={"/safety"}
+                        >
+                          <span>Safety</span>
+                          <Icons.safety />
+                        </Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuSeparator
+                        className={styles["item-separator"]}
+                      />
+
+                      <DropdownMenuItem
+                        className={styles["dropdown-item"]}
+                        asChild
+                      >
+                        <Link
+                          className={styles["dropdown-item-link"]}
+                          href={"/safety"}
+                        >
+                          <span>Emote Attribution</span>
+                          <Icons.emoteContribution />
+                        </Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuSeparator
+                        className={styles["item-separator"]}
+                      />
+
+                      <DropdownMenuItem
+                        className={styles["dropdown-item"]}
+                        asChild
+                      >
+                        <Link
+                          className={styles["dropdown-item-link"]}
+                          href={"/safety"}
+                        >
+                          <span>Log Out</span>
+                          <Icons.logout />
+                        </Link>
+                      </DropdownMenuItem>
                     </div>
-
-                    <DropdownMenuSeparator
-                      className={styles["item-separator"]}
-                    />
-
-                    <DropdownMenuItem
-                      className={styles["dropdown-item"]}
-                      asChild
-                    >
-                      <Link
-                        className={styles["dropdown-item-link"]}
-                        href={"/u/tienphat"}
-                      >
-                        <span>Channel</span>
-                        <Icons.channel />
-                      </Link>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                      className={styles["dropdown-item"]}
-                      asChild
-                    >
-                      <Link
-                        className={styles["dropdown-item-link"]}
-                        href={"/u/tienphat/content/video-producer"}
-                      >
-                        <span>Video Producer</span>
-                        <Icons.videoProducer />
-                      </Link>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                      className={styles["dropdown-item"]}
-                      asChild
-                    >
-                      <Link
-                        className={styles["dropdown-item-link"]}
-                        href={"/u/tienphat/home"}
-                      >
-                        <span>Creator Dashboard</span>
-                        <Icons.creatorDashboard />
-                      </Link>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                      className={styles["dropdown-item"]}
-                      asChild
-                    >
-                      <Link
-                        className={styles["dropdown-item-link"]}
-                        href={"/privacy"}
-                      >
-                        <span>Privacy Center</span>
-                        <Icons.privacy />
-                      </Link>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuItem
-                      className={styles["dropdown-item"]}
-                      asChild
-                    >
-                      <Link
-                        className={styles["dropdown-item-link"]}
-                        href={"/safety"}
-                      >
-                        <span>Safety</span>
-                        <Icons.safety />
-                      </Link>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuSeparator
-                      className={styles["item-separator"]}
-                    />
-
-                    <DropdownMenuItem
-                      className={styles["dropdown-item"]}
-                      asChild
-                    >
-                      <Link
-                        className={styles["dropdown-item-link"]}
-                        href={"/safety"}
-                      >
-                        <span>Emote Attribution</span>
-                        <Icons.emoteContribution />
-                      </Link>
-                    </DropdownMenuItem>
-
-                    <DropdownMenuSeparator
-                      className={styles["item-separator"]}
-                    />
-
-                    <DropdownMenuItem
-                      className={styles["dropdown-item"]}
-                      asChild
-                    >
-                      <Link
-                        className={styles["dropdown-item-link"]}
-                        href={"/safety"}
-                      >
-                        <span>Log Out</span>
-                        <Icons.logout />
-                      </Link>
-                    </DropdownMenuItem>
-                  </ScrollArea>
+                  </SimpleBar>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
