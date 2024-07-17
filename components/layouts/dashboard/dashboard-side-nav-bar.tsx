@@ -7,12 +7,12 @@ import type { MainNavItem } from "@/types"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Icons } from "@/components/icons"
 import {
   DashboardItem,
   DashboardItemGroup,
 } from "@/components/layouts/dashboard/dashboard-item"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/dashboard/dashboard-side-nav-bar.module.scss"
 
 interface DashboardSideNavBarProps {
@@ -43,7 +43,10 @@ export default function DashboardSideNavBar({
     >
       <div className={styles["side-navbar-wrapper"]}>
         <div className={styles["side-navbar-container"]}>
-          <ScrollArea className={styles["scroll-area"]}>
+          <SimpleBar
+            forceVisible={"y"}
+            className={styles["scroll-area"]}
+          >
             <div
               className={cn(styles["content-layout"], {
                 [`${styles["side-nav--expand"]}`]:
@@ -116,7 +119,7 @@ export default function DashboardSideNavBar({
                 })}
               </div>
             </div>
-          </ScrollArea>
+          </SimpleBar>
         </div>
       </div>
     </div>
