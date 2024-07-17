@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
@@ -127,10 +126,7 @@ export function SiteHeader() {
                         className={styles["item-separator"]}
                       />
 
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
+                      <div className={styles["dropdown-item"]}>
                         <Link
                           className={styles["dropdown-item-link"]}
                           href={"/u/tienphat"}
@@ -138,12 +134,9 @@ export function SiteHeader() {
                           <span>Channel</span>
                           <Icons.channel />
                         </Link>
-                      </DropdownMenuItem>
+                      </div>
 
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
+                      <div className={styles["dropdown-item"]}>
                         <Link
                           className={styles["dropdown-item-link"]}
                           href={"/u/tienphat/content/video-producer"}
@@ -151,12 +144,9 @@ export function SiteHeader() {
                           <span>Video Producer</span>
                           <Icons.videoProducer />
                         </Link>
-                      </DropdownMenuItem>
+                      </div>
 
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
+                      <div className={styles["dropdown-item"]}>
                         <Link
                           className={styles["dropdown-item-link"]}
                           href={"/u/tienphat/home"}
@@ -164,12 +154,9 @@ export function SiteHeader() {
                           <span>Creator Dashboard</span>
                           <Icons.creatorDashboard />
                         </Link>
-                      </DropdownMenuItem>
+                      </div>
 
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
+                      <div className={styles["dropdown-item"]}>
                         <Link
                           className={styles["dropdown-item-link"]}
                           href={"/privacy"}
@@ -177,12 +164,9 @@ export function SiteHeader() {
                           <span>Privacy Center</span>
                           <Icons.privacy />
                         </Link>
-                      </DropdownMenuItem>
+                      </div>
 
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
+                      <div className={styles["dropdown-item"]}>
                         <Link
                           className={styles["dropdown-item-link"]}
                           href={"/safety"}
@@ -190,16 +174,13 @@ export function SiteHeader() {
                           <span>Safety</span>
                           <Icons.safety />
                         </Link>
-                      </DropdownMenuItem>
+                      </div>
 
                       <DropdownMenuSeparator
                         className={styles["item-separator"]}
                       />
 
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
+                      <div className={styles["dropdown-item"]}>
                         <Link
                           className={styles["dropdown-item-link"]}
                           href={"/safety"}
@@ -207,16 +188,13 @@ export function SiteHeader() {
                           <span>Emote Attribution</span>
                           <Icons.emoteContribution />
                         </Link>
-                      </DropdownMenuItem>
+                      </div>
 
                       <DropdownMenuSeparator
                         className={styles["item-separator"]}
                       />
 
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
+                      <div className={styles["dropdown-item"]}>
                         <Link
                           className={styles["dropdown-item-link"]}
                           href={"/safety"}
@@ -224,7 +202,7 @@ export function SiteHeader() {
                           <span>Log Out</span>
                           <Icons.logout />
                         </Link>
-                      </DropdownMenuItem>
+                      </div>
                     </div>
                   </SimpleBar>
                 </DropdownMenuContent>

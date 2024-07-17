@@ -55,6 +55,7 @@ export function MainNav({ items, supportItem }: MainNavProps) {
               </div>
             </Button>
           </DropdownMenuTrigger>
+
           <DropdownMenuContent
             align={"start"}
             className={styles["dropdown-menu"]}

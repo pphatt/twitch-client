@@ -61,7 +61,7 @@
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^6.0.1",
     "sass": "^1.77.8",
-    "simplebar": "link:C:/Dev/Typescript/simplebar",
+    "simplebar": "https://github.com/pphatt/simplebar/tarball/master/v1.0.52",
     "simplebar-core": "^1.2.6",
     "simplebar-react": "^3.2.6",
     "slate": "^0.103.0",
