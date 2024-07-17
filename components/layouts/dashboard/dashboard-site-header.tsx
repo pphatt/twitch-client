@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
@@ -6,13 +8,12 @@ import Link from "next/link"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Hint } from "@/components/hint"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/dashboard/dashboard-site-header.module.scss"
 import HideNavigatorBtn from "@/app/(dashboard)/_components/hide-navigator-btn"
 
@@ -98,96 +99,96 @@ export default function DashboardSiteHeader() {
                       </div>
                     </Button>
                   </DropdownMenuTrigger>
+
                   <DropdownMenuContent
                     align={"end"}
                     alignOffset={-3}
                     className={styles["dropdown-menu"]}
+                    asChild
                   >
-                    <ScrollArea className={styles["dropdown-menu-wrapper"]}>
-                      <div className={styles["account-item-wrapper"]}>
-                        <div className={styles["account-item-container"]}>
-                          <div className={styles["account-image-wrapper"]}>
-                            <div className={styles["account-image-container"]}>
-                              <img
-                                className={styles["account-image"]}
-                                src={"/avatar/user-default-picture.png"}
-                                alt={""}
-                              />
+                    <SimpleBar
+                      forceVisible={"y"}
+                      className={styles["dropdown-menu-wrapper"]}
+                      simpleContentWrapperStyle={{
+                        paddingBottom: "0",
+                      }}
+                    >
+                      <div style={{ padding: "10px" }}>
+                        <div className={styles["account-item-wrapper"]}>
+                          <div className={styles["account-item-container"]}>
+                            <div className={styles["account-image-wrapper"]}>
+                              <div
+                                className={styles["account-image-container"]}
+                              >
+                                <img
+                                  className={styles["account-image"]}
+                                  src={"/avatar/user-default-picture.png"}
+                                  alt={""}
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <div className={styles["account-details"]}>
-                            <p className={styles["account-text"]}>tienphat</p>
-                            <div className={styles["account-text-wrapper"]}>
-                              <p>Creator</p>
+                            <div className={styles["account-details"]}>
+                              <p className={styles["account-text"]}>tienphat</p>
+                              <div className={styles["account-text-wrapper"]}>
+                                <p>Creator</p>
+                              </div>
                             </div>
                           </div>
                         </div>
+
+                        <DropdownMenuSeparator
+                          className={styles["item-separator"]}
+                        />
+
+                        <div className={styles["dropdown-item"]}>
+                          <Link
+                            className={styles["dropdown-item-link"]}
+                            href={"/"}
+                          >
+                            <span>Back to Channel</span>
+                            <Icons.home style={{ fill: "none" }} />
+                          </Link>
+                        </div>
+
+                        <div className={styles["dropdown-item"]}>
+                          <Link
+                            className={styles["dropdown-item-link"]}
+                            href={"/"}
+                          >
+                            <span>Channel</span>
+                            <Icons.channel />
+                          </Link>
+                        </div>
+
+                        <DropdownMenuSeparator
+                          className={styles["item-separator"]}
+                        />
+
+                        <div className={styles["dropdown-item"]}>
+                          <Link
+                            className={styles["dropdown-item-link"]}
+                            href={"/"}
+                          >
+                            <span>Account Settings</span>
+                            <Icons.settings style={{ fill: "none" }} />
+                          </Link>
+                        </div>
+
+                        <DropdownMenuSeparator
+                          className={styles["item-separator"]}
+                        />
+
+                        <div className={styles["dropdown-item"]}>
+                          <Link
+                            className={styles["dropdown-item-link"]}
+                            href={"/safety"}
+                          >
+                            <span>Log Out</span>
+                            <Icons.logout />
+                          </Link>
+                        </div>
                       </div>
-
-                      <DropdownMenuSeparator
-                        className={styles["item-separator"]}
-                      />
-
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
-                        <Link
-                          className={styles["dropdown-item-link"]}
-                          href={"/"}
-                        >
-                          <span>Back to Channel</span>
-                          <Icons.home style={{ fill: "none" }} />
-                        </Link>
-                      </DropdownMenuItem>
-
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
-                        <Link
-                          className={styles["dropdown-item-link"]}
-                          href={"/"}
-                        >
-                          <span>Channel</span>
-                          <Icons.channel />
-                        </Link>
-                      </DropdownMenuItem>
-
-                      <DropdownMenuSeparator
-                        className={styles["item-separator"]}
-                      />
-
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
-                        <Link
-                          className={styles["dropdown-item-link"]}
-                          href={"/"}
-                        >
-                          <span>Account Settings</span>
-                          <Icons.settings style={{ fill: "none" }} />
-                        </Link>
-                      </DropdownMenuItem>
-
-                      <DropdownMenuSeparator
-                        className={styles["item-separator"]}
-                      />
-
-                      <DropdownMenuItem
-                        className={styles["dropdown-item"]}
-                        asChild
-                      >
-                        <Link
-                          className={styles["dropdown-item-link"]}
-                          href={"/safety"}
-                        >
-                          <span>Log Out</span>
-                          <Icons.logout />
-                        </Link>
-                      </DropdownMenuItem>
-                    </ScrollArea>
+                    </SimpleBar>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
