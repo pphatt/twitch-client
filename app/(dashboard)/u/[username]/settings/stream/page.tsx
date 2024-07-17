@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { sleep } from "@/lib/utils"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/application/dashboard/settings/stream/page.module.scss"
 import { StreamKeyCard } from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-key-card"
 import StreamUrlCard from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-url-card"
@@ -10,7 +10,7 @@ export default async function StreamSettingsPage() {
   const [] = await Promise.all([sleep(1000), sleep(1000)])
 
   return (
-    <ScrollArea className={styles["scrollable-area"]}>
+    <SimpleBar forceVisible={"y"} className={styles["scrollable-area"]}>
       <div className={styles["content-wrapper"]}>
         <div className={styles["content-container"]}>
           <div className={styles["content-header-wrapper"]}>
@@ -48,6 +48,6 @@ export default async function StreamSettingsPage() {
 
         <div></div>
       </div>
-    </ScrollArea>
+    </SimpleBar>
   )
 }
