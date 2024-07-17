@@ -32,10 +32,20 @@ export interface Props
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any
   }
+  simpleContentWrapperStyle?: React.CSSProperties
 }
 
 const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
-  ({ children, className, scrollableNodeProps = {}, ...otherProps }, ref) => {
+  (
+    {
+      children,
+      className,
+      scrollableNodeProps = {},
+      simpleContentWrapperStyle,
+      ...otherProps
+    },
+    ref
+  ) => {
     const elRef = React.useRef()
     const scrollableNodeRef = React.useRef<HTMLElement>()
     const contentNodeRef = React.useRef<HTMLElement>()
@@ -90,9 +100,7 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
           }),
         })
 
-        if (typeof ref === "function") {
-          ref(instance)
-        } else if (ref) {
+        if (ref) {
           ref.current = instance
         }
       }
@@ -136,10 +144,14 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
 
           <div
             {...scrollableNodeFullProps}
-            style={{
-              paddingBottom: "17px",
-              marginRight: "-17px",
-            }}
+            style={
+              simpleContentWrapperStyle
+                ? simpleContentWrapperStyle
+                : {
+                    paddingBottom: "17px",
+                    marginRight: "-17px",
+                  }
+            }
           >
             <div className={`${classNames.contentEl} root-scrollable__wrapper`}>
               {typeof children === "function" ? (

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { MainNavItem, SupportNavItem } from "@/types"
+import type { MainNavItem, SupportNavItem } from "@/types"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -12,8 +12,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Icons } from "@/components/icons"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/main-nav.module.scss"
 
 interface MainNavProps {
@@ -45,7 +45,7 @@ export function MainNav({ items, supportItem }: MainNavProps) {
         ))}
       </div>
       <div className={styles["option-items"]}>
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <Button className={styles["option-items-trigger"]}>
               <div className={styles["svg-wrapper"]}>
@@ -60,25 +60,32 @@ export function MainNav({ items, supportItem }: MainNavProps) {
             className={styles["dropdown-menu"]}
             asChild
           >
-            <ScrollArea className={styles["dropdown-menu-wrapper"]}>
-              {supportItem.map(({ title, items }, index) => (
-                <div key={index}>
-                  <DropdownMenuLabel className={styles["item-label"]}>
-                    {title}
-                  </DropdownMenuLabel>
-                  {items.map(({ title, href }, index) => (
-                    <div className={styles["dropdown-menu-item"]} key={index}>
-                      <Link href={href}>{title}</Link>
-                    </div>
-                  ))}
-                  {index !== supportItem.length - 1 && (
-                    <DropdownMenuSeparator
-                      className={styles["item-separator"]}
-                    />
-                  )}
-                </div>
-              ))}
-            </ScrollArea>
+            <SimpleBar
+              forceVisible={"y"}
+              simpleContentWrapperStyle={{
+                paddingBottom: "0",
+              }}
+            >
+              <div className={styles["dropdown-menu-wrapper"]}>
+                {supportItem.map(({ title, items }, index) => (
+                  <div key={index}>
+                    <DropdownMenuLabel className={styles["item-label"]}>
+                      {title}
+                    </DropdownMenuLabel>
+                    {items.map(({ title, href }, index) => (
+                      <div className={styles["dropdown-menu-item"]} key={index}>
+                        <Link href={href}>{title}</Link>
+                      </div>
+                    ))}
+                    {index !== supportItem.length - 1 && (
+                      <DropdownMenuSeparator
+                        className={styles["item-separator"]}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </SimpleBar>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
