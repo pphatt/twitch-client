@@ -6,11 +6,11 @@ import { useCacheLayout } from "@/store/persistent/dashboard"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import FollowedChannelSideBar from "@/components/followed-channel-side-bar"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import RecommendLiveChanelSideBar from "@/components/recommend-live-chanel-side-bar"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
 
 export default function SideNavBar() {
@@ -34,7 +34,7 @@ export default function SideNavBar() {
     >
       <div className={styles["side-navbar-wrapper"]}>
         <div className={styles["side-navbar-container"]}>
-          <ScrollArea className={styles["scroll-area"]}>
+          <SimpleBar forceVisible={"y"} className={styles["scroll-area"]}>
             <div
               className={cn(styles["content-layout"], {
                 [`${styles["side-nav--expand"]}`]:
@@ -96,7 +96,7 @@ export default function SideNavBar() {
                 />
               </div>
             </div>
-          </ScrollArea>
+          </SimpleBar>
         </div>
       </div>
     </div>

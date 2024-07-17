@@ -7,10 +7,10 @@ import "@/styles/vendors/react-mosaic-component.scss"
 
 import * as React from "react"
 import TanStackProviders from "@/providers/tanstack-provider"
-import { GeistSans } from "geist/font/sans"
 import { Toaster } from "sonner"
 
 import { siteConfig } from "@/config/site"
+import { font } from "@/lib/fonts"
 import styles from "@/styles/application/root-layout/layout.module.scss"
 
 export const metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={GeistSans.className}>
+      <body className={font.className}>
         <TanStackProviders>
           <Toaster
             position="top-center"

@@ -6,6 +6,8 @@ import type { MutableRefObject, ReactNode } from "react"
 import SimpleBarCore from "simplebar/packages/simplebar-core/dist"
 import type { SimpleBarOptions } from "simplebar/packages/simplebar-core/dist"
 
+import { cn } from "@/lib/utils"
+
 type RenderFunc = (props: {
   scrollableNodeRef: MutableRefObject<HTMLElement | undefined>
   scrollableNodeProps: {
@@ -33,7 +35,7 @@ export interface Props
 }
 
 const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
-  ({ children, scrollableNodeProps = {}, ...otherProps }, ref) => {
+  ({ children, className, scrollableNodeProps = {}, ...otherProps }, ref) => {
     const elRef = React.useRef()
     const scrollableNodeRef = React.useRef<HTMLElement>()
     const contentNodeRef = React.useRef<HTMLElement>()
@@ -111,7 +113,7 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
         data-simplebar="init"
         ref={elRef}
         {...rest}
-        className="scrollable-area"
+        className={cn("scrollable-area", className)}
       >
         <div className={`${classNames.track} horizontal`}>
           <div className={classNames.scrollbar} />

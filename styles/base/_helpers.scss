@@ -155,14 +155,14 @@
 }
 
 .scrollable-area--suppress-scroll-y {
-  & > .simplebar-scroll-content {
+  & > .simplebar-scroll-content > .simplebar-content-wrapper {
     overflow-y: hidden;
   }
 
   & > .simplebar-scroll-content,
   & > .simplebar-scroll-content > .simplebar-content {
-    margin-right: 0 !important;
-    padding-right: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
   }
 }
 
@@ -173,11 +173,16 @@
   overflow-y: scroll;
 
   box-sizing: content-box;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .simplebar-content-wrapper {
   display: flex;
 
+  width: 100%;
   min-height: 100% !important;
 
   overflow-x: hidden !important;
