@@ -1,8 +1,13 @@
 import * as React from "react"
+import { Suspense } from "react"
+import dynamic from "next/dynamic"
 
 import SharedLayout from "@/components/common/shared-layout"
-import Chat from "@/components/stream/chat/chat"
 import ChannelVideo from "@/components/stream/video/video"
+
+const Chat = dynamic(() => import("@/components/stream/chat/chat"), {
+  ssr: false,
+})
 
 export default function ChannelLayout({
   children,
@@ -17,7 +22,9 @@ export default function ChannelLayout({
         <ChannelVideo />
       </SharedLayout>
 
-      <Chat />
+      <Suspense>
+        <Chat />
+      </Suspense>
     </>
   )
 }
