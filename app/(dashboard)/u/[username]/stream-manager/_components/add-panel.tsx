@@ -15,9 +15,9 @@ import {
 import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/application/dashboard/stream-manager/_components/add-panel.module.scss"
 
 export default function AddPanel() {
@@ -71,7 +71,13 @@ export default function AddPanel() {
             </div>
 
             <div className={styles["menu-wrapper"]}>
-              <ScrollArea className={styles["menu-container"]}>
+              <SimpleBar
+                forceVisible={"y"}
+                className={styles["menu-container"]}
+                simpleContentWrapperStyle={{
+                  padding: "0",
+                }}
+              >
                 <div className={styles["menu-layout"]}>
                   <div className={styles["menu-header-wrapper"]}>
                     <h3>Edit Stream Manager Layout</h3>
@@ -136,7 +142,7 @@ export default function AddPanel() {
                     </div>
                   </div>
                 </div>
-              </ScrollArea>
+              </SimpleBar>
             </div>
           </div>
         </div>
