@@ -1,15 +1,21 @@
 import * as React from "react"
 
 import { chatMessages } from "@/config/data"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import ChatInputForm from "@/components/forms/chat-input-form"
+import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/application/dashboard/stream-manager/_components/chat.module.scss"
 
 export default function Chat() {
   return (
     <section className={styles["layout-wrapper"]}>
       <div className={styles["chat-block-wrapper"]}>
-        <ScrollArea className={styles["chat-block-container"]}>
+        <SimpleBar
+          forceVisible={"y"}
+          className={styles["chat-block-container"]}
+          simpleContentWrapperStyle={{
+            padding: "0",
+          }}
+        >
           <div className={styles["chat-block-overlay"]}>
             <div className={styles["chat__wrapper"]}>
               <div
@@ -64,7 +70,7 @@ export default function Chat() {
               ))}
             </div>
           </div>
-        </ScrollArea>
+        </SimpleBar>
       </div>
 
       <ChatInputForm />
