@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useChatSidebar } from "@/store/state/chat"
+import { useCacheLayout } from "@/store/persistent/layout"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -10,19 +10,22 @@ import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/chat/chat-toggle.module.scss"
 
 export default function ChatToggle() {
-  const { collapsed, onExpand, onCollapse } = useChatSidebar()
+  const { isRightColumnClosedByUserAction, onExpand, onCollapse } =
+    useCacheLayout()
 
-  const Icon = collapsed ? Icons.collapse : Icons.expandArrowFromLine
+  const Icon = isRightColumnClosedByUserAction
+    ? Icons.collapse
+    : Icons.expandArrowFromLine
 
   const onToggle = () => {
-    if (collapsed) {
+    if (isRightColumnClosedByUserAction) {
       onExpand()
     } else {
       onCollapse()
     }
   }
 
-  const label = collapsed ? "Expand" : "Collapse"
+  const label = isRightColumnClosedByUserAction ? "Expand" : "Collapse"
 
   return (
     <div
@@ -31,11 +34,11 @@ export default function ChatToggle() {
         styles["toggle-visibility__right-column"],
         {
           [`${styles["toggle-visibility__right-column--expanded"]}`]:
-            !collapsed,
+            !isRightColumnClosedByUserAction,
         },
         {
           [`${styles["toggle-visibility__right-column--collapsed"]}`]:
-            collapsed,
+            isRightColumnClosedByUserAction,
         }
       )}
     >

@@ -7,7 +7,7 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 import { sleep } from "@/lib/utils"
 import { ChannelCard } from "@/components/common/channel-card"
 import InfiniteScroll from "@/components/infinite-scroll"
-import { LiveChannelCardSkeleton } from "@/components/loading/live-channel-card-skeleton"
+import { LiveChannelCardSkeleton } from "@/components/loading/lobby/live-channel-card-skeleton"
 import styles from "@/styles/components/live-channels-list.module.scss"
 
 interface LiveChannelsListProps {

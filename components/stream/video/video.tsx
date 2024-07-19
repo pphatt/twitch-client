@@ -1,16 +1,19 @@
 "use client"
 
 import * as React from "react"
-import { useChatSidebar } from "@/store/state/chat"
-import { useVideoProperty } from "@/store/state/video"
+import { useCacheLayout } from "@/store/persistent/layout"
+import { useMounted, useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
 import styles from "@/styles/components/stream/video/video.module.scss"
 
 export default function ChannelVideo() {
   const videoRef = React.useRef<HTMLVideoElement | null>(null)
+  const resizeRef = React.useRef<HTMLDivElement | null>(null)
 
-  const { collapsed } = useChatSidebar()
+  const { setMounted } = useMounted()
+
+  const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   const { setHeight } = useVideoProperty()
 
@@ -21,36 +24,37 @@ export default function ChannelVideo() {
 
   // for the innit height
   React.useEffect(() => {
-    if (!videoRef.current) {
+    if (!resizeRef.current) {
       return
     }
 
-    setHeight(videoRef.current.clientHeight)
-  }, [setHeight, videoRef])
+    setMounted(true)
+    setHeight(resizeRef.current.clientHeight)
+  }, [setHeight, resizeRef])
 
   // binding for resize window effect video dimension
   React.useEffect(() => {
     const handleVideoHeightChange = () => {
-      if (!videoRef.current) {
+      if (!resizeRef.current) {
         return
       }
 
-      setHeight(videoRef.current.clientHeight)
+      setHeight(resizeRef.current.clientHeight)
     }
 
     window.addEventListener("resize", handleVideoHeightChange)
     return () => window.removeEventListener("resize", handleVideoHeightChange)
-  }, [setHeight, videoRef])
+  }, [setHeight, resizeRef])
 
   return (
     <div
       className={cn(
         styles["persistent-player"],
         {
-          [`${styles["expand"]}`]: !collapsed,
+          [`${styles["expand"]}`]: !isRightColumnClosedByUserAction,
         },
         {
-          [`${styles["collapse"]}`]: collapsed,
+          [`${styles["collapse"]}`]: isRightColumnClosedByUserAction,
         }
       )}
     >
@@ -59,7 +63,7 @@ export default function ChannelVideo() {
 
         <div className={styles["inner-layout-wrapper"]}>
           <div className={styles["inner-layout-container"]}>
-            <div className={styles["inner-layout-overlay"]}>
+            <div ref={resizeRef} className={styles["inner-layout-overlay"]}>
               <video
                 ref={videoRef}
                 playsInline

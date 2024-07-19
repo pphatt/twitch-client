@@ -5,6 +5,7 @@ import * as React from "react"
 import type { LiveChannelDataI } from "@/config/data"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/information/about.module.scss"
+import {useMounted} from "@/store/state/video";
 
 interface AboutProps {
   channel: LiveChannelDataI
@@ -15,6 +16,8 @@ export default function About({ channel }: AboutProps) {
 
   const [height, setHeight] = React.useState<number>(0)
 
+  const { mounted } = useMounted()
+
   React.useEffect(() => {
     if (!ref.current) {
       return
@@ -22,6 +25,8 @@ export default function About({ channel }: AboutProps) {
 
     setHeight(ref.current?.clientHeight)
   }, [])
+
+  if (!mounted) return <></>
 
   return (
     <div

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useChatSidebar } from "@/store/state/chat"
+import { useCacheLayout } from "@/store/persistent/layout"
 
 import { cn } from "@/lib/utils"
 import ChatHeader from "@/components/stream/chat/chat-header"
@@ -10,9 +10,9 @@ import ChatToggle from "@/components/stream/chat/chat-toggle"
 import styles from "@/styles/components/stream/chat/chat.module.scss"
 
 export default function Chat() {
-  const { collapsed } = useChatSidebar()
+  const { isRightColumnClosedByUserAction } = useCacheLayout()
 
-  const label = !collapsed
+  const label = !isRightColumnClosedByUserAction
     ? "right-column-chat-bar"
     : "right-column-chat-bar-collapsed"
 
@@ -27,15 +27,24 @@ export default function Chat() {
         aria-label="Right Column"
         data-a-target={label}
         className={cn(
-          { [`${styles["right-column--beside"]}`]: !collapsed },
-          { [`${styles["right-column--collapsed"]}`]: collapsed }
+          {
+            [`${styles["right-column--beside"]}`]:
+              !isRightColumnClosedByUserAction,
+          },
+          {
+            [`${styles["right-column--collapsed"]}`]:
+              isRightColumnClosedByUserAction,
+          }
         )}
       >
-        <div className={styles["right-column"]} data-collapsed={collapsed}>
+        <div
+          className={styles["right-column"]}
+          data-collapsed={isRightColumnClosedByUserAction}
+        >
           <aside
             id="live-page-chat"
             aria-label="Stream Chat"
-            aria-hidden={!collapsed}
+            aria-hidden={!isRightColumnClosedByUserAction}
             tabIndex={0}
             style={{
               height: "100%",
@@ -44,12 +53,12 @@ export default function Chat() {
             <div
               className={cn(styles["channel-root__right-column"], {
                 [`${styles["channel-root__right-column--expanded"]}`]:
-                  !collapsed,
+                  !isRightColumnClosedByUserAction,
               })}
               style={{
                 opacity: 1,
                 transition: "transform 500ms ease 0ms",
-                transform: !collapsed
+                transform: !isRightColumnClosedByUserAction
                   ? "translateX(-340px) translateZ(0px)"
                   : undefined,
               }}
@@ -57,7 +66,8 @@ export default function Chat() {
               <div className={styles["chat-shell-wrapper"]}>
                 <div
                   className={cn(styles["chat-shell"], {
-                    [`${styles["chat-shell__expanded"]}`]: !collapsed,
+                    [`${styles["chat-shell__expanded"]}`]:
+                      !isRightColumnClosedByUserAction,
                   })}
                 >
                   <div className={styles["chat-shell-container"]}>

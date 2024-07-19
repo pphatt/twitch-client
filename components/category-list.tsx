@@ -7,7 +7,7 @@ import { useInfiniteQuery } from "@tanstack/react-query"
 import { sleep } from "@/lib/utils"
 import { CategoryCard } from "@/components/common/category-card"
 import InfiniteScroll from "@/components/infinite-scroll"
-import { CategoryCardSkeleton } from "@/components/loading/category-card-skeleton"
+import { CategoryCardSkeleton } from "@/components/loading/lobby/category-card-skeleton"
 import styles from "@/styles/components/category-list.module.scss"
 
 interface CategoryListProps {

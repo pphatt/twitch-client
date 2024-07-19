@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import styles from "@/styles/components/loading/category-card-skeleton.module.scss"
+import styles from "@/styles/components/loading/lobby/category-card-skeleton.module.scss"
 
 interface CategoryCardSkeletonProps
   extends React.HTMLAttributes<HTMLDivElement> {}

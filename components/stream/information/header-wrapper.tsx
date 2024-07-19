@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useChatSidebar } from "@/store/state/chat"
+import { useCacheLayout } from "@/store/persistent/layout"
 import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
@@ -12,14 +12,14 @@ interface HeaderWrapperProps {
 }
 
 export default function HeaderWrapper({ children }: HeaderWrapperProps) {
-  const { collapsed } = useChatSidebar()
+  const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   const { height } = useVideoProperty()
 
   return (
     <div
       className={cn(styles["channel-root__info"], {
-        [`${styles["channel-root__info--with-chat"]}`]: !collapsed,
+        [`${styles["channel-root__info--with-chat"]}`]: !isRightColumnClosedByUserAction,
       })}
       style={{
         opacity: "1",

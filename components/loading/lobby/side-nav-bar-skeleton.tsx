@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import styles from "@/styles/components/loading/side-nav-bar-skeleton.module.scss"
+import styles from "@/styles/components/loading/lobby/side-nav-bar-skeleton.module.scss"
 
 interface SideNavBarSkeletonProps
   extends React.HTMLAttributes<HTMLDivElement> {}

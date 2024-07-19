@@ -1,0 +1,12 @@
+.channel-root-wrapper {
+  height: 100%;
+
+  transition: all 0.3s 0.3s;
+
+  transition-property: background-color, background-image;
+}
+
+.channel-root-container {
+  display: flex;
+  flex-direction: column;
+}

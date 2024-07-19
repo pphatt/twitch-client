@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import styles from "@/styles/components/loading/live-channel-card-skeleton.module.scss"
+import styles from "@/styles/components/loading/lobby/live-channel-card-skeleton.module.scss"
 
 interface LiveChannelCardSkeletonProps
   extends React.HTMLAttributes<HTMLDivElement> {}

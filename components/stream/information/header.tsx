@@ -2,22 +2,27 @@
 
 import * as React from "react"
 import Link from "next/link"
-import type { IChannel } from "@/types"
+import { useMounted } from "@/store/state/video"
 
+import type { LiveChannelDataI } from "@/config/data"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/stream/information/header.module.scss"
 import ReportBtn from "@/components/stream/information/report-btn"
 import ShareStreamBtn from "@/components/stream/information/share-btn"
+import styles from "@/styles/components/stream/information/header.module.scss"
 
 interface ChannelHeaderProps {
-  channel: IChannel
+  channel: LiveChannelDataI
 }
 
 export default function ChannelHeader({ channel }: ChannelHeaderProps) {
   const [hover, setHover] = React.useState<boolean>(false)
 
   const username = channel.channel.name
+
+  const { mounted } = useMounted()
+
+  if (!mounted) return <></>
 
   return (
     <section
