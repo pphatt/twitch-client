@@ -2,16 +2,19 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
-import { useMounted, useVideoProperty } from "@/store/state/video"
+import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
+import SpinnerLoading from "@/components/loading/spinner-loading"
 import styles from "@/styles/components/stream/video/video.module.scss"
 
-export default function ChannelVideo() {
+interface ChannelVideoProps {
+  isFetching: boolean
+}
+
+export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
   const videoRef = React.useRef<HTMLVideoElement | null>(null)
   const resizeRef = React.useRef<HTMLDivElement | null>(null)
-
-  const { setMounted } = useMounted()
 
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
@@ -28,7 +31,6 @@ export default function ChannelVideo() {
       return
     }
 
-    setMounted(true)
     setHeight(resizeRef.current.clientHeight)
   }, [setHeight, resizeRef])
 
@@ -64,12 +66,31 @@ export default function ChannelVideo() {
         <div className={styles["inner-layout-wrapper"]}>
           <div className={styles["inner-layout-container"]}>
             <div ref={resizeRef} className={styles["inner-layout-overlay"]}>
-              <video
-                ref={videoRef}
-                playsInline
-                controls={true}
-                src={"/demo-video/夜に駆ける.mp4"}
-              ></video>
+              {!isFetching && (
+                <video
+                  ref={videoRef}
+                  playsInline
+                  controls={true}
+                  src={"/demo-video/夜に駆ける.mp4"}
+                ></video>
+              )}
+
+              {isFetching && (
+                <div
+                  className={cn(
+                    "video-player__default-player",
+                    styles["video-player__inactive"]
+                  )}
+                >
+                  <div className={styles["video-player__overlay"]}>
+                    <div></div>
+
+                    <div className={styles["player-overlay-background"]}>
+                      <SpinnerLoading />
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

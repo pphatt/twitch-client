@@ -1,40 +1,49 @@
-import * as React from "react"
+"use client"
 
-import { liveChannels } from "@/config/data"
+import * as React from "react"
+import { useQuery } from "@tanstack/react-query"
+
+import { liveChannels, type LiveChannelDataI } from "@/config/data"
 import { sleep } from "@/lib/utils"
 import Background from "@/components/stream/common/background"
+import LoadingWrapper from "@/components/stream/common/loading-wrapper"
 import About from "@/components/stream/information/about"
 import ChannelHeader from "@/components/stream/information/header"
 import HeaderWrapper from "@/components/stream/information/header-wrapper"
 import Video from "@/components/stream/video/video"
 import ChannelWrapper from "@/components/wrapper/channel-wrapper"
 
-export default async function ChannelPage({
+export default function ChannelPage({
   params,
 }: {
   params: { username: string }
 }) {
   const { username } = params
 
-  const channel = liveChannels.channels.find(
-    ({ slug }) => slug === `/${username}`
-  )!
+  const { data: channel, isFetching } = useQuery<LiveChannelDataI>({
+    queryKey: ["channel", { username }],
+    queryFn: async () => {
+      await sleep(3000)
+      return liveChannels.channels.find(({ slug }) => slug === `/${username}`)!
+    },
+    refetchOnWindowFocus: false,
+  })
 
-  const [] = await Promise.all([sleep(5000), sleep(1000)])
+  if (!username) return null
 
   return (
-    <>
-      <ChannelWrapper channel={channel}>
+    <LoadingWrapper>
+      <ChannelWrapper>
         <Background />
 
         <HeaderWrapper>
-          <ChannelHeader channel={channel} />
+          <ChannelHeader isFetching={isFetching} channel={channel} />
 
-          <About channel={channel} />
+          <About isFetching={isFetching} channel={channel} />
         </HeaderWrapper>
       </ChannelWrapper>
 
-      <Video />
-    </>
+      <Video isFetching={isFetching} />
+    </LoadingWrapper>
   )
 }

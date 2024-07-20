@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 import styles from "@/styles/components/wrapper/channel-wrapper.module.scss"
 
 interface ChannelWrapperProps {
-  channel: LiveChannelDataI | undefined
+  channel?: LiveChannelDataI
   children: React.ReactNode
 }
 

@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { Suspense } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type { NavItem } from "@/types"
@@ -56,7 +57,9 @@ export default function DirectorySideNav({ sites }: DirectorySideNavProps) {
 
         <section className={styles["options-wrapper"]}>
           <div className={styles["options-container"]}>
-            <DirectorySearch slug={pathname} />
+            <Suspense>
+              <DirectorySearch slug={pathname} />
+            </Suspense>
 
             <div className={styles["sort-by-options-wrapper"]}></div>
           </div>

@@ -5,18 +5,16 @@ import * as React from "react"
 import type { LiveChannelDataI } from "@/config/data"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/information/about.module.scss"
-import {useMounted} from "@/store/state/video";
 
 interface AboutProps {
-  channel: LiveChannelDataI
+  isFetching: boolean
+  channel?: LiveChannelDataI
 }
 
-export default function About({ channel }: AboutProps) {
+export default function About({ isFetching, channel }: AboutProps) {
   const ref = React.useRef<HTMLDivElement | null>(null)
 
   const [height, setHeight] = React.useState<number>(0)
-
-  const { mounted } = useMounted()
 
   React.useEffect(() => {
     if (!ref.current) {
@@ -25,8 +23,6 @@ export default function About({ channel }: AboutProps) {
 
     setHeight(ref.current?.clientHeight)
   }, [])
-
-  if (!mounted) return <></>
 
   return (
     <div
@@ -57,74 +53,88 @@ export default function About({ channel }: AboutProps) {
                     data-a-target="about-panel"
                     className={styles["about-section-wrapper"]}
                   >
-                    <div className={styles["about-section-header-wrapper"]}>
-                      <div className={styles["about-section-header-text"]}>
-                        <h3 className={styles["about-section-header"]}>
-                          About {channel.channel.name}
-                        </h3>
-                      </div>
+                    {!isFetching && channel && (
+                      <>
+                        <div className={styles["about-section-header-wrapper"]}>
+                          <div className={styles["about-section-header-text"]}>
+                            <h3 className={styles["about-section-header"]}>
+                              About {channel.channel.name}
+                            </h3>
+                          </div>
 
-                      <div className={styles["about-section-icon-wrapper"]}>
-                        <div className={styles["about-section-icon-container"]}>
-                          <Icons.verifiedPartner />
+                          <div className={styles["about-section-icon-wrapper"]}>
+                            <div
+                              className={styles["about-section-icon-container"]}
+                            >
+                              <Icons.verifiedPartner />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    <div className={styles["about-section-container"]}>
-                      <div className={styles["about-section-overlay"]}>
-                        <div
-                          className={styles["about-section-content-wrapper"]}
-                        >
-                          <div
-                            className={
-                              styles["about-section-content-header-wrapper"]
-                            }
-                          >
-                            <span
+                        <div className={styles["about-section-container"]}>
+                          <div className={styles["about-section-overlay"]}>
+                            <div
                               className={
-                                styles["about-section-content-header-container"]
+                                styles["about-section-content-wrapper"]
                               }
                             >
                               <div
                                 className={
-                                  styles["about-section-content-header-overlay"]
+                                  styles["about-section-content-header-wrapper"]
                                 }
                               >
-                                <div
-                                  className={styles["follower-count-wrapper"]}
+                                <span
+                                  className={
+                                    styles[
+                                      "about-section-content-header-container"
+                                    ]
+                                  }
                                 >
-                                  <span>
-                                    {Intl.NumberFormat("en-US", {
-                                      notation: "compact",
-                                      maximumFractionDigits: 1,
-                                    })
-                                      .format(channel.channel.follower)
-                                      .replace(/\.\d*/, "")}
-                                  </span>
-                                  {channel.channel.follower > 0
-                                    ? "followers"
-                                    : "follower"}
-                                </div>
+                                  <div
+                                    className={
+                                      styles[
+                                        "about-section-content-header-overlay"
+                                      ]
+                                    }
+                                  >
+                                    <div
+                                      className={
+                                        styles["follower-count-wrapper"]
+                                      }
+                                    >
+                                      <span>
+                                        {Intl.NumberFormat("en-US", {
+                                          notation: "compact",
+                                          maximumFractionDigits: 1,
+                                        })
+                                          .format(channel.channel.follower)
+                                          .replace(/\.\d*/, "")}
+                                      </span>
+                                      {channel.channel.follower > 0
+                                        ? "followers"
+                                        : "follower"}
+                                    </div>
+                                  </div>
+                                </span>
                               </div>
-                            </span>
+
+                              <p className={styles["about-section-content"]}>
+                                {channel.channel.bio
+                                  ? channel.channel.bio
+                                  : `${channel.channel.name} streams ${channel.category}`}
+                              </p>
+                            </div>
+
+                            <div
+                              className={styles["about-social-media-wrapper"]}
+                              style={{
+                                minWidth: "30px",
+                              }}
+                            ></div>
                           </div>
-
-                          <p className={styles["about-section-content"]}>
-                            {channel.channel.bio
-                              ? channel.channel.bio
-                              : `${channel.channel.name} streams ${channel.category}`}
-                          </p>
                         </div>
-
-                        <div
-                          className={styles["about-social-media-wrapper"]}
-                          style={{
-                            minWidth: "30px",
-                          }}
-                        ></div>
-                      </div>
-                    </div>
+                      </>
+                    )}
                   </div>
 
                   <div data-a-target="goal-panel"></div>
