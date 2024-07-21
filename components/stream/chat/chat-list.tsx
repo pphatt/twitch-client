@@ -13,13 +13,16 @@ export default function ChatList() {
     React.useState<{ message: string; username: string; color: string }[]>()
 
   const ref = React.useRef<SimpleBarCore | null>(null)
+  const containerRef = React.useRef<HTMLDivElement | null>(null)
 
   const [isPending, startTransition] = React.useTransition()
 
   React.useEffect(() => {
     if (ref.current) {
       const scrollElement = ref.current.contentWrapperEl as HTMLElement
-      scrollElement.scrollTop = Infinity
+      requestAnimationFrame(() => {
+        scrollElement.scrollTop = scrollElement.scrollHeight
+      })
     }
   }, [messages])
 
@@ -56,7 +59,7 @@ export default function ChatList() {
             padding: "0",
           }}
         >
-          <div className={styles["chat-scrollable-area__message-container"]}>
+          <div ref={containerRef} className={styles["chat-scrollable-area__message-container"]}>
             {messages &&
               !isPending &&
               messages.map(({ message, username, color }, index) => (
