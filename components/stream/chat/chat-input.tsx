@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 import { createEditor, Editor, Node, Transforms, type Descendant } from "slate"
 import {
