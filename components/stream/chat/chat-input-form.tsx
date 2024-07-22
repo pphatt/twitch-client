@@ -4,10 +4,26 @@ import * as React from "react"
 
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/forms/chat-input-form.module.scss"
-import ChatInput from "@/app/(dashboard)/u/[username]/stream-manager/_components/chat-input"
+import ChatInput from "@/components/stream/chat/chat-input"
+import styles from "@/styles/components/stream/chat/chat-input-form.module.scss"
 
-export default function ChatInputForm() {
+interface ChatInputProps {
+  message: string
+  setMessage: (message: string) => void
+  onSubmit: () => void
+}
+
+export default function ChatInputForm({
+  message,
+  setMessage,
+  onSubmit,
+}: ChatInputProps) {
+  const handleSubmit = () => {
+    if (!message) return
+
+    onSubmit()
+  }
+
   return (
     <div className={styles["chat-input-wrapper"]}>
       <div></div>
@@ -19,7 +35,11 @@ export default function ChatInputForm() {
               <div className={styles["chat-input-layout"]}>
                 <div className={styles["chat-input__wrapper"]}>
                   <div className={styles["chat-input__container"]}>
-                    <ChatInput />
+                    <ChatInput
+                      message={message}
+                      setMessage={setMessage}
+                      submit={handleSubmit}
+                    />
                   </div>
                 </div>
               </div>
@@ -43,7 +63,10 @@ export default function ChatInputForm() {
 
             <div className={styles["chat-button-wrapper"]}>
               <div className={styles["chat-button-container"]}>
-                <Button className={styles["chat-button"]}>
+                <Button
+                  className={styles["chat-button"]}
+                  onClick={handleSubmit}
+                >
                   <div className={styles["inner-chat-button-wrapper"]}>
                     Chat
                   </div>

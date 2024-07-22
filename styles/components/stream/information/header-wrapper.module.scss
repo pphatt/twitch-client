@@ -8,7 +8,9 @@
 }
 
 .channel-root__info--with-chat .channel-info-content {
-  width: calc(100% - 340px);
+  @media screen and (min-width: 920px) {
+    width: calc(100% - 340px);
+  }
 }
 
 .channel-info-content {

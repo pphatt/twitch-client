@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import Chat from "@/app/(dashboard)/u/[username]/stream-manager/_components/chat"
+import Chat from "@/components/stream/chat/chat"
 
 export default function ChatPage() {
   return <Chat />

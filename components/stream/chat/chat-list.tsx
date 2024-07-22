@@ -3,35 +3,27 @@
 import * as React from "react"
 import type SimpleBarCore from "simplebar/packages/simplebar-core"
 
-import { chatMessages } from "@/config/data"
-import { cn, sleep } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/stream/chat/chat-list.module.scss"
 
-export default function ChatList() {
-  const [messages, setMessages] =
-    React.useState<{ message: string; username: string; color: string }[]>()
+interface ChatListProps {
+  messages?: { message: string; username: string; color: string }[]
+  isPending: boolean
+}
 
+export default function ChatList({ messages, isPending }: ChatListProps) {
   const ref = React.useRef<SimpleBarCore | null>(null)
-  const containerRef = React.useRef<HTMLDivElement | null>(null)
-
-  const [isPending, startTransition] = React.useTransition()
 
   React.useEffect(() => {
     if (ref.current) {
       const scrollElement = ref.current.contentWrapperEl as HTMLElement
+
       requestAnimationFrame(() => {
-        scrollElement.scrollTop = scrollElement.scrollHeight
+        scrollElement.scrollTop = 9999
       })
     }
   }, [messages])
-
-  React.useEffect(() => {
-    startTransition(async () => {
-      await sleep(3000)
-      setMessages(chatMessages)
-    })
-  }, [])
 
   return (
     <div
@@ -59,7 +51,16 @@ export default function ChatList() {
             padding: "0",
           }}
         >
-          <div ref={containerRef} className={styles["chat-scrollable-area__message-container"]}>
+          <div className={styles["chat-scrollable-area__message-container"]}>
+            {(!messages || messages.length < 50 || isPending) && (
+              <div
+                className={styles["chat-line__status"]}
+                data-a-target={"chat-welcome-message"}
+              >
+                <span>Welcome to the chat room!</span>
+              </div>
+            )}
+
             {messages &&
               !isPending &&
               messages.map(({ message, username, color }, index) => (

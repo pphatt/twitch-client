@@ -3,6 +3,13 @@ import dynamic from "next/dynamic"
 
 import SharedLayout from "@/components/common/shared-layout"
 
+const ChatWrapper = dynamic(
+  () => import("@/components/stream/chat/chat-wrapper"),
+  {
+    ssr: false,
+  }
+)
+
 const Chat = dynamic(() => import("@/components/stream/chat/chat"), {
   ssr: false,
 })
@@ -16,7 +23,9 @@ export default function ChannelLayout({
     <>
       <SharedLayout>{children}</SharedLayout>
 
-      <Chat />
+      <ChatWrapper>
+        <Chat />
+      </ChatWrapper>
     </>
   )
 }

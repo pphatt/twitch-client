@@ -70,6 +70,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-scroll-area": "^1.1.0",

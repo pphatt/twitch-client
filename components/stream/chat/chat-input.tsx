@@ -1,16 +1,17 @@
 "use client"
 
 import * as React from "react"
-import { createEditor, Node, type Descendant } from "slate"
+import { createEditor, Editor, Node, Transforms, type Descendant } from "slate"
 import {
   Editable,
   Slate,
+  useFocused,
   withReact,
   type RenderElementProps,
 } from "slate-react"
 
 import { cn } from "@/lib/utils"
-import styles from "@/styles/application/dashboard/stream-manager/_components/chat-input.module.scss"
+import styles from "@/styles/components/stream/chat/chat-input.module.scss"
 
 const INITIAL_SLATE_VALUE = [
   {
@@ -31,33 +32,58 @@ const serialize = (value: Descendant[]) => {
   )
 }
 
-export default function ChatInput() {
+interface ChatInputProps {
+  message: string
+  setMessage: (message: string) => void
+  submit: () => void
+}
+
+export default function ChatInput({
+  message,
+  setMessage,
+  submit,
+}: ChatInputProps) {
   const editor = React.useMemo(() => withReact(createEditor()), [])
 
-  const [value, setValue] = React.useState("")
-  const [focus, setFocus] = React.useState(false)
+  const focus = useFocused()
 
   const renderElement = React.useCallback((props: RenderElementProps) => {
     return <DefaultElement {...props} />
   }, [])
+
+  const onChange = React.useCallback(
+    (value: Descendant[]) => {
+      const isAstChange = editor.operations.some(
+        (op) => "set_selection" !== op.type
+      )
+
+      if (isAstChange) {
+        const content = serialize(value)
+        setMessage(content)
+      }
+    },
+    [editor.operations, setMessage]
+  )
+
+  React.useEffect(() => {
+    if (!message) {
+      Transforms.delete(editor, {
+        at: {
+          anchor: Editor.start(editor, []),
+          focus: Editor.end(editor, []),
+        },
+      })
+    }
+  }, [editor, message])
 
   return (
     <div className={styles["chat-wysiwyg-input__box"]}>
       <Slate
         initialValue={INITIAL_SLATE_VALUE}
         editor={editor}
-        onChange={(value) => {
-          const isAstChange = editor.operations.some(
-            (op) => "set_selection" !== op.type
-          )
-
-          if (isAstChange) {
-            const content = serialize(value)
-            setValue(content)
-          }
-        }}
+        onChange={onChange}
       >
-        {!value && (
+        {!message && (
           <div
             className={styles["chat-wysiwyg-input__placeholder"]}
             style={{
@@ -82,11 +108,18 @@ export default function ChatInput() {
           data-a-target={"chat-input"}
           data-placeholder={PLACEHOLDER_VALUE}
           aria-label={PLACEHOLDER_VALUE}
-          onBlur={() => setFocus(false)}
-          onFocus={() => setFocus(true)}
           className={cn(styles["chat-input"], {
             [`focus-visible`]: focus,
           })}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              // Prevent the enter character from being inserted.
+              event.preventDefault()
+
+              // Send text when the event occurs.
+              void submit()
+            }
+          }}
           renderElement={renderElement}
         />
       </Slate>

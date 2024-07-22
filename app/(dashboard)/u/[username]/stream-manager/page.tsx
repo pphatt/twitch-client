@@ -9,10 +9,10 @@ import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"
+import Chat from "@/components/stream/chat/chat"
 import styles from "@/styles/application/dashboard/stream-manager/page.module.scss"
 import ActivityFeed from "@/app/(dashboard)/u/[username]/stream-manager/_components/activity-feed"
 import AddPanel from "@/app/(dashboard)/u/[username]/stream-manager/_components/add-panel"
-import Chat from "@/app/(dashboard)/u/[username]/stream-manager/_components/chat"
 import PanelHeader from "@/app/(dashboard)/u/[username]/stream-manager/_components/panel-header"
 
 const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {

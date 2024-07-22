@@ -1,94 +1,68 @@
 "use client"
 
 import * as React from "react"
-import { useCacheLayout } from "@/store/persistent/layout"
+import { faker } from "@faker-js/faker"
 
-import { cn } from "@/lib/utils"
-import ChatHeader from "@/components/stream/chat/chat-header"
+import { chatMessages } from "@/config/data"
+import { getRandomRgb, sleep } from "@/lib/utils"
+import ChatInputForm from "@/components/stream/chat/chat-input-form"
 import ChatList from "@/components/stream/chat/chat-list"
-import ChatToggle from "@/components/stream/chat/chat-toggle"
 import styles from "@/styles/components/stream/chat/chat.module.scss"
 
 export default function Chat() {
-  const { isRightColumnClosedByUserAction } = useCacheLayout()
+  const [message, setMessage] = React.useState("")
 
-  const label = !isRightColumnClosedByUserAction
-    ? "right-column-chat-bar"
-    : "right-column-chat-bar-collapsed"
+  // this would be replaced with fetching messages from server
+  const [messages, setMessages] =
+    React.useState<{ message: string; username: string; color: string }[]>()
+
+  const [isPending, startTransition] = React.useTransition()
+
+  const onSubmit = () => {
+    // if (!send) return;
+
+    // void send(message);
+
+    if (messages) {
+      setMessages((prevMessages) => {
+        const username = faker.internet.userName()
+        const color = getRandomRgb()
+
+        const messageInfo = {
+          username,
+          color,
+          message,
+        }
+
+        if (prevMessages) {
+          return [...prevMessages, messageInfo]
+        }
+
+        return [messageInfo]
+      })
+    }
+
+    setMessage("")
+  }
+
+  React.useEffect(() => {
+    startTransition(async () => {
+      await sleep(3000)
+      setMessages(chatMessages)
+    })
+  }, [])
 
   return (
-    <div
-      style={{
-        width: "fit-content",
-      }}
-    >
-      <div
-        role="complementary"
-        aria-label="Right Column"
-        data-a-target={label}
-        className={cn(
-          {
-            [`${styles["right-column--beside"]}`]:
-              !isRightColumnClosedByUserAction,
-          },
-          {
-            [`${styles["right-column--collapsed"]}`]:
-              isRightColumnClosedByUserAction,
-          }
-        )}
-      >
-        <div
-          className={styles["right-column"]}
-          data-collapsed={isRightColumnClosedByUserAction}
-        >
-          <aside
-            id="live-page-chat"
-            aria-label="Stream Chat"
-            aria-hidden={!isRightColumnClosedByUserAction}
-            tabIndex={0}
-            style={{
-              height: "100%",
-            }}
-          >
-            <div
-              className={cn(styles["channel-root__right-column"], {
-                [`${styles["channel-root__right-column--expanded"]}`]:
-                  !isRightColumnClosedByUserAction,
-              })}
-              style={{
-                opacity: 1,
-                transition: "transform 500ms ease 0ms",
-                transform: !isRightColumnClosedByUserAction
-                  ? "translateX(-340px) translateZ(0px)"
-                  : undefined,
-              }}
-            >
-              <div className={styles["chat-shell-wrapper"]}>
-                <div
-                  className={cn(styles["chat-shell"], {
-                    [`${styles["chat-shell__expanded"]}`]:
-                      !isRightColumnClosedByUserAction,
-                  })}
-                >
-                  <div className={styles["chat-shell-container"]}>
-                    <div className={styles["stream-chat-wrapper"]}>
-                      <ChatHeader />
+    <section className={styles["chat-room-component-layout"]}>
+      <div className={styles["chat-room__content"]}>
+        <ChatList messages={messages} isPending={isPending} />
 
-                      <section className={styles["chat-room-component-layout"]}>
-                        <div className={styles["chat-room__content"]}>
-                          <ChatList />
-                        </div>
-                      </section>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-
-        <ChatToggle />
+        <ChatInputForm
+          message={message}
+          setMessage={setMessage}
+          onSubmit={onSubmit}
+        />
       </div>
-    </div>
+    </section>
   )
 }
