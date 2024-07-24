@@ -1,8 +1,13 @@
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import ChatInput from "@/components/stream/chat/chat-input"
+import UserChatSetting from "@/components/stream/chat/user-chat-setting"
 import styles from "@/styles/components/stream/chat/chat-input-form.module.scss"
 
 interface ChatInputProps {
@@ -48,15 +53,25 @@ export default function ChatInputForm({
         <div className={styles["chat-input__buttons-wrapper"]}>
           <div className={styles["chat-input__buttons-container"]}>
             <div className={styles["chat-setting-wrapper"]}>
-              <Button className={styles["chat-setting-button"]}>
-                <div className={styles["inner-chat-setting-button-wrapper"]}>
-                  <div
-                    className={styles["inner-chat-setting-button-container"]}
-                  >
-                    <Icons.settings />
-                  </div>
-                </div>
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button className={styles["chat-setting-button"]}>
+                    <div
+                      className={styles["inner-chat-setting-button-wrapper"]}
+                    >
+                      <div
+                        className={
+                          styles["inner-chat-setting-button-container"]
+                        }
+                      >
+                        <Icons.settings />
+                      </div>
+                    </div>
+                  </Button>
+                </DropdownMenuTrigger>
+
+                <UserChatSetting />
+              </DropdownMenu>
             </div>
 
             <div className={styles["chat-button-wrapper"]}>

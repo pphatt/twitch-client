@@ -82,6 +82,10 @@
   &:hover {
     background-color: rgba(83, 83, 95, 0.48) !important;
   }
+
+  &:focus-within {
+    box-shadow: none !important;
+  }
 }
 
 .inner-chat-setting-button-wrapper {
