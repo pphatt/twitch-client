@@ -53,7 +53,7 @@ export default function ChatInputForm({
         <div className={styles["chat-input__buttons-wrapper"]}>
           <div className={styles["chat-input__buttons-container"]}>
             <div className={styles["chat-setting-wrapper"]}>
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                   <Button className={styles["chat-setting-button"]}>
                     <div

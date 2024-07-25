@@ -1,0 +1,23 @@
+.chat-setting-button {
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+
+  width: 100% !important;
+  height: 100% !important;
+
+  border-radius: 4px !important;
+
+  padding: 0 !important;
+
+  &:hover {
+    background-color: hsla(
+      var(--color-background-interactable-hover)
+    ) !important;
+  }
+
+  &:active {
+    background-color: hsla(
+      var(--color-background-interactable-active)
+    ) !important;
+  }
+}

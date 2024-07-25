@@ -6,10 +6,14 @@ import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItemContainer,
+  DropdownMenuItemLink,
+  DropdownMenuItemTitle,
+  DropdownMenuItemWrapper,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu-fork"
 import { Icons } from "@/components/icons"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/main-nav.module.scss"
@@ -68,18 +72,22 @@ export function MainNav({ items, supportItem }: MainNavProps) {
               <div className={styles["dropdown-menu-wrapper"]}>
                 {supportItem.map(({ title, items }, index) => (
                   <div key={index}>
-                    <DropdownMenuLabel className={styles["item-label"]}>
-                      {title}
-                    </DropdownMenuLabel>
+                    <DropdownMenuLabel>{title}</DropdownMenuLabel>
+
                     {items.map(({ title, href }, index) => (
-                      <div className={styles["dropdown-menu-item"]} key={index}>
-                        <Link href={href}>{title}</Link>
-                      </div>
+                      <DropdownMenuItemWrapper>
+                        <DropdownMenuItemLink href={href} key={index}>
+                          <DropdownMenuItemContainer>
+                            <DropdownMenuItemTitle>
+                              {title}
+                            </DropdownMenuItemTitle>
+                          </DropdownMenuItemContainer>
+                        </DropdownMenuItemLink>
+                      </DropdownMenuItemWrapper>
                     ))}
+
                     {index !== supportItem.length - 1 && (
-                      <DropdownMenuSeparator
-                        className={styles["item-separator"]}
-                      />
+                      <DropdownMenuSeparator />
                     )}
                   </div>
                 ))}
