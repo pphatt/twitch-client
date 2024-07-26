@@ -10,7 +10,11 @@ import HideChat from "@/components/stream/chat/user-chat-setting-option/hide-cha
 import PopOutChat from "@/components/stream/chat/user-chat-setting-option/pop-out-chat"
 import styles from "@/styles/components/stream/chat/user-chat-setting.module.scss"
 
-export default function UserChatSetting() {
+interface UserChatSettingProps {
+  popout: boolean
+}
+
+export default function UserChatSetting({ popout }: UserChatSettingProps) {
   const [maxHeight, setMaxHeight] = React.useState(700)
 
   React.useEffect(() => {
@@ -54,13 +58,12 @@ export default function UserChatSetting() {
             <div>
               <DropdownMenuLabel>MY PREFERENCES</DropdownMenuLabel>
 
-              <HideChat />
-              <PopOutChat />
-              <PopOutChat />
-              <PopOutChat />
-              <PopOutChat />
-              <PopOutChat />
-              <PopOutChat />
+              {!popout && (
+                <>
+                  <HideChat />
+                  <PopOutChat />
+                </>
+              )}
             </div>
           </div>
         </SimpleBar>

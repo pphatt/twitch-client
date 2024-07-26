@@ -23,7 +23,7 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
         scrollElement.scrollTop = 9999
       })
     }
-  }, [messages])
+  })
 
   return (
     <div

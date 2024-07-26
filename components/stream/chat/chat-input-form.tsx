@@ -14,12 +14,15 @@ interface ChatInputProps {
   message: string
   setMessage: (message: string) => void
   onSubmit: () => void
+
+  popout: boolean
 }
 
 export default function ChatInputForm({
   message,
   setMessage,
   onSubmit,
+  popout,
 }: ChatInputProps) {
   const handleSubmit = () => {
     if (!message) return
@@ -70,7 +73,7 @@ export default function ChatInputForm({
                   </Button>
                 </DropdownMenuTrigger>
 
-                <UserChatSetting />
+                <UserChatSetting popout={popout} />
               </DropdownMenu>
             </div>
 
