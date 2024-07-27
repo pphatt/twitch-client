@@ -1,12 +1,7 @@
 import * as React from "react"
+import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { cn } from "@/lib/utils"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import styles from "@/styles/components/hint.module.scss"
 
 interface HintProps {
@@ -30,30 +25,34 @@ export const Hint = ({
   className,
   asChild,
   side,
-  sideOffset,
+  sideOffset = 3,
   align,
   alignOffset,
   avoidCollisions,
   hideWhenDetached,
 }: HintProps) => {
   return (
-    <TooltipProvider delayDuration={200} skipDelayDuration={0}>
-      <Tooltip>
-        <TooltipTrigger asChild={asChild || !!children}>
+    <Tooltip.Provider delayDuration={200} skipDelayDuration={0}>
+      <Tooltip.Root>
+        <Tooltip.Trigger asChild={asChild || !!children}>
           {children}
-        </TooltipTrigger>
-        <TooltipContent
-          side={side}
-          sideOffset={sideOffset}
-          align={align}
-          alignOffset={alignOffset}
-          avoidCollisions={avoidCollisions}
-          hideWhenDetached={hideWhenDetached}
-          className={cn(styles["tooltip-content"], className)}
-        >
-          <p>{label}</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+        </Tooltip.Trigger>
+
+        <Tooltip.Portal>
+          <Tooltip.Content
+            side={side}
+            sideOffset={sideOffset}
+            align={align}
+            alignOffset={alignOffset}
+            avoidCollisions={avoidCollisions}
+            hideWhenDetached={hideWhenDetached}
+            className={cn(styles["tooltip-content"], className)}
+          >
+            <p>{label}</p>
+            <Tooltip.Arrow fill={"white"} />
+          </Tooltip.Content>
+        </Tooltip.Portal>
+      </Tooltip.Root>
+    </Tooltip.Provider>
   )
 }

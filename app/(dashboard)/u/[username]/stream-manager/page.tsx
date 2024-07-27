@@ -19,7 +19,7 @@ const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
   "Stream Preview": "Stream Preview",
   "Quick Action": "Quick Action",
   "Activity Feed": <ActivityFeed />,
-  "My Chat": <Chat />,
+  "My Chat": <Chat isCreator={true} />,
   new: "New Window",
 }
 

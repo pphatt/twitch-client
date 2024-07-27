@@ -13,14 +13,21 @@ import styles from "@/styles/components/stream/chat/chat.module.scss"
 
 interface ChatProps {
   /*
-  * popout is for chat setting when popout.
-  * Default is false when the state is not popout.
-  * When the chat gets popout, it will receive a true that prevents getting more popout
-  *  */
+   * popout is for chat setting when popout.
+   * Default is false when the state is not popout.
+   * When the chat gets popout, it will receive a true that prevents getting more popout
+   *  */
   popout?: boolean
+
+  /*
+   * Check if current chat is the channel owner (or mod) or not.
+   * If it is the channel owner (or mod), show channel owner chat else shows normal user chat instead
+   * Maybe would replace this with isAuth or something like that
+   * */
+  isCreator?: boolean
 }
 
-export default function Chat({ popout = false }: ChatProps) {
+export default function Chat({ popout = false, isCreator = true }: ChatProps) {
   const { hide } = useChatObserver()
 
   const [message, setMessage] = React.useState("")
@@ -83,6 +90,7 @@ export default function Chat({ popout = false }: ChatProps) {
           setMessage={setMessage}
           onSubmit={onSubmit}
           popout={popout}
+          isCreator={isCreator}
         />
       </div>
     </section>

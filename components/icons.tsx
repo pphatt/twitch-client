@@ -13,8 +13,8 @@ import {
   Check,
   CheckSquare,
   ChevronDown,
-  ChevronLeft,
-  ChevronRight,
+  // ChevronLeft,
+  // ChevronRight,
   ChevronsUpDown,
   ChevronUp,
   Circle,
@@ -76,8 +76,8 @@ export const Icons = {
   checkSquare: CheckSquare,
   arrowUp: ChevronUp,
   arrowDown: ChevronDown,
-  arrowRight: ChevronRight,
-  arrowLeft: ChevronLeft,
+  // arrowRight: ChevronRight,
+  // arrowLeft: ChevronLeft,
   arrowDownWideNarrow: ArrowDownWideNarrow,
   view: Eye,
   hide: EyeOff,
@@ -574,6 +574,11 @@ export const Icons = {
     <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
       <path d="M12 4h2.586L9.293 9.293l1.414 1.414L16 5.414V8h2V2h-6v2z"></path>
       <path d="M4 4h6v2H4v10h10v-6h2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"></path>
+    </svg>
+  ),
+  arrowRight: ({ ...props }: LucideProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <path d="M6.5 5.5 11 10l-4.5 4.5L8 16l6-6-6-6-1.5 1.5z"></path>
     </svg>
   ),
 }

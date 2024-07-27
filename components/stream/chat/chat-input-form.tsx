@@ -16,6 +16,8 @@ interface ChatInputProps {
   onSubmit: () => void
 
   popout: boolean
+
+  isCreator: boolean
 }
 
 export default function ChatInputForm({
@@ -23,6 +25,7 @@ export default function ChatInputForm({
   setMessage,
   onSubmit,
   popout,
+  isCreator,
 }: ChatInputProps) {
   const handleSubmit = () => {
     if (!message) return
@@ -73,7 +76,7 @@ export default function ChatInputForm({
                   </Button>
                 </DropdownMenuTrigger>
 
-                <UserChatSetting popout={popout} />
+                <UserChatSetting popout={popout} isCreator={isCreator} />
               </DropdownMenu>
             </div>
 
