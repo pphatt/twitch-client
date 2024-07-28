@@ -173,6 +173,8 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
               )}
             </div>
           </div>
+
+          <div className={classNames.placeholder} />
         </div>
       </div>
     )

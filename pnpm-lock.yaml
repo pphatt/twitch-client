@@ -141,8 +141,8 @@ importers:
         specifier: ^1.77.8
         version: 1.77.8
       simplebar:
-        specifier: https://github.com/pphatt/simplebar/tarball/master/v1.0.52
-        version: https://github.com/pphatt/simplebar/tarball/master/v1.0.52
+        specifier: https://github.com/pphatt/simplebar/tarball/master/v1.0.53
+        version: https://github.com/pphatt/simplebar/tarball/master/v1.0.53
       simplebar-core:
         specifier: ^1.2.6
         version: 1.2.6
@@ -627,8 +627,8 @@ packages:
   '@juggle/resize-observer@3.4.0':
     resolution: {integrity: sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==}
 
-  '@million/install@0.0.16':
-    resolution: {integrity: sha512-v281XJsOjhBBuF0X2ajmYxevgQET2r2BVSuj1BJa/RToP6lvA5zSnXe1ZNyR2ifDL9uujkUltGu55p6VRSz4/Q==}
+  '@million/install@0.0.18':
+    resolution: {integrity: sha512-1x/3Uz0TJHbQWsPCe9Na+MbE2GrJtz+1LDvDILh/1+O0SRbWZBEvlDjCRexEj0m44ff2TJRPk4BGob9Ly5thvQ==}
     hasBin: true
 
   '@million/lint@1.0.0-rc.80':
@@ -3494,9 +3494,9 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
 
-  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.52:
-    resolution: {tarball: https://github.com/pphatt/simplebar/tarball/master/v1.0.52}
-    version: 1.0.52
+  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.53:
+    resolution: {tarball: https://github.com/pphatt/simplebar/tarball/master/v1.0.53}
+    version: 1.0.53
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -4347,7 +4347,7 @@ snapshots:
 
   '@juggle/resize-observer@3.4.0': {}
 
-  '@million/install@0.0.16':
+  '@million/install@0.0.18':
     dependencies:
       '@antfu/ni': 0.21.12
       '@axiomhq/js': 1.0.0-rc.3
@@ -4367,7 +4367,7 @@ snapshots:
       '@babel/core': 7.24.6
       '@babel/types': 7.24.6
       '@hono/node-server': 1.12.0
-      '@million/install': 0.0.16
+      '@million/install': 0.0.18
       '@rollup/pluginutils': 5.1.0
       babel-plugin-syntax-hermes-parser: 0.21.1
       ci-info: 4.0.0
@@ -7599,7 +7599,7 @@ snapshots:
       react: 18.3.1
       simplebar-core: 1.2.6
 
-  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.52: {}
+  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.53: {}
 
   sisteransi@1.0.5: {}
 
