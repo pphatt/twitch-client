@@ -47,6 +47,7 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
         <SimpleBar
           ref={ref}
           forceVisible={"y"}
+          placeHolderHidden={false}
           simpleContentWrapperStyle={{
             padding: "0",
           }}

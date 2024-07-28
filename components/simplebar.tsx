@@ -34,6 +34,7 @@ export interface Props
     [key: string]: any
   }
   simpleContentWrapperStyle?: React.CSSProperties
+  placeHolderHidden?: boolean
 }
 
 const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
@@ -43,6 +44,7 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
       className,
       scrollableNodeProps = {},
       simpleContentWrapperStyle,
+      placeHolderHidden = true,
       ...otherProps
     },
     ref
@@ -174,7 +176,7 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
             </div>
           </div>
 
-          <div className={classNames.placeholder} />
+          {!placeHolderHidden && <div className={classNames.placeholder} />}
         </div>
       </div>
     )
