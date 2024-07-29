@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import SimpleBar from "@/components/simplebar"
-import styles from "@/styles/application/dashboard/stream-manager/_components/add-panel.module.scss"
+import styles from "@/styles/components/stream-manager/add-panel.module.scss"
 
 export default function AddPanel() {
   const [isHoverOn, setIsHoverOn] = React.useState(false)

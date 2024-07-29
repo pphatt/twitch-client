@@ -9,15 +9,16 @@ import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"
+import AddPanel from "@/components/stream-manager/add-panel"
+import ActivityFeed from "@/components/stream-manager/panel/activity-feed"
+import PanelHeader from "@/components/stream-manager/panel/panel-header"
+import QuickActionPanel from "@/components/stream-manager/panel/quick-action-panel"
 import Chat from "@/components/stream/chat/chat"
 import styles from "@/styles/application/dashboard/stream-manager/page.module.scss"
-import ActivityFeed from "@/app/(dashboard)/u/[username]/stream-manager/_components/activity-feed"
-import AddPanel from "@/app/(dashboard)/u/[username]/stream-manager/_components/add-panel"
-import PanelHeader from "@/app/(dashboard)/u/[username]/stream-manager/_components/panel-header"
 
 const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
   "Stream Preview": "Stream Preview",
-  "Quick Action": "Quick Action",
+  "Quick Action": <QuickActionPanel />,
   "Activity Feed": <ActivityFeed />,
   "My Chat": <Chat isCreator={true} />,
   new: "New Window",

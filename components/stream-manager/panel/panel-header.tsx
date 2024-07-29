@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/dashboard/stream-manager/_components/panel-header.module.scss"
+import styles from "@/styles/components/stream-manager/panel/panel-header.module.scss"
 
 interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
   title: string
