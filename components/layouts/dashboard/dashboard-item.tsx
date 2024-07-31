@@ -6,12 +6,12 @@ import { usePathname } from "next/navigation"
 import type { MainNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu/dropdown-menu"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/dashboard/dashboard-item.module.scss"
 

@@ -13,7 +13,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/ui/command/command"
 import styles from "@/styles/components/search-command-menu.module.scss"
 
 export function SearchCommandMenu() {

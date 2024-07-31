@@ -2,9 +2,8 @@ import * as React from "react"
 import Link from "next/link"
 import type { MainNavItem, SupportNavItem } from "@/types"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
-  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItemContainer,
   DropdownMenuItemLink,
@@ -12,8 +11,11 @@ import {
   DropdownMenuItemWrapper,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
+import {
+  DropdownMenu,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu-fork"
+} from "@/components/ui/dropdown-menu/dropdown-menu"
 import { Icons } from "@/components/icons"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/main-nav.module.scss"
@@ -75,8 +77,8 @@ export function MainNav({ items, supportItem }: MainNavProps) {
                     <DropdownMenuLabel>{title}</DropdownMenuLabel>
 
                     {items.map(({ title, href }, index) => (
-                      <DropdownMenuItemWrapper>
-                        <DropdownMenuItemLink href={href} key={index}>
+                      <DropdownMenuItemWrapper key={index}>
+                        <DropdownMenuItemLink href={href}>
                           <DropdownMenuItemContainer>
                             <DropdownMenuItemTitle>
                               {title}

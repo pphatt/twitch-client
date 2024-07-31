@@ -1,14 +1,16 @@
+"use client"
+
 import * as React from "react"
 import Link from "next/link"
 
 import { siteConfig, supportSite } from "@/config/site"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu/dropdown-menu"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import AuthDialog from "@/components/layouts/auth-dialog"
@@ -75,10 +77,7 @@ export function SiteHeader() {
             <div className={styles["user-item-container"]}>
               <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={styles["user-item-trigger"]}
-                  >
+                  <Button className={styles["user-item-trigger"]}>
                     <div className={styles["user-item-trigger-wrapper"]}>
                       <img
                         alt={"User Avatar"}

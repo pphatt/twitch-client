@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
 
-  background-color: hsl(var(--background));
+  background-color: hsl(var(--background)) !important;
 
   width: 100% !important;
 
   border: 0 !important;
-  border-radius: var(--radius);
+  border-radius: var(--radius) !important;
 
   padding: 30px;
 

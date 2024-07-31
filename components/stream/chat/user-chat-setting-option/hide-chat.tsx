@@ -1,12 +1,12 @@
 import * as React from "react"
 import { useChatObserver } from "@/store/state/channel-chat"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
   DropdownMenuItemContainer,
   DropdownMenuItemTitle,
   DropdownMenuItemWrapper,
-} from "@/components/ui/dropdown-menu-fork"
+} from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
 import styles from "@/styles/components/stream/chat/user-chat-setting-option/hide-chat.module.scss"
 
 export default function HideChat() {

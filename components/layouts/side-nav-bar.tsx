@@ -5,7 +5,7 @@ import { useCacheLayout } from "@/store/persistent/layout"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import FollowedChannelSideBar from "@/components/followed-channel-side-bar"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"

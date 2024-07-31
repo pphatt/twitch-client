@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
@@ -8,7 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu/dropdown-menu"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Hint } from "@/components/hint"
 import SimpleBar from "@/components/simplebar"
@@ -16,7 +18,7 @@ import styles from "@/styles/components/layouts/dashboard/dashboard-site-header.
 import HideNavigatorBtn from "@/app/(dashboard)/_components/hide-navigator-btn"
 
 import { Icons } from "../../icons"
-import { Button } from "../../ui/button"
+import { Button } from "../../ui/button/button"
 
 const DashboardTitle = dynamic(
   () => import("@/components/layouts/dashboard/dashboard-title"),
@@ -85,7 +87,7 @@ export default function DashboardSiteHeader() {
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
                     <Button
-                      variant={"outline"}
+                      $variant={"outline"}
                       className={styles["user-item-trigger"]}
                     >
                       <div className={styles["user-item-trigger-wrapper"]}>

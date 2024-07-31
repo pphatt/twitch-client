@@ -12,7 +12,8 @@ export default function Background() {
   return (
     <div
       className={cn(styles["channel-root__player"], {
-        [`${styles["channel-root__player--with-chat"]}`]: !isRightColumnClosedByUserAction,
+        [`${styles["channel-root__player--with-chat"]}`]:
+          !isRightColumnClosedByUserAction,
       })}
     >
       <div className={styles["channel-root-layout"]}>

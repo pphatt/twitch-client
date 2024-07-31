@@ -1,5 +1,6 @@
 import type { MosaicNode } from "react-mosaic-component"
-import {Icons} from "@/components/icons";
+
+import { Icons } from "@/components/icons"
 
 export const DEFAULT_LAYOUT: MosaicNode<string> = {
   direction: "row",

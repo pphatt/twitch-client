@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Icons } from "@/components/icons"
 import { ButtonLayout } from "@/components/stream-manager/quick-action-options/button-layout"
 import styles from "@/styles/components/stream-manager/quick-action-options/edit-stream-info.module.scss"
@@ -24,7 +24,7 @@ export default function EditStreamInfo() {
           </div>
 
           <div className={styles["edit-stream-text-wrapper"]}>
-            <div className={styles['edit-stream-text-container']}>
+            <div className={styles["edit-stream-text-container"]}>
               <div className={styles["edit-stream-text-overlay"]}>
                 <p className={styles["edit-stream-text"]}>Edit Stream Info</p>
               </div>

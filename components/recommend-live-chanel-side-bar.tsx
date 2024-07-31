@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 
 import { recommendedLiveChannelsData } from "@/config/data"
 import { formatViewCount, sleep } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
   Tooltip,
   TooltipContent,

@@ -14,7 +14,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Hint } from "@/components/hint"
 import { Icons } from "@/components/icons"
 import SimpleBar from "@/components/simplebar"

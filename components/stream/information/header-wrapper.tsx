@@ -19,7 +19,8 @@ export default function HeaderWrapper({ children }: HeaderWrapperProps) {
   return (
     <div
       className={cn(styles["channel-root__info"], {
-        [`${styles["channel-root__info--with-chat"]}`]: !isRightColumnClosedByUserAction,
+        [`${styles["channel-root__info--with-chat"]}`]:
+          !isRightColumnClosedByUserAction,
       })}
       style={{
         opacity: "1",

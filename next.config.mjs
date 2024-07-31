@@ -1,5 +1,6 @@
+import { withHydrationOverlay } from "@builder.io/react-hydration-overlay/next"
 import million from "million/compiler"
-import { withHydrationOverlay } from "@builder.io/react-hydration-overlay/next";
+import compose from "next-compose-plugins"
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -7,12 +8,18 @@ import { withHydrationOverlay } from "@builder.io/react-hydration-overlay/next";
  *
  * million.js new version using @million/lint instead of million/compiler. So if any unintentional errors happen, we can roll back
  */
-await import("./env.js")
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   experimental: {
     optimizeCss: true,
+  },
+  compiler: {
+    styledComponents: {
+      ssr: true,
+      displayName: false,
+      namespace: "Layout",
+    },
   },
   webpack(config) {
     // Important: return the modified config
@@ -20,35 +27,43 @@ const nextConfig = {
   },
 }
 
-const plugins = []
-const pluginOptions = [
-  {
-    id: "million",
-    options: {
-      // new version using -> rsc: true
-      auto: true,
-    },
-  },
-  {
-    id: "mismatch-hydration",
-    options: {
-      appRootSelector: "main",
-    },
-  },
-]
+export default compose.withPlugins(
+  [
+    [million.next, {}],
+    [withHydrationOverlay, {}],
+  ],
+  nextConfig
+)
 
-plugins.push({ id: "million", plugin: million.next })
-plugins.push({ id: "mismatch-hydration", plugin: withHydrationOverlay });
-
-export default () => {
-  return plugins.reduce((acc, curr) => {
-    const options = pluginOptions.find(({ id }) => curr.id === id)
-
-    if (options && Object.keys(options).length > 0) {
-      // new version using -> curr.plugin(options.options)(acc)
-      return curr.plugin(acc, options.options)
-    }
-
-    return curr.plugin(acc)
-  }, nextConfig)
-}
+// import MillionLint from '@million/lint';
+// import { withHydrationOverlay } from "@builder.io/react-hydration-overlay/next";
+// import million from "million/compiler";
+// import compose from "next-compose-plugins";
+//
+// /**
+//  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
+//  * for Docker builds.
+//  *
+//  * million.js new version using @million/lint instead of million/compiler. So if any unintentional errors happen, we can roll back
+//  */
+//
+// /** @type {import("next").NextConfig} */
+// const nextConfig = {
+//   experimental: {
+//     optimizeCss: true
+//   },
+//   compiler: {
+//     styledComponents: {
+//       ssr: true,
+//       displayName: false,
+//       namespace: "Layout"
+//     }
+//   },
+//   webpack(config) {
+//     // Important: return the modified config
+//     return config;
+//   }
+// };
+// export default MillionLint.next({
+//   rsc: true
+// })(compose.withPlugins([[million.next, {}], [withHydrationOverlay, {}]], nextConfig));

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import LogInForm from "@/components/forms/login-form"
 import SignUpForm from "@/components/forms/signup-form"

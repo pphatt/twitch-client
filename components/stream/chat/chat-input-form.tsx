@@ -1,10 +1,10 @@
 import * as React from "react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu/dropdown-menu"
 import { Icons } from "@/components/icons"
 import ChatInput from "@/components/stream/chat/chat-input"
 import UserChatSetting from "@/components/stream/chat/user-chat-setting"

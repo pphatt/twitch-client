@@ -9,7 +9,7 @@ import type { z } from "zod"
 
 import { sleep } from "@/lib/utils"
 import { authSchema } from "@/lib/validation/auth"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
   Form,
   FormControl,
@@ -17,7 +17,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form/form"
 import { Input } from "@/components/ui/input"
 import { PasswordInput } from "@/components/forms/password-input"
 import { Icons } from "@/components/icons"

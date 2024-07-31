@@ -5,7 +5,7 @@ import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Input, type InputProps } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/application/dashboard/settings/stream/_components/stream-key-card.module.scss"

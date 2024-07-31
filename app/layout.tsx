@@ -11,6 +11,7 @@ import { Toaster } from "sonner"
 
 import { siteConfig } from "@/config/site"
 import { font } from "@/lib/fonts"
+import StyledComponentsRegistry from "@/lib/registry"
 import styles from "@/styles/application/root-layout/layout.module.scss"
 
 export const metadata = {
@@ -27,20 +28,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <TanStackProviders>
-          <Toaster
-            position="top-center"
-            richColors
-            visibleToasts={1}
-            expand={false}
-          />
+        <StyledComponentsRegistry>
+          <TanStackProviders>
+            <Toaster
+              position="top-center"
+              richColors
+              visibleToasts={1}
+              expand={false}
+            />
 
-          <div className={styles["root"]}>
-            <div className={styles["root-layout-wrapper"]}>
-              <div className={styles["root-layout-container"]}>{children}</div>
+            <div className={styles["root"]}>
+              <div className={styles["root-layout-wrapper"]}>
+                <div className={styles["root-layout-container"]}>
+                  {children}
+                </div>
+              </div>
             </div>
-          </div>
-        </TanStackProviders>
+          </TanStackProviders>
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

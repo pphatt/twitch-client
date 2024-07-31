@@ -13,9 +13,7 @@ export default function SharedLayout({
 }: SharedLayoutProps) {
   return (
     <main className={cn(styles["page-wrapper"], className)} {...props}>
-      <SimpleBar forceVisible={"y"}>
-        {children}
-      </SimpleBar>
+      <SimpleBar forceVisible={"y"}>{children}</SimpleBar>
     </main>
   )
 }

@@ -6,7 +6,7 @@ import type { MainNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Icons } from "@/components/icons"
 import {
   DashboardItem,
@@ -43,10 +43,7 @@ export default function DashboardSideNavBar({
     >
       <div className={styles["side-navbar-wrapper"]}>
         <div className={styles["side-navbar-container"]}>
-          <SimpleBar
-            forceVisible={"y"}
-            className={styles["scroll-area"]}
-          >
+          <SimpleBar forceVisible={"y"} className={styles["scroll-area"]}>
             <div
               className={cn(styles["content-layout"], {
                 [`${styles["side-nav--expand"]}`]:

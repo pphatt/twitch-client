@@ -3,7 +3,7 @@
 import * as React from "react"
 import { useDashboardOpen } from "@/store/persistent/dashboard"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/application/dashboard/_components/hide-navigator-btn.module.scss"
 
