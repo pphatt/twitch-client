@@ -1,5 +1,5 @@
 import * as React from "react"
-import type Link from "next/link"
+import Link from "next/link"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
 import type { StyledButtonProps } from "@/components/ui/button/style"
@@ -40,12 +40,15 @@ const PaginationLink = ({
   $size = "icon",
   ...props
 }: PaginationLinkProps) => (
-  <PaginationLinkWrapper
-    $isActive={$isActive}
-    $size={$size}
-    aria-current={$isActive ? "page" : undefined}
-    {...props}
-  />
+  <Link {...props} passHref>
+    <PaginationLinkWrapper
+      as={"a"}
+      $isActive={$isActive}
+      $size={$size}
+      aria-current={$isActive ? "page" : undefined}
+      {...props}
+    />
+  </Link>
 )
 PaginationLink.displayName = "PaginationLink"
 

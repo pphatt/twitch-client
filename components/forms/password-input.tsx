@@ -23,8 +23,8 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
 
         <Button
           type="button"
-          variant="ghost"
-          size="sm"
+          $variant="ghost"
+          $size="small"
           className={styles["icon"]}
           onClick={() => setShowPassword((prev) => !prev)}
           disabled={props.value === ""}

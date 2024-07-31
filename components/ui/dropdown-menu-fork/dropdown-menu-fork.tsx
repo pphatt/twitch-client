@@ -100,9 +100,15 @@ const DropdownMenuItemButton = React.forwardRef<
 DropdownMenuItemButton.displayName = "DropdownMenuItemButton"
 
 const DropdownMenuItemLink = ({
+  className,
+  children,
   ...props
 }: LinkProps & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-  <DropdownMenuItemLinkWrapper as={Link} {...props} />
+  <Link {...props} passHref>
+    <DropdownMenuItemLinkWrapper as={"div"} className={className}>
+      {children}
+    </DropdownMenuItemLinkWrapper>
+  </Link>
 )
 DropdownMenuItemLink.displayName = DropdownMenuPrimitive.Item.displayName
 
