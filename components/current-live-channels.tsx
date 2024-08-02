@@ -2,7 +2,7 @@ import * as React from "react"
 import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator/separator"
 import LiveChannelsList from "@/components/live-channels-list"
 import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
 import styles from "@/styles/components/current-live-channels.module.scss"

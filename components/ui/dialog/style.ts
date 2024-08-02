@@ -163,9 +163,9 @@ const dialogTopPositionStyled = css`
 export const DialogPrimitiveContent = styled(DialogPrimitive.Content)<
   DialogPosition & DialogType & TweakOptions
 >`
-  ${(props) => (props.types === "command" ? commandDialogStyle : dialogStyled)}
-  ${(props) => props.position === "default" && dialogDefaultPositionStyled}
-    ${(props) => props.position === "top" && dialogTopPositionStyled}
+  ${({ $types }) => ($types === "command" ? commandDialogStyle : dialogStyled)}
+  ${({ $position }) => $position === "default" && dialogDefaultPositionStyled}
+  ${({ $position }) => $position === "top" && dialogTopPositionStyled}
 `
 
 export const DialogPrimitiveClose = styled(DialogPrimitive.Close)`

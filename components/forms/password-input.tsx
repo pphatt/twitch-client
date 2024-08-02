@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button/button"
-import { Input, type InputProps } from "@/components/ui/input"
+import { Input, type InputProps } from "@/components/ui/input/input"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/forms/password-input.module.scss"
 

@@ -5,21 +5,21 @@ import styled, { keyframes } from "styled-components"
 import { enterKeyframes } from "@/styles/abstract/style-animation"
 
 const expandUpKeyframe = keyframes`
-    0% {
-        height: 0;
-    }
-    100% {
-        height: var(--radix-accordion-content-height);
-    }
+  0% {
+    height: 0;
+  }
+  100% {
+    height: var(--radix-accordion-content-height);
+  }
 `
 
 const expandDownKeyframe = keyframes`
-    0% {
-        height: var(--radix-accordion-content-height);
-    }
-    100% {
-        height: 0;
-    }
+  0% {
+    height: var(--radix-accordion-content-height);
+  }
+  100% {
+    height: 0;
+  }
 `
 
 export const AccordionPrimitiveItem = styled(AccordionPrimitive.Item)`

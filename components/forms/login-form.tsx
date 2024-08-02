@@ -18,7 +18,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form/form"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input/input"
 import { PasswordInput } from "@/components/forms/password-input"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/forms/login-form.module.scss"

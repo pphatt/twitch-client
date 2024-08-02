@@ -5,7 +5,7 @@ import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator/separator"
 import { ChannelCard } from "@/components/common/channel-card"
 import styles from "@/styles/components/recommend-live-channels.module.scss"
 

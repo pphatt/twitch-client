@@ -2,8 +2,12 @@
 
 import * as React from "react"
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog/dialog"
-import AuthTabControl from "@/components/layouts/auth-tab-control"
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog/dialog"
+import AuthTabControl from "@/components/layouts/auth-tab-control/auth-tab-control"
 import styles from "@/styles/components/layouts/auth-dialog.module.scss"
 
 interface AuthDialogProps {

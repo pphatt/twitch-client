@@ -6,7 +6,7 @@ import { toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 import { Button } from "@/components/ui/button/button"
-import { Input, type InputProps } from "@/components/ui/input"
+import { Input, type InputProps } from "@/components/ui/input/input"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/application/dashboard/settings/stream/_components/stream-key-card.module.scss"
 
@@ -37,8 +37,8 @@ export const StreamKeyCard = React.forwardRef<
         <Input
           ref={ref}
           type={showKey ? "text" : "password"}
-          variant={"dashboard"}
-          _size={"dashboard"}
+          $variant={"dashboard"}
+          $size={"dashboard"}
           className={cn(styles["content-input"], className)}
           readOnly
           disabled={true}

@@ -15,15 +15,15 @@ import {
 import { Icons } from "@/components/icons"
 
 export interface DialogPosition {
-  position?: "default" | "top"
+  $position?: "default" | "top"
 }
 
 export interface DialogType {
-  types?: "command" | "dialog"
+  $types?: "command" | "dialog"
 }
 
 export interface TweakOptions {
-  showCloseButton?: boolean
+  $showCloseButton?: boolean
 }
 
 const Dialog = DialogPrimitive.Root
@@ -47,12 +47,12 @@ const DialogContent = React.forwardRef<
     DialogPosition &
     DialogType &
     TweakOptions
->(({ children, showCloseButton, ...props }, ref) => (
+>(({ children, $showCloseButton, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
     <DialogPrimitiveContent ref={ref} {...props}>
       {children}
-      {(showCloseButton || showCloseButton === undefined) && (
+      {($showCloseButton || $showCloseButton === undefined) && (
         <DialogPrimitiveClose>
           <Icons.close />
           <span>Close</span>

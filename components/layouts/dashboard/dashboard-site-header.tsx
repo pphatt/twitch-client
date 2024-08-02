@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu/dropdown-menu"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton/skeleton"
 import { Hint } from "@/components/hint"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/dashboard/dashboard-site-header.module.scss"

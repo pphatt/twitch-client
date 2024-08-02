@@ -73,12 +73,16 @@ const CommandWrapper = styled(Command)`
 
 const CommandDialog = ({
   children,
-  position = "default",
+  $position = "default",
   ...props
 }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
-      <DialogContent types={"command"} position={position} style={props.style}>
+      <DialogContent
+        $types={"command"}
+        $position={$position}
+        style={props.style}
+      >
         <CommandWrapper shouldFilter={false}>{children}</CommandWrapper>
       </DialogContent>
     </Dialog>
