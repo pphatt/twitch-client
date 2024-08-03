@@ -6,7 +6,7 @@ import type { ICategoryData } from "@/types"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Separator } from "@/components/ui/separator/separator"
-import { CategoryCard } from "@/components/common/category-card"
+import { CategoryCard } from "@/components/common/category-card/category-card"
 import styles from "@/styles/components/category-section.module.scss"
 
 interface CategorySectionProps {

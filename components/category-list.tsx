@@ -5,7 +5,7 @@ import type { ICategoryData } from "@/types"
 import { useInfiniteQuery } from "@tanstack/react-query"
 
 import { sleep } from "@/lib/utils"
-import { CategoryCard } from "@/components/common/category-card"
+import { CategoryCard } from "@/components/common/category-card/category-card"
 import InfiniteScroll from "@/components/infinite-scroll"
 import { CategoryCardSkeleton } from "@/components/loading/lobby/category-card-skeleton"
 import styles from "@/styles/components/category-list.module.scss"

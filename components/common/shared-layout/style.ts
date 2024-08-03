@@ -1,4 +1,6 @@
-.page-wrapper {
+import styled from "styled-components"
+
+export const ShareLayoutWrapper = styled.main`
   position: relative;
 
   display: flex;
@@ -9,4 +11,4 @@
   height: 100%;
 
   overflow: hidden;
-}
+`

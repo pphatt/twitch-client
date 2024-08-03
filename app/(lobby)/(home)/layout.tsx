@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import SharedLayout from "@/components/common/shared-layout"
+import SharedLayout from "@/components/common/shared-layout/shared-layout"
 
 export default function HomeLayout({
   children,

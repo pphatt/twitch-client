@@ -1,25 +1,20 @@
 import * as React from "react"
-import Link from "next/link"
 import type { ITag } from "@/types"
 
-import styles from "@/styles/components/common/tag.module.scss"
+import { TagsWrapper, TagWrapper } from "@/components/common/tag/style"
 
 export function Tags({ tags }: { tags: ITag[] }) {
   return (
-    <div className={styles["tags"]}>
+    <TagsWrapper>
       {tags.map((tag, index) => (
         <Tag tag={tag} key={index} />
       ))}
-    </div>
+    </TagsWrapper>
   )
 }
 
 const Tag = ({ tag }: { tag: ITag }) => {
   const { name } = tag
 
-  return (
-    <Link href={"/"} className={styles["tag-link"]}>
-      {name}
-    </Link>
-  )
+  return <TagWrapper href={"/"}>{name}</TagWrapper>
 }

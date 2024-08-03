@@ -1,4 +1,7 @@
-.tags {
+import Link from "next/link"
+import styled from "styled-components"
+
+export const TagsWrapper = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -14,9 +17,9 @@
   font-weight: 600;
 
   overflow: hidden;
-}
+`
 
-.tag-link {
+export const TagWrapper = styled(Link)`
   display: block;
   flex-shrink: 0;
 
@@ -47,4 +50,4 @@
     color: rgb(209 213 219);
     background-color: rgb(34 41 44);
   }
-}
+`

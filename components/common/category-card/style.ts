@@ -1,69 +1,31 @@
-.card-wrapper {
+import Link from "next/link"
+import styled from "styled-components"
+
+export const CardWrapper = styled.div`
   flex: 1;
 
   width: 12rem;
   min-width: 0;
 
   padding: 0 5px;
-}
+`
 
-.card-container {
+export const CardContainer = styled.div`
   height: 100%;
 
   padding-bottom: 20px;
-}
+`
 
-.card {
+export const Card = styled.div`
   position: relative;
-}
+`
 
-.card-info {
+export const CardInfo = styled.div`
   display: flex;
   flex-flow: column;
-}
+`
 
-.card-image-wrapper {
-  position: relative;
-
-  border-style: none;
-  border-color: transparent;
-
-  transition: transform 0.15s cubic-bezier(0, 0, 0, 1);
-
-  &:hover {
-    .top-left-corner {
-      transition-delay: 75ms;
-
-      transform: translateY(-6px) scale(1);
-    }
-
-    .bottom-right-corner {
-      transition-delay: 75ms;
-
-      transform: translateX(6px) scale(1);
-    }
-
-    .left-bar {
-      transition-delay: 75ms;
-
-      transform: scaleX(1);
-    }
-
-    .bottom-bar {
-      transition-delay: 75ms;
-
-      transform: scaleY(1);
-    }
-
-    .card-image-container {
-      transition-delay: 75ms;
-
-      transform: translate3d(6px, -6px, 0px);
-    }
-  }
-}
-
-.top-left-corner {
+export const TopLeftCornerDiv = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -81,9 +43,9 @@
   transition-property: transform;
   transition-timing-function: ease;
   transition-duration: 100ms;
-}
+`
 
-.bottom-right-corner {
+export const BottomRightCornerDiv = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
@@ -101,9 +63,9 @@
   transition-property: transform;
   transition-timing-function: ease;
   transition-duration: 100ms;
-}
+`
 
-.left-bar {
+export const LeftBarDiv = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
@@ -119,9 +81,9 @@
   transition-duration: 100ms;
   transition-property: transform;
   transition-timing-function: ease;
-}
+`
 
-.bottom-bar {
+export const BottomBarDiv = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
@@ -138,12 +100,12 @@
   transition-duration: 100ms;
   transition-property: transform;
   transition-timing-function: ease;
-}
+`
 
-.card-image-container {
+export const CardImageContainer = styled.div`
   position: relative;
 
-  background: rgba(83, 83, 95, .38);
+  background: rgba(83, 83, 95, 0.38);
 
   width: 100%;
   height: 100%;
@@ -151,45 +113,86 @@
   transition-property: transform;
   transition-timing-function: ease;
   transition-duration: 100ms;
-}
+`
 
-.card-image-placeholder-wrapper {
-  background: rgba(83, 83, 95, .38);
+export const CardImageWrapper = styled(Link)`
+  position: relative;
+
+  border-style: none;
+  border-color: transparent;
+
+  transition: transform 0.15s cubic-bezier(0, 0, 0, 1);
+
+  &:hover {
+    ${TopLeftCornerDiv} {
+      transition-delay: 75ms;
+
+      transform: translateY(-6px) scale(1);
+    }
+
+    ${BottomRightCornerDiv} {
+      transition-delay: 75ms;
+
+      transform: translateX(6px) scale(1);
+    }
+
+    ${LeftBarDiv} {
+      transition-delay: 75ms;
+
+      transform: scaleX(1);
+    }
+
+    ${BottomBarDiv} {
+      transition-delay: 75ms;
+
+      transform: scaleY(1);
+    }
+
+    ${CardImageContainer} {
+      transition-delay: 75ms;
+
+      transform: translate3d(6px, -6px, 0px);
+    }
+  }
+`
+
+export const CardImagePlaceholderWrapper = styled.div`
+  background: rgba(83, 83, 95, 0.38);
 
   width: 100%;
 
   overflow: hidden;
-}
+`
 
-.card-image-placeholder-container {
+export const CardImagePlaceholderContainer = styled.div`
   position: relative;
 
   width: 100%;
 
   overflow: hidden;
-}
+`
 
-.card-image-placeholder {
+export const CardImagePlaceholder = styled.div`
   padding-bottom: 133.333%;
-}
+`
 
-.card-image {
+export const CardImage = styled.img`
   position: absolute;
   top: 0;
   left: 0;
 
   width: 100%;
   min-height: 100%;
-}
+`
 
-.card-body {
+export const CardBody = styled.div`
   display: flex;
   flex-direction: column;
 
   //padding: 0.25rem 0;
-}
+`
 
-.category-title {
+export const CategoryTitle = styled.div`
   flex-grow: 1;
   flex-shrink: 1;
 
@@ -220,9 +223,9 @@
       line-height: 1.5rem;
     }
   }
-}
+`
 
-.category-current-total-view {
+export const CategoryCurrentTotalView = styled.div`
   color: hsl(var(--foreground-alt-2));
 
   font-size: 13px;
@@ -231,4 +234,4 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-}
+`
