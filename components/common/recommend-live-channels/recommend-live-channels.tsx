@@ -7,7 +7,13 @@ import type { IRecommendedLiveChannel } from "@/types"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Separator } from "@/components/ui/separator/separator"
 import { ChannelCard } from "@/components/common/channel-card/channel-card"
-import styles from "@/styles/components/recommend-live-channels.module.scss"
+import {
+  ContentListContainer,
+  ContentListWrapper,
+  ContentSection,
+  ContentSectionHeader,
+  ContentSectionHeaderText,
+} from "@/components/share-styled/directory-content-layout/styled"
 
 interface RecommendLiveChannelsProps {
   channels: IRecommendedLiveChannel[]
@@ -41,23 +47,23 @@ export default function RecommendLiveChannels({
   ])
 
   return (
-    <div className={styles["content-section"]}>
-      <div className={styles["content-section-header"]}>
-        <h2 className={styles["content-section-header-text"]}>
+    <ContentSection>
+      <ContentSectionHeader>
+        <ContentSectionHeaderText>
           <Link href={"/directory"}>Live channels</Link>
           <span> we think you’ll like</span>
-        </h2>
-      </div>
+        </ContentSectionHeaderText>
+      </ContentSectionHeader>
 
-      <div className={styles["content-list-wrapper"]}>
-        <div className={styles["content-list-container"]}>
+      <ContentListWrapper>
+        <ContentListContainer>
           {channels.slice(0, getNumberByScreenWidth).map((channel, index) => (
             <ChannelCard key={index} channel={channel} />
           ))}
-        </div>
+        </ContentListContainer>
 
         <Separator />
-      </div>
-    </div>
+      </ContentListWrapper>
+    </ContentSection>
   )
 }

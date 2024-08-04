@@ -1,0 +1,1 @@
+<h1>This folder is for share the same styled between components</h1>

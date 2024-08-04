@@ -9,7 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu/dropdown-menu"
-import { Hint } from "@/components/hint"
+import { Hint } from "@/components/common/hint/hint"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/information/share-btn.module.scss"
 

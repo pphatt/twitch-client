@@ -11,11 +11,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu/dropdown-menu"
-import { Hint } from "@/components/hint"
+import { Hint } from "@/components/common/hint/hint"
+import { SearchCommandMenu } from "@/components/common/search-command-menu/search-command-menu"
 import { Icons } from "@/components/icons"
 import AuthDialog from "@/components/layouts/auth-dialog"
 import { MainNav } from "@/components/layouts/main-nav"
-import { SearchCommandMenu } from "@/components/search-command-menu"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/site-header.module.scss"
 

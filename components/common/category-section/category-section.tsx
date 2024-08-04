@@ -7,7 +7,13 @@ import type { ICategoryData } from "@/types"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Separator } from "@/components/ui/separator/separator"
 import { CategoryCard } from "@/components/common/category-card/category-card"
-import styles from "@/styles/components/category-section.module.scss"
+import {
+  ContentListContainer,
+  ContentListWrapper,
+  ContentSection,
+  ContentSectionHeader,
+  ContentSectionHeaderText,
+} from "@/components/share-styled/directory-content-layout/styled"
 
 interface CategorySectionProps {
   categories: ICategoryData[]
@@ -39,25 +45,25 @@ export default function CategorySection({ categories }: CategorySectionProps) {
   ])
 
   return (
-    <div className={styles["content-section"]}>
-      <div className={styles["content-section-header"]}>
-        <h2 className={styles["content-section-header-text"]}>
+    <ContentSection>
+      <ContentSectionHeader>
+        <ContentSectionHeaderText>
           <Link href={"/directory"}>Categories</Link>
           <span> we think you’ll like</span>
-        </h2>
-      </div>
+        </ContentSectionHeaderText>
+      </ContentSectionHeader>
 
-      <div className={styles["content-list-wrapper"]}>
-        <div className={styles["content-list-container"]}>
+      <ContentListWrapper>
+        <ContentListContainer>
           {categories
             .slice(0, getNumberByScreenWidth)
             .map((category, index) => (
               <CategoryCard key={index} category={category} />
             ))}
-        </div>
+        </ContentListContainer>
 
         <Separator />
-      </div>
-    </div>
+      </ContentListWrapper>
+    </ContentSection>
   )
 }

@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { CategoryCardSkeleton } from "@/components/loading/lobby/category-card-skeleton"
+import { CategoryCardSkeleton } from "@/components/loading/lobby/category-card-skeleton/category-card-skeleton"
 import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder"
 import styles from "@/styles/application/directory/loading.module.scss"
 

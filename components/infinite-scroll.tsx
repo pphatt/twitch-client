@@ -19,7 +19,7 @@ export default function InfiniteScroll({
   next,
   hasNextPage,
   isFetchingNextPage,
-  refClassName,
+  className,
 }: InfiniteScrollProps) {
   // register DOM observer
   const lastRow = React.useRef<HTMLDivElement>(null)
@@ -42,7 +42,7 @@ export default function InfiniteScroll({
       {!isFetchingNextPage && (
         <div
           ref={lastRowRef}
-          className={refClassName}
+          className={className}
           style={{ order: 4000 }}
         ></div>
       )}

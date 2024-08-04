@@ -1,8 +1,7 @@
 import * as React from "react"
 import * as Tooltip from "@radix-ui/react-tooltip"
 
-import { cn } from "@/lib/utils"
-import styles from "@/styles/components/hint.module.scss"
+import { TooltipContent } from "@/components/common/hint/style"
 
 interface HintProps {
   label: string
@@ -39,18 +38,18 @@ export const Hint = ({
         </Tooltip.Trigger>
 
         <Tooltip.Portal>
-          <Tooltip.Content
+          <TooltipContent
             side={side}
             sideOffset={sideOffset}
             align={align}
             alignOffset={alignOffset}
             avoidCollisions={avoidCollisions}
             hideWhenDetached={hideWhenDetached}
-            className={cn(styles["tooltip-content"], className)}
+            className={className}
           >
             <p>{label}</p>
             <Tooltip.Arrow fill={"white"} />
-          </Tooltip.Content>
+          </TooltipContent>
         </Tooltip.Portal>
       </Tooltip.Root>
     </Tooltip.Provider>

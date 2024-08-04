@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button/button"
-import { Hint } from "@/components/hint"
+import { Hint } from "@/components/common/hint/hint"
 import { Icons } from "@/components/icons"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/stream-manager/add-panel.module.scss"

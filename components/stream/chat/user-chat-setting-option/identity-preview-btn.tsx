@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { Button } from "@/components/ui/button/button"
 import { DropdownMenuItemContainer } from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
-import { Hint } from "@/components/hint"
+import { Hint } from "@/components/common/hint/hint"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/chat/user-chat-setting-option/identity-preview-btn.module.scss"
 

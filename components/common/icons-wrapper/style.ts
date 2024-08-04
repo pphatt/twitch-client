@@ -1,4 +1,6 @@
-.icons-wrapper {
+import styled from "styled-components"
+
+export const Icons = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -10,14 +12,14 @@
   &[data-side="right"] {
     margin-left: 20px;
   }
-}
+`
 
-.icons-container {
+export const IconsContainer = styled.div`
   display: flex;
   align-items: center;
-}
+`
 
-.icons-overlay {
+export const IconsOverlay = styled.div`
   display: inline-flex;
   align-items: center;
 
@@ -30,4 +32,4 @@
     width: 20px;
     height: 20px;
   }
-}
+`

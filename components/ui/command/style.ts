@@ -16,7 +16,7 @@ export const CommandPrimitiveWrapper = styled(CommandPrimitive)`
   overflow: hidden;
 `
 
-export const CommandPrimitiveInput = styled.div`
+export const CommandPrimitiveInputWrapper = styled.div`
   display: flex;
   align-items: center;
 
@@ -35,30 +35,30 @@ export const CommandPrimitiveInput = styled.div`
 
     opacity: 0.5;
   }
+`
 
-  input {
-    display: flex;
+export const CommandPrimitiveInput = styled(CommandPrimitive.Input)`
+  display: flex;
 
-    background-color: transparent;
+  background-color: transparent;
 
-    height: 2.75rem;
-    width: 100%;
+  height: 2.75rem;
+  width: 100%;
 
-    border-radius: calc(0.5rem - 2px);
+  border-radius: calc(0.5rem - 2px);
 
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 
-    &[disabled] {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `
 

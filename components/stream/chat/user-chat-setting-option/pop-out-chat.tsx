@@ -7,8 +7,8 @@ import {
   DropdownMenuItemTitle,
   DropdownMenuItemWrapper,
 } from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
+import IconsWrapper from "@/components/common/icons-wrapper/icons-wrapper"
 import { Icons } from "@/components/icons"
-import IconsWrapper from "@/components/icons-wrapper"
 import styles from "@/styles/components/stream/chat/user-chat-setting-option/pop-out-chat.module.scss"
 
 export default function PopOutChat() {

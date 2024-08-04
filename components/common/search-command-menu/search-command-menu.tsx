@@ -4,17 +4,16 @@ import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
-import { cn, sleep } from "@/lib/utils"
+import { sleep } from "@/lib/utils"
 import { useDebounce } from "@/hooks/use-debounce"
 import useWindowEvent from "@/hooks/use-window-event"
 import {
-  Command,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command/command"
-import styles from "@/styles/components/search-command-menu.module.scss"
+  CommandWrapper as Command,
+  CommandGroupWrapper as CommandGroup,
+  CommandInputWrapper as CommandInput,
+  CommandItemWrapper as CommandItem,
+  CommandListWrapper as CommandList,
+} from "@/components/common/search-command-menu/style"
 
 export function SearchCommandMenu() {
   const router = useRouter()
@@ -68,12 +67,7 @@ export function SearchCommandMenu() {
   })
 
   return (
-    <Command
-      shouldFilter={false}
-      className={cn(styles["command"], {
-        [`${styles["on-focus"]}`]: focus,
-      })}
-    >
+    <Command shouldFilter={false} $isFocus={focus}>
       <CommandInput
         value={query}
         onFocus={() => setFocus(!focus)}
@@ -81,11 +75,10 @@ export function SearchCommandMenu() {
         onValueChange={(query) => {
           setQuery(query)
         }}
-        className={styles["command-input"]}
         placeholder="Search"
       />
       {focus && (
-        <CommandList className={styles["command-list"]}>
+        <CommandList>
           <CommandGroup>
             {["league of legend", "valorant", "kai cenat"].map(
               (name, index) => {
@@ -93,7 +86,6 @@ export function SearchCommandMenu() {
                   <CommandItem
                     key={index}
                     // value={manga.slug}
-                    className={styles["command-item"]}
                     onSelect={(name) => setQuery(name)}
                   >
                     <Link href={"/"}>{name}</Link>

@@ -9,6 +9,7 @@ import styled, { StyleSheetManager } from "styled-components"
 import {
   CommandPrimitiveGroup,
   CommandPrimitiveInput,
+  CommandPrimitiveInputWrapper,
   CommandPrimitiveItem,
   CommandPrimitiveList,
   CommandPrimitiveSeparator,
@@ -94,10 +95,10 @@ const CommandInput = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
   <StyleSheetManager shouldForwardProp={() => true}>
-    <CommandPrimitiveInput cmdk-input-wrapper="">
+    <CommandPrimitiveInputWrapper cmdk-input-wrapper="">
       <Search />
-      <CommandPrimitive.Input ref={ref} className={className} {...props} />
-    </CommandPrimitiveInput>
+      <CommandPrimitiveInput ref={ref} className={className} {...props} />
+    </CommandPrimitiveInputWrapper>
   </StyleSheetManager>
 ))
 

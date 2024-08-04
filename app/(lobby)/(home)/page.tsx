@@ -6,18 +6,25 @@ import { sleep } from "@/lib/utils"
 import styles from "@/styles/application/lobby/page.module.scss"
 
 const RecommendLiveChannels = dynamic(
-  () => import("@/components/recommend-live-channels"),
+  () =>
+    import(
+      "@/components/common/recommend-live-channels/recommend-live-channels"
+    ),
   {
     ssr: false,
   }
 )
 
-const CategorySection = dynamic(() => import("@/components/category-section"), {
-  ssr: false,
-})
+const CategorySection = dynamic(
+  () => import("@/components/common/category-section/category-section"),
+  {
+    ssr: false,
+  }
+)
 
 const CurrentLiveChannels = dynamic(
-  () => import("@/components/current-live-channels"),
+  () =>
+    import("@/components/common/current-live-channels/current-live-channels"),
   {
     ssr: false,
   }

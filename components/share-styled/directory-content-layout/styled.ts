@@ -1,17 +1,23 @@
-.content-section {
-  position: relative;
-}
+import styled, { css } from "styled-components"
 
-.content-section-header {
+const shareCss = css`
+  position: relative;
+`
+
+export const ContentSection = styled.div`
+  ${shareCss}
+`
+
+export const ContentSectionHeader = styled.div`
   display: flex;
   justify-content: space-between;
 
   padding-bottom: 10px;
 
   visibility: visible;
-}
+`
 
-.content-section-header-text {
+export const ContentSectionHeaderText = styled.h2`
   font-size: 18px;
   line-height: 1.2;
   font-weight: 600;
@@ -27,13 +33,13 @@
       color: hsl(var(--color-twitch-orange-11));
     }
   }
-}
+`
 
-.content-list-wrapper {
-  position: relative;
-}
+export const ContentListWrapper = styled.div`
+  ${shareCss}
+`
 
-.content-list-container {
+export const ContentListContainer = styled.div`
   display: flex;
 
   min-width: 100%;
@@ -41,4 +47,4 @@
   margin: 0 -5px;
 
   list-style: none;
-}
+`

@@ -5,10 +5,11 @@ import type { IRecommendedLiveChannel } from "@/types"
 import { useInfiniteQuery } from "@tanstack/react-query"
 
 import { sleep } from "@/lib/utils"
-import { ChannelCard } from "@/components/common/channel-card/channel-card"
-import InfiniteScroll from "@/components/infinite-scroll"
-import { LiveChannelCardSkeleton } from "@/components/loading/lobby/live-channel-card-skeleton"
-import styles from "@/styles/components/live-channels-list.module.scss"
+import {
+  ChannelCardWrapper as ChannelCard,
+  InfiniteScrollWrapper as InfiniteScroll,
+  LiveChannelCardSkeletonWrapper as LiveChannelCardSkeleton,
+} from "@/components/common/live-channels-list/style"
 
 interface LiveChannelsListProps {
   channels: IRecommendedLiveChannel[]
@@ -52,14 +53,9 @@ export default function LiveChannelsList({ channels }: LiveChannelsListProps) {
       next={fetchNextPage}
       isFetchingNextPage={isFetchingNextPage}
       hasNextPage={hasNextPage}
-      refClassName={styles["live-channel-placeholder"]}
     >
       {channelsData.map((channel, index) => (
-        <ChannelCard
-          key={index}
-          channel={channel}
-          className={styles["live-channel-card"]}
-        />
+        <ChannelCard key={index} channel={channel} />
       ))}
 
       {isFetchingNextPage &&
@@ -67,7 +63,6 @@ export default function LiveChannelsList({ channels }: LiveChannelsListProps) {
           <LiveChannelCardSkeleton
             key={index + channelsData.length}
             style={{ order: index + channelsData.length }}
-            className={styles["live-channel-card-skeleton"]}
           />
         ))}
     </InfiniteScroll>
