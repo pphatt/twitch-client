@@ -17,7 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu/dropdown-menu"
-import ToastSuccess from "@/components/custom-toast/toast-success"
+import ToastSuccess from "@/components/custom-toast/toast-success/toast-success"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/dashboard/dashboard-stream-layout.module.scss"
 

@@ -14,7 +14,7 @@ import { toast } from "sonner"
 import { useLocalStorage } from "@/hooks/use-local-storage"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button/button"
-import ToastSuccess from "@/components/custom-toast/toast-success"
+import ToastSuccess from "@/components/custom-toast/toast-success/toast-success"
 import styles from "@/styles/components/layouts/dashboard/dashboard-save-change.module.scss"
 
 export default function DashboardSaveChange() {

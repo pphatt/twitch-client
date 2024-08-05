@@ -1,4 +1,6 @@
-.toast-success-layout-wrapper {
+import styled from "styled-components"
+
+export const ToastSuccessLayoutWrapper = styled.div`
   display: inline-block;
 
   color: #000;
@@ -17,21 +19,21 @@
   box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.5),
     0 0 8px rgba(0, 0, 0, 0.4);
-}
+`
 
-.toast-success-layout-container {
+export const ToastSuccessLayoutContainer = styled.div`
   display: flex;
   align-items: center;
 
   width: 100%;
-}
+`
 
-.toast-success-layout-overlay {
+export const ToastSuccessLayoutOverlay = styled.div`
   display: flex;
   flex: 1;
-}
+`
 
-.icon-wrapper {
+export const IconWrapper = styled.div`
   position: relative;
 
   display: flex;
@@ -40,14 +42,14 @@
   flex-shrink: 0;
 
   margin-top: 5px;
-}
+`
 
-.icon-container {
+export const IconContainer = styled.div`
   margin-right: 5px;
   margin-left: 5px;
-}
+`
 
-.icon-overlay {
+export const IconOverlay = styled.div`
   display: inline-flex;
   align-items: center;
 
@@ -60,24 +62,24 @@
     width: 20px;
     height: 20px;
   }
-}
+`
 
-.toast-text-wrapper {
+export const ToastTextWrapper = styled.div`
   display: inline-flex;
   align-items: center;
 
   min-height: 30px;
-}
+`
 
-.toast-text-container {
+export const ToastTextContainer = styled.div`
   flex-grow: 1;
 
   margin-right: 10px;
   margin-left: 5px;
-}
+`
 
-.toast-text {
+export const ToastText = styled.p`
   font-size: 14px;
   line-height: 1.2;
   font-weight: 600;
-}
+`

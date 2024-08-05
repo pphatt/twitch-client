@@ -7,7 +7,7 @@ import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
-import ToastSuccess from "@/components/custom-toast/toast-success"
+import ToastSuccess from "@/components/custom-toast/toast-success/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import AddPanel from "@/components/stream-manager/add-panel"
 import ActivityFeed from "@/components/stream-manager/panel/activity-feed"
