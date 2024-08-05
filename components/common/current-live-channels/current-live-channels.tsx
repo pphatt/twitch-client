@@ -10,7 +10,7 @@ import {
   ContentListWrapper,
 } from "@/components/common/current-live-channels/style"
 import LiveChannelsList from "@/components/common/live-channels-list/live-channels-list"
-import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
+import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder/live-channel-placeholder"
 import {
   ContentSection,
   ContentSectionHeader,
