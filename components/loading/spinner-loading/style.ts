@@ -22,9 +22,7 @@ export const ShellLoader = styled.div`
 
   animation-delay: 0.3s;
   animation-fill-mode: forwards;
-  animation: shell-display 0.1s linear;
-
-  animation-name: ${animation};
+  animation: ${animation} 0.1s linear;
 `
 
 const ShellLoadingSpinnerAnimation = keyframes`
@@ -48,7 +46,5 @@ export const ShellSpinner = styled.div`
   padding: 0;
   margin: 0 auto;
 
-  animation: shell-loading-spinner 1s infinite linear;
-
-  animation-name: ${ShellLoadingSpinnerAnimation};
+  animation: ${ShellLoadingSpinnerAnimation} 1s infinite linear;
 `
