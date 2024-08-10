@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { LiveChannelCardSkeleton } from "@/components/loading/lobby/live-channel-card-skeleton"
+import { LiveChannelCardSkeleton } from "@/components/loading/lobby/live-channel-card-skeleton/live-channel-card-skeleton"
 import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder/live-channel-placeholder"
 import styles from "@/styles/application/live-channel/loading.module.scss"
 

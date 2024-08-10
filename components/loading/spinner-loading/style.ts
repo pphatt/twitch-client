@@ -1,4 +1,15 @@
-.shell-loader {
+import styled, { keyframes } from "styled-components"
+
+const animation = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
+
+export const ShellLoader = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,17 +24,16 @@
   animation-fill-mode: forwards;
   animation: shell-display 0.1s linear;
 
-  @keyframes shell-display {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-}
+  animation-name: ${animation};
+`
 
-.shell-spinner {
+const ShellLoadingSpinnerAnimation = keyframes`
+    100% {
+        transform: rotate(360deg);
+    }
+`
+
+export const ShellSpinner = styled.div`
   display: inline-block;
 
   width: 22px;
@@ -40,9 +50,5 @@
 
   animation: shell-loading-spinner 1s infinite linear;
 
-  @keyframes shell-loading-spinner {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
+  animation-name: ${ShellLoadingSpinnerAnimation};
+`

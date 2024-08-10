@@ -2,7 +2,7 @@ import styled, { css } from "styled-components"
 
 import { ChannelCard } from "@/components/common/channel-card/channel-card"
 import InfiniteScroll from "@/components/infinite-scroll"
-import { LiveChannelCardSkeleton } from "@/components/loading/lobby/live-channel-card-skeleton"
+import { LiveChannelCardSkeleton } from "@/components/loading/lobby/live-channel-card-skeleton/live-channel-card-skeleton"
 
 export const InfiniteScrollWrapper = styled(InfiniteScroll)`
   flex: 1 0 auto;

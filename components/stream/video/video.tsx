@@ -5,7 +5,7 @@ import { useCacheLayout } from "@/store/persistent/layout"
 import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
-import SpinnerLoading from "@/components/loading/spinner-loading"
+import SpinnerLoading from "@/components/loading/spinner-loading/spinner-loading"
 import styles from "@/styles/components/stream/video/video.module.scss"
 
 interface ChannelVideoProps {
