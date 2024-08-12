@@ -2,30 +2,31 @@
 
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button/button"
-import { Input, type InputProps } from "@/components/ui/input/input"
+import { type InputProps } from "@/components/ui/input/input"
+import {
+  InputWrapper as Input,
+  Layout,
+  ShowPasswordButton,
+} from "@/components/forms/password-input/style"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/forms/password-input.module.scss"
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false)
 
     return (
-      <div className={styles["layout"]}>
+      <Layout>
         <Input
           type={showPassword ? "text" : "password"}
-          className={cn(styles["password-input"], className)}
+          className={className}
           ref={ref}
           {...props}
         />
 
-        <Button
+        <ShowPasswordButton
           type="button"
           $variant="ghost"
           $size="small"
-          className={styles["icon"]}
           onClick={() => setShowPassword((prev) => !prev)}
           disabled={props.value === ""}
         >
@@ -35,8 +36,8 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
             <Icons.view aria-hidden="true" />
           )}
           <span>{showPassword ? "Hide password" : "Show password"}</span>
-        </Button>
-      </div>
+        </ShowPasswordButton>
+      </Layout>
     )
   }
 )

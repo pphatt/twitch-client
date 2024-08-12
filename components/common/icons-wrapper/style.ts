@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Icons = styled.div`
+export const IconsWrap = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;

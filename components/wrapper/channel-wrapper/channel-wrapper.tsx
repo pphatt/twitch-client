@@ -5,7 +5,10 @@ import { useCacheLayout } from "@/store/persistent/layout"
 
 import type { LiveChannelDataI } from "@/config/data"
 import { cn } from "@/lib/utils"
-import styles from "@/styles/components/wrapper/channel-wrapper.module.scss"
+import {
+  ChannelRootContainer,
+  ChannelRootWrapper,
+} from "@/components/wrapper/channel-wrapper/style"
 
 interface ChannelWrapperProps {
   channel?: LiveChannelDataI
@@ -19,15 +22,15 @@ export default function ChannelWrapper({
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   return (
-    <div
-      className={cn(styles["channel-root-wrapper"], "channel-root", {
+    <ChannelRootWrapper
+      className={cn("channel-root", {
         "channel-root--watch-chat": !isRightColumnClosedByUserAction,
       })}
       style={{
         backgroundColor: channel?.themeColor,
       }}
     >
-      <div className={styles["channel-root-container"]}>{children}</div>
-    </div>
+      <ChannelRootContainer>{children}</ChannelRootContainer>
+    </ChannelRootWrapper>
   )
 }

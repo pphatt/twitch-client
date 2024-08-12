@@ -3,8 +3,8 @@
 import * as React from "react"
 
 import { Tabs } from "@/components/ui/tabs/tabs"
-import LogInForm from "@/components/forms/login-form"
-import SignUpForm from "@/components/forms/signup-form"
+import LogInForm from "@/components/forms/login-form/login-form"
+import SignUpForm from "@/components/forms/signup-form/signup-form"
 import {
   AuthFormLayout,
   FormLayoutContainer,

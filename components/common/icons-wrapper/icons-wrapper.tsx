@@ -1,9 +1,9 @@
 import * as React from "react"
 
 import {
-  Icons,
   IconsContainer,
   IconsOverlay,
+  IconsWrap,
 } from "@/components/common/icons-wrapper/style"
 
 interface IconsWrapperProps {
@@ -16,10 +16,10 @@ export default function IconsWrapper({
   side = "right",
 }: IconsWrapperProps) {
   return (
-    <Icons data-side={side}>
+    <IconsWrap data-side={side}>
       <IconsContainer>
         <IconsOverlay>{children}</IconsOverlay>
       </IconsContainer>
-    </Icons>
+    </IconsWrap>
   )
 }
