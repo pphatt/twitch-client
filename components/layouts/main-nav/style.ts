@@ -1,4 +1,10 @@
-.main-nav-wrapper {
+import Link from "next/link"
+import styled from "styled-components"
+
+import { Button } from "@/components/ui/button/button"
+import { DropdownMenuContent } from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
+
+export const MainNavWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
@@ -7,9 +13,9 @@
   flex-shrink: 2;
 
   width: 100%;
-}
+`
 
-.home-link {
+export const HomeLink = styled(Link)`
   display: inline-flex;
 
   padding: 10px;
@@ -20,17 +26,17 @@
     width: 60px;
     height: 40px;
   }
-}
+`
 
-.main-nav-items {
+export const MainNavItems = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 
   height: 100%;
-}
+`
 
-.item-wrapper {
+export const ItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -43,16 +49,16 @@
     padding-left: 20px;
     padding-right: 20px;
   }
-}
+`
 
-.item-container {
+export const ItemContainer = styled.div`
   display: flex;
   align-self: center;
 
   height: 100%;
-}
+`
 
-.item-link {
+export const ItemLink = styled(Link)`
   display: flex;
   align-items: center;
 
@@ -69,22 +75,22 @@
   &:hover {
     color: rgb(255 103 64);
   }
-}
+`
 
-.item-text-wrapper {
+export const ItemTextWrapper = styled.div`
   display: none;
   flex-direction: column;
 
   @media screen and (min-width: 768px) {
     display: flex;
   }
-}
+`
 
-.item-text {
+export const ItemText = styled.div`
   display: flex;
-}
+`
 
-.text {
+export const Text = styled.p`
   height: 100%;
 
   font-size: 0.8rem;
@@ -94,9 +100,9 @@
   @media screen and (min-width: 1440px) {
     font-size: 1.2rem;
   }
-}
+`
 
-.option-items {
+export const OptionItems = styled.div`
   display: flex;
   align-items: center;
 
@@ -104,42 +110,42 @@
 
   padding-left: 10px;
   padding-right: 10px;
-}
+`
 
-.option-items-trigger {
-  color: hsl(var(--foreground)) !important;
-  background-color: transparent !important;
+export const OptionItemsTrigger = styled(Button)`
+  color: hsl(var(--foreground));
+  background-color: transparent;
 
-  width: 30px !important;
-  height: 30px !important;
+  width: 30px;
+  height: 30px;
 
-  border-radius: 4px !important;
+  border-radius: 4px;
 
-  padding: 0 !important;
+  padding: 0;
 
   user-select: none;
 
   &:hover {
-    color: hsl(var(--foreground)) !important;
-    background-color: rgb(71 79 84) !important;
+    color: hsl(var(--foreground));
+    background-color: rgb(71 79 84);
   }
 
   &:focus-visible {
     outline: 2px solid transparent;
     outline-offset: 2px;
 
-    box-shadow: none !important;
+    box-shadow: none;
   }
-}
+`
 
-.svg-wrapper {
+export const SVGWrapper = styled.div`
   width: 20px;
   height: 20px;
 
   pointer-events: none;
-}
+`
 
-.svg-container {
+export const SVGContainer = styled.div`
   display: inline-flex;
   align-items: center;
 
@@ -152,12 +158,12 @@
     height: 100%;
     width: 100%;
   }
-}
+`
 
-.dropdown-menu {
+export const DropdownMenuContentWrapper = styled(DropdownMenuContent)`
   width: 200px;
-}
+`
 
-.dropdown-menu-wrapper {
+export const DropdownMenuWrapper = styled.div`
   padding: 10px;
-}
+`

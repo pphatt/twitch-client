@@ -1,10 +1,7 @@
 import * as React from "react"
-import Link from "next/link"
 import type { MainNavItem, SupportNavItem } from "@/types"
 
-import { Button } from "@/components/ui/button/button"
 import {
-  DropdownMenuContent,
   DropdownMenuItemContainer,
   DropdownMenuItemLink,
   DropdownMenuItemTitle,
@@ -17,8 +14,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu/dropdown-menu"
 import { Icons } from "@/components/icons"
+import {
+  DropdownMenuContentWrapper as DropdownMenuContent,
+  DropdownMenuWrapper,
+  HomeLink,
+  ItemContainer,
+  ItemLink,
+  ItemText,
+  ItemTextWrapper,
+  ItemWrapper,
+  MainNavItems,
+  MainNavWrapper,
+  OptionItems,
+  OptionItemsTrigger,
+  SVGContainer,
+  SVGWrapper,
+  Text,
+} from "@/components/layouts/main-nav/style"
 import SimpleBar from "@/components/simplebar"
-import styles from "@/styles/components/layouts/main-nav.module.scss"
 
 interface MainNavProps {
   items: MainNavItem[]
@@ -27,51 +40,49 @@ interface MainNavProps {
 
 export function MainNav({ items, supportItem }: MainNavProps) {
   return (
-    <div className={styles["main-nav-wrapper"]}>
-      <Link href={"/"} className={styles["home-link"]}>
+    <MainNavWrapper>
+      <HomeLink href={"/"}>
         <Icons.logo />
-      </Link>
-      <div className={styles["main-nav-items"]}>
+      </HomeLink>
+
+      <MainNavItems>
         {items.map(({ title, slug }, index) => (
-          <div className={styles["item-wrapper"]} key={index}>
-            <div className={styles["item-container"]}>
-              <Link href={`${slug}`} className={styles["item-link"]}>
+          <ItemWrapper key={index}>
+            <ItemContainer>
+              <ItemLink href={`${slug}`}>
                 <div>
-                  <div className={styles["item-text-wrapper"]}>
-                    <div className={styles["item-text"]}>
-                      <p className={styles["text"]}>{title}</p>
-                    </div>
-                  </div>
+                  <ItemTextWrapper>
+                    <ItemText>
+                      <Text>{title}</Text>
+                    </ItemText>
+                  </ItemTextWrapper>
                 </div>
-              </Link>
-            </div>
-          </div>
+              </ItemLink>
+            </ItemContainer>
+          </ItemWrapper>
         ))}
-      </div>
-      <div className={styles["option-items"]}>
+      </MainNavItems>
+
+      <OptionItems>
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
-            <Button className={styles["option-items-trigger"]}>
-              <div className={styles["svg-wrapper"]}>
-                <div className={styles["svg-container"]}>
+            <OptionItemsTrigger>
+              <SVGWrapper>
+                <SVGContainer>
                   <Icons.ellipsisVertical />
-                </div>
-              </div>
-            </Button>
+                </SVGContainer>
+              </SVGWrapper>
+            </OptionItemsTrigger>
           </DropdownMenuTrigger>
 
-          <DropdownMenuContent
-            align={"start"}
-            className={styles["dropdown-menu"]}
-            asChild
-          >
+          <DropdownMenuContent align={"start"} asChild>
             <SimpleBar
               forceVisible={"y"}
               simpleContentWrapperStyle={{
                 paddingBottom: "0",
               }}
             >
-              <div className={styles["dropdown-menu-wrapper"]}>
+              <DropdownMenuWrapper>
                 {supportItem.map(({ title, items }, index) => (
                   <div key={index}>
                     <DropdownMenuLabel>{title}</DropdownMenuLabel>
@@ -93,11 +104,11 @@ export function MainNav({ items, supportItem }: MainNavProps) {
                     )}
                   </div>
                 ))}
-              </div>
+              </DropdownMenuWrapper>
             </SimpleBar>
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-    </div>
+      </OptionItems>
+    </MainNavWrapper>
   )
 }

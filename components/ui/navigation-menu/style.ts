@@ -2,10 +2,7 @@ import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { ChevronDown } from "lucide-react"
 import styled from "styled-components"
 
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const NavigationMenuPrimitiveRoot = styled(NavigationMenuPrimitive.Root)`
   position: relative;

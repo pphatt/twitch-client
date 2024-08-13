@@ -1,3 +1,7 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide mixins.
+// -----------------------------------------------------------------------------
+
 import { keyframes } from "styled-components"
 
 export const enterKeyframes = keyframes`

@@ -2,7 +2,7 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDown } from "lucide-react"
 import styled, { keyframes } from "styled-components"
 
-import { enterKeyframes } from "@/styles/abstract/style-animation"
+import { enterKeyframes } from "@/styles/abstract/_mixins"
 
 const expandUpKeyframe = keyframes`
   0% {

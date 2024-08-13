@@ -1,10 +1,7 @@
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import styled from "styled-components"
 
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const DropdownMenuPrimitiveSubTrigger = styled(
   DropdownMenuPrimitive.SubTrigger

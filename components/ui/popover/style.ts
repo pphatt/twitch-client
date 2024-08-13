@@ -1,7 +1,7 @@
 import * as PopoverPrimitive from "@radix-ui/react-popover"
 import styled from "styled-components"
 
-import { enterKeyframes } from "@/styles/abstract/style-animation"
+import { enterKeyframes } from "@/styles/abstract/_mixins"
 
 export const PopoverPrimitiveContent = styled(PopoverPrimitive.Content)`
   color: hsl(var(--popover-foreground));

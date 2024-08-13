@@ -1,12 +1,15 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 
-import { SiteHeader } from "@/components/layouts/site-header"
+import { SiteHeader } from "@/components/layouts/site-header/site-header"
 import styles from "@/styles/application/lobby/layout.module.scss"
 
-const SideNavBar = dynamic(() => import("@/components/layouts/side-nav-bar"), {
-  ssr: false,
-})
+const SideNavBar = dynamic(
+  () => import("@/components/layouts/side-nav-bar/side-nav-bar"),
+  {
+    ssr: false,
+  }
+)
 
 export default function LobbyLayout({
   children,

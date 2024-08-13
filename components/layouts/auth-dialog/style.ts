@@ -1,4 +1,8 @@
-.login-modal-wrapper {
+import styled from "styled-components"
+
+import { DialogContent } from "@/components/ui/dialog/dialog"
+
+export const LoginModalWrapper = styled(DialogContent)`
   display: flex !important;
   justify-content: center;
   align-items: center;
@@ -26,9 +30,9 @@
   @media (min-width: 1280px) {
     width: 1060px !important;
   }
-}
+`
 
-.login-modal-container {
+export const LoginModalContainer = styled.div`
   position: relative;
 
   display: flex;
@@ -48,9 +52,9 @@
   @media (min-width: 1280px) {
     width: 440px;
   }
-}
+`
 
-.auth-text-wrapper {
+export const AuthTextWrapper = styled.div`
   position: relative;
 
   display: none;
@@ -70,9 +74,9 @@
   @media (min-width: 1024px) {
     display: flex;
   }
-}
+`
 
-.auth-text-container {
+export const AuthTextContainer = styled.div`
   position: relative;
 
   width: 100%;
@@ -81,9 +85,9 @@
   z-index: 1;
 
   transform: translateY(-3.5rem);
-}
+`
 
-.auth-text-overlay {
+export const AuthTextOverlay = styled.div`
   position: absolute;
   top: 0;
   right: 0;
@@ -101,17 +105,17 @@
   transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
   transition-duration: 0.5s;
-}
+`
 
-.text-default {
+export const TextDefault = styled.span`
   font-size: 32px;
-}
+`
 
-.text-highlight {
+export const TextHighlight = styled.span`
   color: hsl(var(--color-twitch-orange-11));
-}
+`
 
-.text-sm {
+export const TextSmall = styled.span`
   font-size: 1.25rem;
   line-height: 1.75rem;
-}
+`

@@ -1,10 +1,7 @@
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 import styled from "styled-components"
 
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const TooltipPrimitiveContent = styled(TooltipPrimitive.Content)`
   color: inherit;

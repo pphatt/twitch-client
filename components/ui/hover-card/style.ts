@@ -1,10 +1,7 @@
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 import styled from "styled-components"
 
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const HoverCardPrimitiveContentWrapper = styled(
   HoverCardPrimitive.Content

@@ -5,13 +5,25 @@ import { useCacheLayout } from "@/store/persistent/layout"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Button } from "@/components/ui/button/button"
 import FollowedChannelSideBar from "@/components/common/channel-section-side-bar/followed-channel-side-bar"
 import RecommendLiveChanelSideBar from "@/components/common/channel-section-side-bar/recommend-live-chanel-side-bar"
 import { Hint } from "@/components/common/hint/hint"
-import { Icons } from "@/components/icons"
+import {
+  CollapseToggle,
+  CollapseToggleContainer,
+  ContentLayout,
+  IconsCollapse,
+  IconsExpandArrowFromLine,
+  SideNavbar,
+  SideNavbarContainer,
+  SideNavbarContents,
+  SideNavbarTitle,
+  SideNavbarWrapper,
+  SVGContainer,
+  SVGWrapper,
+} from "@/components/layouts/side-nav-bar/style"
+import styles from "@/components/layouts/side-nav-bar/style.module.scss"
 import SimpleBar from "@/components/simplebar"
-import styles from "@/styles/components/layouts/side-nav-bar.module.scss"
 
 export default function SideNavBar() {
   const { isSocialColumnOpen, setIsSocialColumnOpen } = useCacheLayout()
@@ -25,18 +37,18 @@ export default function SideNavBar() {
   }, [isExpand, isScreenWidthAbove1200])
 
   return (
-    <div
-      className={cn(styles["side-navbar"], {
+    <SideNavbar
+      className={cn({
         [`${styles["side-nav--expand"]}`]: isExpand && isScreenWidthAbove1200,
         [`${styles["side-nav--collapse"]}`]:
           !isExpand || !isScreenWidthAbove1200,
       })}
     >
-      <div className={styles["side-navbar-wrapper"]}>
-        <div className={styles["side-navbar-container"]}>
+      <SideNavbarWrapper>
+        <SideNavbarContainer>
           <SimpleBar forceVisible={"y"} className={styles["scroll-area"]}>
-            <div
-              className={cn(styles["content-layout"], {
+            <ContentLayout
+              className={cn({
                 [`${styles["side-nav--expand"]}`]:
                   isExpand && isScreenWidthAbove1200,
                 [`${styles["side-nav--collapse"]}`]:
@@ -57,32 +69,27 @@ export default function SideNavBar() {
                       !isExpand || !isScreenWidthAbove1200,
                   })}
                 >
-                  <div className={styles["collapse-toggle-container"]}>
-                    <Button
-                      className={styles["collapse-toggle"]}
-                      onClick={setIsSocialColumnOpen}
-                    >
-                      <div className={styles["svg-wrapper"]}>
-                        <div className={styles["svg-container"]}>
+                  <CollapseToggleContainer>
+                    <CollapseToggle onClick={setIsSocialColumnOpen}>
+                      <SVGWrapper>
+                        <SVGContainer>
                           {isExpand && isScreenWidthAbove1200 ? (
-                            <Icons.collapse className={styles["svg"]} />
+                            <IconsCollapse />
                           ) : (
-                            <Icons.expandArrowFromLine
-                              className={styles["svg"]}
-                            />
+                            <IconsExpandArrowFromLine />
                           )}
-                        </div>
-                      </div>
-                    </Button>
-                  </div>
+                        </SVGContainer>
+                      </SVGWrapper>
+                    </CollapseToggle>
+                  </CollapseToggleContainer>
                 </div>
               </Hint>
 
-              <div className={styles["side-navbar-contents"]}>
+              <SideNavbarContents>
                 {isExpand && isScreenWidthAbove1200 && (
-                  <div className={styles["side-navbar-title"]}>
+                  <SideNavbarTitle>
                     <p>For You</p>
-                  </div>
+                  </SideNavbarTitle>
                 )}
 
                 <FollowedChannelSideBar
@@ -94,11 +101,11 @@ export default function SideNavBar() {
                   isExpand={isExpand}
                   isScreenWidthAbove1200={isScreenWidthAbove1200}
                 />
-              </div>
-            </div>
+              </SideNavbarContents>
+            </ContentLayout>
           </SimpleBar>
-        </div>
-      </div>
-    </div>
+        </SideNavbarContainer>
+      </SideNavbarWrapper>
+    </SideNavbar>
   )
 }

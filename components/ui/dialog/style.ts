@@ -6,10 +6,7 @@ import type {
   DialogType,
   TweakOptions,
 } from "@/components/ui/dialog/dialog"
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const DialogPrimitiveOverlay = styled(DialogPrimitive.Overlay)`
   position: fixed;

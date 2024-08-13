@@ -5,7 +5,7 @@ import { FormItem, FormLabel, FormMessage } from "@/components/ui/form/form"
 import { Input } from "@/components/ui/input/input"
 import { PasswordInput } from "@/components/forms/password-input/password-input"
 import { Icons } from "@/components/icons"
-import { spinKeyframes } from "@/styles/abstract/style-animation"
+import { spinKeyframes } from "@/styles/abstract/_mixins"
 
 export const FormLayoutContainer = styled.form`
   display: flex;

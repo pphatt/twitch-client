@@ -1,10 +1,7 @@
 import * as Tooltip from "@radix-ui/react-tooltip"
 import styled from "styled-components"
 
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const TooltipContent = styled(Tooltip.Content)`
   display: inline-block;

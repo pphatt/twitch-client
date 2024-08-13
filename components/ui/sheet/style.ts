@@ -2,10 +2,7 @@ import * as SheetPrimitive from "@radix-ui/react-dialog"
 import styled, { css } from "styled-components"
 
 import { SheetContentProps } from "@/components/ui/sheet/sheet"
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const SheetPrimitiveOverlay = styled(SheetPrimitive.Overlay)`
   position: fixed;

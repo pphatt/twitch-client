@@ -1,10 +1,7 @@
 import * as SelectPrimitive from "@radix-ui/react-select"
 import styled from "styled-components"
 
-import {
-  enterKeyframes,
-  exitKeyframes,
-} from "@/styles/abstract/style-animation"
+import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const SelectPrimitiveTrigger = styled(SelectPrimitive.Trigger)`
   display: flex;
