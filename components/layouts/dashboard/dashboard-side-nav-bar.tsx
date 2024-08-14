@@ -6,7 +6,7 @@ import type { MainNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import {
   DashboardItem,

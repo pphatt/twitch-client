@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import FollowedChannelSideBar from "@/components/common/channel-section-side-bar/followed-channel-side-bar"
 import RecommendLiveChanelSideBar from "@/components/common/channel-section-side-bar/recommend-live-chanel-side-bar"
-import { Hint } from "@/components/common/hint/hint"
+import { Hint } from "@/components/common/hint"
 import {
   CollapseToggle,
   CollapseToggleContainer,

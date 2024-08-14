@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { ButtonLayout } from "@/components/stream-manager/quick-action-options/button-layout"
 import styles from "@/styles/components/stream-manager/quick-action-options/edit-stream-info.module.scss"

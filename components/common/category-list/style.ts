@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components"
 
-import { CategoryCard } from "@/components/common/category-card/category-card"
+import { CategoryCard } from "@/components/common/category-card"
 import InfiniteScroll from "@/components/infinite-scroll"
-import { CategoryCardSkeleton } from "@/components/loading/lobby/category-card-skeleton/category-card-skeleton"
+import { CategoryCardSkeleton } from "@/components/loading/lobby/category-card-skeleton"
 
 export const InfiniteScrollWrapper = styled(InfiniteScroll)`
   flex: 1 0 auto;

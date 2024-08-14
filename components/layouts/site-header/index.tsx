@@ -6,12 +6,12 @@ import { siteConfig, supportSite } from "@/config/site"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
-import { Hint } from "@/components/common/hint/hint"
-import { SearchCommandMenu } from "@/components/common/search-command-menu/search-command-menu"
+} from "@/components/ui/dropdown-menu"
+import { Hint } from "@/components/common/hint"
+import { SearchCommandMenu } from "@/components/common/search-command-menu"
 import { Icons } from "@/components/icons"
-import AuthDialog from "@/components/layouts/auth-dialog/auth-dialog"
-import { MainNav } from "@/components/layouts/main-nav/main-nav"
+import AuthDialog from "@/components/layouts/auth-dialog"
+import { MainNav } from "@/components/layouts/main-nav"
 import {
   AccountDetails,
   AccountImage,

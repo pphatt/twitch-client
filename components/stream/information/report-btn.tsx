@@ -1,11 +1,11 @@
 import * as React from "react"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/information/report-btn.module.scss"
 

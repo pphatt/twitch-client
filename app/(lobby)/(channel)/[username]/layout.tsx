@@ -1,7 +1,7 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 
-import SharedLayout from "@/components/common/shared-layout/shared-layout"
+import SharedLayout from "@/components/common/shared-layout"
 
 const ChatWrapper = dynamic(
   () => import("@/components/stream/chat/chat-wrapper"),

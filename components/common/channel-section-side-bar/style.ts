@@ -1,8 +1,8 @@
 import Link from "next/link"
 import styled, { css } from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
-import { TooltipContent } from "@/components/ui/tooltip/tooltip"
+import { Button } from "@/components/ui/button"
+import { TooltipContent } from "@/components/ui/tooltip"
 
 /*
  * Share between component:

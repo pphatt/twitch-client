@@ -8,11 +8,11 @@ import {
   DropdownMenuItemWrapper,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
+} from "@/components/ui/dropdown-menu-fork"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import {
   DropdownMenuContentWrapper as DropdownMenuContent,

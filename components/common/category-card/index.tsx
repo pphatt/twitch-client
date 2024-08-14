@@ -6,7 +6,7 @@ import type { ICategoryData } from "@/types"
 
 import { formatViewCount } from "@/lib/utils"
 import * as Primitive from "@/components/common/category-card/style"
-import { Tags } from "@/components/common/tag/tag"
+import { Tags } from "@/components/common/tag"
 
 interface CategoryCardProps extends React.HTMLAttributes<HTMLDivElement> {
   category: ICategoryData

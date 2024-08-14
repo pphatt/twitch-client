@@ -5,8 +5,8 @@ import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { Button } from "@/components/ui/button/button"
-import { Input, type InputProps } from "@/components/ui/input/input"
+import { Button } from "@/components/ui/button"
+import { Index, type InputProps } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/application/dashboard/settings/stream/_components/stream-key-card.module.scss"
 
@@ -34,7 +34,7 @@ export const StreamKeyCard = React.forwardRef<
   return (
     <div className={styles["block-content-wrapper"]}>
       <div className={styles["block-content-wrapper"]}>
-        <Input
+        <Index
           ref={ref}
           type={showKey ? "text" : "password"}
           $variant={"dashboard"}

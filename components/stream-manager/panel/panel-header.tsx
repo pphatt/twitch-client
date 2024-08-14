@@ -10,13 +10,13 @@ import {
 import type { MosaicKey } from "react-mosaic-component/lib/types"
 
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream-manager/panel/panel-header.module.scss"
 

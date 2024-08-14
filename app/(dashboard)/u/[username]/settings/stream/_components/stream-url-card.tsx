@@ -4,8 +4,8 @@ import * as React from "react"
 import { toast } from "sonner"
 
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { Button } from "@/components/ui/button/button"
-import { Input } from "@/components/ui/input/input"
+import { Button } from "@/components/ui/button"
+import { Index } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/application/dashboard/settings/stream/_components/stream-url-card.module.scss"
 
@@ -27,7 +27,7 @@ export default function StreamUrlCard({ url }: StreamUrlCardProps) {
 
   return (
     <div className={styles["block-content-wrapper"]}>
-      <Input
+      <Index
         type="text"
         $variant={"dashboard"}
         $size={"dashboard"}

@@ -10,15 +10,15 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
-import { Skeleton } from "@/components/ui/skeleton/skeleton"
-import { Hint } from "@/components/common/hint/hint"
+} from "@/components/ui/dropdown-menu"
+import { Skeleton } from "@/components/ui/skeleton"
+import { Hint } from "@/components/common/hint"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/components/layouts/dashboard/dashboard-site-header.module.scss"
 import HideNavigatorBtn from "@/app/(dashboard)/_components/hide-navigator-btn"
 
 import { Icons } from "../../icons"
-import { Button } from "../../ui/button/button"
+import { Button } from "../../ui/button"
 
 const DashboardTitle = dynamic(
   () => import("@/components/layouts/dashboard/dashboard-title"),

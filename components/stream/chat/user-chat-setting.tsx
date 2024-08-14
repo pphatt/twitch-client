@@ -5,7 +5,7 @@ import {
   DropdownMenuHeader,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
+} from "@/components/ui/dropdown-menu-fork"
 import SimpleBar from "@/components/simplebar"
 import HideChat from "@/components/stream/chat/user-chat-setting-option/hide-chat"
 import IdentityPreviewBtn from "@/components/stream/chat/user-chat-setting-option/identity-preview-btn"

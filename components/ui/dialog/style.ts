@@ -5,7 +5,7 @@ import type {
   DialogPosition,
   DialogType,
   TweakOptions,
-} from "@/components/ui/dialog/dialog"
+} from "@/components/ui/dialog/index"
 import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const DialogPrimitiveOverlay = styled(DialogPrimitive.Overlay)`

@@ -3,13 +3,13 @@ import Link from "next/link"
 import { SHARE_LINK } from "@/constant"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
-import { Hint } from "@/components/common/hint/hint"
+} from "@/components/ui/dropdown-menu"
+import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/information/share-btn.module.scss"
 

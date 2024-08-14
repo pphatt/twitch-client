@@ -2,7 +2,7 @@ import type * as React from "react"
 import type Link from "next/link"
 import styled from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import type { StyledButtonProps } from "@/components/ui/button/style"
 
 export const PaginationWrapper = styled.nav`

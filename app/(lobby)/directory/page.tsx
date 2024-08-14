@@ -2,8 +2,8 @@ import * as React from "react"
 
 import { categoryData } from "@/config/data"
 import { sleep } from "@/lib/utils"
-import { CategoryList } from "@/components/common/category-list/category-list"
-import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder/category-placeholder"
+import { CategoryList } from "@/components/common/category-list"
+import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder"
 
 export default async function DirectoryPage() {
   const categories = categoryData.categories

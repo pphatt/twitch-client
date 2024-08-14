@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { type InputProps } from "@/components/ui/input/input"
+import { type InputProps } from "@/components/ui/input"
 import {
   InputWrapper as Input,
   Layout,

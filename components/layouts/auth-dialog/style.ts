@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import { DialogContent } from "@/components/ui/dialog/dialog"
+import { DialogContent } from "@/components/ui/dialog"
 
 export const LoginModalWrapper = styled(DialogContent)`
   display: flex !important;

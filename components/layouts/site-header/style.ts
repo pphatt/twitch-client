@@ -1,11 +1,11 @@
 import Link from "next/link"
 import styled from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenuContent,
   DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import SimpleBar from "@/components/simplebar"
 
 export const SiteHeaderWrapper = styled.div`

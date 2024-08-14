@@ -12,7 +12,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command/command"
+} from "@/components/ui/command"
 import styles from "@/styles/components/search/search-tags.module.scss"
 
 interface SearchTagsProps {

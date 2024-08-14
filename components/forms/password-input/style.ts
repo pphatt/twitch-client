@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
-import { Input } from "@/components/ui/input/input"
+import { Button } from "@/components/ui/button"
+import { Index } from "@/components/ui/input"
 
 export const Layout = styled.div`
   position: relative;
 `
 
-export const InputWrapper = styled(Input)`
+export const InputWrapper = styled(Index)`
   padding-right: 40px;
 `
 

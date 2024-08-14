@@ -6,7 +6,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command/command"
+} from "@/components/ui/command"
 
 const CommandFocus = css`
   box-shadow:

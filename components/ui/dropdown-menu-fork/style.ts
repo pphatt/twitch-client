@@ -1,7 +1,7 @@
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import styled, { css } from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const DropdownMenuPrimitiveContent = styled(

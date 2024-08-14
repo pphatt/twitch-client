@@ -4,8 +4,8 @@ import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button/button"
-import { Hint } from "@/components/common/hint/hint"
+import { Button } from "@/components/ui/button"
+import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/stream/chat/chat-toggle.module.scss"
 

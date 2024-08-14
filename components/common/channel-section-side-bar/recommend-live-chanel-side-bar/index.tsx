@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip/tooltip"
+} from "@/components/ui/tooltip"
 import * as Primitive from "@/components/common/channel-section-side-bar/style"
 import { Icons } from "@/components/icons"
 

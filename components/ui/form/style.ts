@@ -1,13 +1,13 @@
 import type { FieldError } from "react-hook-form"
 import styled from "styled-components"
 
-import { Label } from "@/components/ui/label/label"
+import { Index } from "@/components/ui/label"
 
 export const FormItemWrapper = styled.div`
   margin-top: 0.5rem;
 `
 
-export const FormLabelWrapper = styled(Label).attrs<{
+export const FormLabelWrapper = styled(Index).attrs<{
   $error: FieldError | undefined
 }>({})`
   color: ${(props) => props.$error && "hsl(0 62.8% 30.6%)"};

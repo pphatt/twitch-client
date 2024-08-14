@@ -5,15 +5,15 @@ import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Separator } from "@/components/ui/separator/separator"
-import { ChannelCard } from "@/components/common/channel-card/channel-card"
+import { Separator } from "@/components/ui/separator"
+import { ChannelCard } from "@/components/common/channel-card"
 import {
   ContentListContainer,
   ContentListWrapper,
   ContentSection,
   ContentSectionHeader,
   ContentSectionHeaderText,
-} from "@/components/share-styled/directory-content-layout/styled"
+} from "@/components/share-styled/directory-content-layout/style"
 
 interface RecommendLiveChannelsProps {
   channels: IRecommendedLiveChannel[]

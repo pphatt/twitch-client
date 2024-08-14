@@ -1,7 +1,7 @@
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
 import styled from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const AlertDialogPrimitiveOverlay = styled(AlertDialogPrimitive.Overlay)`

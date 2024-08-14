@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import type { LiveChannelDataI } from "@/config/data"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import ReportBtn from "@/components/stream/information/report-btn"
 import ShareStreamBtn from "@/components/stream/information/share-btn"

@@ -4,7 +4,7 @@ import type { IRecommendedLiveChannel } from "@/types"
 
 import { formatViewCount } from "@/lib/utils"
 import * as Primitive from "@/components/common/channel-card/style"
-import { Tags } from "@/components/common/tag/tag"
+import { Tags } from "@/components/common/tag"
 
 interface ChannelCardProps extends React.HTMLAttributes<HTMLDivElement> {
   channel: IRecommendedLiveChannel

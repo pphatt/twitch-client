@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useChatObserver } from "@/store/state/channel-chat"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import styles from "@/styles/components/stream/chat/chat-hide.module.scss"
 
 export default function ChatHide() {

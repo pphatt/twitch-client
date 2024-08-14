@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Dialog, DialogTrigger } from "@/components/ui/dialog/dialog"
+import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import {
   AuthTextContainer,
   AuthTextOverlay,
@@ -13,7 +13,7 @@ import {
   TextHighlight,
   TextSmall,
 } from "@/components/layouts/auth-dialog/style"
-import AuthTabControl from "@/components/layouts/auth-tab-control/auth-tab-control"
+import AuthTabControl from "@/components/layouts/auth-tab-control"
 
 interface AuthDialogProps {
   children: React.ReactNode

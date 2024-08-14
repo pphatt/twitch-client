@@ -5,7 +5,7 @@ import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 
 import { HoverCardPrimitiveContentWrapper } from "@/components/ui/hover-card/style"
 
-const HoverCard = HoverCardPrimitive.Root
+const Index = HoverCardPrimitive.Root
 
 const HoverCardTrigger = HoverCardPrimitive.Trigger
 
@@ -22,4 +22,4 @@ const HoverCardContent = React.forwardRef<
 ))
 HoverCardContent.displayName = HoverCardPrimitive.Content.displayName
 
-export { HoverCard, HoverCardTrigger, HoverCardContent }
+export { Index, HoverCardTrigger, HoverCardContent }

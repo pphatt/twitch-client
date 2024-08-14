@@ -1,12 +1,7 @@
 import styled from "styled-components"
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card/card"
-import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs/tabs"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const AuthFormLayout = styled(Card)`
   display: flex;

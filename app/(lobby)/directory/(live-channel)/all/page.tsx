@@ -2,8 +2,8 @@ import * as React from "react"
 
 import { liveChannels } from "@/config/data"
 import { sleep } from "@/lib/utils"
-import LiveChannelsList from "@/components/common/live-channels-list/live-channels-list"
-import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder/live-channel-placeholder"
+import LiveChannelsList from "@/components/common/live-channels-list"
+import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
 
 export default async function LiveChannelsPage() {
   const channels = liveChannels.channels

@@ -1,7 +1,7 @@
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import styled, { css } from "styled-components"
 
-import { SheetContentProps } from "@/components/ui/sheet/sheet"
+import { SheetContentProps } from "@/components/ui/sheet/index"
 import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 export const SheetPrimitiveOverlay = styled(SheetPrimitive.Overlay)`

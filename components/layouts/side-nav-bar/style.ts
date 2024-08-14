@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 
 export const SideNavbar = styled.div`

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
 
-import type { InputProps } from "@/components/ui/input/input"
+import type { InputProps } from "@/components/ui/input/index"
 
 const InputDefaultVariant = css`
   background-color: hsl(var(--background));

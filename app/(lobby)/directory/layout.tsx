@@ -1,8 +1,8 @@
 import * as React from "react"
 
 import { directorySite } from "@/config/site"
-import DirectorySideNav from "@/components/common/directory-side-nav/directory-side-nav"
-import SharedLayout from "@/components/common/shared-layout/shared-layout"
+import DirectorySideNav from "@/components/common/directory-side-nav"
+import SharedLayout from "@/components/common/shared-layout"
 import styles from "@/styles/application/directory/layout.module.scss"
 
 export default function DirectLayout({

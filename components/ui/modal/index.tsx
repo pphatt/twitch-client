@@ -6,7 +6,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog/dialog"
+} from "@/components/ui/dialog"
 
 interface ModalProps {
   title: string
@@ -16,7 +16,7 @@ interface ModalProps {
   children?: React.ReactNode
 }
 
-export const Modal: React.FC<ModalProps> = ({
+export const Index: React.FC<ModalProps> = ({
   title,
   description,
   isOpen,

@@ -1,8 +1,8 @@
 import Link from "next/link"
 import styled from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
-import { DropdownMenuContent } from "@/components/ui/dropdown-menu-fork/dropdown-menu-fork"
+import { Button } from "@/components/ui/button"
+import { DropdownMenuContent } from "@/components/ui/dropdown-menu-fork"
 
 export const MainNavWrapper = styled.div`
   display: flex;
@@ -125,7 +125,7 @@ export const OptionItemsTrigger = styled(Button)`
 
   user-select: none;
 
-  &:hover {
+  &:not([disabled]):hover {
     color: hsl(var(--foreground));
     background-color: rgb(71 79 84);
   }

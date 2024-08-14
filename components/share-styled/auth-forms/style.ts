@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components"
 
-import { Button } from "@/components/ui/button/button"
-import { FormItem, FormLabel, FormMessage } from "@/components/ui/form/form"
-import { Input } from "@/components/ui/input/input"
-import { PasswordInput } from "@/components/forms/password-input/password-input"
+import { Button } from "@/components/ui/button"
+import { FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Index } from "@/components/ui/input"
+import { PasswordInput } from "@/components/forms/password-input"
 import { Icons } from "@/components/icons"
 import { spinKeyframes } from "@/styles/abstract/_mixins"
 
@@ -80,7 +80,7 @@ const shareInputCss = css`
   }
 `
 
-export const FormContentInput = styled(Input)`
+export const FormContentInput = styled(Index)`
   ${shareInputCss}
 `
 

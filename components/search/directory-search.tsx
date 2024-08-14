@@ -5,12 +5,12 @@ import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import { SearchTags } from "@/components/search/search-tags"
 import styles from "@/styles/components/search/directory-search.module.scss"

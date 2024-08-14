@@ -10,14 +10,14 @@ import {
 import { toast } from "sonner"
 
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu/dropdown-menu"
-import ToastSuccess from "@/components/custom-toast/toast-success/toast-success"
+} from "@/components/ui/dropdown-menu"
+import ToastSuccess from "@/components/custom-toast/toast-success"
 import { Icons } from "@/components/icons"
 import styles from "@/styles/components/layouts/dashboard/dashboard-stream-layout.module.scss"
 

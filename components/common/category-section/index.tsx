@@ -5,15 +5,15 @@ import Link from "next/link"
 import type { ICategoryData } from "@/types"
 
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Separator } from "@/components/ui/separator/separator"
-import { CategoryCard } from "@/components/common/category-card/category-card"
+import { Separator } from "@/components/ui/separator"
+import { CategoryCard } from "@/components/common/category-card"
 import {
   ContentListContainer,
   ContentListWrapper,
   ContentSection,
   ContentSectionHeader,
   ContentSectionHeaderText,
-} from "@/components/share-styled/directory-content-layout/styled"
+} from "@/components/share-styled/directory-content-layout/style"
 
 interface CategorySectionProps {
   categories: ICategoryData[]

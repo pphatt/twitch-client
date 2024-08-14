@@ -1,7 +1,7 @@
 import * as ToastPrimitives from "@radix-ui/react-toast"
 import styled, { css, keyframes } from "styled-components"
 
-import type { toastVariants } from "@/components/ui/toast/toast"
+import type { toastVariants } from "@/components/ui/toast/default-toast"
 import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
 const SwipeEnd = keyframes`

@@ -4,18 +4,18 @@ import * as React from "react"
 import Link from "next/link"
 import type { IRecommendedLiveChannel } from "@/types"
 
-import { Separator } from "@/components/ui/separator/separator"
+import { Separator } from "@/components/ui/separator"
 import {
   ContentListContainer,
   ContentListWrapper,
 } from "@/components/common/current-live-channels/style"
-import LiveChannelsList from "@/components/common/live-channels-list/live-channels-list"
-import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder/live-channel-placeholder"
+import LiveChannelsList from "@/components/common/live-channels-list"
+import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
 import {
   ContentSection,
   ContentSectionHeader,
   ContentSectionHeaderText,
-} from "@/components/share-styled/directory-content-layout/styled"
+} from "@/components/share-styled/directory-content-layout/style"
 
 interface CurrentLiveChannelsProps {
   channels: IRecommendedLiveChannel[]
