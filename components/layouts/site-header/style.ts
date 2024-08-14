@@ -239,7 +239,7 @@ export const DropdownMenuContentWrapper = styled(DropdownMenuContent)`
   max-height: calc(100vh - 5rem);
   height: 100%;
 
-  padding: 0;
+  padding: 0 !important;
 
   //overflow: auto !important;
 
