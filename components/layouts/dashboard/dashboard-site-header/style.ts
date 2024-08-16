@@ -187,11 +187,11 @@ export const UserImage = styled.img`
 
 export const DropdownMenuContentWrapper = styled(DropdownMenuContent)`
   max-width: 90vw;
-  min-width: 160px;
+  min-width: 160px !important;
   max-height: calc(100vh - 5rem);
   height: 100%;
 
-  padding: 0;
+  padding: 0 !important;
 
   //overflow: auto !important;
 
