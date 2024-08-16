@@ -32,10 +32,8 @@ export const buttonVariantStyled = {
 
     border-radius: calc(0.5rem - 2px);
 
-    &:not([disabled]) {
-      &:hover {
-        background-color: hsl(var(--primary) / 0.9);
-      }
+    &:hover {
+      background-color: hsl(var(--primary) / 0.9);
     }
   `,
   secondary: css`
@@ -44,10 +42,8 @@ export const buttonVariantStyled = {
 
     border-radius: calc(0.5rem - 2px);
 
-    &:not([disabled]) {
-      &:hover {
-        background-color: hsl(var(--secondary) / 0.8);
-      }
+    &:hover {
+      background-color: hsl(var(--secondary) / 0.8);
     }
   `,
   destructive: css`
@@ -56,10 +52,8 @@ export const buttonVariantStyled = {
 
     border-radius: calc(0.5rem - 2px);
 
-    &:not([disabled]) {
-      &:hover {
-        background-color: hsl(var(--destructive) / 0.9);
-      }
+    &:hover {
+      background-color: hsl(var(--destructive) / 0.9);
     }
   `,
   outline: css`
@@ -69,21 +63,17 @@ export const buttonVariantStyled = {
     border-width: 1px;
     border-radius: calc(0.5rem - 2px);
 
-    &:not([disabled]) {
-      &:hover {
-        color: hsl(var(--accent-foreground));
-        background-color: hsl(var(--accent));
-      }
+    &:hover {
+      color: hsl(var(--accent-foreground));
+      background-color: hsl(var(--accent));
     }
   `,
   ghost: css`
     border-radius: calc(0.5rem - 2px);
 
-    &:not([disabled]) {
-      &:hover {
-        color: hsl(var(--accent-foreground));
-        background-color: hsl(var(--accent));
-      }
+    &:hover {
+      color: hsl(var(--accent-foreground));
+      background-color: hsl(var(--accent));
     }
   `,
   link: css`
@@ -119,30 +109,30 @@ export const DefaultStyledButton = styled.button<StyledButtonProps>`
 `
 
 export const StyledButton = styled(DefaultStyledButton)`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 
-  font-weight: 500;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  transition-property: color, background-color, border-color,
-  text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 0.15s;
+    transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
 
-  &[disabled] {
-    opacity: 0.5;
-    pointer-events: none;
-  }
+    &[disabled] {
+        opacity: 0.5;
+        pointer-events: none;
+    }
 
-  &:focus-visible {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+    &:focus-visible {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
 
-    box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring)),
-    0 0 #000;
+        box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring)),
+        0 0 #000;
 `

@@ -6,14 +6,23 @@ import type { MainNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
+import { DashboardItem } from "@/components/layouts/dashboard/dashboard-item-layout/dashboard-item"
+import { DashboardItemGroup } from "@/components/layouts/dashboard/dashboard-item-layout/dashboard-item-group"
 import {
-  DashboardItem,
-  DashboardItemGroup,
-} from "@/components/layouts/dashboard/dashboard-item"
+  CollapseToggle,
+  ContentLayout,
+  ContentWrapper,
+  SideNavBar,
+  SideNavBarContainer,
+  SideNavBarWrapper,
+  SideNavHeader,
+  SideNavHeaderText,
+  SVGContainer,
+  SVGWrapper,
+} from "@/components/layouts/dashboard/dashboard-side-nav-bar/style"
+import styles from "@/components/layouts/dashboard/dashboard-side-nav-bar/style.module.scss"
 import SimpleBar from "@/components/simplebar"
-import styles from "@/styles/components/layouts/dashboard/dashboard-side-nav-bar.module.scss"
 
 interface DashboardSideNavBarProps {
   sites: MainNavItem[]
@@ -33,19 +42,19 @@ export default function DashboardSideNavBar({
   }
 
   return (
-    <div
-      className={cn(styles["side-navbar"], {
+    <SideNavBar
+      className={cn({
         [`${styles["side-nav--expand"]}`]:
           mode === "default" && isScreenWidthAbove1200,
         [`${styles["side-nav--collapse"]}`]:
           !isExpand || !isScreenWidthAbove1200,
       })}
     >
-      <div className={styles["side-navbar-wrapper"]}>
-        <div className={styles["side-navbar-container"]}>
+      <SideNavBarWrapper>
+        <SideNavBarContainer>
           <SimpleBar forceVisible={"y"} className={styles["scroll-area"]}>
-            <div
-              className={cn(styles["content-layout"], {
+            <ContentLayout
+              className={cn({
                 [`${styles["side-nav--expand"]}`]:
                   isExpand && isScreenWidthAbove1200,
                 [`${styles["side-nav--collapse"]}`]:
@@ -53,32 +62,29 @@ export default function DashboardSideNavBar({
               })}
             >
               {isExpand && isScreenWidthAbove1200 && (
-                <div className={styles["side-nav-header"]}>
-                  <h1 className={styles["side-nav-header-text"]}>
-                    Creator Dashboard
-                  </h1>
+                <SideNavHeader>
+                  <SideNavHeaderText>Creator Dashboard</SideNavHeaderText>
 
-                  <Button
+                  <CollapseToggle
                     aria-label="Collapse Left Navigation"
                     title="Collapse Left Navigation"
-                    className={styles["collapse-toggle"]}
                     onClick={() =>
                       mode === "default"
                         ? setMode("compact")
                         : setMode("default")
                     }
                   >
-                    <div className={styles["svg-wrapper"]}>
-                      <div className={styles["svg-container"]}>
+                    <SVGWrapper>
+                      <SVGContainer>
                         <Icons.collapse className={styles["svg"]} />
-                      </div>
-                    </div>
-                  </Button>
-                </div>
+                      </SVGContainer>
+                    </SVGWrapper>
+                  </CollapseToggle>
+                </SideNavHeader>
               )}
 
               {(!isExpand || !isScreenWidthAbove1200) && (
-                <Button
+                <CollapseToggle
                   aria-label="Expand Left Navigation"
                   title="Expand Left Navigation"
                   className={styles["collapse-toggle--collapse"]}
@@ -86,15 +92,15 @@ export default function DashboardSideNavBar({
                     mode === "default" ? setMode("compact") : setMode("default")
                   }
                 >
-                  <div className={styles["svg-wrapper"]}>
-                    <div className={styles["svg-container"]}>
+                  <SVGWrapper>
+                    <SVGContainer>
                       <Icons.expandArrowFromLine className={styles["svg"]} />
-                    </div>
-                  </div>
-                </Button>
+                    </SVGContainer>
+                  </SVGWrapper>
+                </CollapseToggle>
               )}
 
-              <div className={styles["content-wrapper"]}>
+              <ContentWrapper>
                 {sites.map((site, index) => {
                   if (site.items) {
                     return (
@@ -114,11 +120,11 @@ export default function DashboardSideNavBar({
                     />
                   )
                 })}
-              </div>
-            </div>
+              </ContentWrapper>
+            </ContentLayout>
           </SimpleBar>
-        </div>
-      </div>
-    </div>
+        </SideNavBarContainer>
+      </SideNavBarWrapper>
+    </SideNavBar>
   )
 }

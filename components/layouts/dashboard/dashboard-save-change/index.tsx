@@ -13,9 +13,15 @@ import { toast } from "sonner"
 
 import { useLocalStorage } from "@/hooks/use-local-storage"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
-import { Button } from "@/components/ui/button"
 import ToastSuccess from "@/components/custom-toast/toast-success"
-import styles from "@/styles/components/layouts/dashboard/dashboard-save-change.module.scss"
+import {
+  CancelChangeBtn,
+  CancelChangeBtnContainer,
+  CancelChangeBtnText,
+  CancelChangeBtnWrapper,
+  CancelChangeWrapper,
+  LayoutWrapper,
+} from "@/components/layouts/dashboard/dashboard-save-change/style"
 
 export default function DashboardSaveChange() {
   const { isEditing, setIsEditing } = useEditLayout()
@@ -59,27 +65,25 @@ export default function DashboardSaveChange() {
   if (!isEditing) return null
 
   return (
-    <div className={styles["layout-wrapper"]}>
-      <div className={styles["cancel-change-wrapper"]}>
-        <Button
-          className={styles["cancel-change-btn"]}
+    <LayoutWrapper>
+      <CancelChangeWrapper>
+        <CancelChangeBtn
           onClick={() => {
             setLayout(lcLayout)
             setIsEditing(!isEditing)
           }}
         >
-          <div className={styles["cancel-change-btn-wrapper"]}>
-            <div className={styles["cancel-change-btn-container"]}>
-              <p className={styles["cancel-change-btn-text"]}>Cancel Changes</p>
-            </div>
-          </div>
-        </Button>
-      </div>
+          <CancelChangeBtnWrapper>
+            <CancelChangeBtnContainer>
+              <CancelChangeBtnText>Cancel Changes</CancelChangeBtnText>
+            </CancelChangeBtnContainer>
+          </CancelChangeBtnWrapper>
+        </CancelChangeBtn>
+      </CancelChangeWrapper>
 
-      <div className={styles["cancel-change-wrapper"]}>
-        <Button
+      <CancelChangeWrapper>
+        <CancelChangeBtn
           disabled={isChangesHappened}
-          className={styles["cancel-change-btn"]}
           onClick={() => {
             debounceUpdateLayout(editLayout, () => {
               toast.custom(() => <ToastSuccess>Layout 1 updated</ToastSuccess>)
@@ -87,15 +91,13 @@ export default function DashboardSaveChange() {
             setIsEditing(!isEditing)
           }}
         >
-          <div className={styles["cancel-change-btn-wrapper"]}>
-            <div className={styles["cancel-change-btn-container"]}>
-              <p className={styles["cancel-change-btn-text"]}>
-                Save Layout Changes
-              </p>
-            </div>
-          </div>
-        </Button>
-      </div>
-    </div>
+          <CancelChangeBtnWrapper>
+            <CancelChangeBtnContainer>
+              <CancelChangeBtnText>Save Layout Changes</CancelChangeBtnText>
+            </CancelChangeBtnContainer>
+          </CancelChangeBtnWrapper>
+        </CancelChangeBtn>
+      </CancelChangeWrapper>
+    </LayoutWrapper>
   )
 }

@@ -1,0 +1,9 @@
+.current-active {
+  color: #fff !important;
+  background-color: hsl(var(--color-twitch-orange-11)) !important;
+
+  &:hover {
+    color: #fff !important;
+    background-color: hsl(var(--color-twitch-orange-11)) !important;
+  }
+}

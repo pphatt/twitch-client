@@ -13,13 +13,20 @@ import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/layouts/dashboard/dashboard-stream-layout.module.scss"
+import {
+  DropdownContent as DropdownMenuContent,
+  DropdownMenuItemWrapper as DropdownMenuItem,
+  DropdownTrigger,
+  DropdownTriggerArrowContainer,
+  DropdownTriggerArrowWrapper,
+  DropdownTriggerTextWrapper,
+  LayoutText,
+  UpperText,
+} from "@/components/layouts/dashboard/dashboard-stream-layout/style"
 
 export default function DashboardStreamLayout() {
   const { isEditing, setIsEditing } = useEditLayout()
@@ -39,27 +46,23 @@ export default function DashboardStreamLayout() {
       onOpenChange={() => setOpen((state) => !state)}
     >
       <DropdownMenuTrigger asChild>
-        <Button className={styles["dropdown-trigger"]}>
-          <div className={styles["dropdown-trigger-text-wrapper"]}>
-            <p title={"Stream Manager"} className={styles["upper-text"]}>
-              Stream Manager
-            </p>
-            <p className={styles["layout-text"]}>Layout: Layout 1</p>
-          </div>
+        <DropdownTrigger>
+          <DropdownTriggerTextWrapper>
+            <UpperText title={"Stream Manager"}>Stream Manager</UpperText>
 
-          <div className={styles["dropdown-trigger-arrow-wrapper"]}>
-            <div className={styles["dropdown-trigger-arrow-container"]}>
+            <LayoutText>Layout: Layout 1</LayoutText>
+          </DropdownTriggerTextWrapper>
+
+          <DropdownTriggerArrowWrapper>
+            <DropdownTriggerArrowContainer>
               {open ? <Icons.arrowUpDashboard /> : <Icons.arrowDownDashboard />}
-            </div>
-          </div>
-        </Button>
+            </DropdownTriggerArrowContainer>
+          </DropdownTriggerArrowWrapper>
+        </DropdownTrigger>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align={"start"}
-        alignOffset={-15}
-        className={styles["dropdown-content"]}
-      >
-        <DropdownMenuItem className={styles["dropdown-item"]} asChild>
+
+      <DropdownMenuContent align={"start"} alignOffset={-15}>
+        <DropdownMenuItem asChild>
           <Button
             disabled={isEditing ?? true}
             onClick={() => {
@@ -74,7 +77,7 @@ export default function DashboardStreamLayout() {
           </Button>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className={styles["dropdown-item"]} asChild>
+        <DropdownMenuItem asChild>
           <Button
             onClick={() => {
               debounceUpdateLayout(DEFAULT_LAYOUT, () => {

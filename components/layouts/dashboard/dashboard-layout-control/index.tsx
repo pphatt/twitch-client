@@ -5,7 +5,7 @@ import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import { usePathname } from "next/navigation"
 
-import styles from "@/styles/components/layouts/dashboard/dashboard-layout-control.module.scss"
+import { StreamManagerLayoutContainer } from "@/components/layouts/dashboard/dashboard-layout-control/style"
 
 const DashboardStreamLayout = dynamic(
   () => import("@/components/layouts/dashboard/dashboard-stream-layout"),
@@ -34,7 +34,7 @@ export default function DashboardLayoutControl() {
   }
 
   return (
-    <div className={styles["stream-manager-layout-container"]}>
+    <StreamManagerLayoutContainer>
       <Suspense>
         <DashboardStreamLayout />
       </Suspense>
@@ -42,6 +42,6 @@ export default function DashboardLayoutControl() {
       <Suspense>
         <DashboardSaveChange />
       </Suspense>
-    </div>
+    </StreamManagerLayoutContainer>
   )
 }

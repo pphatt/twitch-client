@@ -1,11 +1,9 @@
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import { enterKeyframes, exitKeyframes } from "@/styles/abstract/_mixins"
 
-export const DropdownMenuPrimitiveSubTrigger = styled(
-  DropdownMenuPrimitive.SubTrigger
-)`
+export const ShareDropdownMenuPrimitiveTriggerStyled = css`
   position: relative;
 
   display: flex;
@@ -48,6 +46,12 @@ export const DropdownMenuPrimitiveSubTrigger = styled(
     color: hsl(var(--accent-foreground));
     background-color: hsl(var(--accent));
   }
+`
+
+export const DropdownMenuPrimitiveSubTrigger = styled(
+  DropdownMenuPrimitive.SubTrigger
+)`
+  ${ShareDropdownMenuPrimitiveTriggerStyled}
 `
 
 export const DropdownMenuPrimitiveContent = styled(
