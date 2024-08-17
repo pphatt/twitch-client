@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { useEditLayout, useEditLayoutState } from "@/store/state/dashboard"
+import QuickActionPanel from "components/stream-manager/panel/quick-action-panel"
 import { Mosaic, MosaicWindow, type MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
@@ -10,9 +11,8 @@ import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import AddPanel from "@/components/stream-manager/add-panel"
+import PanelHeader from "@/components/stream-manager/panel-header"
 import ActivityFeed from "@/components/stream-manager/panel/activity-feed"
-import PanelHeader from "@/components/stream-manager/panel/panel-header"
-import QuickActionPanel from "@/components/stream-manager/panel/quick-action-panel"
 import Chat from "@/components/stream/chat/chat"
 import styles from "@/styles/application/dashboard/stream-manager/page.module.scss"
 

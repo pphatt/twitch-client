@@ -14,11 +14,29 @@ import {
 
 import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
-import { Button } from "@/components/ui/button"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
-import SimpleBar from "@/components/simplebar"
-import styles from "@/styles/components/stream-manager/add-panel.module.scss"
+import {
+  AddButtonLayoutWrapper,
+  ContentButton,
+  ContentButtonWrapper,
+  ContentContainer,
+  ContentText,
+  ContentTextContainer,
+  ContentTextWrapper,
+  ContentWrapper,
+  MenuContentContainer,
+  MenuContentHeader,
+  MenuContentWrapper,
+  MenuDescriptionText,
+  MenuDescriptionWrapper,
+  MenuHeaderWrapper,
+  MenuLayout,
+  MenuLayoutWrapper,
+  MenuWrapper,
+  SimpleBarWrapper as SimpleBar,
+} from "@/components/stream-manager/add-panel/style"
+import styles from "@/components/stream-manager/add-panel/style.module.scss"
 
 export default function AddPanel() {
   const [isHoverOn, setIsHoverOn] = React.useState(false)
@@ -66,48 +84,44 @@ export default function AddPanel() {
           })}
         >
           <div className={"sm--edit-menu__slider"}>
-            <div className={styles["menu-layout-wrapper"]}>
+            <MenuLayoutWrapper>
               <Icons.addPanelPlus />
-            </div>
+            </MenuLayoutWrapper>
 
-            <div className={styles["menu-wrapper"]}>
+            <MenuWrapper>
               <SimpleBar
                 forceVisible={"y"}
-                className={styles["menu-container"]}
                 simpleContentWrapperStyle={{
                   padding: "0",
                 }}
               >
-                <div className={styles["menu-layout"]}>
-                  <div className={styles["menu-header-wrapper"]}>
+                <MenuLayout>
+                  <MenuHeaderWrapper>
                     <h3>Edit Stream Manager Layout</h3>
-                  </div>
+                  </MenuHeaderWrapper>
 
-                  <div className={styles["menu-content-wrapper"]}>
-                    <div className={styles["menu-description-wrapper"]}>
-                      <p className={styles["menu-description-text"]}>
+                  <MenuContentWrapper>
+                    <MenuDescriptionWrapper>
+                      <MenuDescriptionText>
                         Add stats and panels by clicking the plus icon.
-                      </p>
-                    </div>
+                      </MenuDescriptionText>
+                    </MenuDescriptionWrapper>
 
-                    <div className={styles["menu-content-container"]}>
-                      <div className={styles["menu-content-header"]}>
+                    <MenuContentContainer>
+                      <MenuContentHeader>
                         <p>Panels</p>
-                      </div>
+                      </MenuContentHeader>
 
-                      <div className={styles["content-wrapper"]}>
+                      <ContentWrapper>
                         {ALL_AVAILABLE_PANEL.filter(
                           ({ title }) => !leaves.includes(title)
                         ).map(({ title, description }, index) => (
-                          <div
-                            className={styles["content-container"]}
-                            key={index}
-                          >
-                            <div className={styles["content-text-wrapper"]}>
-                              <div className={styles["content-text-container"]}>
-                                <div className={styles["content-text"]}>
+                          <ContentContainer key={index}>
+                            <ContentTextWrapper>
+                              <ContentTextContainer>
+                                <ContentText>
                                   <p>{title}</p>
-                                </div>
+                                </ContentText>
 
                                 <Hint
                                   delayDuration={100}
@@ -115,35 +129,32 @@ export default function AddPanel() {
                                   alignOffset={-10}
                                   label={description}
                                 >
-                                  <Button className={styles["content-btn"]}>
-                                    <div
-                                      className={styles["content-btn-wrapper"]}
-                                    >
+                                  <ContentButton>
+                                    <ContentButtonWrapper>
                                       <Icons.explainationMark />
-                                    </div>
-                                  </Button>
+                                    </ContentButtonWrapper>
+                                  </ContentButton>
                                 </Hint>
-                              </div>
-                            </div>
+                              </ContentTextContainer>
+                            </ContentTextWrapper>
 
-                            <div className={styles["add-btn-layout-wrapper"]}>
-                              <Button
-                                className={styles["content-btn"]}
+                            <AddButtonLayoutWrapper>
+                              <ContentButton
                                 onClick={() => addWindowPanel(title)}
                               >
-                                <div className={styles["content-btn-wrapper"]}>
+                                <ContentButtonWrapper>
                                   <Icons.addPanelPlus />
-                                </div>
-                              </Button>
-                            </div>
-                          </div>
+                                </ContentButtonWrapper>
+                              </ContentButton>
+                            </AddButtonLayoutWrapper>
+                          </ContentContainer>
                         ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </ContentWrapper>
+                    </MenuContentContainer>
+                  </MenuContentWrapper>
+                </MenuLayout>
               </SimpleBar>
-            </div>
+            </MenuWrapper>
           </div>
         </div>
       </div>

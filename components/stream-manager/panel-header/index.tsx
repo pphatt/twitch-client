@@ -13,12 +13,23 @@ import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/components/stream-manager/panel/panel-header.module.scss"
+import {
+  CloseButton,
+  CloseButtonContainer,
+  CloseButtonWrapper,
+  DropdownMenuContentWrapper as DropdownMenuContent,
+  DropdownMenuItemWrapper as DropdownMenuItem,
+  DropdownTrigger,
+  DropdownTriggerWrapper,
+  PanelHeaderClose,
+  PanelHeaderControl,
+  PanelHeaderText,
+  PanelHeaderTextWrapper,
+  PanelHeaderWrapper,
+} from "@/components/stream-manager/panel-header/style"
 
 interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
   title: string
@@ -64,50 +75,44 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
   }, [title])
 
   return (
-    <div className={styles["panel-header-wrapper"]} {...props}>
-      <div className={styles["panel-header-text-wrapper"]}>
-        <h2 className={styles["panel-header-text"]}>{title}</h2>
-      </div>
+    <PanelHeaderWrapper {...props}>
+      <PanelHeaderTextWrapper>
+        <PanelHeaderText>{title}</PanelHeaderText>
+      </PanelHeaderTextWrapper>
 
-      <div className={styles["panel-header-control"]}>
+      <PanelHeaderControl>
         {isEditing ? (
-          <div className={styles["panel-header-close"]}>
+          <PanelHeaderClose>
             <MosaicContext.Consumer>
               {({ mosaicActions }) => (
-                <Button
-                  className={styles["close-btn"]}
-                  onClick={createRemove(mosaicActions)}
-                >
-                  <div className={styles["close-btn-wrapper"]}>
-                    <div className={styles["close-btn-container"]}>
+                <CloseButton onClick={createRemove(mosaicActions)}>
+                  <CloseButtonWrapper>
+                    <CloseButtonContainer>
                       <Icons.closePanel />
-                    </div>
-                  </div>
-                </Button>
+                    </CloseButtonContainer>
+                  </CloseButtonWrapper>
+                </CloseButton>
               )}
             </MosaicContext.Consumer>
-          </div>
+          </PanelHeaderClose>
         ) : (
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-              <Button aria-label={title} className={styles["dropdown-trigger"]}>
-                <div className={styles["dropdown-trigger-wrapper"]}>
+              <DropdownTrigger aria-label={title}>
+                <DropdownTriggerWrapper>
                   <Icons.ellipsisVertical />
-                </div>
-              </Button>
+                </DropdownTriggerWrapper>
+              </DropdownTrigger>
             </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align={"end"}
-              sideOffset={-1}
-              className={styles["dropdown-content"]}
-            >
-              <DropdownMenuItem className={styles["dropdown-item"]} asChild>
+
+            <DropdownMenuContent align={"end"} sideOffset={-1}>
+              <DropdownMenuItem asChild>
                 <Button onClick={handlePopOut}>
                   <span>Pop-out {title}</span>
                 </Button>
               </DropdownMenuItem>
 
-              <DropdownMenuItem className={styles["dropdown-item"]} asChild>
+              <DropdownMenuItem asChild>
                 <Button
                   disabled={isEditing ?? true}
                   onClick={() => {
@@ -123,7 +128,7 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
             </DropdownMenuContent>
           </DropdownMenu>
         )}
-      </div>
-    </div>
+      </PanelHeaderControl>
+    </PanelHeaderWrapper>
   )
 }

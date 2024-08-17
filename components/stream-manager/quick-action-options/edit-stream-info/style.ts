@@ -1,20 +1,24 @@
-.edit-stream-info-btn {
-  color: #fff !important;
+import styled from "styled-components"
+
+import { Button } from "@/components/ui/button"
+
+export const EditStreamInfoBtn = styled(Button)`
+  color: #fff;
   background: #ff6740 !important;
 
-  width: 100% !important;
-  height: 100px !important;
+  width: 100%;
+  height: 100px;
 
-  border-radius: 4px !important;
+  border-radius: 4px;
 
-  padding: 0 !important;
+  padding: 0;
 
   user-select: none;
 
-  transition: background-color 0.15s ease-in-out !important;
-}
+  transition: background-color 0.15s ease-in-out;
+`
 
-.btn-inner-layout-wrapper {
+export const BtnInnerLayoutWrapper = styled.div`
   position: relative;
 
   display: flex;
@@ -26,18 +30,18 @@
   height: 100%;
 
   padding: 10px;
-}
+`
 
-.btn-icon-wrapper {
+export const BtnIconWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 
   width: 100%;
   height: 100%;
-}
+`
 
-.btn-icon-container {
+export const BtnIconContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -52,40 +56,40 @@
   transition-timing-function: ease;
   transition-property: none;
   transform: translateY(0px);
-}
+`
 
-.btn-icon-figure {
+export const BtnIconFigure = styled.figure`
   display: inline-flex;
   align-items: center;
 
   svg {
     fill: currentColor;
   }
-}
+`
 
-.edit-stream-text-wrapper {
+export const EditStreamTextWrapper = styled.div`
   display: flex;
   align-items: flex-end;
 
   width: 100%;
   height: 100%;
-}
+`
 
-.edit-stream-text-container {
+export const EditStreamTextContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
-}
+`
 
-.edit-stream-text-overlay {
+export const EditStreamTextOverlay = styled.div`
   display: inline-flex;
   flex-direction: row;
   align-items: flex-end;
-}
+`
 
-.edit-stream-text {
+export const EditStreamText = styled.p`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -97,4 +101,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
-}
+`

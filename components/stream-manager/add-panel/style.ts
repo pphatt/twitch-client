@@ -1,4 +1,9 @@
-.menu-layout-wrapper {
+import styled from "styled-components"
+
+import { Button } from "@/components/ui/button"
+import SimpleBar from "@/components/simplebar"
+
+export const MenuLayoutWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -11,9 +16,9 @@
   svg {
     fill: currentColor;
   }
-}
+`
 
-.menu-wrapper {
+export const MenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -24,19 +29,17 @@
   height: 100%;
 
   outline: none;
-}
+`
 
-.menu-container {
+export const SimpleBarWrapper = styled(SimpleBar)`
   width: 100%;
-  height: 100%;
-}
+`
 
-.menu-layout {
+export const MenuLayout = styled.div`
   width: 100%;
-  height: 100%;
-}
+`
 
-.menu-header-wrapper {
+export const MenuHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,9 +56,9 @@
     line-height: 1.2;
     font-weight: 600;
   }
-}
+`
 
-.menu-content-wrapper {
+export const MenuContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -65,24 +68,21 @@
 
   padding-right: 10px;
   padding-left: 10px;
-}
+`
 
-.menu-description-wrapper {
+export const MenuDescriptionWrapper = styled.div`
   margin-bottom: 10px;
-}
+`
 
-.menu-description-text {
+export const MenuDescriptionText = styled.p`
   color: hsl(var(--foreground-alt-2));
+`
 
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.menu-content-container {
+export const MenuContentContainer = styled.div`
   flex-grow: 1;
-}
+`
 
-.menu-content-header {
+export const MenuContentHeader = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
 
@@ -93,26 +93,26 @@
 
     text-transform: uppercase;
   }
-}
+`
 
-.content-wrapper {
+export const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
   width: 100%;
-  height: 100%;
-}
+  height: fit-content;
+`
 
-.content-container {
+export const ContentContainer = styled.div`
   display: flex;
   align-items: center;
 
   width: 100%;
 
   margin-bottom: 10px;
-}
+`
 
-.content-text-wrapper {
+export const ContentTextWrapper = styled.div`
   display: flex;
   align-items: center;
 
@@ -125,17 +125,17 @@
   border-radius: calc(var(--radius) + 2px);
 
   user-select: none;
-}
+`
 
-.content-text-container {
+export const ContentTextContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 100%;
-}
+`
 
-.content-text {
+export const ContentText = styled.div`
   display: flex;
   align-items: center;
 
@@ -146,23 +146,23 @@
     line-height: 1.5;
     font-weight: 600;
   }
-}
+`
 
-.content-btn {
-  color: hsl(var(--foreground)) !important;
+export const ContentButton = styled(Button)`
+  color: hsl(var(--foreground));
   background-color: transparent !important;
 
-  width: 30px !important;
-  height: 30px !important;
+  width: 30px;
+  height: 30px;
 
-  border-radius: var(--radius) !important;
+  border-radius: var(--radius);
 
-  padding: 0 !important;
+  padding: 0;
 
   user-select: none;
-}
+`
 
-.content-btn-wrapper {
+export const ContentButtonWrapper = styled.div`
   width: 20px;
   height: 20px;
 
@@ -172,8 +172,8 @@
 
     fill: currentcolor;
   }
-}
+`
 
-.add-btn-layout-wrapper {
+export const AddButtonLayoutWrapper = styled.div`
   padding-left: 5px;
-}
+`

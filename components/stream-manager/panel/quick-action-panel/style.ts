@@ -1,14 +1,16 @@
-.quick-action-panel-wrapper {
-  position: relative !important;
+import styled from "styled-components"
+
+export const QuickActionPanelWrapper = styled.div`
+  position: relative;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   height: 100%;
-}
+`
 
-.quick-action-panel-container {
+export const QuickActionPanelContainer = styled.div`
   position: relative;
 
   display: grid;
@@ -16,6 +18,4 @@
   grid-gap: 10px;
 
   padding: 10px;
-}
-
-
+`

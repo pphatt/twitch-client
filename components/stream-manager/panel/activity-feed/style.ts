@@ -1,39 +1,41 @@
-.activity-feed-layout-wrapper {
+import styled from "styled-components"
+
+export const ActivityFeedLayoutWrapper = styled.div`
   background-color: hsl(var(--background));
 
   width: 100%;
   height: 100%;
-}
+`
 
-.activity-feed-layout-container {
+export const ActivityFeedLayoutContainer = styled.div`
   width: 100%;
   height: 100%;
 
   padding-top: 50px;
   padding-bottom: 50px;
-}
+`
 
-.text-wrapper {
+export const TextWrapper = styled.div`
   display: flex;
   justify-content: center;
 
   text-align: center;
-}
+`
 
-.text {
+export const Text = styled.h4`
   font-size: 18px;
   line-height: 1.5;
   font-weight: 600;
-}
+`
 
-.sm-text-wrapper {
+export const SMTextWrapper = styled.div`
   display: flex;
   justify-content: center;
 
   margin-top: 10px;
-}
+`
 
-.sm-text-container {
+export const SMTextContainer = styled.div`
   display: inline;
   flex-grow: 0;
 
@@ -42,9 +44,8 @@
   margin: auto;
 
   text-align: center;
-}
+`
 
-.sm-text {
+export const SMText = styled.p`
   font-size: 14px;
-  line-height: 1.5;
-}
+`
