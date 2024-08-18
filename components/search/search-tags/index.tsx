@@ -6,14 +6,15 @@ import { useRouter } from "next/navigation"
 
 import { cn, sleep } from "@/lib/utils"
 import { useDebounce } from "@/hooks/use-debounce"
+import { CommandGroup } from "@/components/ui/command"
 import {
-  Command,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command"
-import styles from "@/styles/components/search/search-tags.module.scss"
+  CommandWrapper as Command,
+  CommandInputWrapper as CommandInput,
+  CommandItemWrapper as CommandItem,
+  CommandListWrapper as CommandList,
+  SearchCategoriesTags,
+} from "@/components/search/search-tags/style"
+import styles from "@/components/search/search-tags/style.module.scss"
 
 interface SearchTagsProps {
   slug: string
@@ -54,10 +55,10 @@ export function SearchTags({ slug }: SearchTagsProps) {
   }, [debouncedQuery])
 
   return (
-    <div className={styles["search-categories-tags"]}>
+    <SearchCategoriesTags>
       <Command
         shouldFilter={false}
-        className={cn(styles["command"], {
+        className={cn({
           [`${styles["on-focus"]}`]: focus,
         })}
       >
@@ -68,19 +69,17 @@ export function SearchTags({ slug }: SearchTagsProps) {
           onValueChange={(query) => {
             setQuery(query)
           }}
-          className={styles["command-input"]}
           placeholder="Search Categories Tags"
         />
 
         {focus && (
-          <CommandList className={styles["command-list"]}>
+          <CommandList>
             <CommandGroup>
               {["FPS", "Shooter", "Anime", "Vtuber"].map((name, index) => {
                 return (
                   <CommandItem
                     key={index}
                     // value={manga.slug}
-                    className={styles["command-item"]}
                     onSelect={(name) => setQuery(name)}
                   >
                     <Link href={"/"}>{name}</Link>
@@ -91,6 +90,6 @@ export function SearchTags({ slug }: SearchTagsProps) {
           </CommandList>
         )}
       </Command>
-    </div>
+    </SearchCategoriesTags>
   )
 }

@@ -36,7 +36,6 @@ import {
   MenuWrapper,
   SimpleBarWrapper as SimpleBar,
 } from "@/components/stream-manager/add-panel/style"
-import styles from "@/components/stream-manager/add-panel/style.module.scss"
 
 export default function AddPanel() {
   const [isHoverOn, setIsHoverOn] = React.useState(false)
