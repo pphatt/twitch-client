@@ -4,6 +4,7 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import ChatInput from "@/components/stream/chat/chat-input"
 import {
@@ -78,13 +79,22 @@ export default function ChatInputForm({
             <ChatSettingWrapper>
               <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
-                  <ChatSettingButton>
-                    <InnerChatSettingButtonWrapper>
-                      <InnerChatSettingButtonContainer>
-                        <Icons.settings />
-                      </InnerChatSettingButtonContainer>
-                    </InnerChatSettingButtonWrapper>
-                  </ChatSettingButton>
+                  <Hint
+                    delayDuration={250}
+                    skipDelayDuration={0}
+                    side={"top"}
+                    sideOffset={6}
+                    align={"center"}
+                    label={"Chat Settings"}
+                  >
+                    <ChatSettingButton>
+                      <InnerChatSettingButtonWrapper>
+                        <InnerChatSettingButtonContainer>
+                          <Icons.settings />
+                        </InnerChatSettingButtonContainer>
+                      </InnerChatSettingButtonWrapper>
+                    </ChatSettingButton>
+                  </Hint>
                 </DropdownMenuTrigger>
 
                 <UserChatSetting popout={popout} isCreator={isCreator} />
