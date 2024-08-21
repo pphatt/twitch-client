@@ -1,0 +1,33 @@
+.channel-root__player {
+  position: absolute;
+
+  max-height: calc(100vh - 160px);
+}
+
+.channel-root__player--with-chat {
+  @media (min-width: 920px) {
+    width: calc(100% - 340px);
+  }
+}
+
+.channel-root-layout {
+  position: relative;
+
+  width: 100%;
+}
+
+.channel-root__player-background {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.channel-page__video-player {
+  max-height: calc(100vh - 160px);
+
+  overflow: hidden;
+}
+
+.channel-page__video-player--with-chat {
+  position: relative;
+}

@@ -1,0 +1,11 @@
+.chat-room__content {
+  position: relative;
+
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+
+  color: hsl(var(--foreground));
+
+  height: 100%;
+}

@@ -18,6 +18,7 @@ const nextConfig = {
     styledComponents: {
       ssr: true,
       displayName: false,
+      pure: true,
       namespace: "Layout",
     },
   },

@@ -10,7 +10,7 @@ const ChatWrapper = dynamic(
   }
 )
 
-const Chat = dynamic(() => import("@/components/stream/chat/chat"), {
+const Chat = dynamic(() => import("@/components/stream/chat/chat-layout"), {
   ssr: false,
 })
 

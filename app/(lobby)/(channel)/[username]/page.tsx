@@ -10,7 +10,7 @@ import LoadingWrapper from "@/components/stream/common/loading-wrapper"
 import About from "@/components/stream/information/about"
 import ChannelHeader from "@/components/stream/information/header"
 import HeaderWrapper from "@/components/stream/information/header-wrapper"
-import Video from "@/components/stream/video/video"
+import Video from "@/components/stream/video/video-player"
 import ChannelWrapper from "@/components/wrapper/channel-wrapper"
 
 export default function ChannelPage({

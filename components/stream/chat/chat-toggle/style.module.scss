@@ -1,0 +1,15 @@
+.right-column__toggle-visibility {
+  left: 10px;
+  top: 10px;
+}
+
+.toggle-visibility__right-column--expanded {
+  transform: translateX(-340px);
+
+  transition: transform 0.5s;
+}
+
+.toggle-visibility__right-column--collapsed {
+  top: 15px !important;
+  left: -35px !important;
+}
