@@ -1,5 +1,5 @@
-import { createEnv } from "@t3-oss/env-nextjs";
-import { z } from "zod";
+import { createEnv } from "@t3-oss/env-nextjs"
+import { z } from "zod"
 
 export const env = createEnv({
   /**
@@ -8,6 +8,9 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
+    DISABLE_BROWSER_LOGS: z.boolean().optional(),
+    ENABLE_MILLION_JS: z.boolean().optional(),
+    // ENABLE_PATTY_CAKE: z.boolean(),
   },
 
   /**
@@ -26,6 +29,8 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    DISABLE_BROWSER_LOGS: process.env.DISABLE_BROWSER_LOGS,
+    ENABLE_MILLION_JS: process.env.ENABLE_MILLION_JS,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
@@ -37,4 +42,4 @@ export const env = createEnv({
    * `SOME_VAR=''` will throw an error.
    */
   emptyStringAsUndefined: true,
-});
+})

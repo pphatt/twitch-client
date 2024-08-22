@@ -1,8 +1,19 @@
 import { createHash } from "node:crypto"
 import path from "node:path"
-import { withHydrationOverlay } from "@builder.io/react-hydration-overlay/next"
 import million from "million/compiler"
-import compose from "next-compose-plugins"
+
+import { env } from "./env.js"
+
+const boolVals = {
+  true: true,
+  false: false,
+}
+
+const disableBrowserLogs =
+  boolVals[env.DISABLE_BROWSER_LOGS] ?? process.env.NODE_ENV === "production"
+
+const enableMillionJS =
+  boolVals[env.ENABLE_MILLION_JS] ?? process.env.NODE_ENV === "production"
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -11,15 +22,35 @@ import compose from "next-compose-plugins"
  * million.js new version using @million/lint instead of million/compiler. So if any unintentional errors happen, we can roll back
  */
 
+// Temporarily disabled, produces chatty logs
+const enablePattyCake = false
+// boolVals[env.ENABLE_PATTY_CAKE] ?? process.env.NODE_ENV === 'production'
+
+// Temporarily disabled, enabling causes FOUC on page refreshes
+const optimizeCss = false
+
 const getHash = (source, length) =>
   createHash("shake256", { outputLength: length }).update(source).digest("hex")
 
 /** @type {import("next").NextConfig} */
-const nextConfig = {
+let nextConfig = {
+  images: {},
   experimental: {
-    optimizeCss: true,
+    optimizeCss,
+    webpackBuildWorker: true,
+    forceSwcTransforms: true,
+    scrollRestoration: true,
+    swcPlugins: [
+      [
+        "next-superjson-plugin",
+        {
+          excluded: [],
+        },
+      ],
+    ],
   },
   compiler: {
+    removeConsole: disableBrowserLogs,
     styledComponents: {
       ssr: true,
       displayName: false,
@@ -54,43 +85,13 @@ const nextConfig = {
   },
 }
 
-export default compose.withPlugins(
-  [
-    [million.next, {}],
-    [withHydrationOverlay, {}],
-  ],
-  nextConfig
-)
+const millionConfig = {
+  auto: true,
+  mute: true,
+}
 
-// import MillionLint from '@million/lint';
-// import { withHydrationOverlay } from "@builder.io/react-hydration-overlay/next";
-// import million from "million/compiler";
-// import compose from "next-compose-plugins";
-//
-// /**
-//  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
-//  * for Docker builds.
-//  *
-//  * million.js new version using @million/lint instead of million/compiler. So if any unintentional errors happen, we can roll back
-//  */
-//
-// /** @type {import("next").NextConfig} */
-// const nextConfig = {
-//   experimental: {
-//     optimizeCss: true
-//   },
-//   compiler: {
-//     styledComponents: {
-//       ssr: true,
-//       displayName: false,
-//       namespace: "Layout"
-//     }
-//   },
-//   webpack(config) {
-//     // Important: return the modified config
-//     return config;
-//   }
-// };
-// export default MillionLint.next({
-//   rsc: true
-// })(compose.withPlugins([[million.next, {}], [withHydrationOverlay, {}]], nextConfig));
+if (enableMillionJS) {
+  nextConfig = million.next(nextConfig, millionConfig)
+}
+
+export default nextConfig
