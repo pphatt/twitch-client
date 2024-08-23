@@ -4,8 +4,8 @@
 
 import * as React from "react"
 import type { MutableRefObject, ReactNode } from "react"
-import SimpleBarCore from "simplebar/packages/simplebar-core/dist"
-import type { SimpleBarOptions } from "simplebar/packages/simplebar-core/dist"
+import SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core/dist"
+import type { SimpleBarOptions } from "@tienphat0809/simplebar/packages/simplebar-core/dist"
 
 import { cn } from "@/lib/utils"
 

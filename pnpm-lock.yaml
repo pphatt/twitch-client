@@ -80,6 +80,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.51.1
         version: 5.51.1(react@18.3.1)
+      '@tienphat0809/simplebar':
+        specifier: ^1.0.54
+        version: 1.0.54
       axios:
         specifier: ^1.7.2
         version: 1.7.2
@@ -107,9 +110,6 @@ importers:
       next:
         specifier: ^14.2.5
         version: 14.2.5(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
-      next-compose-plugins:
-        specifier: ^2.2.1
-        version: 2.2.1
       next-superjson-plugin:
         specifier: ^0.6.3
         version: 0.6.3(next@14.2.5(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(superjson@2.2.1)
@@ -143,15 +143,9 @@ importers:
       sass:
         specifier: ^1.77.8
         version: 1.77.8
-      simplebar:
-        specifier: https://github.com/pphatt/simplebar/tarball/master/v1.0.54
-        version: https://github.com/pphatt/simplebar/tarball/master/v1.0.54
       simplebar-core:
         specifier: ^1.2.6
         version: 1.2.6
-      simplebar-react:
-        specifier: ^3.2.6
-        version: 3.2.6(react@18.3.1)
       slate:
         specifier: ^0.103.0
         version: 0.103.0
@@ -1483,6 +1477,9 @@ packages:
     resolution: {integrity: sha512-s47HKFnQ4HOJAHoIiXcpna/roMMPZJPy6fJ6p4ZNVn8+/onlLBEDd1+xc8OnDuwgvecqkZD7Z2mnSRbcWefrKw==}
     peerDependencies:
       react: ^18.0.0
+
+  '@tienphat0809/simplebar@1.0.54':
+    resolution: {integrity: sha512-JcOJ2GxupnB75wCWct/J6gXmLGuf908BR7IW3xY8IHO86+U2xMNo/M6sznLinqwaDC0gF6g3RiUytL8ARJSlWw==}
 
   '@tsconfig/svelte@1.0.13':
     resolution: {integrity: sha512-5lYJP45Xllo4yE/RUBccBT32eBlRDbqN8r1/MIvQbKxW3aFqaYPCNgm8D5V20X4ShHcwvYWNlKg3liDh1MlBoA==}
@@ -2836,9 +2833,6 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  next-compose-plugins@2.2.1:
-    resolution: {integrity: sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==}
-
   next-superjson-plugin@0.6.3:
     resolution: {integrity: sha512-gipGROzbbn1Koq84AZQodIvBdORp9dytIDv07SguwXdxnJb6v05KCmHVNU9L6AWqxjP14qNIWCNdKRDhnGRZrg==}
     peerDependencies:
@@ -3314,15 +3308,6 @@ packages:
 
   simplebar-core@1.2.6:
     resolution: {integrity: sha512-H5NYU+O+uvqOH5VXw3+lgoc1vTI6jL8LOZJsw4xgRpV7uIPjRpmLPdz0TrouxwKHBhpVLzVIlyKhaRLelIThMw==}
-
-  simplebar-react@3.2.6:
-    resolution: {integrity: sha512-8jDiBuVCG86JmOrsmkA+4q77iFAEbhU9EX62PohLisg3dnxdLXFFhkxnx2Es3Cxt8IlZFlJsF9GaobFL3ukwiA==}
-    peerDependencies:
-      react: '>=16.8.0'
-
-  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.54:
-    resolution: {tarball: https://github.com/pphatt/simplebar/tarball/master/v1.0.54}
-    version: 1.0.54
 
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
@@ -4985,6 +4970,8 @@ snapshots:
       '@tanstack/query-core': 5.51.1
       react: 18.3.1
 
+  '@tienphat0809/simplebar@1.0.54': {}
+
   '@tsconfig/svelte@1.0.13': {}
 
   '@types/css-font-loading-module@0.0.7': {}
@@ -6613,8 +6600,6 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next-compose-plugins@2.2.1: {}
-
   next-superjson-plugin@0.6.3(next@14.2.5(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(superjson@2.2.1):
     dependencies:
       hoist-non-react-statics: 3.3.2
@@ -7130,13 +7115,6 @@ snapshots:
       '@types/lodash-es': 4.17.12
       lodash: 4.17.21
       lodash-es: 4.17.21
-
-  simplebar-react@3.2.6(react@18.3.1):
-    dependencies:
-      react: 18.3.1
-      simplebar-core: 1.2.6
-
-  simplebar@https://github.com/pphatt/simplebar/tarball/master/v1.0.54: {}
 
   sisteransi@1.0.5: {}
 
