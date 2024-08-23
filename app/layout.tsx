@@ -1,11 +1,9 @@
-import "@/styles/base/_base.scss"
-import "@/styles/base/_fonts.scss"
-import "@/styles/base/_helpers.scss"
-import "@/styles/theme/_default.scss"
-// import "@/styles/vendors/_normalize.scss"
 import "@/styles/vendors/react-mosaic-component.scss"
+import "@/styles/vendors/simple-bar.scss"
+import "@/styles/vendors/stream-manager.scss"
 
 import * as React from "react"
+import { GlobalStyleProvider } from "@/providers/global-style-provider"
 import TanStackProviders from "@/providers/tanstack-provider"
 import { Toaster } from "sonner"
 
@@ -29,22 +27,24 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <StyledComponentsRegistry>
-          <TanStackProviders>
-            <Toaster
-              position="top-center"
-              richColors
-              visibleToasts={1}
-              expand={false}
-            />
+          <GlobalStyleProvider>
+            <TanStackProviders>
+              <Toaster
+                position="top-center"
+                richColors
+                visibleToasts={1}
+                expand={false}
+              />
 
-            <div className={styles["root"]}>
-              <div className={styles["root-layout-wrapper"]}>
-                <div className={styles["root-layout-container"]}>
-                  {children}
+              <div className={styles["root"]}>
+                <div className={styles["root-layout-wrapper"]}>
+                  <div className={styles["root-layout-container"]}>
+                    {children}
+                  </div>
                 </div>
               </div>
-            </div>
-          </TanStackProviders>
+            </TanStackProviders>
+          </GlobalStyleProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

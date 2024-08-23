@@ -1,0 +1,60 @@
+.stream-manager--page-view {
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+}
+
+.stream-manager--page-view .sm-mosaic--editing {
+  max-width: calc(100% - 40px);
+}
+
+.sm-sliding-edit-menu {
+  position: fixed;
+  top: 50px;
+  right: 0;
+
+  padding-right: 2px;
+}
+
+.sm--edit-menu__container {
+  transition-delay: 0ms;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+  transition-property: none;
+  transform: translateX(0px);
+}
+
+.sm--edit-menu {
+  flex: 1;
+
+  height: 100vh;
+
+  transition: width 0.2s linear;
+}
+
+.sm--edit-menu__condensed {
+  width: 40px;
+}
+
+.sm--edit-menu__full {
+  width: calc(440px - 2px);
+}
+
+.sm--edit-menu__slider {
+  display: flex;
+
+  background-color: hsl(var(--background-alt));
+
+  width: 440px;
+  max-height: calc(100% - 50px);
+  height: 100%;
+
+  border-left: 1px solid rgba(83, 83, 95, 0.48);
+  border-top: 1px solid rgba(83, 83, 95, 0.48);
+  border-bottom: 1px solid rgba(83, 83, 95, 0.48);
+
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 0 4px rgba(0, 0, 0, 0.4);
+}
