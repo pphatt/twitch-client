@@ -12,6 +12,8 @@ import {
   TextWrapper,
 } from "@/components/stream-manager/panel/activity-feed/style"
 
+export const runtime = "edge"
+
 export default function ActivityFeed() {
   return (
     <ActivityFeedLayoutWrapper>
