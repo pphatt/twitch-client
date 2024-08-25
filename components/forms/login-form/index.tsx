@@ -9,7 +9,7 @@ import type { z } from "zod"
 
 import { sleep } from "@/lib/utils"
 import { authSchema } from "@/lib/validation/auth"
-import { Index, FormControl, FormField } from "@/components/ui/form"
+import { Form, FormControl, FormField } from "@/components/ui/form"
 import {
   ResetPasswordLayout,
   SubmitLayoutWrapper,
@@ -60,7 +60,7 @@ export default function LogInForm() {
   }
 
   return (
-    <Index {...form}>
+    <Form {...form}>
       <FormLayoutContainer
         onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
       >
@@ -127,6 +127,6 @@ export default function LogInForm() {
           </SubmitBtn>
         </SubmitLayoutWrapper>
       </FormLayoutContainer>
-    </Index>
+    </Form>
   )
 }

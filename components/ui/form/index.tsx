@@ -17,7 +17,7 @@ import {
   FormMessageWrapper,
 } from "@/components/ui/form/style"
 
-const Index = FormProvider
+const Form = FormProvider
 
 type FormFieldContextValue<
   TFieldValues extends FieldValues = FieldValues,
@@ -158,7 +158,7 @@ FormMessage.displayName = "FormMessage"
 
 export {
   useFormField,
-  Index,
+  Form,
   FormItem,
   FormLabel,
   FormControl,

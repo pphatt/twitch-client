@@ -15,7 +15,7 @@ export interface InputProps
     InputVariants,
     InputSize {}
 
-const Index = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ $variant = "default", $size = "default", type, ...props }, ref) => {
     return (
       <InputWrapper
@@ -28,6 +28,6 @@ const Index = React.forwardRef<HTMLInputElement, InputProps>(
     )
   }
 )
-Index.displayName = "Input"
+Input.displayName = "Input"
 
-export { Index }
+export { Input }

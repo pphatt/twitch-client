@@ -1,28 +1,25 @@
 import styled from "styled-components"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 
-export const Layout = styled.div`
+export const BlockContentWrapper = styled.div`
   position: relative;
+
+  display: flex;
+
+  flex-grow: 1;
 `
 
-export const InputWrapper = styled(Input)`
-  padding-right: 40px;
-`
-
-export const ShowPasswordButton = styled(Button)`
+export const CopyButton = styled(Button)`
   position: absolute;
   top: 0;
   right: 0;
 
-  background-color: transparent;
+  background-color: transparent !important;
 
   height: 100%;
 
-  border-radius: var(--radius);
-
-  padding: 5px 7.5px;
+  padding: 0.5rem 0.75rem;
 
   svg {
     height: 1rem;
@@ -39,10 +36,5 @@ export const ShowPasswordButton = styled(Button)`
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
-  }
-
-  &:not([disabled]):hover {
-    color: initial;
-    background-color: rgba(83, 83, 95, 0.48);
   }
 `

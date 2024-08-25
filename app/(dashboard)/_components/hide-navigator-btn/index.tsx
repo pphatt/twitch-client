@@ -3,18 +3,20 @@
 import * as React from "react"
 import { useDashboardOpen } from "@/store/persistent/dashboard"
 
-import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/dashboard/_components/hide-navigator-btn.module.scss"
+import {
+  SiteHeaderButton,
+  SiteHeaderButtonContainer,
+  SiteHeaderButtonWrapper,
+} from "@/app/(dashboard)/_components/hide-navigator-btn/style"
 
 export default function HideNavigatorBtn() {
   const { mode, setMode } = useDashboardOpen()
 
   return (
-    <div className={styles["site-header-btn-wrapper"]}>
-      <div className={styles["site-header-btn-container"]}>
-        <Button
-          className={styles["site-header-btn"]}
+    <SiteHeaderButtonWrapper>
+      <SiteHeaderButtonContainer>
+        <SiteHeaderButton
           onClick={() =>
             mode === "default" || mode === "compact"
               ? setMode("hidden")
@@ -24,8 +26,8 @@ export default function HideNavigatorBtn() {
           <div>
             <Icons.hideNavigator />
           </div>
-        </Button>
-      </div>
-    </div>
+        </SiteHeaderButton>
+      </SiteHeaderButtonContainer>
+    </SiteHeaderButtonWrapper>
   )
 }

@@ -4,10 +4,13 @@ import * as React from "react"
 import { toast } from "sonner"
 
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { Button } from "@/components/ui/button"
-import { Index } from "@/components/ui/input"
+import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
-import styles from "@/styles/application/dashboard/settings/stream/_components/stream-url-card.module.scss"
+import {
+  BlockContentWrapper,
+  CopyButton,
+} from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-url-card/style"
+import styles from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-url-card/style.module.scss"
 
 interface StreamUrlCardProps {
   url: string
@@ -26,8 +29,8 @@ export default function StreamUrlCard({ url }: StreamUrlCardProps) {
   )
 
   return (
-    <div className={styles["block-content-wrapper"]}>
-      <Index
+    <BlockContentWrapper>
+      <Input
         type="text"
         $variant={"dashboard"}
         $size={"dashboard"}
@@ -37,12 +40,9 @@ export default function StreamUrlCard({ url }: StreamUrlCardProps) {
         value={url}
       />
 
-      <Button
-        className={styles["copy-button"]}
-        onClick={() => void handleCopy(url)}
-      >
+      <CopyButton onClick={() => void handleCopy(url)}>
         <Icons.copy />
-      </Button>
-    </div>
+      </CopyButton>
+    </BlockContentWrapper>
   )
 }

@@ -1,0 +1,19 @@
+.content-input {
+  border: transparent !important;
+  border-radius: var(--radius);
+
+  padding: 5px 10px !important;
+  padding-right: 40px !important;
+
+  appearance: none;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  transition:
+    border 100ms ease-in,
+    background-color 100ms ease-in !important;
+
+  box-shadow: inset 0 0 0 1px rgba(222, 222, 227, 0.4);
+}
