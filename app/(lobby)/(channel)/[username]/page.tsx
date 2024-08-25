@@ -13,6 +13,8 @@ import HeaderWrapper from "@/components/stream/information/header-wrapper"
 import Video from "@/components/stream/video/video-player"
 import ChannelWrapper from "@/components/wrapper/channel-wrapper"
 
+export const runtime = "edge"
+
 export default function ChannelPage({
   params,
 }: {

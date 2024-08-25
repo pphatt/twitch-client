@@ -16,6 +16,8 @@ interface DashboardLayoutProps {
   children: React.ReactNode
 }
 
+export const runtime = "edge"
+
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <EditLayoutContext>
