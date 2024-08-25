@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import type SimpleBarCore from "simplebar/packages/simplebar-core"
+import type SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core"
 
 import { cn } from "@/lib/utils"
 import SimpleBar from "@/components/simplebar"

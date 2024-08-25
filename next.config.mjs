@@ -10,10 +10,10 @@ const boolVals = {
 }
 
 const disableBrowserLogs =
-  boolVals[env.DISABLE_BROWSER_LOGS] ?? process.env.NODE_ENV === "production"
+  boolVals[env.DISABLE_BROWSER_LOGS] ?? env.NODE_ENV === "production"
 
 const enableMillionJS =
-  boolVals[env.ENABLE_MILLION_JS] ?? process.env.NODE_ENV === "production"
+  boolVals[env.ENABLE_MILLION_JS] ?? env.NODE_ENV === "production"
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -24,7 +24,7 @@ const enableMillionJS =
 
 // Temporarily disabled, produces chatty logs
 const enablePattyCake = false
-// boolVals[env.ENABLE_PATTY_CAKE] ?? process.env.NODE_ENV === 'production'
+// boolVals[env.ENABLE_PATTY_CAKE] ?? env.NODE_ENV === 'production'
 
 // Temporarily disabled, enabling causes FOUC on page refreshes
 const optimizeCss = false
