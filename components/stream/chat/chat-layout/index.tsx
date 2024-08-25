@@ -28,8 +28,6 @@ interface ChatProps {
   isCreator?: boolean
 }
 
-export const runtime = "edge"
-
 export default function Chat({ popout = false, isCreator = true }: ChatProps) {
   const { hide } = useChatObserver()
 
