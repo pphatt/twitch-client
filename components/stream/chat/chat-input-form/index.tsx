@@ -78,15 +78,15 @@ export default function ChatInputForm({
           <ChatActionSectionContainer>
             <ChatSettingWrapper>
               <DropdownMenu modal={false}>
-                <DropdownMenuTrigger asChild>
-                  <Hint
-                    delayDuration={250}
-                    skipDelayDuration={0}
-                    side={"top"}
-                    sideOffset={6}
-                    align={"center"}
-                    label={"Chat Settings"}
-                  >
+                <Hint
+                  delayDuration={250}
+                  skipDelayDuration={0}
+                  side={"top"}
+                  sideOffset={6}
+                  align={"center"}
+                  label={"Chat Settings"}
+                >
+                  <DropdownMenuTrigger asChild>
                     <ChatSettingButton>
                       <InnerChatSettingButtonWrapper>
                         <InnerChatSettingButtonContainer>
@@ -94,8 +94,8 @@ export default function ChatInputForm({
                         </InnerChatSettingButtonContainer>
                       </InnerChatSettingButtonWrapper>
                     </ChatSettingButton>
-                  </Hint>
-                </DropdownMenuTrigger>
+                  </DropdownMenuTrigger>
+                </Hint>
 
                 <UserChatSetting popout={popout} isCreator={isCreator} />
               </DropdownMenu>
