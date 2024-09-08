@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 import { Button } from "@/components/ui/button"
+import { DialogContent, DialogTitle } from "@/components/ui/dialog"
 
 export const EditStreamInfoBtn = styled(Button)`
   color: #fff;
@@ -101,4 +102,76 @@ export const EditStreamText = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
+`
+
+export const DialogContentWrapper = styled(DialogContent)`
+  background-color: hsl(var(--background));
+
+  max-width: 600px;
+  width: 100vw;
+  max-height: 100vh;
+  height: auto;
+
+  border-width: 0;
+  border-radius: 6px;
+
+  padding: 0;
+
+  pointer-events: all;
+
+  & > button {
+    right: 10px;
+  }
+`
+
+export const DialogTitleWrapper = styled.div`
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  background-size: cover;
+
+  min-height: 55px;
+
+  padding: 20px 10px 5px 20px;
+`
+
+export const DialogTitleContainer = styled(DialogTitle)`
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 600;
+`
+
+export const DialogContentContainer = styled.div`
+  width: 100%;
+  height: calc(100% - 55px);
+
+  padding-left: 20px;
+  padding-right: 20px;
+`
+
+export const DialogContentOverlay = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+`
+
+export const EditContentWrapper = styled.div`
+  padding: 20px 10px;
+`
+
+export const EditContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+`
+
+export const EditContentOverlay = styled.div`
+  display: flex;
+  flex-direction: column;
 `

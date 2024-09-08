@@ -12,7 +12,7 @@ export const DialogPrimitiveOverlay = styled(DialogPrimitive.Overlay)`
   position: fixed;
   inset: 0;
 
-  background-color: hsl(var(--background) / 0.85);
+  background-color: rgba(0, 0, 0, 0.85);
 
   z-index: 50;
 
@@ -119,6 +119,10 @@ const dialogStyled = css`
 
   z-index: 50;
 
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.6),
+    0 0 16px var(0, 0, 0, 0.4);
+
   transform: translate(-50%, -50%) scale(1);
 
   transition-property: all;
@@ -162,7 +166,7 @@ export const DialogPrimitiveContent = styled(DialogPrimitive.Content)<
 >`
   ${({ $types }) => ($types === "command" ? commandDialogStyle : dialogStyled)}
   ${({ $position }) => $position === "default" && dialogDefaultPositionStyled}
-  ${({ $position }) => $position === "top" && dialogTopPositionStyled}
+    ${({ $position }) => $position === "top" && dialogTopPositionStyled}
 `
 
 export const DialogPrimitiveClose = styled(DialogPrimitive.Close)`
