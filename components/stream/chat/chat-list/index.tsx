@@ -20,8 +20,17 @@ interface ChatListProps {
 
 export default function ChatList({ messages, isPending }: ChatListProps) {
   const ref = React.useRef<SimpleBarCore | null>(null)
+  const listRef = React.useRef<HTMLDivElement>(null)
 
-  React.useEffect(() => {
+  const scrollToLastMessage = () => {
+    // const lastChild = listRef.current!.lastElementChild as Element
+    //
+    // lastChild.scrollIntoView({
+    //   block: "end",
+    //   inline: "nearest",
+    //   behavior: "instant",
+    // })
+
     if (ref.current) {
       const scrollElement = ref.current.contentWrapperEl as HTMLElement
 
@@ -29,6 +38,10 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
         scrollElement.scrollTop = 9999
       })
     }
+  }
+
+  React.useEffect(() => {
+    scrollToLastMessage()
   })
 
   return (
@@ -55,7 +68,10 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
             padding: "0",
           }}
         >
-          <div className={styles["chat-scrollable-area__message-container"]}>
+          <div
+            className={styles["chat-scrollable-area__message-container"]}
+            ref={listRef}
+          >
             {(!messages || messages.length < 50 || isPending) && (
               <div
                 className={styles["chat-line__status"]}
