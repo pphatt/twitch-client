@@ -4,6 +4,7 @@ import EditFormGroup from "components/stream-manager/quick-action-options/common
 import { Dialog, DialogHeader, DialogTrigger } from "@/components/ui/dialog"
 import { Icons } from "@/components/icons"
 import SimpleBar from "@/components/simplebar"
+import FormSubmitButton from "@/components/stream-manager/quick-action-options/common/edit/form-submit-btn"
 import FormTextarea from "@/components/stream-manager/quick-action-options/common/edit/form-textarea"
 import FormLabel from "@/components/stream-manager/quick-action-options/common/edit/form-title"
 import {
@@ -11,6 +12,8 @@ import {
   BtnIconFigure,
   BtnIconWrapper,
   BtnInnerLayoutWrapper,
+  ContentContainer,
+  ContentWrap,
   DialogContentWrapper as DialogContent,
   DialogContentContainer,
   DialogContentOverlay,
@@ -33,13 +36,15 @@ import {
 } from "@/components/stream-manager/quick-action-options/style"
 
 export default function EditStreamInfo() {
+  const [open, setOpen] = React.useState(false)
+
   const [titleText, setTitleText] = React.useState("")
 
   return (
     <QuickActionBtnWrapper>
       <QuickActionBtnContainer>
         <QuickActionBtnOverlay>
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <EditStreamInfoBtn
                 style={{
@@ -67,70 +72,95 @@ export default function EditStreamInfo() {
             </DialogTrigger>
 
             <DialogContent>
-              <DialogHeader>
-                <DialogTitleWrapper>
-                  <DialogTitle>Edit Stream Info</DialogTitle>
-                </DialogTitleWrapper>
+              <ContentWrap
+                style={{
+                  maxWidth: "600px",
+                  width: "100vw",
+                  maxHeight: "100vh",
+                  height: "auto",
+                  pointerEvents: "all",
+                }}
+              >
+                <ContentContainer>
+                  <DialogHeader>
+                    <DialogTitleWrapper>
+                      <DialogTitle>Edit Stream Info</DialogTitle>
+                    </DialogTitleWrapper>
+                  </DialogHeader>
 
-                <DialogContentContainer>
-                  <DialogContentOverlay>
-                    <SimpleBar className={styled["edit-broadcast-scrollable"]}>
-                      <EditContentWrapper>
-                        <EditContentContainer>
-                          <EditContentOverlay>
-                            <EditFormGroup>
-                              <FormLabel
-                                id={"edit-broadcast-title-formgroup-label"}
-                                htmlFor={"edit-broadcast-title-formgroup"}
-                              >
-                                Title
-                              </FormLabel>
+                  <DialogContentContainer>
+                    <DialogContentOverlay>
+                      <SimpleBar
+                        className={styled["edit-broadcast-scrollable"]}
+                      >
+                        <EditContentWrapper>
+                          <EditContentContainer>
+                            <EditContentOverlay>
+                              <EditFormGroup>
+                                <FormLabel
+                                  id={"edit-broadcast-title-formgroup-label"}
+                                  htmlFor={"edit-broadcast-title-formgroup"}
+                                >
+                                  Title
+                                </FormLabel>
 
-                              <FormTextarea
-                                state={titleText}
-                                setState={setTitleText}
-                                id={"edit-broadcast-title-formgroup"}
-                                placeholder={"Enter a title"}
-                                maxLength={140}
-                                minRows={3}
-                              />
-                            </EditFormGroup>
+                                <FormTextarea
+                                  state={titleText}
+                                  setState={setTitleText}
+                                  id={"edit-broadcast-title-formgroup"}
+                                  placeholder={"Enter a title"}
+                                  maxLength={140}
+                                  minRows={3}
+                                />
+                              </EditFormGroup>
 
-                            <EditFormGroup>
-                              <FormLabel
-                                id={"edit-broadcast-title-formgroup-label"}
-                                htmlFor={"edit-broadcast-title-formgroup"}
-                              >
-                                Category
-                              </FormLabel>
-                            </EditFormGroup>
+                              <EditFormGroup>
+                                <FormLabel>Category</FormLabel>
 
-                            <EditFormGroup>
-                              <FormLabel
-                                id={"edit-broadcast-title-formgroup-label"}
-                                htmlFor={"edit-broadcast-title-formgroup"}
-                              >
-                                Tags
-                              </FormLabel>
-                            </EditFormGroup>
+                                <FormTextarea
+                                  state={titleText}
+                                  setState={setTitleText}
+                                  placeholder={"Enter a title"}
+                                  maxLength={140}
+                                  minRows={3}
+                                />
+                              </EditFormGroup>
 
-                            <EditFormGroup>
-                              <FormLabel
-                                id={"edit-broadcast-title-formgroup-label"}
-                                htmlFor={"edit-broadcast-title-formgroup"}
-                              >
-                                Stream Language
-                              </FormLabel>
-                            </EditFormGroup>
-                          </EditContentOverlay>
-                        </EditContentContainer>
-                      </EditContentWrapper>
-                    </SimpleBar>
+                              <EditFormGroup>
+                                <FormLabel>Tags</FormLabel>
+                                <FormTextarea
+                                  state={titleText}
+                                  setState={setTitleText}
+                                  placeholder={"Enter a title"}
+                                  maxLength={140}
+                                  minRows={3}
+                                />
+                              </EditFormGroup>
 
-                    <div></div>
-                  </DialogContentOverlay>
-                </DialogContentContainer>
-              </DialogHeader>
+                              <EditFormGroup>
+                                <FormLabel>Stream Language</FormLabel>
+                                <FormTextarea
+                                  state={titleText}
+                                  setState={setTitleText}
+                                  placeholder={"Enter a title"}
+                                  maxLength={140}
+                                  minRows={3}
+                                />
+                              </EditFormGroup>
+                            </EditContentOverlay>
+                          </EditContentContainer>
+                        </EditContentWrapper>
+                      </SimpleBar>
+
+                      <FormSubmitButton
+                        state={open}
+                        setState={setOpen}
+                        onSubmit={() => {}}
+                      />
+                    </DialogContentOverlay>
+                  </DialogContentContainer>
+                </ContentContainer>
+              </ContentWrap>
             </DialogContent>
           </Dialog>
         </QuickActionBtnOverlay>

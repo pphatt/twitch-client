@@ -104,13 +104,22 @@ export const EditStreamText = styled.p`
   white-space: normal;
 `
 
+// align-items: center;
+// color: #0e0e10;
+// display: flex;
+// height: 100vh;
+// justify-content: center;
+// outline: none;
+// overflow: hidden;
+// pointer-events: none;
+// width: 100vw;
+
 export const DialogContentWrapper = styled(DialogContent)`
   background-color: hsl(var(--background));
 
   max-width: 600px;
   width: 100vw;
-  max-height: 100vh;
-  height: auto;
+  //height: 100vh;
 
   border-width: 0;
   border-radius: 6px;
@@ -122,6 +131,28 @@ export const DialogContentWrapper = styled(DialogContent)`
   & > button {
     right: 10px;
   }
+`
+
+export const ContentWrap = styled.div`
+  display: flex;
+
+  //max-width: 600px;
+  //width: 100vw;
+  //max-height: 100vh;
+  //height: auto;
+  //
+  //pointer-events: all;
+`
+
+export const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 600px;
+  max-height: 100%;
+
+  border-radius: 6px;
 `
 
 export const DialogTitleWrapper = styled.div`
@@ -145,7 +176,7 @@ export const DialogTitleContainer = styled(DialogTitle)`
 
 export const DialogContentContainer = styled.div`
   width: 100%;
-  height: calc(100% - 55px);
+  height: calc(100% - 6.5rem);
 
   padding-left: 20px;
   padding-right: 20px;

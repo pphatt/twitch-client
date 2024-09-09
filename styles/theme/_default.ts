@@ -37,6 +37,7 @@ export const GlobalColorTheme = createGlobalStyle`
 
         --color-border-base: var(--color-opac-gd-2);
 
+        --color-opac-gd-1: 240, 7%, 35%, 0.38; // #53535f60, rgba(83, 83, 95, 0.38)
         --color-opac-gd-2: 240, 7%, 35%, 0.48; // #53535f7a,  rgba(83, 83, 95, 0.48)
 
         --color-red: 1 100% 46%; // #eb0400

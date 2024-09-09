@@ -106,4 +106,8 @@ export const GlobalStyle = createGlobalStyle`
             color-scheme: dark;
         }
     }
+
+    button:hover {
+        cursor: pointer;
+    }
 `
