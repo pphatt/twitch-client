@@ -2,8 +2,10 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
+import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
+import ResizeDetector from "@/components/resize-detector"
 import {
   ChannelVideoPlaceholderContainer,
   ChannelVideoPlaceholderLayout,
@@ -14,6 +16,10 @@ import styles from "@/components/stream/common/background/style.module.scss"
 export default function Background() {
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
+  const resizeRef = React.useRef<HTMLDivElement | null>(null)
+
+  const { setHeight } = useVideoProperty()
+
   return (
     <div
       className={cn(styles["channel-root__player"], {
@@ -21,7 +27,13 @@ export default function Background() {
           !isRightColumnClosedByUserAction,
       })}
     >
-      <div className={styles["channel-root-layout"]}>
+      <ResizeDetector
+        resizeRef={resizeRef}
+        setState={setHeight}
+        isInitNeeded={true}
+      />
+
+      <div className={styles["channel-root-layout"]} ref={resizeRef}>
         <div
           style={{
             // transform: "scale(4)",

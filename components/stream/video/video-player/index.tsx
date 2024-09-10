@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
-import { useVideoProperty } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
 import SpinnerLoading from "@/components/loading/spinner-loading"
@@ -23,39 +22,8 @@ interface ChannelVideoProps {
 
 export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
   const videoRef = React.useRef<HTMLVideoElement | null>(null)
-  const resizeRef = React.useRef<HTMLDivElement | null>(null)
 
   const { isRightColumnClosedByUserAction } = useCacheLayout()
-
-  const { setHeight } = useVideoProperty()
-
-  /*
-   * README:
-   *  - should have a resize detector
-   * */
-
-  // for the innit height
-  React.useEffect(() => {
-    if (!resizeRef.current) {
-      return
-    }
-
-    setHeight(resizeRef.current.clientHeight)
-  }, [setHeight, resizeRef])
-
-  // binding for resize window effect video dimension
-  React.useEffect(() => {
-    const handleVideoHeightChange = () => {
-      if (!resizeRef.current) {
-        return
-      }
-
-      setHeight(resizeRef.current.clientHeight)
-    }
-
-    window.addEventListener("resize", handleVideoHeightChange)
-    return () => window.removeEventListener("resize", handleVideoHeightChange)
-  }, [setHeight, resizeRef])
 
   return (
     <PersistentPlayer
@@ -73,7 +41,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
         <InnerLayoutWrapper>
           <InnerLayoutContainer>
-            <InnerLayoutOverlay ref={resizeRef}>
+            <InnerLayoutOverlay>
               {!isFetching && (
                 <video
                   ref={videoRef}
