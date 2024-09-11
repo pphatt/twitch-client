@@ -26,6 +26,7 @@ export const GlobalColorTheme = createGlobalStyle`
         --color-twitch-orange-11: 12 100% 63%; // #ff6740
         --color-twitch-orange-12: 12 84% 56%; // #ed5732
 
+        --color-red-9: 1 100% 46%; // #eb0400
         --color-red-11: 1 100% 75%; // #ff8280
 
         --color-hinted-grey-1: 240 7% 6%; // #0e0e10

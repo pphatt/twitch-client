@@ -1,0 +1,27 @@
+.top-bar {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0.35) 60%,
+    transparent
+  );
+
+  padding: 20px;
+  margin-bottom: 55px;
+
+  pointer-events: none;
+}
+
+.player-controls {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0.35) 60%,
+    transparent
+  );
+}
+
+.player-controls__left-control-group,
+.player-controls__right-control-group {
+  flex-basis: 0;
+}

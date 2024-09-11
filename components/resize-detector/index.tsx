@@ -1,7 +1,5 @@
 import * as React from "react"
 
-import "@/components/resize-detector/style.module.scss"
-
 interface ResizeDetectorProps {
   /*
    * resizeRef for pointing to the element need to observe when resize

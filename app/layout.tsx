@@ -1,6 +1,7 @@
 import "@/styles/vendors/react-mosaic-component.scss"
 import "@/styles/vendors/simple-bar.scss"
 import "@/styles/vendors/stream-manager.scss"
+import "@/styles/vendors/global.scss"
 
 import * as React from "react"
 import { GlobalStyleProvider } from "@/providers/global-style-provider"

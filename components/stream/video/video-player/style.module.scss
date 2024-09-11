@@ -8,8 +8,12 @@
   width: 100% !important;
 }
 
+.video-player {
+  background: #000;
+}
+
 .video-player__inactive {
-  //cursor: none;
+  cursor: none;
 }
 
 .video-player__overlay {

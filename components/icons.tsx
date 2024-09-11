@@ -600,4 +600,35 @@ export const Icons = {
       </g>
     </svg>
   ),
+  playVideo: ({ ...props }: LucideProps) => (
+    <svg
+      width="100%"
+      height="100%"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      role="presentation"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <g>
+        <path d="M8 3H4v14h4V3zM16 3h-4v14h4V3z"></path>
+      </g>
+    </svg>
+  ),
+  fullscreen: ({ ...props }: LucideProps) => (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      focusable="false"
+      aria-hidden="true"
+      role="presentation"
+      {...props}
+    >
+      <path d="M7 3H2v5h2V5h3V3zm11 5V3h-5v2h3v3h2zm-5 9v-2h3v-3h2v5h-5zm-9-5H2v5h5v-2H4v-3z"></path>
+    </svg>
+  ),
 }

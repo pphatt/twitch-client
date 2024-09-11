@@ -36,8 +36,6 @@ export const InnerLayoutWrapper = styled.div`
   top: 0;
   left: 0;
 
-  background: #000;
-
   width: 100%;
   min-height: 100%;
 `

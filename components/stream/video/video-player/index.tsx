@@ -6,6 +6,11 @@ import { useCacheLayout } from "@/store/persistent/layout"
 import { cn } from "@/lib/utils"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import {
+  PlayerControls,
+  TopBarOverlay,
+  TransitionOverlay,
+} from "@/components/stream/video/video-overlay"
+import {
   InnerLayoutContainer,
   InnerLayoutOverlay,
   InnerLayoutWrapper,
@@ -14,7 +19,6 @@ import {
   PersistentPlayer,
   PlayerOverlayBackground,
 } from "@/components/stream/video/video-player/style"
-import styles from "@/components/stream/video/video-player/style.module.scss"
 
 interface ChannelVideoProps {
   isFetching: boolean
@@ -25,48 +29,65 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
+  const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
+
+  React.useEffect(() => {
+    const timeOutVideoOverlayAppear = setTimeout(() => {
+      if (isMouseEntered) {
+        setIsMouseEntered(false)
+      }
+    }, 5000)
+
+    return () => clearTimeout(timeOutVideoOverlayAppear)
+  }, [isMouseEntered])
+
   return (
     <PersistentPlayer
       className={cn(
         {
-          [`${styles["expand"]}`]: !isRightColumnClosedByUserAction,
+          [`expand`]: !isRightColumnClosedByUserAction,
         },
         {
-          [`${styles["collapse"]}`]: isRightColumnClosedByUserAction,
+          [`collapse`]: isRightColumnClosedByUserAction,
         }
       )}
     >
       <LayoutContainer>
         <LayoutPlaceholder />
 
-        <InnerLayoutWrapper>
+        <InnerLayoutWrapper
+          className="video-player"
+          data-a-target="video-player"
+          data-a-player-type="site"
+          data-test-selector="video-player__video-layout"
+        >
           <InnerLayoutContainer>
             <InnerLayoutOverlay>
-              {!isFetching && (
-                <video
-                  ref={videoRef}
-                  playsInline
-                  controls={true}
-                  src={"/demo-video/夜に駆ける.mp4"}
-                ></video>
-              )}
+              <video ref={videoRef} playsInline></video>
 
-              {isFetching && (
-                <div
-                  className={cn(
-                    "video-player__default-player",
-                    styles["video-player__inactive"]
-                  )}
-                >
-                  <div className={styles["video-player__overlay"]}>
-                    <div></div>
+              <div
+                onMouseMove={() => setIsMouseEntered(true)}
+                onMouseLeave={() => setIsMouseEntered(false)}
+                className={cn("video-player__default-player", {
+                  "video-player__inactive": !isMouseEntered,
+                })}
+              >
+                <div className="video-player__overlay">
+                  <TransitionOverlay onActive={isMouseEntered}>
+                    <TopBarOverlay />
+                  </TransitionOverlay>
 
+                  {isFetching && (
                     <PlayerOverlayBackground>
                       <SpinnerLoading />
                     </PlayerOverlayBackground>
-                  </div>
+                  )}
+
+                  <TransitionOverlay onActive={isMouseEntered}>
+                    <PlayerControls onActive={isMouseEntered} />
+                  </TransitionOverlay>
                 </div>
-              )}
+              </div>
             </InnerLayoutOverlay>
           </InnerLayoutContainer>
         </InnerLayoutWrapper>
