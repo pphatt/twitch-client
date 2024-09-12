@@ -1,5 +1,6 @@
 import * as React from "react"
 
+import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {
   ButtonContainer,
@@ -60,9 +61,13 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
 
 interface PlayerControlWrapperProps {
   onActive: boolean
+  onRequestFullScreen: () => void
 }
 
-export function PlayerControls({ onActive }: PlayerControlWrapperProps) {
+export function PlayerControls({
+  onActive,
+  onRequestFullScreen,
+}: PlayerControlWrapperProps) {
   return (
     <PlayerControlsWrapper
       className="player-controls"
@@ -73,21 +78,30 @@ export function PlayerControls({ onActive }: PlayerControlWrapperProps) {
           <PlayerControlsGroup
             $direction={"start"}
             className="player-controls__left-control-group"
-            aria-label="Pause (space/k)"
           >
-            <ButtonDiv>
-              <ShareButton>
-                <ButtonWrapper>
-                  <ButtonContainer>
-                    <ButtonOverlay>
-                      <ButtonPlaceholder />
+            <Hint
+              delayDuration={250}
+              skipDelayDuration={0}
+              align={"start"}
+              sideOffset={5}
+              label={"Pause (space/k)"}
+              disableHoverableContent={true}
+              forceVisible={onActive}
+            >
+              <ButtonDiv>
+                <ShareButton aria-label="Pause (space/k)">
+                  <ButtonWrapper>
+                    <ButtonContainer>
+                      <ButtonOverlay>
+                        <ButtonPlaceholder />
 
-                      <ButtonSVG as={Icons.playVideo} />
-                    </ButtonOverlay>
-                  </ButtonContainer>
-                </ButtonWrapper>
-              </ShareButton>
-            </ButtonDiv>
+                        <ButtonSVG as={Icons.playVideo} />
+                      </ButtonOverlay>
+                    </ButtonContainer>
+                  </ButtonWrapper>
+                </ShareButton>
+              </ButtonDiv>
+            </Hint>
           </PlayerControlsGroup>
 
           <PlayerControlsGroup
@@ -95,15 +109,25 @@ export function PlayerControls({ onActive }: PlayerControlWrapperProps) {
             className="player-controls__right-control-group"
             aria-label="Fullscreen (f)"
           >
-            <ButtonDiv>
-              <ShareButton>
-                <SVGWrapper>
-                  <SVGContainer>
-                    <Icons.fullscreen />
-                  </SVGContainer>
-                </SVGWrapper>
-              </ShareButton>
-            </ButtonDiv>
+            <Hint
+              delayDuration={250}
+              skipDelayDuration={0}
+              align={"end"}
+              sideOffset={5}
+              label={"Fullscreen (f)"}
+              disableHoverableContent={true}
+              forceVisible={onActive}
+            >
+              <ButtonDiv onClick={onRequestFullScreen}>
+                <ShareButton>
+                  <SVGWrapper>
+                    <SVGContainer>
+                      <Icons.fullscreen />
+                    </SVGContainer>
+                  </SVGWrapper>
+                </ShareButton>
+              </ButtonDiv>
+            </Hint>
           </PlayerControlsGroup>
         </PlayerControlsOverlay>
       </PlayerControlsContainer>

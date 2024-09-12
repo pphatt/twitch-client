@@ -27,7 +27,11 @@ export const TooltipContent = styled(Tooltip.Content)`
 
   box-shadow:
     hsl(206 22% 7% / 35%) 0 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    hsl(206 22% 7% / 20%) 0 10px 20px -15px;
+
+  p {
+    line-height: inherit;
+  }
 
   &[data-state="delayed-open"][data-side="top"] {
     --tw-enter-opacity: 0;

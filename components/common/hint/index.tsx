@@ -15,7 +15,11 @@ interface HintProps {
   alignOffset?: number
   avoidCollisions?: boolean
   hideWhenDetached?: boolean
+  disableHoverableContent?: boolean
   className?: string
+
+  /* used for addition state management outside the hint component. */
+  forceVisible?: boolean
 }
 
 export const Hint = ({
@@ -29,10 +33,18 @@ export const Hint = ({
   alignOffset,
   avoidCollisions,
   hideWhenDetached,
+  disableHoverableContent,
+  forceVisible,
 }: HintProps) => {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Tooltip.Provider delayDuration={200} skipDelayDuration={0}>
-      <Tooltip.Root>
+    <Tooltip.Provider
+      delayDuration={200}
+      skipDelayDuration={0}
+      disableHoverableContent={disableHoverableContent}
+    >
+      <Tooltip.Root open={forceVisible && open} onOpenChange={setOpen}>
         <Tooltip.Trigger asChild={asChild || !!children}>
           {children}
         </Tooltip.Trigger>

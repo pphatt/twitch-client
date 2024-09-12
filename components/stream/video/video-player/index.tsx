@@ -2,8 +2,10 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
+import { useVideoFullScreen } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
+import { useEventListener } from "@/hooks/use-event-listener"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import {
   PlayerControls,
@@ -26,11 +28,15 @@ interface ChannelVideoProps {
 
 export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
   const videoRef = React.useRef<HTMLVideoElement | null>(null)
+  const containerRef = React.useRef<HTMLDivElement | null>(null)
 
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
+  const { isFullscreen, setIsFullscreen } = useVideoFullScreen()
 
+  // temporary solution for live stream video fullscreen feature
+  // there are many things to update along when isFullScreen
   React.useEffect(() => {
     const timeOutVideoOverlayAppear = setTimeout(() => {
       if (isMouseEntered) {
@@ -40,6 +46,22 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
     return () => clearTimeout(timeOutVideoOverlayAppear)
   }, [isMouseEntered])
+
+  const onRequestFullScreen = () => {
+    if (isFullscreen) {
+      void document.exitFullscreen()
+    } else if (containerRef?.current) {
+      void containerRef.current.requestFullscreen()
+    }
+  }
+
+  const handleFullscreenChange = () => {
+    const isCurrentlyFullscreen = document.fullscreenElement !== null
+    setIsFullscreen(isCurrentlyFullscreen)
+  }
+
+  // addEventListener on the containerRef
+  useEventListener("fullscreenchange", handleFullscreenChange, containerRef)
 
   return (
     <PersistentPlayer
@@ -61,9 +83,13 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
           data-a-player-type="site"
           data-test-selector="video-player__video-layout"
         >
-          <InnerLayoutContainer>
+          <InnerLayoutContainer ref={containerRef}>
             <InnerLayoutOverlay>
-              <video ref={videoRef} playsInline></video>
+              <video
+                ref={videoRef}
+                playsInline
+                src={"/demo-video/夜に駆ける.mp4"}
+              ></video>
 
               <div
                 onMouseMove={() => setIsMouseEntered(true)}
@@ -84,7 +110,10 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
                   )}
 
                   <TransitionOverlay onActive={isMouseEntered}>
-                    <PlayerControls onActive={isMouseEntered} />
+                    <PlayerControls
+                      onActive={isMouseEntered}
+                      onRequestFullScreen={onRequestFullScreen}
+                    />
                   </TransitionOverlay>
                 </div>
               </div>
