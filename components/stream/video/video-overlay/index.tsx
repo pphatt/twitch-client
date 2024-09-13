@@ -1,15 +1,9 @@
 import * as React from "react"
-import { useVideoFullScreen, useVideoPlayControl } from "@/store/state/video"
 
-import { Hint } from "@/components/common/hint"
-import { Icons } from "@/components/icons"
+import FullscreenButton from "@/components/stream/video/video-control-player/fullscreen-button"
+import PlayButton from "@/components/stream/video/video-control-player/play-button"
+import VolumeControl from "@/components/stream/video/video-control-player/volume-control"
 import {
-  ButtonContainer,
-  ButtonDiv,
-  ButtonOverlay,
-  ButtonPlaceholder,
-  ButtonSVG,
-  ButtonWrapper,
   ChannelStatusContainer,
   ChannelStatusText,
   ChannelStatusTextIndicator,
@@ -19,12 +13,10 @@ import {
   PlayerControlsGroup,
   PlayerControlsOverlay,
   PlayerControlsWrapper,
-  ShareButton,
-  SVGContainer,
-  SVGWrapper,
   TopBarOverlayContainer,
   TopBarOverlayWrapper,
   TransitionOverlayPanel,
+  VolumeControlGroup,
 } from "@/components/stream/video/video-overlay/style"
 
 interface VideoOverlayProps {
@@ -63,21 +55,14 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
 interface PlayerControlWrapperProps {
   onActive: boolean
   containerRef: HTMLDivElement | null
-
-  onRequestPlay: () => void
-
-  onRequestFullScreen: () => void
+  videoRef: HTMLVideoElement | null
 }
 
 export function PlayerControls({
   onActive,
   containerRef,
-  onRequestPlay,
-  onRequestFullScreen,
+  videoRef,
 }: PlayerControlWrapperProps) {
-  const { isFullScreen } = useVideoFullScreen()
-  const { isPlaying } = useVideoPlayControl()
-
   return (
     <PlayerControlsWrapper
       className="player-controls"
@@ -89,63 +74,32 @@ export function PlayerControls({
             $direction={"start"}
             className="player-controls__left-control-group"
           >
-            <Hint
-              delayDuration={250}
-              skipDelayDuration={0}
-              align={"start"}
-              sideOffset={5}
-              label={!isPlaying ? "Play (space/k)" : "Pause (space/k)"}
-              disableHoverableContent={true}
-              container={containerRef}
-              forceVisible={onActive}
-              keepAlive={true}
-            >
-              <ButtonDiv onClick={onRequestPlay}>
-                <ShareButton aria-label="Pause (space/k)">
-                  <ButtonWrapper>
-                    <ButtonContainer>
-                      <ButtonOverlay>
-                        <ButtonPlaceholder />
+            <PlayButton
+              onActive={onActive}
+              containerRef={containerRef}
+              videoRef={videoRef}
+            />
 
-                        <ButtonSVG
-                          as={!isPlaying ? Icons.playVideo : Icons.pauseVideo}
-                        />
-                      </ButtonOverlay>
-                    </ButtonContainer>
-                  </ButtonWrapper>
-                </ShareButton>
-              </ButtonDiv>
-            </Hint>
+            <div>
+              <VolumeControlGroup>
+                <VolumeControl
+                  onActive={onActive}
+                  containerRef={containerRef}
+                  videoRef={videoRef}
+                />
+              </VolumeControlGroup>
+            </div>
           </PlayerControlsGroup>
 
           <PlayerControlsGroup
             $direction={"end"}
             className="player-controls__right-control-group"
           >
-            <Hint
-              delayDuration={250}
-              skipDelayDuration={0}
-              align={"end"}
-              sideOffset={5}
-              label={isFullScreen ? "Exit Fullscreen (f)" : "Fullscreen (f)"}
-              disableHoverableContent={true}
-              container={containerRef}
-              forceVisible={onActive}
-            >
-              <ButtonDiv onClick={onRequestFullScreen}>
-                <ShareButton>
-                  <SVGWrapper>
-                    <SVGContainer>
-                      {isFullScreen ? (
-                        <Icons.exitFullscreen />
-                      ) : (
-                        <Icons.fullscreen />
-                      )}
-                    </SVGContainer>
-                  </SVGWrapper>
-                </ShareButton>
-              </ButtonDiv>
-            </Hint>
+            <FullscreenButton
+              onActive={onActive}
+              containerRef={containerRef}
+              videoRef={videoRef}
+            />
           </PlayerControlsGroup>
         </PlayerControlsOverlay>
       </PlayerControlsContainer>

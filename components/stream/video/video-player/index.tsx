@@ -2,10 +2,8 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
-import { useVideoFullScreen, useVideoPlayControl } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
-import { useEventListener } from "@/hooks/use-event-listener"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import {
   PlayerControls,
@@ -34,10 +32,6 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
   const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
 
-  const { isFullScreen, setIsFullScreen } = useVideoFullScreen()
-
-  const { isPlaying, setIsPlaying } = useVideoPlayControl()
-
   // temporary solution for live stream video fullscreen feature
   // there are many things to update along when isFullScreen
   React.useEffect(() => {
@@ -49,36 +43,6 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
     return () => clearTimeout(timeOutVideoOverlayAppear)
   }, [isMouseEntered])
-
-  const onRequestFullScreen = () => {
-    if (isFullScreen) {
-      void document.exitFullscreen()
-    } else if (containerRef?.current) {
-      void containerRef.current.requestFullscreen()
-    }
-  }
-
-  const handleFullscreenChange = () => {
-    const isCurrentlyFullscreen = document.fullscreenElement !== null
-    setIsFullScreen(isCurrentlyFullscreen)
-  }
-
-  // addEventListener on the containerRef
-  useEventListener("fullscreenchange", handleFullscreenChange, containerRef)
-
-  const onRequestPlay = () => {
-    if (!videoRef.current) {
-      return
-    }
-
-    if (isPlaying) {
-      void videoRef.current.pause()
-      setIsPlaying(false)
-    } else {
-      void videoRef.current.play()
-      setIsPlaying(true)
-    }
-  }
 
   return (
     <PersistentPlayer
@@ -130,8 +94,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
                     <PlayerControls
                       onActive={isMouseEntered}
                       containerRef={containerRef.current}
-                      onRequestPlay={onRequestPlay}
-                      onRequestFullScreen={onRequestFullScreen}
+                      videoRef={videoRef.current}
                     />
                   </TransitionOverlay>
                 </div>
