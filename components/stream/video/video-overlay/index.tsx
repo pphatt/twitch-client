@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useVideoFullScreen } from "@/store/state/video"
+import { useVideoFullScreen, useVideoPlayControl } from "@/store/state/video"
 
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
@@ -62,16 +62,21 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
 
 interface PlayerControlWrapperProps {
   onActive: boolean
-  containerRef: HTMLDivElement
+  containerRef: HTMLDivElement | null
+
+  onRequestPlay: () => void
+
   onRequestFullScreen: () => void
 }
 
 export function PlayerControls({
   onActive,
   containerRef,
+  onRequestPlay,
   onRequestFullScreen,
 }: PlayerControlWrapperProps) {
   const { isFullScreen } = useVideoFullScreen()
+  const { isPlaying } = useVideoPlayControl()
 
   return (
     <PlayerControlsWrapper
@@ -89,19 +94,22 @@ export function PlayerControls({
               skipDelayDuration={0}
               align={"start"}
               sideOffset={5}
-              label={"Pause (space/k)"}
+              label={!isPlaying ? "Play (space/k)" : "Pause (space/k)"}
               disableHoverableContent={true}
               container={containerRef}
               forceVisible={onActive}
+              keepAlive={true}
             >
-              <ButtonDiv>
+              <ButtonDiv onClick={onRequestPlay}>
                 <ShareButton aria-label="Pause (space/k)">
                   <ButtonWrapper>
                     <ButtonContainer>
                       <ButtonOverlay>
                         <ButtonPlaceholder />
 
-                        <ButtonSVG as={Icons.playVideo} />
+                        <ButtonSVG
+                          as={!isPlaying ? Icons.playVideo : Icons.pauseVideo}
+                        />
                       </ButtonOverlay>
                     </ButtonContainer>
                   </ButtonWrapper>

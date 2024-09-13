@@ -16,11 +16,17 @@ interface HintProps {
   avoidCollisions?: boolean
   hideWhenDetached?: boolean
   disableHoverableContent?: boolean
-  container?: HTMLElement
+  container?: HTMLElement | null
   className?: string
 
   /* used for addition state management outside the hint component. */
   forceVisible?: boolean
+
+  /*
+   * this means for keep the tooltip open after a click or a keyboard event
+   * https://github.com/radix-ui/primitives/issues/2029#issuecomment-2086452005
+   *  */
+  keepAlive?: boolean
 }
 
 export const Hint = ({
@@ -37,7 +43,10 @@ export const Hint = ({
   disableHoverableContent,
   container,
   forceVisible,
+  keepAlive = false,
 }: HintProps) => {
+  const triggerRef = React.useRef(null)
+
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -47,11 +56,20 @@ export const Hint = ({
       disableHoverableContent={disableHoverableContent}
     >
       <Tooltip.Root open={forceVisible && open} onOpenChange={setOpen}>
-        <Tooltip.Trigger asChild={asChild || !!children}>
+        <Tooltip.Trigger
+          ref={triggerRef}
+          onClick={(event) => {
+            if (keepAlive) event.preventDefault()
+          }}
+          asChild={asChild || !!children}
+        >
           {children}
         </Tooltip.Trigger>
 
-        <Tooltip.Portal container={container}>
+        <Tooltip.Portal
+          container={container}
+          forceMount={open ? true : undefined}
+        >
           <TooltipContent
             side={side}
             sideOffset={sideOffset}
@@ -60,6 +78,16 @@ export const Hint = ({
             avoidCollisions={avoidCollisions}
             hideWhenDetached={hideWhenDetached}
             className={className}
+            onPointerDownOutside={(event) => {
+              if (!triggerRef.current && keepAlive) {
+                return
+              }
+
+              // @ts-expect-error eslint-disable-next-line @typescript-eslint/no-unsafe-call
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+              if (triggerRef?.current?.contains(event.target))
+                event.preventDefault()
+            }}
           >
             <p>{label}</p>
             <Tooltip.Arrow fill={"white"} />

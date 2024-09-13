@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
-import { useVideoFullScreen } from "@/store/state/video"
+import { useVideoFullScreen, useVideoPlayControl } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
 import { useEventListener } from "@/hooks/use-event-listener"
@@ -27,13 +27,16 @@ interface ChannelVideoProps {
 }
 
 export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
-  const videoRef = React.useRef<HTMLVideoElement | null>(null)
-  const containerRef = React.useRef<HTMLDivElement | null>(null)
+  const videoRef = React.useRef<HTMLVideoElement>(null)
+  const containerRef = React.useRef<HTMLDivElement>(null)
 
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
+
   const { isFullScreen, setIsFullScreen } = useVideoFullScreen()
+
+  const { isPlaying, setIsPlaying } = useVideoPlayControl()
 
   // temporary solution for live stream video fullscreen feature
   // there are many things to update along when isFullScreen
@@ -63,6 +66,20 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
   // addEventListener on the containerRef
   useEventListener("fullscreenchange", handleFullscreenChange, containerRef)
 
+  const onRequestPlay = () => {
+    if (!videoRef.current) {
+      return
+    }
+
+    if (isPlaying) {
+      void videoRef.current.pause()
+      setIsPlaying(false)
+    } else {
+      void videoRef.current.play()
+      setIsPlaying(true)
+    }
+  }
+
   return (
     <PersistentPlayer
       className={cn(
@@ -88,7 +105,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
               <video
                 ref={videoRef}
                 playsInline
-                src={"/demo-video/夜に駆ける.mp4"}
+                src={isFetching ? "" : "/demo-video/夜に駆ける.mp4"}
               ></video>
 
               <div
@@ -113,6 +130,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
                     <PlayerControls
                       onActive={isMouseEntered}
                       containerRef={containerRef.current}
+                      onRequestPlay={onRequestPlay}
                       onRequestFullScreen={onRequestFullScreen}
                     />
                   </TransitionOverlay>
