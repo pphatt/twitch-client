@@ -33,7 +33,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
-  const { isFullscreen, setIsFullscreen } = useVideoFullScreen()
+  const { isFullScreen, setIsFullScreen } = useVideoFullScreen()
 
   // temporary solution for live stream video fullscreen feature
   // there are many things to update along when isFullScreen
@@ -48,7 +48,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
   }, [isMouseEntered])
 
   const onRequestFullScreen = () => {
-    if (isFullscreen) {
+    if (isFullScreen) {
       void document.exitFullscreen()
     } else if (containerRef?.current) {
       void containerRef.current.requestFullscreen()
@@ -57,7 +57,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
   const handleFullscreenChange = () => {
     const isCurrentlyFullscreen = document.fullscreenElement !== null
-    setIsFullscreen(isCurrentlyFullscreen)
+    setIsFullScreen(isCurrentlyFullscreen)
   }
 
   // addEventListener on the containerRef
@@ -112,6 +112,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
                   <TransitionOverlay onActive={isMouseEntered}>
                     <PlayerControls
                       onActive={isMouseEntered}
+                      containerRef={containerRef.current}
                       onRequestFullScreen={onRequestFullScreen}
                     />
                   </TransitionOverlay>

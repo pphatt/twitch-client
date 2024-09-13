@@ -16,6 +16,7 @@ interface HintProps {
   avoidCollisions?: boolean
   hideWhenDetached?: boolean
   disableHoverableContent?: boolean
+  container?: HTMLElement
   className?: string
 
   /* used for addition state management outside the hint component. */
@@ -32,8 +33,9 @@ export const Hint = ({
   align,
   alignOffset,
   avoidCollisions,
-  hideWhenDetached,
+  hideWhenDetached = true,
   disableHoverableContent,
+  container,
   forceVisible,
 }: HintProps) => {
   const [open, setOpen] = React.useState(false)
@@ -49,7 +51,7 @@ export const Hint = ({
           {children}
         </Tooltip.Trigger>
 
-        <Tooltip.Portal>
+        <Tooltip.Portal container={container}>
           <TooltipContent
             side={side}
             sideOffset={sideOffset}

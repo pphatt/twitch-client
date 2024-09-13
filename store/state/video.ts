@@ -11,11 +11,11 @@ export const useVideoProperty = create<VideoProperties>((set) => ({
 }))
 
 interface VideoFullScreen {
-  isFullscreen: boolean
-  setIsFullscreen: (state: boolean) => void
+  isFullScreen: boolean
+  setIsFullScreen: (state: boolean) => void
 }
 
 export const useVideoFullScreen = create<VideoFullScreen>((set) => ({
-  isFullscreen: false,
-  setIsFullscreen: (state) => set({ isFullscreen: state }),
+  isFullScreen: false,
+  setIsFullScreen: (state) => set({ isFullScreen: state }),
 }))

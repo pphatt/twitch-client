@@ -631,4 +631,17 @@ export const Icons = {
       <path d="M7 3H2v5h2V5h3V3zm11 5V3h-5v2h3v3h2zm-5 9v-2h3v-3h2v5h-5zm-9-5H2v5h5v-2H4v-3z"></path>
     </svg>
   ),
+  exitFullscreen: ({ ...props }: LucideProps) => (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      focusable="false"
+      aria-hidden="true"
+      role="presentation"
+      {...props}
+    >
+      <path d="M8 8V3H6v3H2v2h6zm4 0h6V6h-4V3h-2v5zm0 9v-5h6v2h-4v3h-2zm-4-5H2v2h4v3h2v-5z"></path>
+    </svg>
+  ),
 }

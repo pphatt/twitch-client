@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useVideoFullScreen } from "@/store/state/video"
 
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
@@ -61,13 +62,17 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
 
 interface PlayerControlWrapperProps {
   onActive: boolean
+  containerRef: HTMLDivElement
   onRequestFullScreen: () => void
 }
 
 export function PlayerControls({
   onActive,
+  containerRef,
   onRequestFullScreen,
 }: PlayerControlWrapperProps) {
+  const { isFullScreen } = useVideoFullScreen()
+
   return (
     <PlayerControlsWrapper
       className="player-controls"
@@ -86,6 +91,7 @@ export function PlayerControls({
               sideOffset={5}
               label={"Pause (space/k)"}
               disableHoverableContent={true}
+              container={containerRef}
               forceVisible={onActive}
             >
               <ButtonDiv>
@@ -107,22 +113,26 @@ export function PlayerControls({
           <PlayerControlsGroup
             $direction={"end"}
             className="player-controls__right-control-group"
-            aria-label="Fullscreen (f)"
           >
             <Hint
               delayDuration={250}
               skipDelayDuration={0}
               align={"end"}
               sideOffset={5}
-              label={"Fullscreen (f)"}
+              label={isFullScreen ? "Exit Fullscreen (f)" : "Fullscreen (f)"}
               disableHoverableContent={true}
+              container={containerRef}
               forceVisible={onActive}
             >
               <ButtonDiv onClick={onRequestFullScreen}>
                 <ShareButton>
                   <SVGWrapper>
                     <SVGContainer>
-                      <Icons.fullscreen />
+                      {isFullScreen ? (
+                        <Icons.exitFullscreen />
+                      ) : (
+                        <Icons.fullscreen />
+                      )}
                     </SVGContainer>
                   </SVGWrapper>
                 </ShareButton>
