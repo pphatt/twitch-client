@@ -52,7 +52,7 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
   )
 }
 
-interface PlayerControlWrapperProps {
+export interface PlayerControlProps {
   onActive: boolean
   containerRef: HTMLDivElement | null
   videoRef: HTMLVideoElement | null
@@ -62,7 +62,7 @@ export function PlayerControls({
   onActive,
   containerRef,
   videoRef,
-}: PlayerControlWrapperProps) {
+}: PlayerControlProps) {
   return (
     <PlayerControlsWrapper
       className="player-controls"

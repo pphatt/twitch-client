@@ -12,12 +12,9 @@ import {
   ButtonWrapper,
   ShareButton,
 } from "@/components/stream/video/video-control-player/share-style"
+import type { PlayerControlProps } from "@/components/stream/video/video-overlay"
 
-interface PlayButtonProps {
-  onActive: boolean
-  containerRef: HTMLDivElement | null
-  videoRef: HTMLVideoElement | null
-}
+interface PlayButtonProps extends PlayerControlProps {}
 
 export default function PlayButton({
   onActive,

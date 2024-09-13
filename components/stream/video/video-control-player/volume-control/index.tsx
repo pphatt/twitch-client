@@ -9,12 +9,9 @@ import {
   SVGContainer,
   SVGWrapper,
 } from "@/components/stream/video/video-control-player/share-style"
+import type { PlayerControlProps } from "@/components/stream/video/video-overlay"
 
-interface VolumeControlProps {
-  onActive: boolean
-  containerRef: HTMLDivElement | null
-  videoRef: HTMLVideoElement | null
-}
+interface VolumeControlProps extends PlayerControlProps {}
 
 export default function VolumeControl({
   onActive,
@@ -41,10 +38,14 @@ export default function VolumeControl({
     }
 
     setIsVideoMuted(parsedValue)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   React.useEffect(() => {
     onRequestMuted(isVideoMuted?.default)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVideoMuted?.default])
 
   const onRequestMuted = React.useCallback(

@@ -49,13 +49,21 @@ export const Hint = ({
 
   const [open, setOpen] = React.useState(false)
 
+  React.useEffect(() => {
+    if (forceVisible !== undefined) {
+      setOpen(forceVisible && open)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceVisible])
+
   return (
     <Tooltip.Provider
       delayDuration={200}
       skipDelayDuration={0}
       disableHoverableContent={disableHoverableContent}
     >
-      <Tooltip.Root open={forceVisible && open} onOpenChange={setOpen}>
+      <Tooltip.Root open={open} onOpenChange={setOpen}>
         <Tooltip.Trigger
           ref={triggerRef}
           onClick={(event) => {
