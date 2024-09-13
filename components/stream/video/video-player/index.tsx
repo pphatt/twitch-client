@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
+import { useVideoPlayControl } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
 import SpinnerLoading from "@/components/loading/spinner-loading"
@@ -32,11 +33,13 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
   const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
 
+  const { isPlaying } = useVideoPlayControl()
+
   // temporary solution for live stream video fullscreen feature
   // there are many things to update along when isFullScreen
   React.useEffect(() => {
     const timeOutVideoOverlayAppear = setTimeout(() => {
-      if (isMouseEntered) {
+      if (isMouseEntered && isPlaying) {
         setIsMouseEntered(false)
       }
     }, 5000)
@@ -73,8 +76,13 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
               ></video>
 
               <div
+                onMouseDown={() => setIsMouseEntered(true)}
                 onMouseMove={() => setIsMouseEntered(true)}
-                onMouseLeave={() => setIsMouseEntered(false)}
+                onMouseLeave={() => {
+                  if (isPlaying) {
+                    setIsMouseEntered(false)
+                  }
+                }}
                 className={cn("video-player__default-player", {
                   "video-player__inactive": !isMouseEntered,
                 })}
