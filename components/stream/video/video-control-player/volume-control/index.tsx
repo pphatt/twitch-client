@@ -81,11 +81,32 @@ export default function VolumeControl({
         <ShareButton>
           <SVGWrapper>
             <SVGContainer>
-              {isVideoMuted?.default ? <Icons.mute /> : <Icons.unmute />}
+              <VolumeIcons
+                volume={volume}
+                isVideoMuted={isVideoMuted?.default ?? false}
+              />
             </SVGContainer>
           </SVGWrapper>
         </ShareButton>
       </ButtonDiv>
     </Hint>
   )
+}
+
+function VolumeIcons({
+  isVideoMuted,
+  volume,
+}: {
+  isVideoMuted: boolean
+  volume: number
+}) {
+  if (isVideoMuted) {
+    return <Icons.largeMute />
+  }
+
+  if (volume > 0.5) {
+    return <Icons.unmute />
+  }
+
+  return <Icons.smallMute />
 }

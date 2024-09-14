@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import { useLocalStorage } from "@/hooks/use-local-storage"
 import { useMute } from "@/hooks/use-mute"
 import { useVolume } from "@/hooks/use-volume"
 import VolumeControl from "@/components/stream/video/video-control-player/volume-control"
