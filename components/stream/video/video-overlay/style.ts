@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components"
 
-import { Button } from "@/components/ui/button"
-
 export const TransitionOverlayPanel = styled.div<{
   $onActive: boolean
 }>`
@@ -51,7 +49,10 @@ export const ChannelStatusWrapper = styled.div`
 `
 
 export const ChannelStatusContainer = styled.div`
-  padding-right: 10px;
+  padding-left: 10px;
+`
+
+export const ChannelEmptyPadding = styled.div`
   padding-left: 10px;
 `
 
@@ -119,9 +120,4 @@ export const PlayerControlsGroup = styled.div<{
       justify-content: flex-end;
     `
   }}
-`
-
-export const VolumeControlGroup = styled.div`
-  display: flex;
-  align-items: center;
 `

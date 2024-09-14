@@ -1,9 +1,11 @@
 import * as React from "react"
+import { useCacheLayout } from "@/store/persistent/layout"
 
 import FullscreenButton from "@/components/stream/video/video-control-player/fullscreen-button"
 import PlayButton from "@/components/stream/video/video-control-player/play-button"
-import VolumeControl from "@/components/stream/video/video-control-player/volume-control"
+import VolumeControlGroup from "@/components/stream/video/video-control-player/volume-control-group"
 import {
+  ChannelEmptyPadding,
   ChannelStatusContainer,
   ChannelStatusText,
   ChannelStatusTextIndicator,
@@ -16,7 +18,6 @@ import {
   TopBarOverlayContainer,
   TopBarOverlayWrapper,
   TransitionOverlayPanel,
-  VolumeControlGroup,
 } from "@/components/stream/video/video-overlay/style"
 
 interface VideoOverlayProps {
@@ -35,6 +36,8 @@ export function TransitionOverlay({ onActive, children }: VideoOverlayProps) {
 interface TopBarOverlayProps {}
 
 export function TopBarOverlay({}: TopBarOverlayProps) {
+  const { isRightColumnClosedByUserAction } = useCacheLayout()
+
   return (
     <TopBarOverlayWrapper className="top-bar">
       <EmptyTag />
@@ -46,6 +49,15 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
               <ChannelStatusText>LIVE</ChannelStatusText>
             </ChannelStatusTextIndicator>
           </ChannelStatusContainer>
+
+          <ChannelEmptyPadding />
+
+          {isRightColumnClosedByUserAction && (
+            <>
+              <ChannelEmptyPadding />
+              <ChannelEmptyPadding />
+            </>
+          )}
         </ChannelStatusWrapper>
       </TopBarOverlayContainer>
     </TopBarOverlayWrapper>
@@ -81,13 +93,11 @@ export function PlayerControls({
             />
 
             <div>
-              <VolumeControlGroup>
-                <VolumeControl
-                  onActive={onActive}
-                  containerRef={containerRef}
-                  videoRef={videoRef}
-                />
-              </VolumeControlGroup>
+              <VolumeControlGroup
+                onActive={onActive}
+                containerRef={containerRef}
+                videoRef={videoRef}
+              />
             </div>
           </PlayerControlsGroup>
 

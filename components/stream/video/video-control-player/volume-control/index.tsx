@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import { useLocalStorage } from "@/hooks/use-local-storage"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {
@@ -11,57 +10,55 @@ import {
 } from "@/components/stream/video/video-control-player/share-style"
 import type { PlayerControlProps } from "@/components/stream/video/video-overlay"
 
-interface VolumeControlProps extends PlayerControlProps {}
+interface VolumeControlProps extends PlayerControlProps {
+  isVideoMuted: {
+    default: boolean
+  } | null
+  setIsVideoMuted: (state: { default: boolean }) => void
+
+  volume: number
+  setVolume: (state: number) => void
+}
 
 export default function VolumeControl({
   onActive,
   containerRef,
   videoRef,
+  isVideoMuted,
+  setIsVideoMuted,
+  volume,
+  setVolume,
 }: VolumeControlProps) {
-  const [isVideoMuted, setIsVideoMuted] = useLocalStorage<{
-    default: boolean
-  } | null>({
-    key: "video-muted",
-  })
-
-  React.useEffect(() => {
-    const localStorageValue = window["localStorage"].getItem("video-muted")
-
-    let parsedValue: { default: boolean } = { default: false }
-
-    if (
-      localStorageValue &&
-      localStorageValue !== "null" &&
-      localStorageValue !== "undefined"
-    ) {
-      parsedValue = JSON.parse(localStorageValue) as { default: boolean }
-    }
-
-    setIsVideoMuted(parsedValue)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const onRequestMuted = React.useCallback(
     (isVideoMuted: boolean) => {
       if (!videoRef.current) {
         return
       }
 
+      if (volume === undefined) {
+        return
+      }
+
       videoRef.current.muted = isVideoMuted
-      videoRef.current.volume = isVideoMuted ? 0 : 1
+      videoRef.current.volume = isVideoMuted ? 0 : volume
+
+      // when change the volume by muted
+      if (volume === 0 && !isVideoMuted) {
+        videoRef.current.volume = 1
+        setVolume(1)
+      }
     },
-    [videoRef]
+    [videoRef, volume]
   )
 
   // initialize video-muted
   React.useEffect(() => {
-    if (!isVideoMuted?.default) {
+    if (isVideoMuted === null) {
       return
     }
 
     onRequestMuted(isVideoMuted?.default)
-  }, [isVideoMuted?.default, onRequestMuted])
+  }, [isVideoMuted, isVideoMuted?.default, onRequestMuted])
 
   return (
     <Hint
