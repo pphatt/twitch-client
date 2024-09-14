@@ -13,7 +13,7 @@ import {
 
 interface FullScreenButtonProps {
   onActive: boolean
-  containerRef: HTMLDivElement | null
+  containerRef: React.RefObject<HTMLDivElement>
 }
 
 export default function FullscreenButton({
@@ -25,8 +25,8 @@ export default function FullscreenButton({
   const onRequestFullScreen = () => {
     if (isFullScreen) {
       void document.exitFullscreen()
-    } else if (containerRef) {
-      void containerRef.requestFullscreen()
+    } else if (containerRef?.current) {
+      void containerRef.current.requestFullscreen()
     }
   }
 
@@ -46,7 +46,7 @@ export default function FullscreenButton({
       sideOffset={5}
       label={isFullScreen ? "Exit Fullscreen (f)" : "Fullscreen (f)"}
       disableHoverableContent={true}
-      container={containerRef}
+      container={containerRef.current}
       forceVisible={onActive}
     >
       <ButtonDiv onClick={onRequestFullScreen}>

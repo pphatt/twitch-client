@@ -101,8 +101,8 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
                   <TransitionOverlay onActive={isMouseEntered}>
                     <PlayerControls
                       onActive={isMouseEntered}
-                      containerRef={containerRef.current}
-                      videoRef={videoRef.current}
+                      containerRef={containerRef}
+                      videoRef={videoRef}
                     />
                   </TransitionOverlay>
                 </div>

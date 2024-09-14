@@ -54,8 +54,8 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
 
 export interface PlayerControlProps {
   onActive: boolean
-  containerRef: HTMLDivElement | null
-  videoRef: HTMLVideoElement | null
+  containerRef: React.RefObject<HTMLDivElement>
+  videoRef: React.RefObject<HTMLVideoElement>
 }
 
 export function PlayerControls({
@@ -95,11 +95,7 @@ export function PlayerControls({
             $direction={"end"}
             className="player-controls__right-control-group"
           >
-            <FullscreenButton
-              onActive={onActive}
-              containerRef={containerRef}
-              videoRef={videoRef}
-            />
+            <FullscreenButton onActive={onActive} containerRef={containerRef} />
           </PlayerControlsGroup>
         </PlayerControlsOverlay>
       </PlayerControlsContainer>

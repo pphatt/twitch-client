@@ -42,23 +42,26 @@ export default function VolumeControl({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  React.useEffect(() => {
-    onRequestMuted(isVideoMuted?.default)
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isVideoMuted?.default])
-
   const onRequestMuted = React.useCallback(
     (isVideoMuted: boolean) => {
-      if (!videoRef) {
+      if (!videoRef.current) {
         return
       }
 
-      videoRef.muted = isVideoMuted
-      videoRef.volume = isVideoMuted ? 0 : 1
+      videoRef.current.muted = isVideoMuted
+      videoRef.current.volume = isVideoMuted ? 0 : 1
     },
     [videoRef]
   )
+
+  // initialize video-muted
+  React.useEffect(() => {
+    if (!isVideoMuted?.default) {
+      return
+    }
+
+    onRequestMuted(isVideoMuted?.default)
+  }, [isVideoMuted?.default, onRequestMuted])
 
   return (
     <Hint
@@ -68,7 +71,7 @@ export default function VolumeControl({
       sideOffset={5}
       label={isVideoMuted?.default ? "Unmute (m)" : "Mute (m)"}
       disableHoverableContent={true}
-      container={containerRef}
+      container={containerRef.current}
       forceVisible={onActive}
       keepAlive={true}
     >

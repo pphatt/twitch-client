@@ -24,15 +24,15 @@ export default function PlayButton({
   const { isPlaying, setIsPlaying } = useVideoPlayControl()
 
   const onRequestPlay = () => {
-    if (!videoRef) {
+    if (!videoRef.current) {
       return
     }
 
     if (isPlaying) {
-      void videoRef.pause()
+      void videoRef.current.pause()
       setIsPlaying(false)
     } else {
-      void videoRef.play()
+      void videoRef.current.play()
       setIsPlaying(true)
     }
   }
@@ -45,7 +45,7 @@ export default function PlayButton({
       sideOffset={5}
       label={!isPlaying ? "Play (space/k)" : "Pause (space/k)"}
       disableHoverableContent={true}
-      container={containerRef}
+      container={containerRef.current}
       forceVisible={onActive}
       keepAlive={true}
     >
