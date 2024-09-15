@@ -14,10 +14,11 @@ import AddPanel from "@/components/stream-manager/add-panel"
 import PanelHeader from "@/components/stream-manager/panel-header"
 import ActivityFeed from "@/components/stream-manager/panel/activity-feed"
 import Chat from "@/components/stream/chat/chat-layout"
+import VideoPreviewPlayer from "@/components/stream/video/video-preview-player"
 import styles from "@/styles/application/dashboard/stream-manager/page.module.scss"
 
 const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
-  "Stream Preview": "Stream Preview",
+  "Stream Preview": <VideoPreviewPlayer />,
   "Quick Action": <QuickActionPanel />,
   "Activity Feed": <ActivityFeed />,
   "My Chat": <Chat isCreator={true} />,

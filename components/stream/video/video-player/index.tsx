@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
-import { useVideoPlayControl } from "@/store/state/video"
 
 import { cn } from "@/lib/utils"
 import SpinnerLoading from "@/components/loading/spinner-loading"
@@ -33,7 +32,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
   const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
 
-  const { isPlaying } = useVideoPlayControl()
+  const [isPlaying, setIsPlaying] = React.useState<boolean>(false)
 
   // temporary solution for live stream video fullscreen feature
   // there are many things to update along when isFullScreen
@@ -103,6 +102,8 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
                       onActive={isMouseEntered}
                       containerRef={containerRef}
                       videoRef={videoRef}
+                      isPlaying={isPlaying}
+                      setIsPlaying={setIsPlaying}
                     />
                   </TransitionOverlay>
                 </div>

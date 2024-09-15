@@ -34,6 +34,8 @@ export const Hint = ({
   children,
   className,
   asChild,
+  delayDuration = 200,
+  skipDelayDuration = 0,
   side,
   sideOffset = 3,
   align,
@@ -59,8 +61,8 @@ export const Hint = ({
 
   return (
     <Tooltip.Provider
-      delayDuration={200}
-      skipDelayDuration={0}
+      delayDuration={delayDuration}
+      skipDelayDuration={skipDelayDuration}
       disableHoverableContent={disableHoverableContent}
     >
       <Tooltip.Root open={open} onOpenChange={setOpen}>

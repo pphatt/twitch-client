@@ -19,13 +19,3 @@ export const useVideoFullScreen = create<VideoFullScreen>((set) => ({
   isFullScreen: false,
   setIsFullScreen: (state) => set({ isFullScreen: state }),
 }))
-
-interface VideoPlayControl {
-  isPlaying: boolean
-  setIsPlaying: (state: boolean) => void
-}
-
-export const useVideoPlayControl = create<VideoPlayControl>((set) => ({
-  isPlaying: false,
-  setIsPlaying: (state) => set({ isPlaying: state }),
-}))

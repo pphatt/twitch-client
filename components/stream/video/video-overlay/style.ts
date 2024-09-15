@@ -56,11 +56,24 @@ export const ChannelEmptyPadding = styled.div`
   padding-left: 10px;
 `
 
-export const ChannelStatusTextIndicator = styled.div`
+export const ChannelStatusTextIndicator = styled.div<{
+  $isOffline?: boolean
+}>`
   display: inline-block;
 
   color: #fff;
-  background-color: hsl(var(--color-red-9));
+
+  ${({ $isOffline }) => {
+    if ($isOffline) {
+      return css`
+        background: rgba(0, 0, 0, 0.6);
+      `
+    }
+
+    return css`
+      background-color: hsl(var(--color-red-9));
+    `
+  }}
 
   border-radius: 4px;
 

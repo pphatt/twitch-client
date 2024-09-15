@@ -1,5 +1,4 @@
 import * as React from "react"
-import { useVideoPlayControl } from "@/store/state/video"
 
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
@@ -14,15 +13,18 @@ import {
 } from "@/components/stream/video/video-control-player/share-style"
 import type { PlayerControlProps } from "@/components/stream/video/video-overlay"
 
-interface PlayButtonProps extends PlayerControlProps {}
+interface PlayButtonProps extends PlayerControlProps {
+  isPlaying: boolean
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 export default function PlayButton({
   onActive,
   containerRef,
   videoRef,
+  isPlaying,
+  setIsPlaying,
 }: PlayButtonProps) {
-  const { isPlaying, setIsPlaying } = useVideoPlayControl()
-
   const onRequestPlay = () => {
     if (!videoRef.current) {
       return

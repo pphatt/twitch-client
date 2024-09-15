@@ -20,22 +20,32 @@ import {
   TransitionOverlayPanel,
 } from "@/components/stream/video/video-overlay/style"
 
-interface VideoOverlayProps {
+interface VideoOverlayProps extends React.HTMLAttributes<HTMLDivElement> {
   onActive: boolean
   children: React.ReactNode
 }
 
-export function TransitionOverlay({ onActive, children }: VideoOverlayProps) {
+export function TransitionOverlay({
+  onActive,
+  children,
+  ...props
+}: VideoOverlayProps) {
   return (
-    <TransitionOverlayPanel $onActive={onActive} aria-hidden={!onActive}>
+    <TransitionOverlayPanel
+      $onActive={onActive}
+      aria-hidden={!onActive}
+      {...props}
+    >
       {children}
     </TransitionOverlayPanel>
   )
 }
 
-interface TopBarOverlayProps {}
+interface TopBarOverlayProps {
+  isOffline?: boolean
+}
 
-export function TopBarOverlay({}: TopBarOverlayProps) {
+export function TopBarOverlay({ isOffline = false }: TopBarOverlayProps) {
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   return (
@@ -45,9 +55,15 @@ export function TopBarOverlay({}: TopBarOverlayProps) {
       <TopBarOverlayContainer>
         <ChannelStatusWrapper>
           <ChannelStatusContainer>
-            <ChannelStatusTextIndicator>
-              <ChannelStatusText>LIVE</ChannelStatusText>
-            </ChannelStatusTextIndicator>
+            {!isOffline ? (
+              <ChannelStatusTextIndicator>
+                <ChannelStatusText>LIVE</ChannelStatusText>
+              </ChannelStatusTextIndicator>
+            ) : (
+              <ChannelStatusTextIndicator $isOffline={isOffline}>
+                <ChannelStatusText>OFFLINE</ChannelStatusText>
+              </ChannelStatusTextIndicator>
+            )}
           </ChannelStatusContainer>
 
           <ChannelEmptyPadding />
@@ -70,11 +86,21 @@ export interface PlayerControlProps {
   videoRef: React.RefObject<HTMLVideoElement>
 }
 
+interface PlayerControlExtraProps extends PlayerControlProps {
+  isPlaying: boolean
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>
+
+  isOffline?: boolean
+}
+
 export function PlayerControls({
   onActive,
   containerRef,
   videoRef,
-}: PlayerControlProps) {
+  isPlaying,
+  setIsPlaying,
+  isOffline = false,
+}: PlayerControlExtraProps) {
   return (
     <PlayerControlsWrapper
       className="player-controls"
@@ -82,24 +108,28 @@ export function PlayerControls({
     >
       <PlayerControlsContainer>
         <PlayerControlsOverlay>
-          <PlayerControlsGroup
-            $direction={"start"}
-            className="player-controls__left-control-group"
-          >
-            <PlayButton
-              onActive={onActive}
-              containerRef={containerRef}
-              videoRef={videoRef}
-            />
-
-            <div>
-              <VolumeControlGroup
+          {!isOffline && (
+            <PlayerControlsGroup
+              $direction={"start"}
+              className="player-controls__left-control-group"
+            >
+              <PlayButton
                 onActive={onActive}
                 containerRef={containerRef}
                 videoRef={videoRef}
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
               />
-            </div>
-          </PlayerControlsGroup>
+
+              <div>
+                <VolumeControlGroup
+                  onActive={onActive}
+                  containerRef={containerRef}
+                  videoRef={videoRef}
+                />
+              </div>
+            </PlayerControlsGroup>
+          )}
 
           <PlayerControlsGroup
             $direction={"end"}

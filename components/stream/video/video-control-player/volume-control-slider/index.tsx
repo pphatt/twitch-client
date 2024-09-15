@@ -8,7 +8,7 @@ import {
   SliderPrimitiveTrack,
   VolumeControlSliderWrapper,
 } from "@/components/stream/video/video-control-player/volume-control-slider/style"
-import { TransitionOverlayPanel } from "@/components/stream/video/video-overlay/style"
+import { TransitionOverlay } from "@/components/stream/video/video-overlay"
 
 interface VolumeControlSliderProps {
   isHovered: boolean
@@ -53,8 +53,8 @@ export default function VolumeControlSlider({
   }
 
   return (
-    <TransitionOverlayPanel
-      $onActive={isHovered}
+    <TransitionOverlay
+      onActive={isHovered}
       aria-hidden={!isHovered}
       className="volume-slider__slider-container"
     >
@@ -84,6 +84,6 @@ export default function VolumeControlSlider({
           </Hint>
         </SliderPrimitiveRoot>
       </VolumeControlSliderWrapper>
-    </TransitionOverlayPanel>
+    </TransitionOverlay>
   )
 }
