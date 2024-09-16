@@ -4,3 +4,20 @@
 @import "../../components/stream/video/video-control-player/volume-control-group/style.module.scss";
 @import "../../components/stream/video/video-player/style.module.scss";
 @import "../../components/stream/video/video-preview-player/style.module.scss";
+
+// hide default video controls
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-moz-media-controls {
+  display: none !important;
+}
+
+video::-ms-media-controls {
+  display: none !important;
+}
+
+video::-o-media-controls {
+  display: none !important;
+}

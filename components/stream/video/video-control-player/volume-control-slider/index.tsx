@@ -75,7 +75,7 @@ export default function VolumeControlSlider({
             skipDelayDuration={0}
             align={"center"}
             sideOffset={5}
-            label={`${Math.round(volume * 100)}%`}
+            label={`${isVideoMuted?.default ? 0 : Math.round(volume * 100)}%`}
             disableHoverableContent={true}
             container={containerRef.current}
             keepAlive={true}

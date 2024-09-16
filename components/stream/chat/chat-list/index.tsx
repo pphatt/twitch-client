@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useCacheLayout } from "@/store/persistent/layout"
 import type SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core"
 
 import { cn } from "@/lib/utils"
@@ -22,6 +23,8 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
   const ref = React.useRef<SimpleBarCore | null>(null)
   const listRef = React.useRef<HTMLDivElement>(null)
 
+  const { isRightColumnClosedByUserAction } = useCacheLayout()
+
   const scrollToLastMessage = () => {
     // const lastChild = listRef.current!.lastElementChild as Element
     //
@@ -42,7 +45,7 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
 
   React.useEffect(() => {
     scrollToLastMessage()
-  })
+  }, [isRightColumnClosedByUserAction, messages])
 
   return (
     <ChatListComp
