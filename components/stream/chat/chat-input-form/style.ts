@@ -12,6 +12,13 @@ export const ChatInputWrapper = styled.div`
   z-index: 10;
 `
 
+export const ChatGapWrapper = styled.div``
+
+export const ChatGapContainer = styled.div`
+  margin-top: 10px;
+  margin-bottom: 5px;
+`
+
 export const ChatInputContainer = styled.div`
   position: relative;
 

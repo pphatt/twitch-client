@@ -1,4 +1,5 @@
 import type { IFollowChannelsData, MainNavItem } from "@/types"
+import { faker } from "@faker-js/faker"
 import classNames, { type ArgumentArray } from "classnames"
 
 export function cn(...inputs: ArgumentArray) {
@@ -75,4 +76,41 @@ export const getRandomRgb = () => {
   const b = num & 255
 
   return "rgb(" + r + ", " + g + ", " + b + ")"
+}
+
+export const getRandomStuffRelatedToFood = () => {
+  const randomNumber = faker.number.int({ max: 9, min: 1 })
+  let randomMessage = ""
+
+  switch (randomNumber) {
+    case 1:
+      randomMessage = faker.food.adjective()
+      break
+    case 2:
+      randomMessage = faker.food.description()
+      break
+    case 3:
+      randomMessage = faker.food.dish()
+      break
+    case 4:
+      randomMessage = faker.food.ethnicCategory()
+      break
+    case 5:
+      randomMessage = faker.food.fruit()
+      break
+    case 6:
+      randomMessage = faker.food.ingredient()
+      break
+    case 7:
+      randomMessage = faker.food.meat()
+      break
+    case 8:
+      randomMessage = faker.food.spice()
+      break
+    default:
+      randomMessage = faker.food.vegetable()
+      break
+  }
+
+  return randomMessage
 }

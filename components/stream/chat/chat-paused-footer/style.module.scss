@@ -1,0 +1,15 @@
+.chat-paused-footer {
+  left: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 5px;
+
+  transform: translateX(-50%);
+}
+
+.chat-paused-footer--button {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  place-items: center center;
+  gap: 5px;
+}

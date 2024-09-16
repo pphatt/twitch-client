@@ -5,6 +5,8 @@
 @import "../../components/stream/video/video-player/style.module.scss";
 @import "../../components/stream/video/video-preview-player/style.module.scss";
 
+@import "../../components/stream/chat/chat-paused-footer/style.module.scss";
+
 // hide default video controls
 video::-webkit-media-controls {
   display: none !important;

@@ -39,32 +39,59 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
 
   const [isPending, startTransition] = React.useTransition()
 
-  const onSubmit = () => {
+  // originally placed in chat-list but some decisions are made.
+  const [isPausedChat, setIsPausedChat] = React.useState<boolean>(false)
+
+  const onSubmit = React.useCallback((message: string) => {
     // if (!send) return;
 
     // void send(message);
 
-    if (messages) {
-      setMessages((prevMessages) => {
-        const username = faker.internet.userName()
-        const color = getRandomRgb()
-
-        const messageInfo = {
-          username,
-          color,
-          message,
-        }
-
-        if (prevMessages) {
-          return [...prevMessages, messageInfo]
-        }
-
-        return [messageInfo]
-      })
+    if (!message) {
+      return
     }
 
+    setMessages((prevMessages) => {
+      const username = faker.internet.userName()
+      const color = getRandomRgb()
+
+      const messageInfo = {
+        username,
+        color,
+        message,
+      }
+
+      if (prevMessages) {
+        return [...prevMessages, messageInfo]
+      }
+
+      return [messageInfo]
+    })
+
     setMessage("")
-  }
+    setIsPausedChat(false)
+  }, [])
+
+  const limitMessagesQueue = React.useMemo(() => {
+    if (!messages) {
+      return
+    }
+
+    if (messages?.length > 100) {
+      return messages.slice(messages.length - 100, messages?.length)
+    }
+
+    return messages
+  }, [messages])
+
+  // NOTE: use for chat dummy-data
+  // React.useEffect(() => {
+  //   const simpleSimulationMessageFlow = setInterval(() => {
+  //     onSubmit()
+  //   }, 1000)
+  //
+  //   return () => clearInterval(simpleSimulationMessageFlow)
+  // }, [onSubmit])
 
   React.useEffect(() => {
     if (hide) {
@@ -84,7 +111,12 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
   return (
     <ChatRoomComponentLayout>
       <div className={styles["chat-room__content"]}>
-        <ChatList messages={messages} isPending={isPending} />
+        <ChatList
+          messages={limitMessagesQueue}
+          isPending={isPending}
+          isPausedChat={isPausedChat}
+          setIsPausedChat={setIsPausedChat}
+        />
 
         <ChatInputForm
           message={message}

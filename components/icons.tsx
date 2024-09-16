@@ -715,4 +715,19 @@ export const Icons = {
       </g>
     </svg>
   ),
+  smallArrowDown: ({ ...props }: LucideProps) => (
+    <svg
+      width="100%"
+      height="100%"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      {...props}
+    >
+      <g>
+        <path d="M11 11l1.5-1.5L14 11l-4 4-4-4 1.5-1.5L9 11V5h2v6z"></path>
+      </g>
+    </svg>
+  ),
 }

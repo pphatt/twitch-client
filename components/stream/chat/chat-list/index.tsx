@@ -5,6 +5,7 @@ import { useCacheLayout } from "@/store/persistent/layout"
 import type SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core"
 
 import { cn } from "@/lib/utils"
+import { useEventListener } from "@/hooks/use-event-listener"
 import SimpleBar from "@/components/simplebar"
 import {
   ChatLineContainer,
@@ -13,13 +14,22 @@ import {
   ChatListWrapper,
 } from "@/components/stream/chat/chat-list/style"
 import styles from "@/components/stream/chat/chat-list/style.module.scss"
+import ChatPausedFooter from "@/components/stream/chat/chat-paused-footer"
 
 interface ChatListProps {
   messages?: { message: string; username: string; color: string }[]
   isPending: boolean
+
+  isPausedChat: boolean
+  setIsPausedChat: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function ChatList({ messages, isPending }: ChatListProps) {
+export default function ChatList({
+  messages,
+  isPending,
+  isPausedChat,
+  setIsPausedChat,
+}: ChatListProps) {
   const ref = React.useRef<SimpleBarCore | null>(null)
   const listRef = React.useRef<HTMLDivElement>(null)
 
@@ -34,18 +44,58 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
     //   behavior: "instant",
     // })
 
-    if (ref.current) {
-      const scrollElement = ref.current.contentWrapperEl as HTMLElement
-
-      requestAnimationFrame(() => {
-        scrollElement.scrollTop = 9999
-      })
+    if (!ref.current) {
+      return
     }
+
+    const scrollElement = ref.current.contentWrapperEl as HTMLElement
+
+    requestAnimationFrame(() => {
+      scrollElement.scrollTop = 9999
+    })
   }
 
   React.useEffect(() => {
+    if (!isPausedChat) {
+      scrollToLastMessage()
+    }
+  }, [isPausedChat, isRightColumnClosedByUserAction, messages])
+
+  useEventListener("resize", scrollToLastMessage)
+
+  // TODO:
+  //  - improve the paused chat because the current paused
+  //  chat is not actually a paused chat feature that the team want
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const element = ref.current?.getScrollElement() as HTMLElement
+
+      const isScrolledToBottom =
+        element.scrollHeight - element.scrollTop - element.clientHeight
+
+      if (isScrolledToBottom <= 0) {
+        setIsPausedChat(false)
+        return
+      }
+
+      if (isScrolledToBottom > 200) {
+        setIsPausedChat(true)
+        return
+      }
+    }
+
+    ref.current?.getScrollElement()?.addEventListener("scroll", handleScroll)
+
+    return () =>
+      ref.current
+        ?.getScrollElement()
+        ?.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const handleClickToLatestMessage = () => {
     scrollToLastMessage()
-  }, [isRightColumnClosedByUserAction, messages])
+    setIsPausedChat(false)
+  }
 
   return (
     <ChatListComp
@@ -131,6 +181,10 @@ export default function ChatList({ messages, isPending }: ChatListProps) {
               ))}
           </div>
         </SimpleBar>
+
+        {isPausedChat && (
+          <ChatPausedFooter clickToLatestMessage={handleClickToLatestMessage} />
+        )}
       </ChatListWrapper>
 
       <div tabIndex={0}></div>

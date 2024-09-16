@@ -13,6 +13,8 @@ import {
   ChatButton,
   ChatButtonContainer,
   ChatButtonWrapper,
+  ChatGapContainer,
+  ChatGapWrapper,
   ChatInputContainer,
   ChatInputInnerContainer,
   ChatInputInnerWrapper,
@@ -31,7 +33,7 @@ import UserChatSetting from "@/components/stream/chat/user-chat-setting"
 interface ChatInputProps {
   message: string
   setMessage: (message: string) => void
-  onSubmit: () => void
+  onSubmit: (message: string) => void
 
   popout: boolean
 
@@ -48,12 +50,14 @@ export default function ChatInputForm({
   const handleSubmit = () => {
     if (!message) return
 
-    onSubmit()
+    onSubmit(message)
   }
 
   return (
     <ChatInputWrapper>
-      <div></div>
+      <ChatGapWrapper>
+        <ChatGapContainer />
+      </ChatGapWrapper>
 
       <div>
         <ChatInputContainer>
