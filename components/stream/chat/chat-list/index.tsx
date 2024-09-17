@@ -1,22 +1,32 @@
-"use client"
-
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
 import type SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core"
+import { format } from "date-fns"
 
 import { cn } from "@/lib/utils"
 import { useEventListener } from "@/hooks/use-event-listener"
 import SimpleBar from "@/components/simplebar"
 import {
   ChatLineContainer,
+  ChatLineNew,
+  ChatLineNewText,
+  ChatLineNewTextWrapper,
   ChatLineWrapper,
   ChatListComp,
   ChatListWrapper,
+  SeparatorLine,
 } from "@/components/stream/chat/chat-list/style"
 import styles from "@/components/stream/chat/chat-list/style.module.scss"
 import ChatPausedFooter from "@/components/stream/chat/chat-paused-footer"
 
 interface ChatListProps {
+  previousMessages?: {
+    id: string
+    message: string
+    username: string
+    color: string
+    timestamp: number
+  }[]
   messages?: {
     id: string
     message: string
@@ -46,6 +56,7 @@ interface ChatListProps {
 }
 
 export default function ChatList({
+  previousMessages,
   messages,
   isPending,
   isPausedChat,
@@ -61,13 +72,21 @@ export default function ChatList({
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   const scrollToLastMessage = () => {
-    // const lastChild = listRef.current!.lastElementChild as Element
-    //
-    // lastChild.scrollIntoView({
-    //   block: "end",
-    //   inline: "nearest",
-    //   behavior: "instant",
-    // })
+    if (!listRef.current) {
+      return
+    }
+
+    const lastChild = listRef.current.lastElementChild
+
+    if (!lastChild) {
+      return
+    }
+
+    lastChild.scrollIntoView({
+      block: "end",
+      inline: "nearest",
+      behavior: "instant",
+    })
 
     if (!ref.current) {
       return
@@ -95,6 +114,13 @@ export default function ChatList({
    *  - Some ideas are (quite done maybe ?):
    *  -> each messages have a unique id, track what is the last id in the messagesQueue
    *  -> store the last id some where
+   *  - add some like when new user come and there are already chat exist,
+   *  -> the "Welcome to the chat room!" will appear and the _____new would exist to user to easier understand
+   *  -> maybe the ideas is that there will be a state hold old messages values and hold new messages value.
+   *  -> the welcome text would occur above the new messages value and disappear when new messages are more than 150 ?
+   *
+   * NOTE:
+   *  -> old messages (default 50) + new messages (default 150), I think (?) This is the correct amount that twitch use (partially done ?)
    * */
   React.useEffect(() => {
     const handleScroll = () => {
@@ -135,11 +161,14 @@ export default function ChatList({
       ref.current
         ?.getScrollElement()
         ?.removeEventListener("scroll", handleScroll)
-  }, [messages])
+  }, [lastMessageId, messages])
 
   const handleClickToLatestMessage = () => {
     scrollToLastMessage()
+
     setIsPausedChat(false)
+    setLastMessageId(null)
+    setFirstMessageIdInQueue(null)
   }
 
   return (
@@ -167,63 +196,27 @@ export default function ChatList({
           }}
         >
           <div
-            className={styles["chat-scrollable-area__message-container"]}
+            className={cn(styles["chat-scrollable-area__message-container"], {
+              [`${styles["chat-scrollable-area__message-container--paused"]}`]:
+                isPausedChat,
+            })}
             ref={listRef}
           >
-            {(!messages || messages.length < 50 || isPending) && (
-              <div
-                className={styles["chat-line__status"]}
-                data-a-target={"chat-welcome-message"}
-              >
-                <span>Welcome to the chat room!</span>
-              </div>
-            )}
+            <DisplayPreviousMessages
+              previousMessages={previousMessages ?? []}
+              isPending={isPending}
+            />
 
-            {messages &&
-              !isPending &&
-              messages.map(({ message, username, color }, index) => (
-                <div
-                  key={index}
-                  className={styles["chat-line__message"]}
-                  data-a-target={"chat-line-message"}
-                  data-a-user={username}
-                  tabIndex={0}
-                >
-                  <ChatLineWrapper>
-                    <div
-                      className={styles["chat-line__message-highlight"]}
-                    ></div>
+            <WelcomeMessage
+              previousMessages={previousMessages ?? []}
+              newMessagesStackLength={messages?.length ?? 0}
+              isPending={isPending}
+            />
 
-                    <ChatLineContainer>
-                      <div className={styles["chat-line__username-wrapper"]}>
-                        <span
-                          className={styles["chat-line__username-container"]}
-                        >
-                          <span>
-                            <span
-                              className={styles["chat-author__display-name"]}
-                              data-a-target={"chat-message-username"}
-                              data-a-username={username}
-                              data-test-selector={"message-username"}
-                              style={{ color }}
-                            >
-                              {username}
-                            </span>
-                          </span>
-                        </span>
-                      </div>
-
-                      <span aria-hidden={true}>: </span>
-
-                      <span data-a-target={"chat-line-message-body"}>
-                        <span data-a-target={"chat-message-text"}>
-                          {message}
-                        </span>
-                      </span>
-                    </ChatLineContainer>
-                  </ChatLineWrapper>
-                </div>
-              ))}
+            <DisplayLatestMessages
+              messages={messages ?? []}
+              isPending={isPending}
+            />
           </div>
         </SimpleBar>
 
@@ -237,5 +230,196 @@ export default function ChatList({
 
       <div tabIndex={0}></div>
     </ChatListComp>
+  )
+}
+
+/*
+ *
+ * old-message: related
+ * -> exist old-message -> not related
+ *
+ * is-paused: not related
+ *
+ * new-message: related
+ * -> if new-messages.length > 150 -> hidden
+ *
+ * is-pending: related
+ * -> not render out until DOM mounted
+ *
+ * */
+interface WelcomeMessageProps {
+  previousMessages: {
+    id: string
+    message: string
+    username: string
+    color: string
+    timestamp: number
+  }[]
+  newMessagesStackLength: number
+  isPending: boolean
+}
+
+function WelcomeMessage({
+  previousMessages,
+  newMessagesStackLength,
+  isPending,
+}: WelcomeMessageProps) {
+  if (previousMessages.length === 0) {
+    return
+  }
+
+  return (
+    <>
+      {!isPending && (
+        <div
+          className={styles["chat-line__status"]}
+          data-a-target={"chat-welcome-message"}
+        >
+          <span>Welcome to the chat room!</span>
+        </div>
+      )}
+
+      {newMessagesStackLength > 0 && !isPending && (
+        <ChatLineNew className={styles["chat-line__message"]}>
+          <SeparatorLine
+            className={styles["live-message-separator-line__hr"]}
+          />
+
+          <ChatLineNewTextWrapper>
+            <ChatLineNewText>New</ChatLineNewText>
+          </ChatLineNewTextWrapper>
+        </ChatLineNew>
+      )}
+    </>
+  )
+}
+
+interface DisplayPreviousMessagesProps {
+  previousMessages: {
+    id: string
+    message: string
+    username: string
+    color: string
+    timestamp: number
+  }[]
+  isPending: boolean
+}
+
+function DisplayPreviousMessages({
+  previousMessages,
+  isPending,
+}: DisplayPreviousMessagesProps) {
+  return (
+    <>
+      {previousMessages &&
+        !isPending &&
+        previousMessages.map(
+          ({ message, username, color, timestamp }, index) => (
+            <div
+              key={index}
+              className={styles["chat-line__message"]}
+              data-a-target={"chat-line-message"}
+              data-a-user={username}
+              tabIndex={0}
+            >
+              <ChatLineWrapper>
+                <div className={styles["chat-line__message-highlight"]}></div>
+
+                <ChatLineContainer className="chat-line__message-container">
+                  <span
+                    className={styles["chat-line__timestamp"]}
+                    data-a-target="chat-timestamp"
+                  >
+                    {format(new Date(timestamp * 1000), "h:mm")}
+                  </span>
+
+                  <div className={styles["chat-line__username-wrapper"]}>
+                    <span className={styles["chat-line__username-container"]}>
+                      <span>
+                        <span
+                          className={styles["chat-author__display-name"]}
+                          data-a-target={"chat-message-username"}
+                          data-a-username={username}
+                          data-test-selector={"message-username"}
+                          style={{ color }}
+                        >
+                          {username}
+                        </span>
+                      </span>
+                    </span>
+                  </div>
+
+                  <span aria-hidden={true}>: </span>
+
+                  <span data-a-target={"chat-line-message-body"}>
+                    <span data-a-target={"chat-message-text"}>{message}</span>
+                  </span>
+                </ChatLineContainer>
+              </ChatLineWrapper>
+            </div>
+          )
+        )}
+    </>
+  )
+}
+
+interface DisplayLatestMessagesProps {
+  messages: {
+    id: string
+    message: string
+    username: string
+    color: string
+    timestamp: number
+  }[]
+  isPending: boolean
+}
+
+function DisplayLatestMessages({
+  messages,
+  isPending,
+}: DisplayLatestMessagesProps) {
+  return (
+    <>
+      {messages &&
+        !isPending &&
+        messages.map(({ message, username, color }, index) => (
+          <div
+            key={index}
+            className={styles["chat-line__message"]}
+            data-a-target={"chat-line-message"}
+            data-a-user={username}
+            tabIndex={0}
+            data-index={index + 1}
+          >
+            <ChatLineWrapper>
+              <div className={styles["chat-line__message-highlight"]}></div>
+
+              <ChatLineContainer>
+                <div className={styles["chat-line__username-wrapper"]}>
+                  <span className={styles["chat-line__username-container"]}>
+                    <span>
+                      <span
+                        className={styles["chat-author__display-name"]}
+                        data-a-target={"chat-message-username"}
+                        data-a-username={username}
+                        data-test-selector={"message-username"}
+                        style={{ color }}
+                      >
+                        {username}
+                      </span>
+                    </span>
+                  </span>
+                </div>
+
+                <span aria-hidden={true}>: </span>
+
+                <span data-a-target={"chat-line-message-body"}>
+                  <span data-a-target={"chat-message-text"}>{message}</span>
+                </span>
+              </ChatLineContainer>
+            </ChatLineWrapper>
+          </div>
+        ))}
+    </>
   )
 }

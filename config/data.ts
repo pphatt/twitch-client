@@ -792,43 +792,43 @@ export const liveChannels = {
   ],
 }
 
-export const chatMessages = [
-  {
-    id: faker.database.mongodbObjectId(),
-    message:
-      "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less.",
-    username: "Marie Curie",
-    color: "rgb(0, 187, 204)",
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    message:
-      "All matter originates and exists only by virtue of a force... We must assume behind this force the existence of a conscious and intelligent Mind. This Mind is the matrix of all matter.",
-    username: "Max Planck",
-    color: "rgb(255, 69, 0)",
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    message:
-      "If I have seen further it is by standing on the shoulders of Giants.",
-    username: "Issac Newton",
-    color: "rgb(255, 105, 180)",
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    message:
-      "If a cluttered desk is a sign of a cluttered mind, of what, then, is an empty desk a sign?",
-    username: "Albert Einstein",
-    color: "rgb(255, 0, 0)",
-  },
-  {
-    id: faker.database.mongodbObjectId(),
-    message:
-      "Our virtues and our failures are inseparable, like force and matter. When they separate, man is no more.",
-    username: "Nikola Tesla",
-    color: "rgb(139, 88, 255)",
-  },
-]
+// export const chatMessages = [
+//   {
+//     id: faker.database.mongodbObjectId(),
+//     message:
+//       "Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less.",
+//     username: "Marie Curie",
+//     color: "rgb(0, 187, 204)",
+//   },
+//   {
+//     id: faker.database.mongodbObjectId(),
+//     message:
+//       "All matter originates and exists only by virtue of a force... We must assume behind this force the existence of a conscious and intelligent Mind. This Mind is the matrix of all matter.",
+//     username: "Max Planck",
+//     color: "rgb(255, 69, 0)",
+//   },
+//   {
+//     id: faker.database.mongodbObjectId(),
+//     message:
+//       "If I have seen further it is by standing on the shoulders of Giants.",
+//     username: "Issac Newton",
+//     color: "rgb(255, 105, 180)",
+//   },
+//   {
+//     id: faker.database.mongodbObjectId(),
+//     message:
+//       "If a cluttered desk is a sign of a cluttered mind, of what, then, is an empty desk a sign?",
+//     username: "Albert Einstein",
+//     color: "rgb(255, 0, 0)",
+//   },
+//   {
+//     id: faker.database.mongodbObjectId(),
+//     message:
+//       "Our virtues and our failures are inseparable, like force and matter. When they separate, man is no more.",
+//     username: "Nikola Tesla",
+//     color: "rgb(139, 88, 255)",
+//   },
+// ]
 
 export const defaultColor = [
   "rgb(0, 187, 204)",
@@ -836,4 +836,115 @@ export const defaultColor = [
   "rgb(255, 105, 180)",
   "rgb(255, 0, 0)",
   "rgb(139, 88, 255)",
+]
+
+export const chatMessages = [
+  {
+    id: "cac04dbbffa52d33fd8fdcce",
+    username: "George92",
+    color: "rgb(139, 88, 255)",
+    message: "green pepper",
+    timestamp: 1726572666814,
+  },
+  {
+    id: "069cc585185b7b5fb70a18e4",
+    username: "Christine.Streich72",
+    color: "rgb(255, 69, 0)",
+    message:
+      "A slow-roasted Warbling Vireo with a zesty, tangy exterior. Stuffed with cherry and covered in honeydew melon sauce. Sides with onion puree and wild pumpkin.",
+    timestamp: 1726572666916,
+  },
+  {
+    id: "bd4eef3c11d462dfa3e9f772",
+    username: "Derek.Stokes42",
+    color: "rgb(139, 88, 255)",
+    message: "Irish",
+    timestamp: 1726572667010,
+  },
+  {
+    id: "ddc176f2dfd6a01abf2f5caf",
+    username: "Oran.Reichel",
+    color: "rgb(0, 187, 204)",
+    message: "kangaroo",
+    timestamp: 1726572667116,
+  },
+  {
+    id: "d4dd6348ffc9decbb22efebd",
+    username: "Lee.Kling85",
+    color: "rgb(255, 105, 180)",
+    message: "sumac",
+    timestamp: 1726572667210,
+  },
+  {
+    id: "ac9e2bb1b571f000253f12a7",
+    username: "Veronica_Zieme",
+    color: "rgb(255, 69, 0)",
+    message: "Zanzibari",
+    timestamp: 1726572667310,
+  },
+  {
+    id: "1de97ac688d2d94512cf20fc",
+    username: "Eliezer_Renner46",
+    color: "rgb(255, 0, 0)",
+    message:
+      "A slow-roasted Green Heron with a smoky, smoky exterior. Stuffed with plum and covered in mango sauce. Sides with potatoes puree and wild kale.",
+    timestamp: 1726572667410,
+  },
+  {
+    id: "a23a26d0b86f010cfaec49ef",
+    username: "Telly.Kshlerin",
+    color: "rgb(139, 88, 255)",
+    message: "coriander",
+    timestamp: 1726572667510,
+  },
+  {
+    id: "b3dbb63dc5c75dd7cb281fe4",
+    username: "Reynold68",
+    color: "rgb(139, 88, 255)",
+    message: "Hummus",
+    timestamp: 1726572667662,
+  },
+  {
+    id: "f196aab43abab98536b6581b",
+    username: "Woodrow_OConner",
+    color: "rgb(255, 0, 0)",
+    message: "sumac",
+    timestamp: 1726572667713,
+  },
+  {
+    id: "a2a190d0e1efeebdc6ef85e8",
+    username: "Freddie_Gottlieb",
+    color: "rgb(255, 0, 0)",
+    message:
+      "Juicy crocodile, grilled to your liking and drizzled with a bold tagine sauce, served alongside roasted peas.",
+    timestamp: 1726572667812,
+  },
+  {
+    id: "3b2f08ef1ab2af4e223d2ec9",
+    username: "Makenzie_Rau",
+    color: "rgb(255, 69, 0)",
+    message: "Keralite",
+    timestamp: 1726572667923,
+  },
+  {
+    id: "1bcadbaed20fb19cada3ba5f",
+    username: "Arianna.Swaniawski83",
+    color: "rgb(255, 69, 0)",
+    message: "A simple jarrahdale pumpkin pie. No fancy stuff. Just pie.",
+    timestamp: 1726572668010,
+  },
+  {
+    id: "0655e5ea99cb4e9e1955d0d7",
+    username: "Noelia_Kulas85",
+    color: "rgb(139, 88, 255)",
+    message: "Incaberry And Cantaloupe Tart",
+    timestamp: 1726572668126,
+  },
+  {
+    id: "dafbfaea682e36fd7dd59c40",
+    username: "Kacie_Labadie11",
+    color: "rgb(255, 105, 180)",
+    message: "duck",
+    timestamp: 1726572668210,
+  },
 ]

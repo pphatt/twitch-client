@@ -74,7 +74,7 @@ export const findMatchingSite = (
 export const getRandomRgb = (): string => {
   const randomNumber = faker.number.int({ max: 4, min: 0 })
 
-  return defaultColor[randomNumber]
+  return defaultColor[randomNumber] as string
 }
 
 // use to fill in the chat dummy data

@@ -29,3 +29,24 @@ export const ChatLineContainer = styled.div`
     font-size: 13px;
   }
 `
+
+export const ChatLineNew = styled.div`
+  display: flex;
+  align-items: center;
+`
+
+export const SeparatorLine = styled.div`
+  flex-grow: 1;
+
+  margin-right: 10px;
+`
+
+export const ChatLineNewTextWrapper = styled.div`
+  display: inline-flex;
+`
+
+export const ChatLineNewText = styled.span`
+  color: #ff8280;
+
+  font-size: 13px;
+`

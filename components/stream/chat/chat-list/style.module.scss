@@ -17,6 +17,10 @@
   padding-bottom: 10px;
 }
 
+.chat-scrollable-area__message-container--paused {
+  padding-bottom: 60px;
+}
+
 .chat-line__status {
   color: hsl(var(--foreground-alt-2));
 
@@ -52,6 +56,12 @@
   z-index: 1;
 }
 
+.chat-line__timestamp {
+  color: #adadb8;
+
+  margin-right: 5px;
+}
+
 .chat-line__username-wrapper {
   display: inline-block;
 
@@ -69,4 +79,8 @@
 
 .chat-author__display-name {
   font-weight: 700;
+}
+
+.live-message-separator-line__hr {
+  border-top: 1px solid #ff8280;
 }

@@ -4,7 +4,8 @@ import * as React from "react"
 import { useChatObserver } from "@/store/state/channel-chat"
 import { faker } from "@faker-js/faker"
 
-import { getRandomRgb, getRandomStuffRelatedToFood, sleep } from "@/lib/utils"
+import { chatMessages } from "@/config/data"
+import { getRandomRgb, sleep } from "@/lib/utils"
 import ChatHide from "@/components/stream/chat/chat-hide"
 import ChatInputForm from "@/components/stream/chat/chat-input-form"
 import { ChatRoomComponentLayout } from "@/components/stream/chat/chat-layout/style"
@@ -32,6 +33,17 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
 
   const [message, setMessage] = React.useState("")
 
+  const [totalOldMessagesCount, setTotalOldMessagesCount] = React.useState(0)
+  const [oldMessages, setOldMessages] = React.useState<
+    {
+      id: string
+      message: string
+      username: string
+      color: string
+      timestamp: number
+    }[]
+  >()
+
   // this would be replaced with fetching messages from server
   // (this represent a messages queue on the server)
   const [messages, setMessages] = React.useState<
@@ -54,38 +66,53 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
   >(null)
   const [lastMessageId, setLastMessageId] = React.useState<string | null>(null)
 
-  const onSubmit = React.useCallback((message: string) => {
-    // if (!send) return;
-
-    // void send(message);
-
-    if (!message) {
+  const computeOldMessages = React.useCallback(() => {
+    if (!messages || !oldMessages) {
       return
     }
 
-    setMessages((prevMessages) => {
-      const id = faker.database.mongodbObjectId()
-      const username = faker.internet.userName()
-      const color = getRandomRgb()
+    if (messages.length >= 150) {
+      setOldMessages(oldMessages.slice(1))
+    }
+  }, [messages, oldMessages])
 
-      const messageInfo = {
-        id,
-        username,
-        color,
-        message,
-        timestamp: Date.now(),
+  const onSubmit = React.useCallback(
+    (message: string) => {
+      // if (!send) return;
+
+      // void send(message);
+
+      if (!message) {
+        return
       }
 
-      if (prevMessages) {
-        return [...prevMessages, messageInfo]
-      }
+      setMessages((prevMessages) => {
+        const id = faker.database.mongodbObjectId()
+        const username = faker.internet.userName()
+        const color = getRandomRgb()
 
-      return [messageInfo]
-    })
+        const messageInfo = {
+          id,
+          username,
+          color,
+          message,
+          timestamp: Date.now(),
+        }
 
-    setMessage("")
-    setIsPausedChat(false)
-  }, [])
+        if (prevMessages) {
+          return [...prevMessages, messageInfo]
+        }
+
+        return [messageInfo]
+      })
+
+      computeOldMessages()
+
+      setMessage("")
+      setIsPausedChat(false)
+    },
+    [computeOldMessages]
+  )
 
   const limitMessagesQueue = React.useMemo(() => {
     if (!messages) {
@@ -103,20 +130,31 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
      * else take last 150
      *
      * */
-    if (messages?.length > 100) {
-      if (lastMessageId !== null && firstMessageIdInQueue !== null) {
-        const messageIndex = messages.findIndex(
-          ({ id }) => id === firstMessageIdInQueue
-        )
 
-        return messages.slice(messageIndex)
-      }
-
-      return messages.slice(-150)
+    // this check when new messages hit more than 100 messages
+    if (messages?.length < 100) {
+      return messages
     }
 
-    return messages
-  }, [firstMessageIdInQueue, lastMessageId, messages])
+    // this check for the chat-paused
+    // it will update new messages based on the last stop as scroll up
+    if (lastMessageId === null || firstMessageIdInQueue === null) {
+      return messages.slice(-(totalOldMessagesCount + 150))
+    }
+
+    const messageIndex = messages.findIndex(
+      ({ id }) => id === firstMessageIdInQueue
+    )
+
+    const newMessagesQueue = messages.slice(messageIndex)
+
+    // 15 + 150
+    if (newMessagesQueue.length >= totalOldMessagesCount + 150) {
+      return messages.slice(-(totalOldMessagesCount + 150))
+    }
+
+    return messages.slice(messageIndex)
+  }, [firstMessageIdInQueue, lastMessageId, messages, totalOldMessagesCount])
 
   const newMessagesStack = React.useMemo(() => {
     if (!messages) {
@@ -137,40 +175,43 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
   }, [lastMessageId, messages])
 
   // NOTE: use for chat dummy-data
-  React.useEffect(() => {
-    const simpleSimulationMessageFlow = setInterval(() => {
-      if (isPending) {
-        return
-      }
+  // React.useEffect(() => {
+  //   const simpleSimulationMessageFlow = setInterval(() => {
+  //     if (isPending) {
+  //       return
+  //     }
+  //
+  //     setMessages((prevMessages) => {
+  //       const id = faker.database.mongodbObjectId()
+  //       const username = faker.internet.userName()
+  //       const color = getRandomRgb()
+  //
+  //       const messageInfo = {
+  //         id,
+  //         username,
+  //         color,
+  //         message: getRandomStuffRelatedToFood(),
+  //         timestamp: Date.now(),
+  //       }
+  //
+  //       if (prevMessages) {
+  //         return [...prevMessages, messageInfo]
+  //       }
+  //
+  //       return [messageInfo]
+  //     })
+  //
+  //     computeOldMessages()
+  //   }, 1000)
+  //
+  //   return () => clearInterval(simpleSimulationMessageFlow)
+  // }, [computeOldMessages, isPending, onSubmit])
 
-      setMessages((prevMessages) => {
-        const id = faker.database.mongodbObjectId()
-        const username = faker.internet.userName()
-        const color = getRandomRgb()
-
-        const messageInfo = {
-          id,
-          username,
-          color,
-          message: getRandomStuffRelatedToFood(),
-          timestamp: Date.now(),
-        }
-
-        if (prevMessages) {
-          return [...prevMessages, messageInfo]
-        }
-
-        return [messageInfo]
-      })
-    }, 300)
-
-    return () => clearInterval(simpleSimulationMessageFlow)
-  }, [isPending, onSubmit])
-
-  // NOTE: temporary disabled
   React.useEffect(() => {
     startTransition(async () => {
       await sleep(2000)
+      setOldMessages(chatMessages)
+      setTotalOldMessagesCount(chatMessages.length)
     })
   }, [])
 
@@ -182,6 +223,7 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
     <ChatRoomComponentLayout>
       <div className={styles["chat-room__content"]}>
         <ChatList
+          previousMessages={oldMessages}
           messages={limitMessagesQueue}
           isPending={isPending}
           isPausedChat={isPausedChat}
