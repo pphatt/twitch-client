@@ -2,6 +2,8 @@ import type { IFollowChannelsData, MainNavItem } from "@/types"
 import { faker } from "@faker-js/faker"
 import classNames, { type ArgumentArray } from "classnames"
 
+import { defaultColor } from "@/config/data"
+
 export function cn(...inputs: ArgumentArray) {
   return classNames(inputs)
 }
@@ -69,15 +71,13 @@ export const findMatchingSite = (
   return findInItems(sites)
 }
 
-export const getRandomRgb = () => {
-  const num = Math.round(0xffffff * Math.random())
-  const r = num >> 16
-  const g = (num >> 8) & 255
-  const b = num & 255
+export const getRandomRgb = (): string => {
+  const randomNumber = faker.number.int({ max: 4, min: 0 })
 
-  return "rgb(" + r + ", " + g + ", " + b + ")"
+  return defaultColor[randomNumber]
 }
 
+// use to fill in the chat dummy data
 export const getRandomStuffRelatedToFood = () => {
   const randomNumber = faker.number.int({ max: 9, min: 1 })
   let randomMessage = ""

@@ -16,12 +16,18 @@ import {
 
 interface ChatPausedFooterProps {
   clickToLatestMessage: () => void
+  newMessagesStackLength: number
 }
 
 export default function ChatPausedFooter({
   clickToLatestMessage,
+  newMessagesStackLength,
 }: ChatPausedFooterProps) {
   const [onHover, setOnHover] = React.useState<boolean>(false)
+
+  const countNewMessage = React.useMemo(() => {
+    return newMessagesStackLength > 20 ? "20+" : `${newMessagesStackLength}`
+  }, [newMessagesStackLength])
 
   return (
     <ChatPausedFooterWrapper className="chat-paused-footer">
@@ -43,7 +49,9 @@ export default function ChatPausedFooter({
 
               <ChatTextWrapper>
                 <ChatText>
-                  {onHover ? "new messages" : "Chat paused due to scroll"}
+                  {onHover
+                    ? `${countNewMessage} new messages`
+                    : "Chat paused due to scroll"}
                 </ChatText>
               </ChatTextWrapper>
             </ChatPausedFooterTextOverlay>

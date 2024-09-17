@@ -17,11 +17,32 @@ import styles from "@/components/stream/chat/chat-list/style.module.scss"
 import ChatPausedFooter from "@/components/stream/chat/chat-paused-footer"
 
 interface ChatListProps {
-  messages?: { message: string; username: string; color: string }[]
+  messages?: {
+    id: string
+    message: string
+    username: string
+    color: string
+    timestamp: number
+  }[]
   isPending: boolean
 
   isPausedChat: boolean
   setIsPausedChat: React.Dispatch<React.SetStateAction<boolean>>
+
+  lastMessageId: string | null
+  setLastMessageId: React.Dispatch<React.SetStateAction<string | null>>
+
+  newMessagesStack:
+    | {
+        id: string
+        message: string
+        username: string
+        color: string
+        timestamp: number
+      }[]
+    | null
+
+  setFirstMessageIdInQueue: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 export default function ChatList({
@@ -29,6 +50,10 @@ export default function ChatList({
   isPending,
   isPausedChat,
   setIsPausedChat,
+  lastMessageId,
+  setLastMessageId,
+  newMessagesStack,
+  setFirstMessageIdInQueue,
 }: ChatListProps) {
   const ref = React.useRef<SimpleBarCore | null>(null)
   const listRef = React.useRef<HTMLDivElement>(null)
@@ -63,9 +88,14 @@ export default function ChatList({
 
   useEventListener("resize", scrollToLastMessage)
 
-  // TODO:
-  //  - improve the paused chat because the current paused
-  //  chat is not actually a paused chat feature that the team want
+  /*
+   * TODO:
+   *  - improve the paused chat because the current paused
+   *  chat is not actually a paused chat feature that the team want
+   *  - Some ideas are (quite done maybe ?):
+   *  -> each messages have a unique id, track what is the last id in the messagesQueue
+   *  -> store the last id some where
+   * */
   React.useEffect(() => {
     const handleScroll = () => {
       const element = ref.current?.getScrollElement() as HTMLElement
@@ -75,11 +105,26 @@ export default function ChatList({
 
       if (isScrolledToBottom <= 0) {
         setIsPausedChat(false)
+        setLastMessageId(null)
         return
       }
 
       if (isScrolledToBottom > 200) {
         setIsPausedChat(true)
+
+        if (!messages || lastMessageId) {
+          return
+        }
+
+        const firstMessage = messages[0]
+        const lastMessage = messages[messages.length - 1]
+
+        if (!lastMessage || !firstMessage) {
+          return
+        }
+
+        setLastMessageId(lastMessage.id)
+        setFirstMessageIdInQueue(firstMessage.id)
         return
       }
     }
@@ -90,7 +135,7 @@ export default function ChatList({
       ref.current
         ?.getScrollElement()
         ?.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [messages])
 
   const handleClickToLatestMessage = () => {
     scrollToLastMessage()
@@ -183,7 +228,10 @@ export default function ChatList({
         </SimpleBar>
 
         {isPausedChat && (
-          <ChatPausedFooter clickToLatestMessage={handleClickToLatestMessage} />
+          <ChatPausedFooter
+            clickToLatestMessage={handleClickToLatestMessage}
+            newMessagesStackLength={newMessagesStack?.length ?? 0}
+          />
         )}
       </ChatListWrapper>
 
