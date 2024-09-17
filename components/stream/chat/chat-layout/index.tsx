@@ -148,7 +148,7 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
 
     const newMessagesQueue = messages.slice(messageIndex)
 
-    // 15 + 150
+    // 50 + 150
     if (newMessagesQueue.length >= totalOldMessagesCount + 150) {
       return messages.slice(-(totalOldMessagesCount + 150))
     }

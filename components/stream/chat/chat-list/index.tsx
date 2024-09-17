@@ -107,21 +107,6 @@ export default function ChatList({
 
   useEventListener("resize", scrollToLastMessage)
 
-  /*
-   * TODO:
-   *  - improve the paused chat because the current paused
-   *  chat is not actually a paused chat feature that the team want
-   *  - Some ideas are (quite done maybe ?):
-   *  -> each messages have a unique id, track what is the last id in the messagesQueue
-   *  -> store the last id some where
-   *  - add some like when new user come and there are already chat exist,
-   *  -> the "Welcome to the chat room!" will appear and the _____new would exist to user to easier understand
-   *  -> maybe the ideas is that there will be a state hold old messages values and hold new messages value.
-   *  -> the welcome text would occur above the new messages value and disappear when new messages are more than 150 ?
-   *
-   * NOTE:
-   *  -> old messages (default 50) + new messages (default 150), I think (?) This is the correct amount that twitch use (partially done ?)
-   * */
   React.useEffect(() => {
     const handleScroll = () => {
       const element = ref.current?.getScrollElement() as HTMLElement
