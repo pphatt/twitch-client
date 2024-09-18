@@ -193,8 +193,7 @@ export default function ChatList({
             />
 
             <WelcomeMessage
-              previousMessages={previousMessages ?? []}
-              newMessagesStackLength={messages?.length ?? 0}
+              newMessagesLength={messages?.length ?? 0}
               isPending={isPending}
             />
 
@@ -233,23 +232,13 @@ export default function ChatList({
  *
  * */
 interface WelcomeMessageProps {
-  previousMessages: {
-    id: string
-    message: string
-    username: string
-    color: string
-    timestamp: number
-  }[]
-  newMessagesStackLength: number
+  newMessagesLength: number
   isPending: boolean
 }
 
-function WelcomeMessage({
-  previousMessages,
-  newMessagesStackLength,
-  isPending,
-}: WelcomeMessageProps) {
-  if (previousMessages.length === 0) {
+function WelcomeMessage({ newMessagesLength, isPending }: WelcomeMessageProps) {
+  // have to sync when the first messages get removed
+  if (newMessagesLength >= 150) {
     return
   }
 
@@ -264,7 +253,7 @@ function WelcomeMessage({
         </div>
       )}
 
-      {newMessagesStackLength > 0 && !isPending && (
+      {newMessagesLength > 0 && !isPending && (
         <ChatLineNew className={styles["chat-line__message"]}>
           <SeparatorLine
             className={styles["live-message-separator-line__hr"]}
