@@ -3,20 +3,42 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
+  "author": {
+    "name": "pphatt",
+    "email": "phatvu080903@gmail.com",
+    "url": "https://github.com/pphatt"
+  },
+  "contributors": [
+    {
+      "name": "Masshiros",
+      "email": "nguyenvu260703.dev@gmai.com",
+      "url": "https://github.com/Masshiros"
+    }
+  ],
+  "description": "University project (twitch clone)",
+  "repository": {
+    "url": "https://github.com/pphatt/twitch-client.git",
+    "type": "git"
+  },
   "scripts": {
-    "clean": "rimraf --glob **/node_modules **/dist **/.next pnpm-lock.yaml",
     "build": "next build",
-    "dev": "next dev",
+    "dev": "concurrently \"pnpm open-home\" \"next dev\"",
+    "dev:safe": "concurrently \"pnpm open-home:safe\" \"dotenv -e .env.https next dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem\"",
     "start": "next start",
+    "start:local": "concurrently \"pnpm open-home\" \"pnpm start\"",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "typecheck": "tsc --noEmit",
+    "check-info": "next info",
     "deps": "node ncu.js",
     "local:build": "pnpx @cloudflare/next-on-pages",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "open-home": "open-cli http://localhost:3000",
+    "open-home:safe": "open-cli https://localhost:3000",
     "check": "pnpm lint && pnpm typecheck && pnpm format:check && pnpm format:write",
-    "prepare": "husky"
+    "clean": "rimraf --glob **/node_modules **/dist **/.next pnpm-lock.yaml",
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit --pretty"
   },
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.2",
@@ -93,6 +115,7 @@
     "@typescript-eslint/parser": "^7.16.0",
     "babel-plugin-styled-components": "^2.1.4",
     "cmdk": "^1.0.0",
+    "concurrently": "^9.0.1",
     "embla-carousel": "^8.2.1",
     "embla-carousel-react": "^8.2.1",
     "eslint": "^8.57.0",
@@ -100,13 +123,11 @@
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.5",
     "lucide-react": "^0.439.0",
+    "open-cli": "^8.0.0",
     "prettier": "^3.3.3",
     "react-day-picker": "^8.10.1",
     "sonner": "^1.5.0",
     "typescript": "^5.7.0-dev.20240904"
-  },
-  "ct3aMetadata": {
-    "initVersion": "7.33.1"
   },
   "packageManager": "pnpm@9.10.0",
   "resolutions": {
