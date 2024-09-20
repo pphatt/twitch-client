@@ -19,7 +19,8 @@
 }
 
 .chat-shell__expanded {
-  min-width: 340px !important;
+  // NOTE: temporary disabled due to layout shift (enable for testing)
+  //min-width: 340px !important;
 }
 
 .stream-chat {
