@@ -5,7 +5,7 @@ import { useDashboardOpen } from "@/store/persistent/dashboard"
 import type { MainNavItem } from "@/types"
 
 import { cn } from "@/lib/utils"
-import { useMediaQuery } from "@/hooks/use-media-query"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { Icons } from "@/components/icons"
 import { DashboardItem } from "@/components/layouts/dashboard/dashboard-item-layout/dashboard-item"
 import { DashboardItemGroup } from "@/components/layouts/dashboard/dashboard-item-layout/dashboard-item-group"

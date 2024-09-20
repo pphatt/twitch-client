@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer"
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
 
 interface InfiniteScrollProps {
   next: () => void

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { useMounted } from "@/hooks/use-mounted"
+import { useMounted } from "@/hooks/useMounted"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import { PersistentPlayer } from "@/components/stream/common/loading-wrapper/style"
 

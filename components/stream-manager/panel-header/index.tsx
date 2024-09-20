@@ -9,7 +9,7 @@ import {
 } from "react-mosaic-component"
 import type { MosaicKey } from "react-mosaic-component/lib/types"
 
-import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,

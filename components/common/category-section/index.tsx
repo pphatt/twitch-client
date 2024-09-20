@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import type { ICategoryData } from "@/types"
 
-import { useMediaQuery } from "@/hooks/use-media-query"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { Separator } from "@/components/ui/separator"
 import { CategoryCard } from "@/components/common/category-card"
 import {

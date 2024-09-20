@@ -5,8 +5,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 import { sleep } from "@/lib/utils"
-import { useDebounce } from "@/hooks/use-debounce"
-import useWindowEvent from "@/hooks/use-window-event"
+import { useDebounce } from "@/hooks/useDebounce"
+import useWindowEvent from "@/hooks/useWindowEvent"
 import {
   CommandWrapper as Command,
   CommandGroupWrapper as CommandGroup,

@@ -9,7 +9,7 @@ import {
 } from "@/store/state/dashboard"
 import { toast } from "sonner"
 
-import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,

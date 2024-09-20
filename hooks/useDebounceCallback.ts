@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react"
 import debounce from "lodash.debounce"
 
-import { useUnmount } from "@/hooks/use-unmount"
+import { useUnmount } from "@/hooks/useUnmount"
 
 type DebounceOptions = {
   leading?: boolean

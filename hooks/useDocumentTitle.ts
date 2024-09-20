@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-effect"
+import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicEffect"
 
 export function useDocumentTitle(title: string) {
   useIsomorphicLayoutEffect(() => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useCallback, useEffect, useState } from "react"
 
-import useWindowEvent from "@/hooks/use-window-event"
+import useWindowEvent from "@/hooks/useWindowEvent"
 
 export type StorageType = "localStorage" | "sessionStorage"
 

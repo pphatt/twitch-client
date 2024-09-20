@@ -4,7 +4,7 @@ import * as React from "react"
 import { DEFAULT_LAYOUT } from "@/constant"
 import type { MosaicNode } from "react-mosaic-component"
 
-import { useLocalStorage } from "@/hooks/use-local-storage"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 export const LayoutContext = React.createContext<{
   layout: MosaicNode<string> | null
@@ -65,4 +65,10 @@ export default function UpdateLayoutContext({
       {children}
     </LayoutContext.Provider>
   )
+}
+
+export const useUpdateLayoutContext = () => {
+  const { layout, setLayout } = React.useContext(LayoutContext)
+
+  return { layout, setLayout }
 }

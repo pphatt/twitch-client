@@ -7,7 +7,7 @@ import { Mosaic, MosaicWindow, type MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
-import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import AddPanel from "@/components/stream-manager/add-panel"

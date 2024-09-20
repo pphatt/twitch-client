@@ -13,7 +13,7 @@ import {
 } from "react-mosaic-component"
 
 import { cn } from "@/lib/utils"
-import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {

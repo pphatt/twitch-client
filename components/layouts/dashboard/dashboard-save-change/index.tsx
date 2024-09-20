@@ -11,8 +11,8 @@ import isEqual from "lodash/isEqual"
 import type { MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
-import { useLocalStorage } from "@/hooks/use-local-storage"
-import { useMosaicUpdateLayout } from "@/hooks/use-mosaic-update-layout"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import {
   CancelChangeBtn,

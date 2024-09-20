@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import { useMute } from "@/hooks/use-mute"
-import { useVolume } from "@/hooks/use-volume"
+import { useMute } from "@/hooks/useMute"
+import { useVolume } from "@/hooks/useVolume"
 import VolumeControl from "@/components/stream/video/video-control-player/volume-control"
 import { VolumeControlGroupWrapper } from "@/components/stream/video/video-control-player/volume-control-group/style"
 import VolumeControlSlider from "@/components/stream/video/video-control-player/volume-control-slider"

@@ -4,7 +4,7 @@ import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
 
 import { cn } from "@/lib/utils"
-import { useMediaQuery } from "@/hooks/use-media-query"
+import { useMediaQuery } from "@/hooks/useMediaQuery"
 import FollowedChannelSideBar from "@/components/common/channel-section-side-bar/followed-channel-side-bar"
 import RecommendLiveChanelSideBar from "@/components/common/channel-section-side-bar/recommend-live-chanel-side-bar"
 import { Hint } from "@/components/common/hint"

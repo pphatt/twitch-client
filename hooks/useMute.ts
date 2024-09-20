@@ -1,6 +1,6 @@
 import React from "react"
 
-import { useLocalStorage } from "@/hooks/use-local-storage"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 const KEY = "video-muted"
 

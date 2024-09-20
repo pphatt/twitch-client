@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 import { cn, sleep } from "@/lib/utils"
-import { useDebounce } from "@/hooks/use-debounce"
+import { useDebounce } from "@/hooks/useDebounce"
 import { CommandGroup } from "@/components/ui/command"
 import {
   CommandWrapper as Command,

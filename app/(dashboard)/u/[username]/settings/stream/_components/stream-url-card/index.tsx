@@ -3,7 +3,7 @@
 import * as React from "react"
 import { toast } from "sonner"
 
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard"
 import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 import {
