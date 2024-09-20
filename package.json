@@ -22,7 +22,8 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "concurrently \"pnpm open-home\" \"next dev\"",
+    "dev": "next dev",
+    "dev:local": "concurrently \"pnpm open-home\" \"next dev\"",
     "dev:safe": "concurrently \"pnpm open-home:safe\" \"dotenv -e .env.https next dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem\"",
     "start": "next start",
     "start:local": "concurrently \"pnpm open-home\" \"pnpm start\"",
