@@ -2,7 +2,7 @@ import { createHash } from "node:crypto"
 import path from "node:path"
 import million from "million/compiler"
 
-import { env } from "./env.js"
+import { env } from "./src/utils/common/env.js"
 
 const boolVals = {
   true: true,
