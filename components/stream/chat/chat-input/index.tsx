@@ -1,4 +1,5 @@
 import * as React from "react"
+import { cn } from "@/lib"
 import { createEditor, Editor, Node, Transforms, type Descendant } from "slate"
 import {
   Editable,
@@ -8,7 +9,6 @@ import {
   type RenderElementProps,
 } from "slate-react"
 
-import { cn } from "@/lib/utils"
 import styles from "@/components/stream/chat/chat-input/style.module.scss"
 
 const INITIAL_SLATE_VALUE = [

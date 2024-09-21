@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { usePathname } from "next/navigation"
+import { cn } from "@/lib"
 
-import { cn } from "@/lib/utils"
 import {
   DropdownMenu,
   DropdownMenuTrigger,

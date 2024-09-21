@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { liveChannels } from "@/config/data"
-import { sleep } from "@/lib/utils"
+import { sleep } from "@/lib"
 import LiveChannelsList from "@/components/common/live-channels-list"
 import { LiveChannelPlaceholder } from "@/components/placeholder/live-channel-placeholder"
 

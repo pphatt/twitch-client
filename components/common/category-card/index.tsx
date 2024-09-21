@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import Link from "next/link"
-import type { ICategoryData } from "@/types"
+import { formatViewCount } from "@/lib"
 
-import { formatViewCount } from "@/lib/utils"
+import type { ICategoryData } from "@/types/common"
 import * as Primitive from "@/components/common/category-card/style"
 import { Tags } from "@/components/common/tag"
 

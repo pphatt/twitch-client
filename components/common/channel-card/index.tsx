@@ -1,8 +1,8 @@
 import * as React from "react"
 import Link from "next/link"
-import type { IRecommendedLiveChannel } from "@/types"
+import { formatViewCount } from "@/lib"
 
-import { formatViewCount } from "@/lib/utils"
+import type { IRecommendedLiveChannel } from "@/types/common"
 import * as Primitive from "@/components/common/channel-card/style"
 import { Tags } from "@/components/common/tag"
 

@@ -1,6 +1,6 @@
 import * as React from "react"
-import type { ITag } from "@/types"
 
+import type { ITag } from "@/types/common"
 import { TagsWrapper, TagWrapper } from "@/components/common/tag/style"
 
 export function Tags({ tags }: { tags: ITag[] }) {

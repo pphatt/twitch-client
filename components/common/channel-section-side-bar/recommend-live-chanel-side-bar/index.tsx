@@ -1,9 +1,9 @@
 import * as React from "react"
-import { type IChannelsData } from "@/types"
+import { formatViewCount, sleep } from "@/lib"
 import { useQuery } from "@tanstack/react-query"
 
+import { type IChannelsData } from "@/types/common"
 import { recommendedLiveChannelsData } from "@/config/data"
-import { formatViewCount, sleep } from "@/lib/utils"
 import {
   Tooltip,
   TooltipContent,

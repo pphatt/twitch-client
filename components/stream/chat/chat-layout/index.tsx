@@ -1,10 +1,15 @@
 "use client"
 
 import * as React from "react"
+import {
+  findIndex,
+  getRandomRgb,
+  getRandomStuffRelatedToFood,
+  sleep,
+} from "@/lib"
 import { useChatObserver } from "@/store/state/channel-chat"
 import { faker } from "@faker-js/faker"
 
-import { getRandomRgb, getRandomStuffRelatedToFood, sleep } from "@/lib/utils"
 import ChatHide from "@/components/stream/chat/chat-hide"
 import ChatInputForm from "@/components/stream/chat/chat-input-form"
 import { ChatRoomComponentLayout } from "@/components/stream/chat/chat-layout/style"
@@ -66,6 +71,14 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
   >(null)
   const [lastMessageId, setLastMessageId] = React.useState<string | null>(null)
 
+  const findFirstMessageIndex = React.useMemo(() => {
+    return findIndex(messages, ({ id }) => id === firstMessageIdInQueue)
+  }, [firstMessageIdInQueue, messages])
+
+  const findLastMessageIndex = React.useMemo(() => {
+    return findIndex(messages, ({ id }) => id === lastMessageId)
+  }, [lastMessageId, messages])
+
   const computeOldMessages = React.useCallback(() => {
     if (!messages || !oldMessages) {
       return
@@ -124,14 +137,14 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
       return null
     }
 
-    const elementIndex = messages.findIndex((item) => item.id === lastMessageId)
+    const index = findLastMessageIndex
 
-    if (elementIndex === -1) {
+    if (index === -1) {
       return null
     }
 
-    return messages.slice(elementIndex + 1)
-  }, [lastMessageId, messages])
+    return messages.slice(index + 1)
+  }, [findLastMessageIndex, lastMessageId, messages])
 
   const limitMessagesQueue = React.useMemo(() => {
     if (!messages) {
@@ -160,9 +173,7 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
       return messages.slice(-150)
     }
 
-    const messageIndex = messages.findIndex(
-      ({ id }) => id === firstMessageIdInQueue
-    )
+    const index = findFirstMessageIndex
 
     // this will update when there is a paused
     // it will update new messages based on the last stop as scroll up
@@ -171,7 +182,7 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
       newMessagesStack &&
       newMessagesStack.length < 50
     ) {
-      return messages.slice(messageIndex)
+      return messages.slice(index)
     }
 
     if (
@@ -187,12 +198,13 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
     // oldMessages && oldMessages.length > 0
     return messages.slice(-(totalOldMessagesCount + 150))
   }, [
-    firstMessageIdInQueue,
-    lastMessageId,
     messages,
+    lastMessageId,
+    firstMessageIdInQueue,
+    findFirstMessageIndex,
     oldMessages,
-    totalOldMessagesCount,
     newMessagesStack,
+    totalOldMessagesCount,
   ])
 
   // NOTE: use for chat dummy-data

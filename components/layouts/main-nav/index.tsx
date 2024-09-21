@@ -1,6 +1,10 @@
 import * as React from "react"
-import type { MainNavItem, SupportNavItem } from "@/types"
 
+import type { MainNavItem, SupportNavItem } from "@/types/common"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import {
   DropdownMenuItemContainer,
   DropdownMenuItemLink,
@@ -9,10 +13,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu-fork"
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Icons } from "@/components/icons"
 import {
   DropdownMenuContentWrapper as DropdownMenuContent,

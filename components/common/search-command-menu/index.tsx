@@ -3,8 +3,8 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { sleep } from "@/lib"
 
-import { sleep } from "@/lib/utils"
 import { useDebounce } from "@/hooks/useDebounce"
 import useWindowEvent from "@/hooks/useWindowEvent"
 import {

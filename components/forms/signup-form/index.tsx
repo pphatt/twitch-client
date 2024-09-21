@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import type { z } from "zod"
 
-import { sleep } from "@/lib/utils"
+import { sleep } from "@/lib"
 import { authSignUpSchema } from "@/lib/validation/auth"
 import { Form, FormControl, FormField } from "@/components/ui/form"
 import {

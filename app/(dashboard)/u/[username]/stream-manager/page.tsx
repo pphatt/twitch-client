@@ -1,12 +1,12 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/lib"
 import { useEditLayout, useEditLayoutState } from "@/store/state/dashboard"
 import QuickActionPanel from "components/stream-manager/panel/quick-action-panel"
 import { Mosaic, MosaicWindow, type MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
-import { cn } from "@/lib/utils"
 import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"

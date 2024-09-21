@@ -1,7 +1,7 @@
 import * as React from "react"
 import { SHARE_LINK } from "@/constant"
+import { cn } from "@/lib"
 
-import { cn } from "@/lib/utils"
 import {
   DropdownMenu,
   DropdownMenuTrigger,

@@ -1,6 +1,6 @@
 import * as React from "react"
+import { sleep } from "@/lib"
 
-import { sleep } from "@/lib/utils"
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/application/dashboard/settings/stream/page.module.scss"
 import { StreamKeyCard } from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-key-card"

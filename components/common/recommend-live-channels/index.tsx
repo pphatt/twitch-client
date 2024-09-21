@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-import type { IRecommendedLiveChannel } from "@/types"
 
+import type { IRecommendedLiveChannel } from "@/types/common"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { Separator } from "@/components/ui/separator"
 import { ChannelCard } from "@/components/common/channel-card"

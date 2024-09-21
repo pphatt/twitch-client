@@ -1,15 +1,89 @@
-import type { IFollowChannelsData, MainNavItem } from "@/types"
 import { faker } from "@faker-js/faker"
 import classNames, { type ArgumentArray } from "classnames"
 
+import type { IFollowChannelsData, MainNavItem } from "@/types/common"
+import type { BooleanishEnum } from "@/types/common/zod/generic"
 import { defaultColor } from "@/config/data"
+
+// =======================================				Native Override				=======================================
+
+export function capitalize<const TInput extends string>(
+  input?: TInput | null
+): Capitalize<TInput> {
+  return (
+    input
+      ? input.replace(
+          /(^\w|\s\w)(\S*)/g,
+          (_, firstLetter: string, rest: string) =>
+            firstLetter.toUpperCase() + rest.toLowerCase()
+        )
+      : ""
+  ) as Capitalize<TInput>
+}
+
+export function createArray<TFill>(fill: TFill, len = 0) {
+  return Array(len).fill(fill) as Array<TFill>
+}
+
+export function sleep(milliseconds = 0) {
+  return new Promise<void>((resolve) => setTimeout(resolve, milliseconds))
+}
+
+/**
+ * Returns the index of the first occurrence of a value in an array and -1 otherwise.
+ *
+ * This mainly used for finding the index in arrays of primitive types (like string, number, or boolean)
+ * https://stackoverflow.com/a/41443138
+ */
+export function indexOf<const TSearch extends Readonly<string | number>>(
+  arr: Readonly<Array<TSearch>>,
+  search: TSearch,
+  fromIndex?: number,
+  defaultIndex?: number
+) {
+  return arr.indexOf(search, fromIndex || -1) ?? (defaultIndex || -1)
+}
+
+/**
+ * Returns the index of the first element in the array where predicate is true, and -1
+ * otherwise.
+ *
+ * This mainly used for complex arrays with non-primitive types (e.g., objects)
+ * https://stackoverflow.com/a/41443138
+ */
+export function findIndex<TSearch>(
+  arr: Readonly<Array<TSearch>>,
+  predicate: (
+    value: TSearch,
+    index: number,
+    obj: readonly TSearch[]
+  ) => unknown,
+  defaultIndex?: number
+) {
+  return arr.findIndex(predicate) ?? (defaultIndex || -1)
+}
+
+// =======================================					Utilities					=======================================
+
+export function booleanishToBoolean(
+  input: BooleanishEnum | null = "false"
+): input is "true" {
+  return input === "true"
+}
+
+export function booleanToBooleanish(
+  input: boolean | null = false
+): BooleanishEnum {
+  return input ? "true" : "false"
+}
 
 export function cn(...inputs: ArgumentArray) {
   return classNames(inputs)
 }
 
-export const sleep = (ms = 0) => {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+// convert snake case text to normal words with space
+export function convertCode<TInput extends string>(input?: TInput | null) {
+  return input ? capitalize(input.toLowerCase().replaceAll("_", " ")) : ""
 }
 
 export const formatViewCount = (view: number) => {

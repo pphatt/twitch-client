@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/lib"
 import { useCacheLayout } from "@/store/persistent/layout"
 
-import { cn } from "@/lib/utils"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import {
   PlayerControls,

@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import type { IRecommendedLiveChannel } from "@/types"
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-import { sleep } from "@/lib/utils"
+import type { IRecommendedLiveChannel } from "@/types/common"
+import { sleep } from "@/lib"
 import {
   ChannelCardWrapper as ChannelCard,
   InfiniteScrollWrapper as InfiniteScroll,

@@ -3,8 +3,8 @@
 import * as React from "react"
 import { Suspense } from "react"
 import { usePathname } from "next/navigation"
-import type { NavItem } from "@/types"
 
+import type { NavItem } from "@/types/common"
 import * as Primitive from "@/components/common/directory-side-nav/style"
 import { DirectorySearch } from "@/components/search/directory-search"
 

@@ -1,5 +1,6 @@
-import type { IChannelsData, IFollowChannelsData } from "@/types"
 import { faker } from "@faker-js/faker"
+
+import type { IChannelsData, IFollowChannelsData } from "@/types/common"
 
 export const followedChannels: { channels: IFollowChannelsData[] } = {
   channels: [

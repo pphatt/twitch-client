@@ -4,7 +4,7 @@ import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
 import { useVideoProperty } from "@/store/state/video"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib"
 import ResizeDetector from "@/components/resize-detector"
 import {
   ChannelVideoPlaceholderContainer,

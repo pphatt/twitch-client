@@ -3,11 +3,11 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { sleep } from "@/lib"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import type { z } from "zod"
 
-import { sleep } from "@/lib/utils"
 import { authSchema } from "@/lib/validation/auth"
 import { Form, FormControl, FormField } from "@/components/ui/form"
 import {

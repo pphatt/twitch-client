@@ -1,9 +1,9 @@
 import * as React from "react"
-import type { IFollowChannelsData } from "@/types"
+import { formatViewCount, orderFollowedChannel, sleep } from "@/lib"
 import { useQuery } from "@tanstack/react-query"
 
+import type { IFollowChannelsData } from "@/types/common"
 import { followedChannels } from "@/config/data"
-import { formatViewCount, orderFollowedChannel, sleep } from "@/lib/utils"
 import {
   Tooltip,
   TooltipContent,

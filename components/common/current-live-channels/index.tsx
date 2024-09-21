@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-import type { IRecommendedLiveChannel } from "@/types"
 
+import type { IRecommendedLiveChannel } from "@/types/common"
 import { Separator } from "@/components/ui/separator"
 import {
   ContentListContainer,

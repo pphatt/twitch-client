@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import { useDashboardOpen } from "@/store/persistent/dashboard"
-import type { MainNavItem } from "@/types"
 
-import { cn } from "@/lib/utils"
+import type { MainNavItem } from "@/types/common"
+import { cn } from "@/lib"
 import { useMediaQuery } from "@/hooks/useMediaQuery"
 import { Icons } from "@/components/icons"
 import { DashboardItem } from "@/components/layouts/dashboard/dashboard-item-layout/dashboard-item"

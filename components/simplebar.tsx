@@ -4,10 +4,9 @@
 
 import * as React from "react"
 import type { MutableRefObject, ReactNode } from "react"
+import { cn } from "@/lib"
 import SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core/dist"
 import type { SimpleBarOptions } from "@tienphat0809/simplebar/packages/simplebar-core/dist"
-
-import { cn } from "@/lib/utils"
 
 type RenderFunc = (props: {
   scrollableNodeRef: MutableRefObject<HTMLElement | undefined>

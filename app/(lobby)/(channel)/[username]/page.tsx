@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { sleep } from "@/lib"
 import { useQuery } from "@tanstack/react-query"
 
 import { liveChannels, type LiveChannelDataI } from "@/config/data"
-import { sleep } from "@/lib/utils"
 import Background from "@/components/stream/common/background"
 import LoadingWrapper from "@/components/stream/common/loading-wrapper"
 import About from "@/components/stream/information/about"

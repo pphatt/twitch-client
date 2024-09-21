@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
-import type { ICategoryData } from "@/types"
+import { sleep } from "@/lib"
 import { useInfiniteQuery } from "@tanstack/react-query"
 
-import { sleep } from "@/lib/utils"
+import type { ICategoryData } from "@/types/common"
 import {
   CategoryCardWrapper as CategoryCard,
   CategoryCardSkeletonWrapper as CategoryCardSkeleton,

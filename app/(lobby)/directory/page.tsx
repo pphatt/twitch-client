@@ -1,7 +1,7 @@
 import * as React from "react"
+import { sleep } from "@/lib"
 
 import { categoryData } from "@/config/data"
-import { sleep } from "@/lib/utils"
 import { CategoryList } from "@/components/common/category-list"
 import { CategoryPlaceholder } from "@/components/placeholder/category-placeholder"
 

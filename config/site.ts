@@ -1,4 +1,4 @@
-import type { MainNavItem, MainNavSupportItem, NavItem } from "@/types"
+import type { MainNavItem, MainNavSupportItem, NavItem } from "@/types/common"
 
 export type SiteConfig = typeof siteConfig
 

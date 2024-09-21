@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/lib"
 import { useCacheLayout } from "@/store/persistent/layout"
 
-import { cn } from "@/lib/utils"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {

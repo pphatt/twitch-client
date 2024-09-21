@@ -4,7 +4,7 @@ import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout"
 
 import type { LiveChannelDataI } from "@/config/data"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib"
 import {
   ChannelRootContainer,
   ChannelRootWrapper,

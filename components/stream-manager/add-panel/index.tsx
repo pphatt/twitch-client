@@ -12,7 +12,7 @@ import {
   type MosaicNode,
 } from "react-mosaic-component"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib"
 import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"

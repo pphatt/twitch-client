@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/lib"
 import { useCacheLayout } from "@/store/persistent/layout"
 import { useVideoProperty } from "@/store/state/video"
 
-import { cn } from "@/lib/utils"
 import styles from "@/components/stream/information/header-wrapper/style.module.scss"
 
 interface HeaderWrapperProps {
