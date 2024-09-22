@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import type { ICategoryData } from "@/types/common"
-import { useMediaQuery } from "@/hooks/useMediaQuery"
+import { useMediaQueryHooks } from "@/hooks/useMediaQuery.hooks"
 import { Separator } from "@/components/ui/separator"
 import { CategoryCard } from "@/components/common/category-card"
 import {
@@ -20,10 +20,10 @@ interface CategorySectionProps {
 }
 
 export default function CategorySection({ categories }: CategorySectionProps) {
-  const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
-  const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
-  const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")
-  const isScreenWidthAbove983 = useMediaQuery("(min-width: 983px)")
+  const isScreenWidthAbove2073 = useMediaQueryHooks("(min-width: 2073px)")
+  const isScreenWidthAbove1773 = useMediaQueryHooks("(min-width: 1773px)")
+  const isScreenWidthAbove1473 = useMediaQueryHooks("(min-width: 1473px)")
+  const isScreenWidthAbove983 = useMediaQueryHooks("(min-width: 983px)")
 
   const getNumberByScreenWidth = React.useMemo(() => {
     if (isScreenWidthAbove2073) {

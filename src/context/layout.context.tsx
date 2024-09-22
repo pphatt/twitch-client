@@ -4,7 +4,7 @@ import * as React from "react"
 import { DEFAULT_LAYOUT } from "@/constant"
 import type { MosaicNode } from "react-mosaic-component"
 
-import { useLocalStorage } from "@/hooks/useLocalStorage"
+import { useLocalStorageHooks } from "@/hooks/useLocalStorage.hooks"
 
 export const LayoutContext = React.createContext<{
   layout: MosaicNode<string> | null
@@ -19,7 +19,7 @@ export const LayoutContext = React.createContext<{
   setLayout: () => {},
 })
 
-export default function UpdateLayoutContext({
+export default function LayoutProvider({
   children,
 }: {
   children: React.ReactNode
@@ -29,7 +29,7 @@ export default function UpdateLayoutContext({
    *
    * setting this null act like a useState + useContext
    * */
-  const [layout, setLayout] = useLocalStorage<MosaicNode<string> | null>({
+  const [layout, setLayout] = useLocalStorageHooks<MosaicNode<string> | null>({
     key: "stream-manager-drag-and-drop-layout",
     defaultValue: null,
   })

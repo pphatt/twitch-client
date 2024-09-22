@@ -24,7 +24,7 @@ export default function AuthTabControl({ currentTab }: AuthTabControlProps) {
     <Tabs defaultValue={currentTab} asChild>
       <AuthFormLayout>
         <ModalHeaderWrapper>
-          <ModalHeaderContainer>
+          <ModalHeaderContainer as={"div"}>
             <h2>Twitch Clone</h2>
           </ModalHeaderContainer>
         </ModalHeaderWrapper>

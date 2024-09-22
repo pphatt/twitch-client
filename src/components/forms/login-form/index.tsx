@@ -2,9 +2,10 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { sleep } from "@/utils/common"
+// import { useRouter } from "next/navigation"
+// import { sleep } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
+import axios from "axios"
 import { useForm } from "react-hook-form"
 import type { z } from "zod"
 
@@ -28,10 +29,13 @@ import {
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
 
+import type { UserDto } from "../../../../modules/user/application/dto/user.dto"
+import { UserRepository } from "../../../../modules/user/infrastructure/repository/user.repository"
+
 type Inputs = z.infer<typeof authSchema>
 
 export default function LogInForm() {
-  const router = useRouter()
+  // const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
   // register, handleSubmit, formState
@@ -45,13 +49,26 @@ export default function LogInForm() {
   })
 
   const onSubmit = (data: Inputs) => {
-    if (!isPending) return
+    if (isPending) return
 
     startTransition(async () => {
       try {
+        const { username, password } = data
+
+        // call auth/login api.
+        // -> return rftk and actk (actk contain user info)
+        // -- right here if F5 the browser, the app context would fetch to the user info to passing to the app context.
+        //
+        // ->
+        //
+
+        const result = await UserRepository.login({
+          email: username,
+          password: password,
+        })
+
         console.log(data)
-        console.log(router)
-        await sleep(1000)
+        console.log(result)
       } catch (err) {
         // catchError(err)
         console.error(err)

@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { useCacheLayout } from "@/store/persistent/layout.persistent"
 import { cn } from "@/utils/common"
-import { useCacheLayout } from "@/store/persistent/layout"
 
-import { useMediaQuery } from "@/hooks/useMediaQuery"
+import { useMediaQueryHooks } from "@/hooks/useMediaQuery.hooks"
 import FollowedChannelSideBar from "@/components/common/channel-section-side-bar/followed-channel-side-bar"
 import RecommendLiveChanelSideBar from "@/components/common/channel-section-side-bar/recommend-live-chanel-side-bar"
 import { Hint } from "@/components/common/hint"
@@ -30,7 +30,7 @@ export default function SideNavBar() {
 
   const isExpand = React.useMemo(() => isSocialColumnOpen, [isSocialColumnOpen])
 
-  const isScreenWidthAbove1200 = useMediaQuery("(min-width: 1200px)")
+  const isScreenWidthAbove1200 = useMediaQueryHooks("(min-width: 1200px)")
 
   const label = React.useMemo(() => {
     return isExpand && isScreenWidthAbove1200 ? "Collapse" : "Expand"

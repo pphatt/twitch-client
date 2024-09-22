@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useCacheLayout } from "@/store/persistent/layout"
+import { useCacheLayout } from "@/store/persistent/layout.persistent"
 
 import FullscreenButton from "@/components/stream/video/video-control-player/fullscreen-button"
 import PlayButton from "@/components/stream/video/video-control-player/play-button"

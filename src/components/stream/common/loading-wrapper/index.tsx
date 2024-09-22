@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { useMounted } from "@/hooks/useMounted"
+import { useMountedHooks } from "@/hooks/useMounted.hooks"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import { PersistentPlayer } from "@/components/stream/common/loading-wrapper/style"
 
@@ -11,7 +11,7 @@ export default function LoadingWrapper({
 }: {
   children: React.ReactNode
 }) {
-  const mounted = useMounted()
+  const mounted = useMountedHooks()
 
   if (!mounted) {
     return (

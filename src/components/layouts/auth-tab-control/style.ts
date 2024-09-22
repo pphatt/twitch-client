@@ -33,6 +33,12 @@ export const ModalHeaderWrapper = styled(CardHeader)`
 
 export const ModalHeaderContainer = styled(CardTitle)`
   position: relative;
+
+  font-size: 1.3rem;
+  line-height: 1;
+  font-weight: 600;
+
+  letter-spacing: -0.025em;
 `
 
 export const TabControlWrapper = styled(TabsList)`

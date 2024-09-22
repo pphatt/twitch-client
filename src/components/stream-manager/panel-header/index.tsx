@@ -1,7 +1,10 @@
 "use client"
 
 import * as React from "react"
-import { useEditLayout, useEditLayoutState } from "@/store/state/dashboard"
+import {
+  useEditLayout,
+  useEditLayoutState,
+} from "@/store/state/dashboard.state"
 import {
   MosaicContext,
   MosaicWindowContext,
@@ -9,7 +12,7 @@ import {
 } from "react-mosaic-component"
 import type { MosaicKey } from "react-mosaic-component/lib/types"
 
-import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
+import { useMosaicUpdateLayoutHooks } from "@/hooks/useMosaicUpdateLayout.hooks"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -38,7 +41,7 @@ interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
 export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
   const { isEditing, setIsEditing } = useEditLayout()
 
-  const { layout } = useMosaicUpdateLayout()
+  const { layout } = useMosaicUpdateLayoutHooks()
 
   const { setEditLayout } = useEditLayoutState()
 

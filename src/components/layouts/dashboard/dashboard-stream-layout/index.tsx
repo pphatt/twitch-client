@@ -6,10 +6,10 @@ import {
   useEditLayout,
   useEditLayoutState,
   useTempNodeLayout,
-} from "@/store/state/dashboard"
+} from "@/store/state/dashboard.state"
 import { toast } from "sonner"
 
-import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout"
+import { useMosaicUpdateLayoutHooks } from "@/hooks/useMosaicUpdateLayout.hooks"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -33,7 +33,7 @@ export default function DashboardStreamLayout() {
 
   const [open, setOpen] = React.useState(false)
 
-  const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
+  const { layout, debounceUpdateLayout } = useMosaicUpdateLayoutHooks()
 
   const { setTempNodeLayout } = useTempNodeLayout()
 

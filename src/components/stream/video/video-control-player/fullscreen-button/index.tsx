@@ -1,7 +1,7 @@
 import * as React from "react"
-import { useVideoFullScreen } from "@/store/state/video"
+import { useVideoFullScreen } from "@/store/state/video.state"
 
-import { useEventListener } from "@/hooks/useEventListener"
+import { useEventListenerHooks } from "@/hooks/useEventListener.hooks"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {

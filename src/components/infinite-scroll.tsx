@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver"
+import { useIntersectionObserverHooks } from "@/hooks/useIntersectionObserver.hooks"
 
 interface InfiniteScrollProps {
   next: () => void
@@ -23,10 +23,12 @@ export default function InfiniteScroll({
 }: InfiniteScrollProps) {
   // register DOM observer
   const lastRow = React.useRef<HTMLDivElement>(null)
-  const { ref: lastRowRef, entry: lastRowEntry } = useIntersectionObserver({
-    root: lastRow.current,
-    threshold: 1,
-  })
+  const { ref: lastRowRef, entry: lastRowEntry } = useIntersectionObserverHooks(
+    {
+      root: lastRow.current,
+      threshold: 1,
+    }
+  )
 
   React.useEffect(() => {
     if (lastRowEntry?.isIntersecting && hasNextPage && !isFetchingNextPage) {

@@ -1,12 +1,12 @@
-import { useUpdateLayoutContext } from "@/context/update-layout-context"
+import { useUpdateLayoutContext } from "@/context/layout.context"
 import type { MosaicNode } from "react-mosaic-component"
 
-import { useDebounceCallback } from "@/hooks/useDebounceCallback"
+import { useDebounceCallbackHooks } from "@/hooks/useDebounceCallback.hooks"
 
-export const useMosaicUpdateLayout = (debounceTime?: number) => {
+export const useMosaicUpdateLayoutHooks = (debounceTime?: number) => {
   const { layout, setLayout } = useUpdateLayoutContext()
 
-  const debounceUpdateLayout = useDebounceCallback(
+  const debounceUpdateLayout = useDebounceCallbackHooks(
     (layout: MosaicNode<string> | null, callback?: () => void) => {
       setLayout(layout)
 

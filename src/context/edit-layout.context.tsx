@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { usePathname, useSearchParams } from "next/navigation"
-import { useEditLayout } from "@/store/state/dashboard"
+import { useEditLayout } from "@/store/state/dashboard.state"
 
 /*
  * Reset editing state when navigating to another route

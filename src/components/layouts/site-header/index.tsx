@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { siteConfig, supportSite } from "@/config/site"
+import { useAuth } from "@/hooks/useAuth"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -45,6 +46,8 @@ import {
 } from "@/components/layouts/site-header/style"
 
 export function SiteHeader() {
+  const { isAuthenticated } = useAuth()
+
   return (
     <SiteHeaderWrapper>
       <SiteHeaderContainer>
@@ -80,127 +83,131 @@ export function SiteHeader() {
           </Hint>
 
           <UserItemWrapper>
-            <AuthWrapper>
-              <AuthContainer>
-                <AuthDialog currentTab={"log-in"}>
-                  <LoginButton>
-                    <AuthInnerButton>
-                      <div>Login</div>
-                    </AuthInnerButton>
-                  </LoginButton>
-                </AuthDialog>
-              </AuthContainer>
+            {!isAuthenticated && (
+              <AuthWrapper>
+                <AuthContainer>
+                  <AuthDialog currentTab={"log-in"}>
+                    <LoginButton>
+                      <AuthInnerButton>
+                        <div>Login</div>
+                      </AuthInnerButton>
+                    </LoginButton>
+                  </AuthDialog>
+                </AuthContainer>
 
-              <AuthContainer>
-                <AuthDialog currentTab={"sign-up"}>
-                  <SignUpButton>
-                    <AuthInnerButton>
-                      <div>Sign Up</div>
-                    </AuthInnerButton>
-                  </SignUpButton>
-                </AuthDialog>
-              </AuthContainer>
-            </AuthWrapper>
+                <AuthContainer>
+                  <AuthDialog currentTab={"sign-up"}>
+                    <SignUpButton>
+                      <AuthInnerButton>
+                        <div>Sign Up</div>
+                      </AuthInnerButton>
+                    </SignUpButton>
+                  </AuthDialog>
+                </AuthContainer>
+              </AuthWrapper>
+            )}
 
-            <UserItemContainer>
-              <DropdownMenu modal={false}>
-                <DropdownMenuTrigger asChild>
-                  <UserItemTrigger>
-                    <UserItemTriggerWrapper>
-                      <UserImage
-                        alt={"User Avatar"}
-                        src={"/avatar/user-default-picture.png"}
-                      />
-                    </UserItemTriggerWrapper>
-                  </UserItemTrigger>
-                </DropdownMenuTrigger>
+            {isAuthenticated && (
+              <UserItemContainer>
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <UserItemTrigger>
+                      <UserItemTriggerWrapper>
+                        <UserImage
+                          alt={"User Avatar"}
+                          src={"/avatar/user-default-picture.png"}
+                        />
+                      </UserItemTriggerWrapper>
+                    </UserItemTrigger>
+                  </DropdownMenuTrigger>
 
-                <DropdownMenuContent align={"end"} alignOffset={-3} asChild>
-                  <SimpleBar
-                    forceVisible={"y"}
-                    simpleContentWrapperStyle={{
-                      paddingBottom: "0",
-                    }}
-                  >
-                    <div style={{ padding: "10px" }}>
-                      <AccountItemWrapper>
-                        <AccountItemContainer>
-                          <AccountImageWrapper>
-                            <AccountImageContainer>
-                              <AccountImage
-                                src={"/avatar/user-default-picture.png"}
-                                alt={""}
-                              />
-                            </AccountImageContainer>
-                          </AccountImageWrapper>
+                  <DropdownMenuContent align={"end"} alignOffset={-3} asChild>
+                    <SimpleBar
+                      forceVisible={"y"}
+                      simpleContentWrapperStyle={{
+                        paddingBottom: "0",
+                      }}
+                    >
+                      <div style={{ padding: "10px" }}>
+                        <AccountItemWrapper>
+                          <AccountItemContainer>
+                            <AccountImageWrapper>
+                              <AccountImageContainer>
+                                <AccountImage
+                                  src={"/avatar/user-default-picture.png"}
+                                  alt={""}
+                                />
+                              </AccountImageContainer>
+                            </AccountImageWrapper>
 
-                          <AccountDetails>
-                            <AccountText>tienphat</AccountText>
-                          </AccountDetails>
-                        </AccountItemContainer>
-                      </AccountItemWrapper>
+                            <AccountDetails>
+                              <AccountText>tienphat</AccountText>
+                            </AccountDetails>
+                          </AccountItemContainer>
+                        </AccountItemWrapper>
 
-                      <DropdownMenuSeparator />
+                        <DropdownMenuSeparator />
 
-                      <DropdownItem>
-                        <DropdownItemLink href={"/u/tienphat"}>
-                          <span>Channel</span>
-                          <Icons.channel />
-                        </DropdownItemLink>
-                      </DropdownItem>
+                        <DropdownItem>
+                          <DropdownItemLink href={"/u/tienphat"}>
+                            <span>Channel</span>
+                            <Icons.channel />
+                          </DropdownItemLink>
+                        </DropdownItem>
 
-                      <DropdownItem>
-                        <DropdownItemLink
-                          href={"/u/tienphat/content/video-producer"}
-                        >
-                          <span>Video Producer</span>
-                          <Icons.videoProducer />
-                        </DropdownItemLink>
-                      </DropdownItem>
+                        <DropdownItem>
+                          <DropdownItemLink
+                            href={"/u/tienphat/content/video-producer"}
+                          >
+                            <span>Video Producer</span>
+                            <Icons.videoProducer />
+                          </DropdownItemLink>
+                        </DropdownItem>
 
-                      <DropdownItem>
-                        <DropdownItemLink href={"/u/tienphat/home"}>
-                          <span>Creator Dashboard</span>
-                          <Icons.creatorDashboard />
-                        </DropdownItemLink>
-                      </DropdownItem>
+                        <DropdownItem>
+                          <DropdownItemLink href={"/u/tienphat/home"}>
+                            <span>Creator Dashboard</span>
+                            <Icons.creatorDashboard />
+                          </DropdownItemLink>
+                        </DropdownItem>
 
-                      <DropdownItem>
-                        <DropdownItemLink href={"/privacy"}>
-                          <span>Privacy Center</span>
-                          <Icons.privacy />
-                        </DropdownItemLink>
-                      </DropdownItem>
+                        <DropdownItem>
+                          <DropdownItemLink href={"/privacy"}>
+                            <span>Privacy Center</span>
+                            <Icons.privacy />
+                          </DropdownItemLink>
+                        </DropdownItem>
 
-                      <DropdownItem>
-                        <DropdownItemLink href={"/safety"}>
-                          <span>Safety</span>
-                          <Icons.safety />
-                        </DropdownItemLink>
-                      </DropdownItem>
+                        <DropdownItem>
+                          <DropdownItemLink href={"/safety"}>
+                            <span>Safety</span>
+                            <Icons.safety />
+                          </DropdownItemLink>
+                        </DropdownItem>
 
-                      <DropdownMenuSeparator />
+                        <DropdownMenuSeparator />
 
-                      <DropdownItem>
-                        <DropdownItemLink href={"/safety"}>
-                          <span>Emote Attribution</span>
-                          <Icons.emoteContribution />
-                        </DropdownItemLink>
-                      </DropdownItem>
+                        <DropdownItem>
+                          <DropdownItemLink href={"/safety"}>
+                            <span>Emote Attribution</span>
+                            <Icons.emoteContribution />
+                          </DropdownItemLink>
+                        </DropdownItem>
 
-                      <DropdownMenuSeparator />
+                        <DropdownMenuSeparator />
 
-                      <DropdownItem>
-                        <DropdownItemLink href={"/safety"}>
-                          <span>Log Out</span>
-                          <Icons.logout />
-                        </DropdownItemLink>
-                      </DropdownItem>
-                    </div>
-                  </SimpleBar>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </UserItemContainer>
+                        <DropdownItem>
+                          <DropdownItemLink href={"/safety"}>
+                            <span>Log Out</span>
+                            <Icons.logout />
+                          </DropdownItemLink>
+                        </DropdownItem>
+                      </div>
+                    </SimpleBar>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </UserItemContainer>
+            )}
           </UserItemWrapper>
         </SiteHeaderItems>
       </SiteHeaderContainer>

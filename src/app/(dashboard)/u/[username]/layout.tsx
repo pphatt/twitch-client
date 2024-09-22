@@ -1,7 +1,7 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
-import EditLayoutContext from "@/context/edit-layout-context"
-import UpdateLayoutContext from "@/context/update-layout-context"
+import EditLayoutContext from "@/context/edit-layout.context"
+import LayoutProvider from "@/context/layout.context"
 
 import { dashboardSite } from "@/config/site"
 import DashboardSiteHeader from "@/components/layouts/dashboard/dashboard-site-header"
@@ -21,7 +21,7 @@ export const runtime = "edge"
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
     <EditLayoutContext>
-      <UpdateLayoutContext>
+      <LayoutProvider>
         <div className={styles["layout-wrapper"]}>
           <div className={styles["layout-container"]}>
             <DashboardSiteHeader />
@@ -35,7 +35,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
           </div>
         </div>
-      </UpdateLayoutContext>
+      </LayoutProvider>
     </EditLayoutContext>
   )
 }

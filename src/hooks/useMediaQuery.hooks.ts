@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicEffect"
+import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicEffect.hooks"
 
 type UseMediaQueryOptions = {
   defaultValue?: boolean
@@ -9,7 +9,7 @@ type UseMediaQueryOptions = {
 
 const IS_SERVER = typeof window === "undefined"
 
-export function useMediaQuery(
+export function useMediaQueryHooks(
   query: string,
   {
     defaultValue = false,

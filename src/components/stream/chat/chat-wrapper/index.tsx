@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { useCacheLayout } from "@/store/persistent/layout.persistent"
 import { cn } from "@/utils/common"
-import { useCacheLayout } from "@/store/persistent/layout"
 
 import ChatHeader from "@/components/stream/chat/chat-header"
 import ChatToggle from "@/components/stream/chat/chat-toggle"

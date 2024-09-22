@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { useCacheLayout } from "@/store/persistent/layout"
-import { useVideoProperty } from "@/store/state/video"
+import { useCacheLayout } from "@/store/persistent/layout.persistent"
+import { useVideoProperty } from "@/store/state/video.state"
 import { cn } from "@/utils/common"
 
 import ResizeDetector from "@/components/resize-detector"

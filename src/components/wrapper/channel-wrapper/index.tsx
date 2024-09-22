@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useCacheLayout } from "@/store/persistent/layout"
+import { useCacheLayout } from "@/store/persistent/layout.persistent"
 import { cn } from "@/utils/common"
 
 import type { LiveChannelDataI } from "@/config/data"

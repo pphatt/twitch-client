@@ -1,11 +1,11 @@
 import React from "react"
 
-import { useLocalStorage } from "@/hooks/useLocalStorage"
+import { useLocalStorageHooks } from "@/hooks/useLocalStorage.hooks"
 
 const KEY = "volume"
 
-export function useVolume() {
-  const [volume, setVolume] = useLocalStorage<number>({
+export function useVolumeHooks() {
+  const [volume, setVolume] = useLocalStorageHooks<number>({
     key: KEY,
   })
 

@@ -1,10 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { cn } from "@/utils/common"
 import { toast } from "sonner"
 
-import { cn } from "@/utils/common"
-import { useCopyToClipboard } from "@/hooks/useCopyToClipboard"
+import { useCopyToClipboardHooks } from "@/hooks/useCopyToClipboard.hooks"
 import { Input, type InputProps } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 import {
@@ -35,7 +35,7 @@ export const StreamKeyCard = React.forwardRef<
   ) => {
     const [showKey, setShowKey] = React.useState(false)
 
-    const [copiedText, copy] = useCopyToClipboard()
+    const [copiedText, copy] = useCopyToClipboardHooks()
 
     const handleCopy = React.useCallback(
       async (text: string) => {

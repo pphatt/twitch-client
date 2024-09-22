@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { queryClient } from "@/providers/query-client"
+import { queryClientProvider } from "@/providers/query-client.provider"
 import { QueryClientProvider } from "@tanstack/react-query"
 
 export default function TanStackProviders({
@@ -10,6 +10,8 @@ export default function TanStackProviders({
   children: React.ReactNode
 }) {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider client={queryClientProvider}>
+      {children}
+    </QueryClientProvider>
   )
 }

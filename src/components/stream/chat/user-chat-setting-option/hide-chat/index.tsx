@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useChatObserver } from "@/store/state/channel-chat"
+import { useChatObserver } from "@/store/state/channel-chat.state"
 
 import {
   DropdownMenuItemContainer,

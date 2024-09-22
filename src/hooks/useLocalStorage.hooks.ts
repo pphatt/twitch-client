@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useCallback, useEffect, useState } from "react"
 
-import useWindowEvent from "@/hooks/useWindowEvent"
+import useWindowEventHooks from "@/hooks/useWindowEvent.hooks"
 
 export type StorageType = "localStorage" | "sessionStorage"
 
@@ -152,7 +152,7 @@ export function createStorage<T>(type: StorageType, hookName: string) {
       )
     }, [])
 
-    useWindowEvent("storage", (event) => {
+    useWindowEventHooks("storage", (event) => {
       if (event.storageArea === window[type] && event.key === key) {
         setValue(deserialize(event.newValue ?? undefined))
       }
@@ -178,6 +178,6 @@ export function createStorage<T>(type: StorageType, hookName: string) {
   }
 }
 
-export function useLocalStorage<T = string>(props: StorageProperties<T>) {
+export function useLocalStorageHooks<T = string>(props: StorageProperties<T>) {
   return createStorage<T>("localStorage", "use-local-storage")(props)
 }
