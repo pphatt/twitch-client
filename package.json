@@ -70,6 +70,7 @@
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",
+    "cookies-next": "^4.2.1",
     "critters": "^0.0.24",
     "date-fns": "^4.1.0",
     "fast-glob": "^3.3.2",

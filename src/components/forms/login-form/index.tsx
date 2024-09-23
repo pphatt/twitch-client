@@ -2,11 +2,16 @@
 
 import * as React from "react"
 import Link from "next/link"
-// import { useRouter } from "next/navigation"
-// import { sleep } from "@/utils/common"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/auth.context"
+import {
+  saveAccessToken,
+  saveRefreshToken,
+  saveUserProfile,
+} from "@/utils/auth.utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import axios from "axios"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import type { z } from "zod"
 
 import { authSchema } from "@/lib/validation/auth"
@@ -29,14 +34,17 @@ import {
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
 
-import type { UserDto } from "../../../../modules/user/application/dto/user.dto"
 import { UserRepository } from "../../../../modules/user/infrastructure/repository/user.repository"
 
-type Inputs = z.infer<typeof authSchema>
+// import type { UserDto } from "../../../../modules/user/application/dto/user.dto"
+// import { UserRepository } from "../../../../modules/user/infrastructure/repository/user.repository"
+
+export type Inputs = z.infer<typeof authSchema>
 
 export default function LogInForm() {
-  // const router = useRouter()
+  const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
+  const { setProfile } = useAuth()
 
   // register, handleSubmit, formState
   // default-values for controlled form
@@ -67,8 +75,16 @@ export default function LogInForm() {
           password: password,
         })
 
-        console.log(data)
-        console.log(result)
+        const { accessToken, refreshToken, userId } = result
+
+        saveAccessToken(accessToken)
+        saveRefreshToken(refreshToken)
+
+        saveUserProfile({ userId })
+
+        setProfile({ userId })
+        toast.success("Log in successfully")
+        router.refresh()
       } catch (err) {
         // catchError(err)
         console.error(err)

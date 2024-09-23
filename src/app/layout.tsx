@@ -4,6 +4,7 @@ import "@/styles/vendors/stream-manager.scss"
 import "@/styles/vendors/global.scss"
 
 import * as React from "react"
+import { cookies } from "next/headers"
 import { AuthProvider } from "@/context/auth.context"
 import { GlobalStyleProvider } from "@/providers/global-style.provider"
 import TanStackProviders from "@/providers/tanstack.provider"

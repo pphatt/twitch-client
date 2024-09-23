@@ -4,11 +4,20 @@ import type { IUserRepository } from "../../domain/repository/user/user.reposito
 
 export const UserRepository: IUserRepository = {
   /* eslint-disable  @typescript-eslint/no-explicit-any */
-  async login(body: any): Promise<any> {
+  async login(body: any): Promise<{
+    userId: string
+    accessToken: string
+    refreshToken: string
+  }> {
     const req = await axios.post("http://localhost:3000/auth/login", body)
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return req.data
+    const result = req.data as {
+      userId: string
+      accessToken: string
+      refreshToken: string
+    }
+
+    return result
   },
 
   async signup(): Promise<void> {
