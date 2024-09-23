@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { useAuth } from "@/context/auth.context"
 
 import { siteConfig, supportSite } from "@/config/site"
-import { useAuth } from "@/hooks/useAuth"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -46,7 +46,9 @@ import {
 } from "@/components/layouts/site-header/style"
 
 export function SiteHeader() {
-  const { isAuthenticated } = useAuth()
+  // NOTE: this is way better than making the app not render everytime
+  // const { isAuthenticated } = useAuth() bc we just want isAuthenticated only not the others
+  const isAuthenticated = useAuth((store) => store.isAuthenticated)
 
   return (
     <SiteHeaderWrapper>

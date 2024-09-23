@@ -1,42 +1,48 @@
 "use client"
 
 import * as React from "react"
+import { create, type StoreApi } from "zustand"
+import createContext from "zustand/context"
 
 type IInitialAuthContext = {
   isAuthenticated: boolean
-  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
 
   profile: object // NOTE: userDto
-  setProfile: React.Dispatch<React.SetStateAction<object>>
 }
 
-const initialAuthContext: IInitialAuthContext = {
-  isAuthenticated: false,
-  setIsAuthenticated: () => {},
+type IAuthStore = IInitialAuthContext & {
+  setIsAuthenticated: () => void
 
-  profile: {},
-  setProfile: () => {},
+  setProfile: (profile: object) => void
 }
 
-export const AuthContext = React.createContext(initialAuthContext)
+const { Provider, useStore } = createContext<StoreApi<IAuthStore>>()
+
+const createAuthStore = (initialAuthContext: IInitialAuthContext) =>
+  create<IAuthStore>((set) => ({
+    isAuthenticated: initialAuthContext.isAuthenticated,
+    setIsAuthenticated: () => set({}),
+
+    profile: {},
+    setProfile: () => set({}),
+  }))
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const { isAuthenticated: initialAuth, profile: initialProfile } =
-    initialAuthContext
-
-  const [isAuthenticated, setIsAuthenticated] = React.useState(initialAuth)
-  const [profile, setProfile] = React.useState(initialProfile)
+  const isAuthenticated = true // this should have some cookie retrieve
+  const profile = {} // this should be get from local storage
 
   return (
-    <AuthContext.Provider
-      value={{
-        isAuthenticated,
-        setIsAuthenticated,
-        profile,
-        setProfile,
-      }}
+    <Provider
+      createStore={() =>
+        createAuthStore({
+          isAuthenticated,
+          profile,
+        })
+      }
     >
       {children}
-    </AuthContext.Provider>
+    </Provider>
   )
 }
+
+export { useStore as useAuth }

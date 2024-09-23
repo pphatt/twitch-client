@@ -4,7 +4,7 @@ import type { RefObject } from "react"
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicEffect.hooks"
 
 // MediaQueryList Event based useEventListener interface
-function useEventListenerHooks<K extends keyof MediaQueryListEventMap>(
+function useEventListener<K extends keyof MediaQueryListEventMap>(
   eventName: K,
   handler: (event: MediaQueryListEventMap[K]) => void,
   element: RefObject<MediaQueryList>,
@@ -87,4 +87,4 @@ function useEventListener<
   }, [eventName, element, options])
 }
 
-export { useEventListenerHooks }
+export { useEventListener }

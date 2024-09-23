@@ -4,7 +4,7 @@ import { cn } from "@/utils/common"
 import type SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core"
 import { format } from "date-fns"
 
-import { useEventListenerHooks } from "@/hooks/useEventListener.hooks"
+import { useEventListener } from "@/hooks/useEventListener.hooks"
 import SimpleBar from "@/components/simplebar"
 import {
   ChatLineContainer,
