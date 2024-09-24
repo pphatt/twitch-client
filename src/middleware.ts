@@ -2,11 +2,9 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 const publicRoutes = [
-  "/[username]",
   "/directory",
   "/directory/all",
   "/directory/following",
-  "/popout/[username]",
   "/about",
   "/contact",
   "/terms",
@@ -17,8 +15,19 @@ const publicRoutes = [
 
 const authRoutes = ["/login", "/signup"]
 
+const publicDynamicRouteRegex = [/^\/([^\/]+)$/, /^\/popout\/([^\/]+)$/] // ["/:username", "/popout/:username"]
+
 export default function authMiddleware(req: NextRequest) {
   const { pathname } = req.nextUrl
+
+  const isPublicDynamicRoute = publicDynamicRouteRegex.some((regex) =>
+    regex.test(pathname)
+  )
+
+  if (isPublicDynamicRoute) {
+    // Allow access to dynamic public routes
+    return NextResponse.next()
+  }
 
   // Check if the current route is public
   const isPublicRoute = publicRoutes.some((path) => pathname.startsWith(path))
