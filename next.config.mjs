@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto"
 import path from "node:path"
-import million from "million/compiler"
+
+// import million from "million/compiler"
 
 import { env } from "./src/utils/common/env.js"
 
@@ -85,13 +86,14 @@ let nextConfig = {
   },
 }
 
-const millionConfig = {
-  auto: true,
-  mute: true,
-}
-
-if (enableMillionJS) {
-  nextConfig = million.next(nextConfig, millionConfig)
-}
+// NOTE: comment million due to build failed with nextjs
+// const millionConfig = {
+//   auto: true,
+//   mute: true,
+// }
+//
+// if (enableMillionJS) {
+//   nextConfig = million.next(nextConfig, millionConfig)
+// }
 
 export default nextConfig
