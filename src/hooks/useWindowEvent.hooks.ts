@@ -1,7 +1,7 @@
 import * as React from "react"
 
 // use-window-event adds event listener to window object on component mount and removes it on unmount:
-export default function useWindowEventHooks<K extends keyof WindowEventMap>(
+export default function useWindowEvent<K extends keyof WindowEventMap>(
   type: K,
   listener: K extends keyof WindowEventMap
     ? (this: Window, ev: WindowEventMap[K]) => void

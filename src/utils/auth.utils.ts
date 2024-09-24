@@ -1,6 +1,6 @@
 /*
  * NOTE: The reason why not using the cookies from next/headers
- *  -> cookies from next/headers can only be used in sc or sever action (cannot use it in client side)
+ *  -> cookies from next/headers can only be used in sc or sever action (HTTP only cookie can not read from client) (cannot use it in client side)
  *  -> so I switching to use cookies-next to handle cookies
  * */
 

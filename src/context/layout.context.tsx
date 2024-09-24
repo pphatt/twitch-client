@@ -6,7 +6,7 @@ import type { MosaicNode } from "react-mosaic-component"
 import { create, type StoreApi } from "zustand"
 import createContext from "zustand/context"
 
-import { useLocalStorageHooks } from "@/hooks/useLocalStorage.hooks"
+import { useLocalStorage } from "@/hooks/useLocalStorage.hooks"
 
 type ILayoutStore = {
   layout: MosaicNode<string> | null
@@ -35,7 +35,7 @@ export default function LayoutProvider({
    * ignore the defaultValue because it acts like an initial value and that make the UI/UX not great
    * setting this null act like a useState + useContext
    * */
-  const [layout, setLayout] = useLocalStorageHooks<MosaicNode<string> | null>({
+  const [layout, setLayout] = useLocalStorage<MosaicNode<string> | null>({
     key: "stream-manager-drag-and-drop-layout",
     defaultValue: null,
   })

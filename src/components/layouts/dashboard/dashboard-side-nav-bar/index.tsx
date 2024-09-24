@@ -5,7 +5,7 @@ import { useDashboardOpen } from "@/store/persistent/dashboard.persistent"
 import { cn } from "@/utils/common"
 
 import type { MainNavItem } from "@/types/common"
-import { useMediaQueryHooks } from "@/hooks/useMediaQuery.hooks"
+import { useMediaQuery } from "@/hooks/useMediaQuery.hooks"
 import { Icons } from "@/components/icons"
 import { DashboardItem } from "@/components/layouts/dashboard/dashboard-item-layout/dashboard-item"
 import { DashboardItemGroup } from "@/components/layouts/dashboard/dashboard-item-layout/dashboard-item-group"
@@ -35,7 +35,7 @@ export default function DashboardSideNavBar({
 
   const isExpand = React.useMemo(() => mode === "default", [mode])
 
-  const isScreenWidthAbove1200 = useMediaQueryHooks("(min-width: 1200px)")
+  const isScreenWidthAbove1200 = useMediaQuery("(min-width: 1200px)")
 
   if (mode === "hidden") {
     return null

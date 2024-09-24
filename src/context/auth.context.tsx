@@ -5,6 +5,8 @@ import { getUserProfile } from "@/utils/auth.utils"
 import { create, type StoreApi } from "zustand"
 import createContext from "zustand/context"
 
+import { useMounted } from "@/hooks/useMounted.hooks"
+
 type IInitialAuthContext = {
   profile: { userId: string } | null // NOTE: userDto
 }
@@ -22,7 +24,8 @@ const createAuthStore = ({ profile }: IInitialAuthContext) =>
   }))
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const profile = getUserProfile()
+  const isMounted = useMounted()
+  const profile = isMounted ? getUserProfile() : null
 
   return (
     <Provider

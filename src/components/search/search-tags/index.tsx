@@ -5,7 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { cn, sleep } from "@/utils/common"
 
-import { useDebounceHooks } from "@/hooks/useDebounce.hooks"
+import { useDebounce } from "@/hooks/useDebounce.hooks"
 import { CommandGroup } from "@/components/ui/command"
 import {
   CommandWrapper as Command,
@@ -26,7 +26,7 @@ export function SearchTags({ slug }: SearchTagsProps) {
   const [focus, setFocus] = React.useState(false)
 
   const [query, setQuery] = React.useState("")
-  const debouncedQuery = useDebounceHooks(query, 300)
+  const debouncedQuery = useDebounce(query, 300)
   const [data, setData] = React.useState<null>(null)
   const [isPending, startTransition] = React.useTransition()
 

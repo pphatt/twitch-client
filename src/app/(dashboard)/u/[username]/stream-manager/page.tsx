@@ -9,7 +9,7 @@ import { cn } from "@/utils/common"
 import { Mosaic, MosaicWindow, type MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
-import { useMosaicUpdateLayoutHooks } from "@/hooks/useMosaicUpdateLayout.hooks"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout.hooks"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import AddPanel from "@/components/stream-manager/add-panel"
@@ -52,7 +52,7 @@ const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
 export default function StreamManagerPage() {
   const { isEditing } = useEditLayout()
 
-  const { layout, debounceUpdateLayout } = useMosaicUpdateLayoutHooks()
+  const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
   const { setEditLayout } = useEditLayoutState()
 

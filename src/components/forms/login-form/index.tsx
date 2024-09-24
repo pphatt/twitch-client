@@ -63,13 +63,6 @@ export default function LogInForm() {
       try {
         const { username, password } = data
 
-        // call auth/login api.
-        // -> return rftk and actk (actk contain user info)
-        // -- right here if F5 the browser, the app context would fetch to the user info to passing to the app context.
-        //
-        // ->
-        //
-
         const result = await UserRepository.login({
           email: username,
           password: password,
@@ -83,7 +76,10 @@ export default function LogInForm() {
         saveUserProfile({ userId })
 
         setProfile({ userId })
-        toast.success("Log in successfully")
+        toast.success("Log in successfully", {
+          duration: 10000,
+          position: "top-right",
+        })
         router.refresh()
       } catch (err) {
         // catchError(err)

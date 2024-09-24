@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react"
 import debounce from "lodash.debounce"
 
-import { useUnmountHooks } from "@/hooks/useUnmount.hooks"
+import { useUnmount } from "@/hooks/useUnmount.hooks"
 
 type DebounceOptions = {
   leading?: boolean
@@ -22,12 +22,14 @@ export type DebouncedState<T extends (...args: any) => ReturnType<T>> = ((
   ControlFunctions
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-export function useDebounceCallbackHooks<
-  T extends (...args: any) => ReturnType<T>,
->(func: T, delay = 500, options?: DebounceOptions): DebouncedState<T> {
+export function useDebounceCallback<T extends (...args: any) => ReturnType<T>>(
+  func: T,
+  delay = 500,
+  options?: DebounceOptions
+): DebouncedState<T> {
   const debouncedFunc = useRef<ReturnType<typeof debounce>>()
 
-  useUnmountHooks(() => {
+  useUnmount(() => {
     if (debouncedFunc.current) {
       debouncedFunc.current.cancel()
     }

@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import { useMuteHooks } from "@/hooks/useMute.hooks"
-import { useVolumeHooks } from "@/hooks/useVolume.hooks"
+import { useMute } from "@/hooks/useMute.hooks"
+import { useVolume } from "@/hooks/useVolume.hooks"
 import VolumeControl from "@/components/stream/video/video-control-player/volume-control"
 import { VolumeControlGroupWrapper } from "@/components/stream/video/video-control-player/volume-control-group/style"
 import VolumeControlSlider from "@/components/stream/video/video-control-player/volume-control-slider"
@@ -16,8 +16,8 @@ export default function VolumeControlGroup({
 }: VolumeControlGroupProps) {
   const [isHovered, setIsHovered] = React.useState(false)
 
-  const { isVideoMuted, setIsVideoMuted } = useMuteHooks()
-  const { volume, setVolume } = useVolumeHooks()
+  const { isVideoMuted, setIsVideoMuted } = useMute()
+  const { volume, setVolume } = useVolume()
 
   return (
     <VolumeControlGroupWrapper

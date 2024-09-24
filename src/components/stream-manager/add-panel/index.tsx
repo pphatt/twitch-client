@@ -13,7 +13,7 @@ import {
   type MosaicNode,
 } from "react-mosaic-component"
 
-import { useMosaicUpdateLayoutHooks } from "@/hooks/useMosaicUpdateLayout.hooks"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout.hooks"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {
@@ -42,7 +42,7 @@ export default function AddPanel() {
 
   const { editLayout, setEditLayout } = useEditLayoutState()
 
-  const { layout, setLayout } = useMosaicUpdateLayoutHooks()
+  const { layout, setLayout } = useMosaicUpdateLayout()
 
   const leaves = React.useMemo(() => getLeaves(editLayout), [editLayout])
 

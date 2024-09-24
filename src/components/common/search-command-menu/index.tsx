@@ -5,8 +5,8 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { sleep } from "@/utils/common"
 
-import { useDebounceHooks } from "@/hooks/useDebounce.hooks"
-import useWindowEventHooks from "@/hooks/useWindowEvent.hooks"
+import { useDebounce } from "@/hooks/useDebounce.hooks"
+import useWindowEvent from "@/hooks/useWindowEvent.hooks"
 import {
   CommandWrapper as Command,
   CommandGroupWrapper as CommandGroup,
@@ -22,7 +22,7 @@ export function SearchCommandMenu() {
   const [focus, setFocus] = React.useState(false)
 
   const [query, setQuery] = React.useState("")
-  const debouncedQuery = useDebounceHooks(query, 300)
+  const debouncedQuery = useDebounce(query, 300)
   const [data, setData] = React.useState<null>(null)
   const [isPending, startTransition] = React.useTransition()
 
@@ -59,7 +59,7 @@ export function SearchCommandMenu() {
     return () => setData(null)
   }, [debouncedQuery])
 
-  useWindowEventHooks("keydown", (e) => {
+  useWindowEvent("keydown", (e) => {
     if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
       e.preventDefault()
       setOpen((open) => !open)

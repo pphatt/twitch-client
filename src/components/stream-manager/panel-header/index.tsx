@@ -12,7 +12,7 @@ import {
 } from "react-mosaic-component"
 import type { MosaicKey } from "react-mosaic-component/lib/types"
 
-import { useMosaicUpdateLayoutHooks } from "@/hooks/useMosaicUpdateLayout.hooks"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout.hooks"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -41,7 +41,7 @@ interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
 export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
   const { isEditing, setIsEditing } = useEditLayout()
 
-  const { layout } = useMosaicUpdateLayoutHooks()
+  const { layout } = useMosaicUpdateLayout()
 
   const { setEditLayout } = useEditLayoutState()
 

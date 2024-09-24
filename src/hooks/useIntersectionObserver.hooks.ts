@@ -24,7 +24,7 @@ type IntersectionReturn = [
   entry?: IntersectionObserverEntry
 }
 
-export function useIntersectionObserverHooks({
+export function useIntersectionObserver({
   threshold = 0,
   root = null,
   rootMargin = "0%",

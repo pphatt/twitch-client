@@ -1,11 +1,11 @@
 import React from "react"
 
-import { useLocalStorageHooks } from "@/hooks/useLocalStorage.hooks"
+import { useLocalStorage } from "@/hooks/useLocalStorage.hooks"
 
 const KEY = "video-muted"
 
-export function useMuteHooks() {
-  const [isVideoMuted, setIsVideoMuted] = useLocalStorageHooks<{
+export function useMute() {
+  const [isVideoMuted, setIsVideoMuted] = useLocalStorage<{
     default: boolean
   } | null>({
     key: KEY,

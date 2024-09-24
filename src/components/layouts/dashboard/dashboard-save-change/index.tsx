@@ -11,8 +11,8 @@ import isEqual from "lodash/isEqual"
 import type { MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
-import { useLocalStorageHooks } from "@/hooks/useLocalStorage.hooks"
-import { useMosaicUpdateLayoutHooks } from "@/hooks/useMosaicUpdateLayout.hooks"
+import { useLocalStorage } from "@/hooks/useLocalStorage.hooks"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout.hooks"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import {
   CancelChangeBtn,
@@ -26,12 +26,11 @@ import {
 export default function DashboardSaveChange() {
   const { isEditing, setIsEditing } = useEditLayout()
 
-  const [lcLayout, setLcLayout] =
-    useLocalStorageHooks<MosaicNode<string> | null>({
-      key: "stream-manager-drag-and-drop-layout",
-    })
+  const [lcLayout, setLcLayout] = useLocalStorage<MosaicNode<string> | null>({
+    key: "stream-manager-drag-and-drop-layout",
+  })
 
-  const { setLayout, debounceUpdateLayout } = useMosaicUpdateLayoutHooks()
+  const { setLayout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
   const { tempNodeLayout } = useTempNodeLayout()
 

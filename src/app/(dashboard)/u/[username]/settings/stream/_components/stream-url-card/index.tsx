@@ -3,7 +3,7 @@
 import * as React from "react"
 import { toast } from "sonner"
 
-import { useCopyToClipboardHooks } from "@/hooks/useCopyToClipboard.hooks"
+import { useCopyToClipboard } from "@/hooks/useCopyToClipboard.hooks"
 import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 import {
@@ -17,7 +17,7 @@ interface StreamUrlCardProps {
 }
 
 export default function StreamUrlCard({ url }: StreamUrlCardProps) {
-  const [copiedText, copy] = useCopyToClipboardHooks()
+  const [copiedText, copy] = useCopyToClipboard()
 
   const handleCopy = React.useCallback(
     async (text: string) => {

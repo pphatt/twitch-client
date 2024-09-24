@@ -4,7 +4,7 @@ type CopiedValue = string | null
 
 type CopyFn = (text: string) => Promise<boolean>
 
-export function useCopyToClipboardHooks(): [CopiedValue, CopyFn] {
+export function useCopyToClipboard(): [CopiedValue, CopyFn] {
   const [copiedText, setCopiedText] = useState<CopiedValue>(null)
 
   const copy: CopyFn = useCallback(async (text) => {

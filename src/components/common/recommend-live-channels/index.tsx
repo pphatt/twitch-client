@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import type { IRecommendedLiveChannel } from "@/types/common"
-import { useMediaQueryHooks } from "@/hooks/useMediaQuery.hooks"
+import { useMediaQuery } from "@/hooks/useMediaQuery.hooks"
 import { Separator } from "@/components/ui/separator"
 import { ChannelCard } from "@/components/common/channel-card"
 import {
@@ -22,10 +22,10 @@ interface RecommendLiveChannelsProps {
 export default function RecommendLiveChannels({
   channels,
 }: RecommendLiveChannelsProps) {
-  const isScreenWidthAbove2073 = useMediaQueryHooks("(min-width: 2073px)")
-  const isScreenWidthAbove1773 = useMediaQueryHooks("(min-width: 1773px)")
-  const isScreenWidthAbove1473 = useMediaQueryHooks("(min-width: 1473px)")
-  const isScreenWidthAbove983 = useMediaQueryHooks("(min-width: 983px)")
+  const isScreenWidthAbove2073 = useMediaQuery("(min-width: 2073px)")
+  const isScreenWidthAbove1773 = useMediaQuery("(min-width: 1773px)")
+  const isScreenWidthAbove1473 = useMediaQuery("(min-width: 1473px)")
+  const isScreenWidthAbove983 = useMediaQuery("(min-width: 983px)")
 
   const getNumberByScreenWidth = React.useMemo(() => {
     if (isScreenWidthAbove2073) {

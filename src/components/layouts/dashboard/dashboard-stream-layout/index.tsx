@@ -9,7 +9,7 @@ import {
 } from "@/store/state/dashboard.state"
 import { toast } from "sonner"
 
-import { useMosaicUpdateLayoutHooks } from "@/hooks/useMosaicUpdateLayout.hooks"
+import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout.hooks"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -33,7 +33,7 @@ export default function DashboardStreamLayout() {
 
   const [open, setOpen] = React.useState(false)
 
-  const { layout, debounceUpdateLayout } = useMosaicUpdateLayoutHooks()
+  const { layout, debounceUpdateLayout } = useMosaicUpdateLayout()
 
   const { setTempNodeLayout } = useTempNodeLayout()
 
