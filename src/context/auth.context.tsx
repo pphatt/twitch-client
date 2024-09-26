@@ -1,43 +1,42 @@
 "use client"
 
 import * as React from "react"
-import { getUserProfile } from "@/utils/auth.utils"
+import { getAccessToken, getUserProfile } from "@/utils/auth.utils"
 import { create, type StoreApi } from "zustand"
 import createContext from "zustand/context"
 
-import { useMounted } from "@/hooks/useMounted.hooks"
-
 type IInitialAuthContext = {
+  isAuthenticated: boolean | null
+
   profile: { userId: string } | null // NOTE: userDto
 }
 
 type IAuthStore = IInitialAuthContext & {
-  setProfile: (profile: { userId: string }) => void
+  setIsAuthenticated: (isAuthenticated: boolean) => void
+
+  setProfile: (profile: { userId: string } | null) => void
+}
+
+const initialValue: IInitialAuthContext = {
+  profile: getUserProfile(),
+  isAuthenticated: !!getAccessToken(),
 }
 
 const { Provider, useStore } = createContext<StoreApi<IAuthStore>>()
 
-const createAuthStore = ({ profile }: IInitialAuthContext) =>
+const createAuthStore = () =>
   create<IAuthStore>((set) => ({
-    profile,
-    setProfile: (value: { userId: string }) => set({ profile: value }),
+    profile: initialValue.profile,
+    setProfile: (value: { userId: string } | null) => set({ profile: value }),
+
+    // isAuthenticated for client-side checking
+    isAuthenticated: initialValue.isAuthenticated,
+    setIsAuthenticated: (value) => set({ isAuthenticated: value }),
   }))
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const isMounted = useMounted()
-  const profile = isMounted ? getUserProfile() : null
-
-  return (
-    <Provider
-      createStore={() =>
-        createAuthStore({
-          profile,
-        })
-      }
-    >
-      {children}
-    </Provider>
-  )
+  console.log(initialValue)
+  return <Provider createStore={() => createAuthStore()}>{children}</Provider>
 }
 
 export { useStore as useAuth }

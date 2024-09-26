@@ -77,6 +77,10 @@ export function booleanToBooleanish(
   return input ? "true" : "false"
 }
 
+export function isWindowDefined() {
+  return typeof window !== "undefined"
+}
+
 export function cn(...inputs: ArgumentArray) {
   return classNames(inputs)
 }

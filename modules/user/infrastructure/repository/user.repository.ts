@@ -1,3 +1,4 @@
+import { clearUserSession } from "@/utils/auth.utils"
 import axios from "axios"
 
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
@@ -9,7 +10,7 @@ export const UserRepository: IUserRepository = {
     accessToken: string
     refreshToken: string
   }> {
-    const req = await axios.post("http://localhost:3000/auth/login", body)
+    const req = await axios.post("http://localhost:3001/auth/login", body)
 
     const result = req.data as {
       userId: string
@@ -25,6 +26,10 @@ export const UserRepository: IUserRepository = {
   },
 
   async logout(): Promise<void> {
+    // call to logout api to invoke user session
+    // const req = authAxios.post("/logout")
+
+    clearUserSession()
     return Promise.resolve(undefined)
   },
 

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -306,7 +306,7 @@ export const DropdownMenuSeparatorWrapper = styled(DropdownMenuSeparator)`
   margin: 0.5rem 0.25rem;
 `
 
-export const DropdownItem = styled.div`
+export const shareCss = css`
   position: relative;
 
   display: flex;
@@ -349,6 +349,10 @@ export const DropdownItem = styled.div`
     color: initial;
     background-color: rgba(83, 83, 95, 0.55);
   }
+`
+
+export const DropdownItem = styled.div`
+  ${shareCss}
 `
 
 export const DropdownItemLink = styled(Link)`

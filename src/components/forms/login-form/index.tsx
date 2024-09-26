@@ -44,7 +44,7 @@ export type Inputs = z.infer<typeof authSchema>
 export default function LogInForm() {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
-  const { setProfile } = useAuth()
+  const { setProfile, setIsAuthenticated } = useAuth()
 
   // register, handleSubmit, formState
   // default-values for controlled form
@@ -74,12 +74,14 @@ export default function LogInForm() {
         saveRefreshToken(refreshToken)
 
         saveUserProfile({ userId })
+        setIsAuthenticated(true)
 
         setProfile({ userId })
         toast.success("Log in successfully", {
           duration: 10000,
           position: "top-right",
         })
+
         router.refresh()
       } catch (err) {
         // catchError(err)

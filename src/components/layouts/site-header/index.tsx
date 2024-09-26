@@ -7,6 +7,7 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import LogoutButton from "@/components/auth/logout-button"
 import { Hint } from "@/components/common/hint"
 import { SearchCommandMenu } from "@/components/common/search-command-menu"
 import { Icons } from "@/components/icons"
@@ -185,7 +186,7 @@ export function SiteHeader({ isAuthenticated }: { isAuthenticated: boolean }) {
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/safety"}>
+                          <DropdownItemLink href={"/emote-contribute"}>
                             <span>Emote Attribution</span>
                             <Icons.emoteContribution />
                           </DropdownItemLink>
@@ -193,12 +194,7 @@ export function SiteHeader({ isAuthenticated }: { isAuthenticated: boolean }) {
 
                         <DropdownMenuSeparator />
 
-                        <DropdownItem>
-                          <DropdownItemLink href={"/safety"}>
-                            <span>Log Out</span>
-                            <Icons.logout />
-                          </DropdownItemLink>
-                        </DropdownItem>
+                        <LogoutButton />
                       </div>
                     </SimpleBar>
                   </DropdownMenuContent>

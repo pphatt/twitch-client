@@ -4,6 +4,7 @@
  *  -> so I switching to use cookies-next to handle cookies
  * */
 
+import { isWindowDefined } from "@/utils/common"
 import { deleteCookie, getCookie, setCookie } from "cookies-next"
 
 export const saveAccessToken = (accessToken: string) => {
@@ -16,7 +17,7 @@ export const getAccessToken = () => {
   return getCookie("access-token")
 }
 
-export const deleteAccessToken = () => {
+export const clearAccessToken = () => {
   deleteCookie("access-token")
 }
 
@@ -30,20 +31,34 @@ export const getRefreshToken = () => {
   return getCookie("refresh-token")
 }
 
-export const deleteRefreshToken = () => {
+export const clearRefreshToken = () => {
   deleteCookie("refresh-token")
 }
 
 export const saveUserProfile = (userProfile: { userId: string }) => {
+  if (!isWindowDefined()) {
+    return
+  }
+
   window.localStorage.setItem("user", JSON.stringify(userProfile))
 }
 
 export const getUserProfile = () => {
-  const user = window.localStorage.getItem("user")
+  const user = isWindowDefined() ? window.localStorage.getItem("user") : null
 
   return user ? (JSON.parse(user) as { userId: string }) : null
 }
 
-export const deleteUserProfile = () => {
+export const clearUserProfile = () => {
+  if (!isWindowDefined()) {
+    return
+  }
+
   window.localStorage.removeItem("user")
+}
+
+export const clearUserSession = () => {
+  clearAccessToken()
+  clearRefreshToken()
+  clearUserProfile()
 }

@@ -27,7 +27,7 @@ const CurrentLiveChannels = dynamic(
 )
 
 export default async function LobbyPage() {
-  const [] = await Promise.all([sleep(5000), sleep(1000)])
+  const [] = await Promise.all([sleep(500), sleep(500), sleep(500)])
 
   return (
     <div className={styles["page-wrapper"]}>
