@@ -1,4 +1,5 @@
 import { clearUserSession } from "@/utils/auth.utils"
+import { sleep } from "@/utils/common"
 import axios from "axios"
 
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
@@ -41,8 +42,10 @@ export const UserRepository: IUserRepository = {
     return Promise.resolve(undefined)
   },
 
-  async profile(): Promise<void> {
-    return Promise.resolve(undefined)
+  async profile(): Promise<{ id: string }> {
+    console.log("call getUserProfile api")
+    await sleep(100)
+    return Promise.resolve({ id: "66eee2127bc9444c7ead11ec" })
   },
 
   async updateProfile(): Promise<void> {

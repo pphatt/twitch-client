@@ -6,7 +6,7 @@ import { create, type StoreApi } from "zustand"
 import createContext from "zustand/context"
 
 type IInitialAuthContext = {
-  isAuthenticated: boolean | null
+  isAuthenticated: boolean
 
   profile: { userId: string } | null // NOTE: userDto
 }
@@ -26,6 +26,7 @@ const { Provider, useStore } = createContext<StoreApi<IAuthStore>>()
 
 const createAuthStore = () =>
   create<IAuthStore>((set) => ({
+    // only use for csr
     profile: initialValue.profile,
     setProfile: (value: { userId: string } | null) => set({ profile: value }),
 
@@ -35,7 +36,6 @@ const createAuthStore = () =>
   }))
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  console.log(initialValue)
   return <Provider createStore={() => createAuthStore()}>{children}</Provider>
 }
 

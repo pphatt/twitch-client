@@ -34,6 +34,7 @@ import {
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
 
+import { BaseEntity } from "../../../../modules/core/domain-base/entity/entity.base"
 import { UserRepository } from "../../../../modules/user/infrastructure/repository/user.repository"
 
 // import type { UserDto } from "../../../../modules/user/application/dto/user.dto"

@@ -12,6 +12,6 @@ export interface IUserRepository {
   resetPassword: () => Promise<void>
 
   // user
-  profile: () => Promise<void>
+  profile: () => Promise<{ id: string }>
   updateProfile: () => Promise<void>
 }

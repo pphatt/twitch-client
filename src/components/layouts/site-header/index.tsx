@@ -45,7 +45,7 @@ import {
   UserItemWrapper,
 } from "@/components/layouts/site-header/style"
 
-export function SiteHeader({ isAuthenticated }: { isAuthenticated: boolean }) {
+export function SiteHeader({ user }: { user: { id: string } }) {
   return (
     <SiteHeaderWrapper>
       <SiteHeaderContainer>
@@ -81,7 +81,7 @@ export function SiteHeader({ isAuthenticated }: { isAuthenticated: boolean }) {
           </Hint>
 
           <UserItemWrapper>
-            {!isAuthenticated && (
+            {!user?.id && (
               <AuthWrapper>
                 <AuthContainer>
                   <AuthDialog currentTab={"log-in"}>
@@ -105,7 +105,7 @@ export function SiteHeader({ isAuthenticated }: { isAuthenticated: boolean }) {
               </AuthWrapper>
             )}
 
-            {isAuthenticated && (
+            {user?.id && (
               <UserItemContainer>
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
@@ -113,7 +113,9 @@ export function SiteHeader({ isAuthenticated }: { isAuthenticated: boolean }) {
                       <UserItemTriggerWrapper>
                         <UserImage
                           alt={"User Avatar"}
-                          src={"/avatar/user-default-picture.png"}
+                          src={
+                            user?.id ? "/avatar/user-default-picture.png" : ""
+                          }
                         />
                       </UserItemTriggerWrapper>
                     </UserItemTrigger>
@@ -139,7 +141,7 @@ export function SiteHeader({ isAuthenticated }: { isAuthenticated: boolean }) {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>tienphat</AccountText>
+                              <AccountText>{user?.id}</AccountText>
                             </AccountDetails>
                           </AccountItemContainer>
                         </AccountItemWrapper>
