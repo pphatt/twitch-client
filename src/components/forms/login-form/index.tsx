@@ -3,18 +3,16 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useAuth } from "@/context/auth.context"
-import {
-  saveAccessToken,
-  saveRefreshToken,
-  saveUserProfile,
-} from "@/utils/auth.utils"
+// import { useAuth } from "@/context/auth.context"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
+import {
+  SigninRequestDtoSchema,
+  type SigninRequestDto,
+} from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
-import type { z } from "zod"
 
-import { authSchema } from "@/lib/validation/auth"
 import { Form, FormControl, FormField } from "@/components/ui/form"
 import {
   ResetPasswordLayout,
@@ -34,23 +32,17 @@ import {
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
 
-import { BaseEntity } from "../../../../modules/core/domain-base/entity/entity.base"
-import { UserRepository } from "../../../../modules/user/infrastructure/repository/user.repository"
-
-// import type { UserDto } from "../../../../modules/user/application/dto/user.dto"
-// import { UserRepository } from "../../../../modules/user/infrastructure/repository/user.repository"
-
-export type Inputs = z.infer<typeof authSchema>
+type Inputs = SigninRequestDto
 
 export default function LogInForm() {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
-  const { setProfile, setIsAuthenticated } = useAuth()
+  // const { setProfile, setIsAuthenticated } = useAuth()
 
   // register, handleSubmit, formState
   // default-values for controlled form
   const form = useForm<Inputs>({
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(SigninRequestDtoSchema),
     defaultValues: {
       username: "",
       password: "",
@@ -64,20 +56,13 @@ export default function LogInForm() {
       try {
         const { username, password } = data
 
-        const result = await UserRepository.login({
-          email: username,
+        const result = await UserRepository.signinWithEmail({
+          username: username,
           password: password,
         })
 
-        const { accessToken, refreshToken, userId } = result
+        const { accessToken, refreshToken } = result
 
-        saveAccessToken(accessToken)
-        saveRefreshToken(refreshToken)
-
-        saveUserProfile({ userId })
-        setIsAuthenticated(true)
-
-        setProfile({ userId })
         toast.success("Log in successfully", {
           duration: 10000,
           position: "top-right",

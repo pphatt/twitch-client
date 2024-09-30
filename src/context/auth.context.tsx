@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { getAccessToken, getUserProfile } from "@/utils/auth.utils"
+import { getAccessTokenFromCookie, getUserProfile } from "@/utils/auth.utils"
 import { create, type StoreApi } from "zustand"
 import createContext from "zustand/context"
 
@@ -17,21 +17,16 @@ type IAuthStore = IInitialAuthContext & {
   setProfile: (profile: { userId: string } | null) => void
 }
 
-const initialValue: IInitialAuthContext = {
-  profile: getUserProfile(),
-  isAuthenticated: !!getAccessToken(),
-}
-
 const { Provider, useStore } = createContext<StoreApi<IAuthStore>>()
 
 const createAuthStore = () =>
   create<IAuthStore>((set) => ({
     // only use for csr
-    profile: initialValue.profile,
+    profile: null,
     setProfile: (value: { userId: string } | null) => set({ profile: value }),
 
     // isAuthenticated for client-side checking
-    isAuthenticated: initialValue.isAuthenticated,
+    isAuthenticated: false,
     setIsAuthenticated: (value) => set({ isAuthenticated: value }),
   }))
 

@@ -49,6 +49,10 @@ let nextConfig = {
         },
       ],
     ],
+    staleTimes: {
+      dynamic: 0,
+      static: 0,
+    },
   },
   compiler: {
     removeConsole: disableBrowserLogs,

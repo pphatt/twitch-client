@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { getUserProfile } from "@/utils/auth.utils"
+import { UserProfileAPI } from "@modules/core/presentation/endpoints/user.endpoints"
 
 import { siteConfig, supportSite } from "@/config/site"
 import {
@@ -8,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import LogoutButton from "@/components/auth/logout-button"
+import { authAxiosInstance } from "@/components/axios-instance.auth"
 import { Hint } from "@/components/common/hint"
 import { SearchCommandMenu } from "@/components/common/search-command-menu"
 import { Icons } from "@/components/icons"
@@ -45,7 +48,30 @@ import {
   UserItemWrapper,
 } from "@/components/layouts/site-header/style"
 
-export function SiteHeader({ user }: { user: { id: string } }) {
+export function SiteHeader({ authenticated }: { authenticated: boolean }) {
+  const [user, setUserProfile] = React.useState<{ id: string } | null>()
+  const [isPending, startTransition] = React.useTransition()
+
+  React.useEffect(() => {
+    console.log("isPending", isPending)
+
+    startTransition(async () => {
+      try {
+        const response = await authAxiosInstance.get(
+          "http://localhost:3000/api/user/get-user"
+        )
+
+        const { id } = response.data as { id: string }
+
+        setUserProfile({ id })
+      } catch (error) {
+        console.log(error)
+      }
+    })
+  }, [])
+
+  console.log(user)
+
   return (
     <SiteHeaderWrapper>
       <SiteHeaderContainer>
@@ -81,7 +107,7 @@ export function SiteHeader({ user }: { user: { id: string } }) {
           </Hint>
 
           <UserItemWrapper>
-            {!user?.id && (
+            {!authenticated && (
               <AuthWrapper>
                 <AuthContainer>
                   <AuthDialog currentTab={"log-in"}>
@@ -105,7 +131,7 @@ export function SiteHeader({ user }: { user: { id: string } }) {
               </AuthWrapper>
             )}
 
-            {user?.id && (
+            {authenticated && (
               <UserItemContainer>
                 <DropdownMenu modal={false}>
                   <DropdownMenuTrigger asChild>
@@ -114,7 +140,9 @@ export function SiteHeader({ user }: { user: { id: string } }) {
                         <UserImage
                           alt={"User Avatar"}
                           src={
-                            user?.id ? "/avatar/user-default-picture.png" : ""
+                            authenticated
+                              ? "/avatar/user-default-picture.png"
+                              : ""
                           }
                         />
                       </UserItemTriggerWrapper>
@@ -141,7 +169,7 @@ export function SiteHeader({ user }: { user: { id: string } }) {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>{user?.id}</AccountText>
+                              <AccountText>Tien Phat</AccountText>
                             </AccountDetails>
                           </AccountItemContainer>
                         </AccountItemWrapper>

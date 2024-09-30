@@ -1,25 +1,33 @@
-import { clearUserSession } from "@/utils/auth.utils"
-import { sleep } from "@/utils/common"
+import { clearTokens } from "@/utils/auth.utils"
+import { RefreshTokenAPI } from "@modules/core/presentation/endpoints/auth.endpoints"
+import { UserProfileAPI } from "@modules/core/presentation/endpoints/user.endpoints"
+import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
+import type { SigninRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
+import type { SigninResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import axios from "axios"
+
+import { authAxiosInstance } from "@/components/axios-instance.auth"
 
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
 
 export const UserRepository: IUserRepository = {
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
-  async login(body: any): Promise<{
-    userId: string
-    accessToken: string
-    refreshToken: string
-  }> {
-    const req = await axios.post("http://localhost:3001/auth/login", body)
+  async signinWithEmail(body: SigninRequestDto): Promise<SigninResponseDto> {
+    try {
+      const response = await authAxiosInstance.post(
+        "http://localhost:3000/api/auth/signin",
+        {
+          username: body.username,
+          password: body.password,
+        }
+      )
 
-    const result = req.data as {
-      userId: string
-      accessToken: string
-      refreshToken: string
+      const { refreshToken, accessToken } = response.data as SigninResponseDto
+
+      return { refreshToken, accessToken }
+    } catch (error) {
+      throw new Error("Something went wrong. Try again!!!")
     }
-
-    return result
   },
 
   async signup(): Promise<void> {
@@ -30,7 +38,7 @@ export const UserRepository: IUserRepository = {
     // call to logout api to invoke user session
     // const req = authAxios.post("/logout")
 
-    clearUserSession()
+    clearTokens()
     return Promise.resolve(undefined)
   },
 
@@ -42,10 +50,35 @@ export const UserRepository: IUserRepository = {
     return Promise.resolve(undefined)
   },
 
-  async profile(): Promise<{ id: string }> {
-    console.log("call getUserProfile api")
-    await sleep(100)
-    return Promise.resolve({ id: "66eee2127bc9444c7ead11ec" })
+  async refreshToken(
+    body: RefreshTokenRequestDto
+  ): Promise<RefreshTokenResponseDto> {
+    try {
+      console.log(body)
+      const response = await axios.post(RefreshTokenAPI, body, {
+        withCredentials: true,
+      })
+
+      const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+        response.data as RefreshTokenResponseDto
+
+      return { accessToken: newAccessToken, refreshToken: newRefreshToken }
+    } catch (error) {
+      throw new Error("Unable to refresh token")
+    }
+  },
+
+  async profile(): Promise<{ id: string } | null> {
+    try {
+      const response = await authAxiosInstance.get(UserProfileAPI)
+
+      const { id } = response.data as { id: string }
+
+      return { id }
+    } catch (error) {
+      console.log("Cannot get user profile", error)
+      return null
+    }
   },
 
   async updateProfile(): Promise<void> {

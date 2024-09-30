@@ -5,10 +5,12 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { sleep } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  SignupRequestDtoSchema,
+  type SignupRequestDto,
+} from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import { useForm } from "react-hook-form"
-import type { z } from "zod"
 
-import { authSignUpSchema } from "@/lib/validation/auth"
 import { Form, FormControl, FormField } from "@/components/ui/form"
 import {
   SubmitLayoutWrapper,
@@ -29,7 +31,7 @@ import {
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
 
-type Inputs = z.infer<typeof authSignUpSchema>
+type Inputs = SignupRequestDto
 
 export default function SignUpForm() {
   const router = useRouter()
@@ -38,7 +40,7 @@ export default function SignUpForm() {
   // register, handleSubmit, formState
   // default-values for controlled form
   const form = useForm<Inputs>({
-    resolver: zodResolver(authSignUpSchema),
+    resolver: zodResolver(SignupRequestDtoSchema),
     defaultValues: {
       username: "",
       password: "",
