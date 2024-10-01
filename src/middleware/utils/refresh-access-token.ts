@@ -6,18 +6,25 @@ export const refreshAccessToken = async (
   headers: Headers,
   refreshToken: string
 ) => {
-  const { refreshToken: newRefreshToken, accessToken: newAccessToken } =
-    await UserRepository.refreshToken({
-      refreshToken,
-    })
+  try {
+    const { refreshToken: newRefreshToken, accessToken: newAccessToken } =
+      await UserRepository.refreshToken({
+        refreshToken,
+      })
 
-  console.log("newRefreshToken", newRefreshToken)
-  console.log("newAccessToken", newAccessToken)
+    console.log("newRefreshToken", newRefreshToken)
+    console.log("newAccessToken", newAccessToken)
 
-  response.cookies.set("access-token", newAccessToken)
-  response.cookies.set("refresh-token", newRefreshToken)
+    response.cookies.set("access-token", newAccessToken)
+    response.cookies.set("refresh-token", newRefreshToken)
 
-  console.log(response)
+    console.log(response)
 
-  return response
+    return response
+  } catch (_) {
+    response.cookies.delete("access-token")
+    response.cookies.delete("refresh-token")
+
+    return response
+  }
 }

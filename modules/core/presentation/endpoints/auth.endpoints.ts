@@ -1,4 +1,8 @@
-import { BasedURL } from "./default.endpoints"
+import { AppURL, BackendURL } from "./default.endpoints"
 
-export const SignInAPI = `${BasedURL}/auth/sign-in`
-export const RefreshTokenAPI = `${BasedURL}/auth/refresh-token`
+// USING BACKEND API
+export const SignInAPI = `${BackendURL}/auth/sign-in`
+export const RefreshTokenAPI = `${BackendURL}/auth/refresh-token`
+
+// USING NEXT API
+export const NextSignInAPI = `${AppURL}/api/auth/sign-in`

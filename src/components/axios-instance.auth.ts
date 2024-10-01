@@ -1,11 +1,9 @@
-import { accessTokenContext } from "@/middleware/with-auth"
-import { isWindowDefined } from "@/utils/common"
-// import xior, { XiorError, XiorRequestConfig } from "xior"
-
+import { isServerSide } from "@/utils/common"
+import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
 import axios, { type AxiosError, type AxiosRequestConfig } from "axios"
 
 const authAxiosInstance = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: BackendURL,
 })
 
 let isRefreshing = false
@@ -31,7 +29,7 @@ authAxiosInstance.interceptors.request.use(
   async (config) => {
     console.log("call out side interceptors.request")
 
-    if (!isWindowDefined()) {
+    if (!isServerSide()) {
       console.log("call inside interceptors.request")
 
       const { cookies } = await import("next/headers")
@@ -40,6 +38,8 @@ authAxiosInstance.interceptors.request.use(
         .map((item) => `${item.name}=${item.value}`)
         .join("; ")
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       config.headers = { ...config.headers, cookie: cookiesString }
     }
 
@@ -53,26 +53,46 @@ authAxiosInstance.interceptors.request.use(
 
 authAxiosInstance.interceptors.response.use(
   (response) => response,
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     const originalRequest = error.config
-
-    console.log(accessTokenContext)
 
     console.log("originalRequest")
     console.log(originalRequest)
-    console.log(error.response?.status === 401)
-    console.log(isWindowDefined())
-    console.log(!originalRequest?.url?.includes("/sign-in"))
 
     if (
       error.response?.status === 401 &&
-      isWindowDefined() &&
+      isServerSide() &&
+      originalRequest &&
       !originalRequest?.url?.includes("/sign-in")
     ) {
-      console.log("render here")
       if (!isRefreshing) {
-        // TODO: handle refresh token queue here
+        isRefreshing = true
+
+        try {
+          await axios.post("/api/auth/refresh-token")
+          isRefreshing = false
+          processQueue(null)
+
+          return authAxiosInstance.request(originalRequest)
+        } catch (refreshError) {
+          isRefreshing = false
+          processQueue(refreshError as AxiosError)
+
+          return Promise.reject(refreshError)
+        }
       }
+
+      return new Promise((resolve, reject) => {
+        if (originalRequest) {
+          refreshQueue.push({ resolve, reject, config: originalRequest })
+        } else {
+          reject(error)
+        }
+      })
+    }
+
+    if (isServerSide() && error.response?.status === 401) {
+      window.location.reload()
     }
 
     return Promise.reject(error)

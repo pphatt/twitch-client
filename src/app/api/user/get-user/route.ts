@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server"
+import { UserProfileAPI } from "@modules/core/presentation/endpoints/user.endpoints"
 
 import { authAxiosInstance } from "@/components/axios-instance.auth"
 
@@ -15,14 +16,11 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  const response = await authAxiosInstance.get(
-    "http://localhost:3001/auth/user",
-    {
-      headers: {
-        Authorization: `Bearer ${request.cookies.get("access-token")?.value}`,
-      },
-    }
-  )
+  const response = await authAxiosInstance.get(UserProfileAPI, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
 
   const { id } = response.data as { id: string }
 

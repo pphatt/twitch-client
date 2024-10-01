@@ -1,8 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { getUserProfile } from "@/utils/auth.utils"
-import { UserProfileAPI } from "@modules/core/presentation/endpoints/user.endpoints"
+import { UserProfileNextAPI } from "@modules/core/presentation/endpoints/user.endpoints"
 
 import { siteConfig, supportSite } from "@/config/site"
 import {
@@ -56,16 +55,16 @@ export function SiteHeader({ authenticated }: { authenticated: boolean }) {
     console.log("isPending", isPending)
 
     startTransition(async () => {
-      try {
-        const response = await authAxiosInstance.get(
-          "http://localhost:3000/api/user/get-user"
-        )
+      if (authenticated) {
+        try {
+          const response = await authAxiosInstance.get(UserProfileNextAPI)
 
-        const { id } = response.data as { id: string }
+          const { id } = response.data as { id: string }
 
-        setUserProfile({ id })
-      } catch (error) {
-        console.log(error)
+          setUserProfile({ id })
+        } catch (error) {
+          console.log(error)
+        }
       }
     })
   }, [])

@@ -6,6 +6,7 @@ console.log("> Validating environment variables...")
 export const env = createEnv({
   client: {
     // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    NEXT_PUBLIC_APP_URL: z.string(),
     NEXT_PUBLIC_BACK_END_API_URL: z.string(),
   },
   server: {
@@ -17,6 +18,7 @@ export const env = createEnv({
   runtimeEnv: {
     // client
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_BACK_END_API_URL: process.env.NEXT_PUBLIC_BACK_END_API_URL,
 
     // server

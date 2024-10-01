@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { getAccessTokenFromCookie, getUserProfile } from "@/utils/auth.utils"
 import { create, type StoreApi } from "zustand"
 import createContext from "zustand/context"
 

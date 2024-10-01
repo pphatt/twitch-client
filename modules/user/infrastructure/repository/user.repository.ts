@@ -1,5 +1,8 @@
 import { clearTokens } from "@/utils/auth.utils"
-import { RefreshTokenAPI } from "@modules/core/presentation/endpoints/auth.endpoints"
+import {
+  NextSignInAPI,
+  RefreshTokenAPI,
+} from "@modules/core/presentation/endpoints/auth.endpoints"
 import { UserProfileAPI } from "@modules/core/presentation/endpoints/user.endpoints"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
 import type { SigninRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
@@ -14,13 +17,10 @@ import type { IUserRepository } from "../../domain/repository/user/user.reposito
 export const UserRepository: IUserRepository = {
   async signinWithEmail(body: SigninRequestDto): Promise<SigninResponseDto> {
     try {
-      const response = await authAxiosInstance.post(
-        "http://localhost:3000/api/auth/signin",
-        {
-          username: body.username,
-          password: body.password,
-        }
-      )
+      const response = await authAxiosInstance.post(NextSignInAPI, {
+        username: body.username,
+        password: body.password,
+      })
 
       const { refreshToken, accessToken } = response.data as SigninResponseDto
 
@@ -54,7 +54,6 @@ export const UserRepository: IUserRepository = {
     body: RefreshTokenRequestDto
   ): Promise<RefreshTokenResponseDto> {
     try {
-      console.log(body)
       const response = await axios.post(RefreshTokenAPI, body, {
         withCredentials: true,
       })

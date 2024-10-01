@@ -24,8 +24,6 @@ const authRoutes = ["/login", "/signup"]
 
 const publicDynamicRouteRegex = [/^\/([^\/]+)$/, /^\/popout\/([^\/]+)$/] // ["/:username", "/popout/:username"]
 
-export let accessTokenContext: string | undefined
-
 export function withAuth(middleware: CustomMiddleware) {
   return async (
     request: NextRequest,
@@ -65,10 +63,6 @@ export function withAuth(middleware: CustomMiddleware) {
         response.cookies.delete("refresh-token")
       }
     }
-
-    accessTokenContext = accessToken
-    console.log("accessTokenContext")
-    console.log(accessTokenContext)
 
     const isPublicDynamicRoute = publicDynamicRouteRegex.some((regex) =>
       regex.test(pathname)

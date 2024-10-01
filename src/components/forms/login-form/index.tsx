@@ -56,12 +56,15 @@ export default function LogInForm() {
       try {
         const { username, password } = data
 
-        const result = await UserRepository.signinWithEmail({
+        await UserRepository.signinWithEmail({
           username: username,
           password: password,
         })
 
-        const { accessToken, refreshToken } = result
+        // TODO:
+        //  - temporary we dont return the result here
+        //  - decode accessToken to get something like { email, username, ... }
+        // const { accessToken, refreshToken } = result
 
         toast.success("Log in successfully", {
           duration: 10000,

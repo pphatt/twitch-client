@@ -77,7 +77,7 @@ export function booleanToBooleanish(
   return input ? "true" : "false"
 }
 
-export function isWindowDefined() {
+export function isServerSide() {
   return typeof window !== "undefined"
 }
 
