@@ -1,4 +1,4 @@
-import { isServerSide } from "@/utils/common"
+import { isClientSide } from "@/utils/common"
 import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
 import axios, { type AxiosError, type AxiosRequestConfig } from "axios"
 
@@ -29,7 +29,7 @@ authAxiosInstance.interceptors.request.use(
   async (config) => {
     console.log("call out side interceptors.request")
 
-    if (!isServerSide()) {
+    if (!isClientSide()) {
       console.log("call inside interceptors.request")
 
       const { cookies } = await import("next/headers")
@@ -61,7 +61,7 @@ authAxiosInstance.interceptors.response.use(
 
     if (
       error.response?.status === 401 &&
-      isServerSide() &&
+      isClientSide() &&
       originalRequest &&
       !originalRequest?.url?.includes("/sign-in")
     ) {
@@ -91,7 +91,7 @@ authAxiosInstance.interceptors.response.use(
       })
     }
 
-    if (isServerSide() && error.response?.status === 401) {
+    if (isClientSide() && error.response?.status === 401) {
       window.location.reload()
     }
 

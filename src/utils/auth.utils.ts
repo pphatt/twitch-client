@@ -5,7 +5,7 @@
  * */
 
 import { cache } from "react"
-import { isServerSide } from "@/utils/common"
+import { isClientSide } from "@/utils/common"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import { deleteCookie } from "cookies-next"
 import { jwtDecode } from "jwt-decode"
@@ -21,7 +21,7 @@ export const clearRefreshTokenFromCookie = () => {
 export const decodeToken = (token: string): { exp: number } => jwtDecode(token)
 
 export const saveUserProfile = (userProfile: { userId: string }) => {
-  if (!isServerSide()) {
+  if (!isClientSide()) {
     return
   }
 
@@ -33,7 +33,7 @@ export const getUserProfile = cache(async () => {
 })
 
 export const clearUserProfile = () => {
-  if (!isServerSide()) {
+  if (!isClientSide()) {
     return
   }
 
