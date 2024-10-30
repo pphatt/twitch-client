@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { UserProfileNextAPI } from "@modules/core/presentation/endpoints/user.endpoints"
+import { useRouter, useSearchParams } from "next/navigation"
 
 import { siteConfig, supportSite } from "@/config/site"
 import {
@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import LogoutButton from "@/components/auth/logout-button"
-import { authAxiosInstance } from "@/components/axios-instance.auth"
 import { Hint } from "@/components/common/hint"
 import { SearchCommandMenu } from "@/components/common/search-command-menu"
 import { Icons } from "@/components/icons"
@@ -47,29 +46,43 @@ import {
   UserItemWrapper,
 } from "@/components/layouts/site-header/style"
 
-export function SiteHeader({ authenticated }: { authenticated: boolean }) {
+export function SiteHeader({ username }: { username: string | null }) {
+  const router = useRouter()
+
   const [user, setUserProfile] = React.useState<{ id: string } | null>()
   const [isPending, startTransition] = React.useTransition()
+
+  const authenticated = !!username
+
+  const searchParams = useSearchParams()
+
+  const isRedirected = searchParams.get("redirected")
+
+  React.useEffect(() => {
+    if (authenticated) {
+      if (isRedirected === "true") {
+        router.refresh()
+      }
+    }
+  }, [authenticated, isRedirected, router, searchParams])
 
   React.useEffect(() => {
     console.log("isPending", isPending)
 
     startTransition(async () => {
-      if (authenticated) {
-        try {
-          const response = await authAxiosInstance.get(UserProfileNextAPI)
-
-          const { id } = response.data as { id: string }
-
-          setUserProfile({ id })
-        } catch (error) {
-          console.log(error)
-        }
-      }
+      // if (authenticated) {
+      //   try {
+      //     const response = await authAxiosInstance.get(UserProfileNextAPI)
+      //
+      //     const { id } = response.data as { id: string }
+      //
+      //     setUserProfile({ id })
+      //   } catch (error) {
+      //     console.log(error)
+      //   }
+      // }
     })
   }, [])
-
-  console.log(user)
 
   return (
     <SiteHeaderWrapper>
@@ -168,7 +181,7 @@ export function SiteHeader({ authenticated }: { authenticated: boolean }) {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>Tien Phat</AccountText>
+                              <AccountText>{username}</AccountText>
                             </AccountDetails>
                           </AccountItemContainer>
                         </AccountItemWrapper>

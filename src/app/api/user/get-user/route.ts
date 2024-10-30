@@ -1,9 +1,7 @@
 import type { NextRequest } from "next/server"
-import { UserProfileAPI } from "@modules/core/presentation/endpoints/user.endpoints"
+import { jwtDecode, type JwtPayload } from "jwt-decode"
 
-import { authAxiosInstance } from "@/components/axios-instance.auth"
-
-export async function GET(request: NextRequest) {
+export function GET(request: NextRequest) {
   const accessToken = request.cookies.get("access-token")?.value
 
   if (!accessToken) {
@@ -16,17 +14,11 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  const response = await authAxiosInstance.get(UserProfileAPI, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  })
-
-  const { id } = response.data as { id: string }
+  const { username } = jwtDecode<JwtPayload & { username: string }>(accessToken)
 
   return Response.json(
     {
-      id,
+      username,
     },
     {
       status: 200,

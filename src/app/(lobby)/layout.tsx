@@ -1,6 +1,6 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
-import { isAuthenticated } from "@/auth"
+import { whoami } from "@/auth"
 
 import { SiteHeader } from "@/components/layouts/site-header"
 import styles from "@/styles/application/lobby/layout.module.scss"
@@ -15,11 +15,11 @@ export default function LobbyLayout({
   children: React.ReactNode
 }) {
   try {
-    const authenticated = isAuthenticated()
+    const username = whoami()
 
     return (
       <>
-        <SiteHeader authenticated={authenticated} />
+        <SiteHeader username={username} />
         <main className={styles["content-layout"]}>
           <div className={styles["side-navbar"]}>
             <SideNavBar />

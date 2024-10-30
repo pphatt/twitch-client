@@ -9,10 +9,9 @@ export function withInitializeResponse(middleware: CustomMiddleware) {
   return async (
     request: NextRequest,
     event: NextFetchEvent,
-    response: NextResponse
   ) => {
-    const intializeResponseInChain = NextResponse.next()
+    const initializeResponseInChain = NextResponse.next()
 
-    return middleware(request, event, intializeResponseInChain)
+    return middleware(request, event, initializeResponseInChain)
   }
 }

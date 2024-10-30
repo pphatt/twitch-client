@@ -20,8 +20,10 @@ interface AuthTabControlProps {
 }
 
 export default function AuthTabControl({ currentTab }: AuthTabControlProps) {
+  const [tab, setTab] = React.useState<AuthTabControlProps>(currentTab)
+
   return (
-    <Tabs defaultValue={currentTab} asChild>
+    <Tabs value={tab} onValueChange={(value) => setTab(value)} asChild>
       <AuthFormLayout>
         <ModalHeaderWrapper>
           <ModalHeaderContainer as={"div"}>
@@ -42,7 +44,7 @@ export default function AuthTabControl({ currentTab }: AuthTabControlProps) {
 
         <FormLayoutWrapper value="sign-up">
           <FormLayoutContainer>
-            <SignUpForm />
+            <SignUpForm redirectToLogin={() => setTab("log-in")} />
           </FormLayoutContainer>
         </FormLayoutWrapper>
       </AuthFormLayout>

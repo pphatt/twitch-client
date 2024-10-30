@@ -54,15 +54,24 @@ export const UserRepository: IUserRepository = {
     body: RefreshTokenRequestDto
   ): Promise<RefreshTokenResponseDto> {
     try {
-      const response = await axios.post(RefreshTokenAPI, body, {
-        withCredentials: true,
-      })
+      console.log("REQUEST HERE")
+      console.log("body")
+      console.log(body)
+      const response = await axios.post(RefreshTokenAPI, body)
+      console.log("REQUEST HERE 1")
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
         response.data as RefreshTokenResponseDto
 
+      console.log("newAccessToken")
+      console.log(newAccessToken)
+
+      console.log("newRefreshToken")
+      console.log(newRefreshToken)
+
       return { accessToken: newAccessToken, refreshToken: newRefreshToken }
     } catch (error) {
+      console.log(error)
       throw new Error("Unable to refresh token")
     }
   },

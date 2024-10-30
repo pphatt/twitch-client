@@ -7,21 +7,19 @@ export const refreshAccessToken = async (
   refreshToken: string
 ) => {
   try {
+    console.log("REFRESH TOKEN COME FROM MIDDLEWARE")
     const { refreshToken: newRefreshToken, accessToken: newAccessToken } =
       await UserRepository.refreshToken({
         refreshToken,
       })
 
-    console.log("newRefreshToken", newRefreshToken)
-    console.log("newAccessToken", newAccessToken)
-
     response.cookies.set("access-token", newAccessToken)
     response.cookies.set("refresh-token", newRefreshToken)
 
-    console.log(response)
-
     return response
-  } catch (_) {
+  } catch (error) {
+    console.log('why is this throw???')
+    console.log(error)
     response.cookies.delete("access-token")
     response.cookies.delete("refresh-token")
 

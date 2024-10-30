@@ -31,8 +31,8 @@ export function withAuth(middleware: CustomMiddleware) {
     response: NextResponse
   ) => {
     const pathname = request.nextUrl.pathname
-    const accessToken = request.cookies.get("access-token")?.value
-    const refreshToken = request.cookies.get("refresh-token")?.value
+    let accessToken = request.cookies.get("access-token")?.value
+    let refreshToken = request.cookies.get("refresh-token")?.value
 
     const headers = createAuthHeaders(request.headers, {
       accessToken,
@@ -46,19 +46,21 @@ export function withAuth(middleware: CustomMiddleware) {
         if (refreshToken) {
           try {
             response = await refreshAccessToken(response, headers, refreshToken)
+            accessToken = response.cookies.get("access-token")!.value
+            refreshToken = response.cookies.get("refresh-token")!.value
           } catch (_) {
             response.cookies.delete("access-token")
             response.cookies.delete("refresh-token")
           }
-        } else {
-          response.cookies.delete("access-token")
-          response.cookies.delete("refresh-token")
         }
       }
-    } else {
-      if (refreshToken) {
+    } else if (refreshToken) {
+      try {
+        // No access token, but we have a refresh token, so try refreshing
         response = await refreshAccessToken(response, headers, refreshToken)
-      } else {
+        accessToken = response.cookies.get("access-token")!.value
+        refreshToken = response.cookies.get("refresh-token")!.value
+      } catch (_) {
         response.cookies.delete("access-token")
         response.cookies.delete("refresh-token")
       }
@@ -86,13 +88,16 @@ export function withAuth(middleware: CustomMiddleware) {
     const isAuthenticated = !!accessToken
 
     if (!isAuthenticated) {
-      //  If user tries to access a private route without being authenticated,
+      //  If a user tries to access a private route without being authenticated,
       //  redirect them to the home page
-      return NextResponse.redirect(new URL("/", request.url))
+      const redirectUrl = new URL("/", request.url);
+      redirectUrl.searchParams.set("redirected", "true");
+
+      return NextResponse.redirect(redirectUrl)
     }
 
     if (isAuthenticated && isAuthRoute) {
-      //  If user tries to access a auth route while being authenticated,
+      //  If a user tries to access an auth route while being authenticated,
       //  redirect them to the home page and open login dialog
       return NextResponse.redirect(new URL("/", request.url))
     }

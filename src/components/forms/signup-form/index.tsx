@@ -33,7 +33,11 @@ import {
 
 type Inputs = SignupRequestDto
 
-export default function SignUpForm() {
+interface SignUpFormProps {
+  redirectToLogin: () => void
+}
+
+export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
@@ -43,18 +47,20 @@ export default function SignUpForm() {
     resolver: zodResolver(SignupRequestDtoSchema),
     defaultValues: {
       username: "",
+      email: "",
       password: "",
     },
   })
 
   const onSubmit = (data: Inputs) => {
-    if (!isPending) return
+    if (isPending) return
 
     startTransition(async () => {
       try {
         console.log(data)
         console.log(router)
         await sleep(1000)
+        redirectToLogin()
       } catch (err) {
         // catchError(err)
         console.error(err)
@@ -91,7 +97,7 @@ export default function SignUpForm() {
 
         <FormField
           control={form.control}
-          name="username"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormContentLabelWrapper>

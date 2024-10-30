@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    console.log("REFRESH TOKEN COME FROM ROUTE HANDLER")
     const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
       await UserRepository.refreshToken({ refreshToken })
 

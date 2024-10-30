@@ -1,5 +1,5 @@
 import { cookies } from "next/headers"
-import { type NextRequest } from "next/server"
+import { userAgent, type NextRequest } from "next/server"
 import { SignInAPI } from "@modules/core/presentation/endpoints/auth.endpoints"
 import type { SigninRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SigninResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
@@ -10,28 +10,52 @@ export async function POST(request: NextRequest) {
 
   const { username, password } = json
 
-  const response = await axios.post(SignInAPI, {
-    email: username,
-    password,
-  })
+  // const ipAddress = (
+  //   request.headers.get("x-forwarded-for") ?? "127.0.0.1"
+  // ).split(",")[0]
 
-  const { refreshToken, accessToken } = response.data as SigninResponseDto
+  // const { device, ua } = userAgent(request)
 
-  if (accessToken) {
-    cookies().set("access-token", accessToken)
-  }
+  try {
+    const { data } = await axios.post<{
+      data: SigninResponseDto
+    }>(SignInAPI, {
+      username,
+      password,
+      deviceName: "iPhone 13",
+      userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_2 like Mac OS X)",
+      ipAddress: "192.168.1.1",
+      deviceType: "MOBILE",
+    })
 
-  if (refreshToken) {
-    cookies().set("refresh-token", refreshToken)
-  }
+    const { refreshToken, accessToken } = data.data
 
-  return Response.json(
-    {
-      refreshToken,
-      accessToken,
-    },
-    {
-      status: 200,
+    if (accessToken) {
+      cookies().set("access-token", accessToken)
     }
-  )
+
+    if (refreshToken) {
+      cookies().set("refresh-token", refreshToken)
+    }
+
+    return Response.json(
+      {
+        refreshToken,
+        accessToken,
+      },
+      {
+        status: 200,
+      }
+    )
+  } catch (err) {
+    console.log(err)
+    return Response.json(
+      {
+        message: "Invalid credentials",
+      },
+      {
+        status: 400,
+      }
+    )
+  }
 }

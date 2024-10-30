@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 // import { useAuth } from "@/context/auth.context"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
@@ -35,7 +34,6 @@ import {
 type Inputs = SigninRequestDto
 
 export default function LogInForm() {
-  const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   // const { setProfile, setIsAuthenticated } = useAuth()
 
@@ -71,7 +69,8 @@ export default function LogInForm() {
           position: "top-right",
         })
 
-        router.refresh()
+        window.location.reload()
+        window.location.replace("/")
       } catch (err) {
         // catchError(err)
         console.error(err)

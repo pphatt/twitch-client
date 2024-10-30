@@ -1,8 +1,20 @@
 // server side checking auth
 
-import { cache } from "react"
 import { cookies } from "next/headers"
+import {jwtDecode, type JwtPayload} from "jwt-decode";
 
-export const isAuthenticated = cache(() => {
+export const isAuthenticated = () => {
   return !!cookies().get("access-token")?.value
-})
+}
+
+export const whoami = () => {
+  const accessToken = cookies().get("access-token")?.value
+
+  if (!accessToken) {
+    return null
+  }
+
+  const { username } = jwtDecode<JwtPayload & { username: string }>(accessToken)
+
+  return username
+}
