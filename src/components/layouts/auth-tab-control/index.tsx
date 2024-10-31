@@ -20,7 +20,7 @@ interface AuthTabControlProps {
 }
 
 export default function AuthTabControl({ currentTab }: AuthTabControlProps) {
-  const [tab, setTab] = React.useState<AuthTabControlProps>(currentTab)
+  const [tab, setTab] = React.useState<string>(currentTab)
 
   return (
     <Tabs value={tab} onValueChange={(value) => setTab(value)} asChild>
