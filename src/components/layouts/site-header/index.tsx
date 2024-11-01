@@ -45,6 +45,7 @@ import {
   UserItemTriggerWrapper,
   UserItemWrapper,
 } from "@/components/layouts/site-header/style"
+import {toast} from "sonner";
 
 export function SiteHeader({ username }: { username: string | null }) {
   const router = useRouter()
@@ -62,6 +63,11 @@ export function SiteHeader({ username }: { username: string | null }) {
     if (authenticated) {
       if (isRedirected === "true") {
         router.refresh()
+
+        toast.error("You must be logged in to view this page", {
+          duration: 10000,
+          position: "top-right",
+        })
       }
     }
   }, [authenticated, isRedirected, router, searchParams])
