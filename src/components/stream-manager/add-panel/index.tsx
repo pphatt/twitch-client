@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ALL_AVAILABLE_PANEL } from "@/constant/panel"
+import { ALL_AVAILABLE_PANEL } from "@/constants/panel"
 import { useEditLayoutState } from "@/store/state/dashboard.state"
 import { cn } from "@/utils/common"
 import {

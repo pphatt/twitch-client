@@ -1,4 +1,4 @@
-import { DEFAULT_LAYOUT } from "@/constant"
+import { DEFAULT_LAYOUT } from "src/constants"
 import type { MosaicNode } from "react-mosaic-component"
 import { create } from "zustand"
 

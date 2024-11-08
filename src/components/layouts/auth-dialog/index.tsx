@@ -4,14 +4,8 @@ import * as React from "react"
 
 import { Dialog, DialogTrigger } from "@/components/ui/dialog"
 import {
-  AuthTextContainer,
-  AuthTextOverlay,
-  AuthTextWrapper,
   LoginModalContainer,
   LoginModalWrapper,
-  TextDefault,
-  TextHighlight,
-  TextSmall,
 } from "@/components/layouts/auth-dialog/style"
 import AuthTabControl from "@/components/layouts/auth-tab-control"
 
@@ -32,18 +26,6 @@ export default function AuthDialog({ children, currentTab }: AuthDialogProps) {
         <LoginModalContainer>
           <AuthTabControl currentTab={currentTab} />
         </LoginModalContainer>
-
-        <AuthTextWrapper>
-          <AuthTextContainer>
-            <AuthTextOverlay>
-              <TextDefault>
-                <TextHighlight>Limitless</TextHighlight> entertainment awaits
-              </TextDefault>
-
-              <TextSmall>where boredom bites the dust</TextSmall>
-            </AuthTextOverlay>
-          </AuthTextContainer>
-        </AuthTextWrapper>
       </LoginModalWrapper>
     </Dialog>
   )

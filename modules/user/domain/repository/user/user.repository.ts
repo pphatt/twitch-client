@@ -5,7 +5,7 @@ import type { SigninResponseDto } from "@modules/user/presentation/http/dto/resp
 
 export interface IUserRepository {
   // auth
-  signinWithEmail: (body: SigninRequestDto) => Promise<SigninResponseDto>
+  signin: (body: SigninRequestDto) => Promise<SigninResponseDto>
   signup: () => Promise<void>
   logout: () => Promise<void>
   forgotPassword: () => Promise<void>
@@ -15,6 +15,6 @@ export interface IUserRepository {
   ) => Promise<RefreshTokenResponseDto>
 
   // user
-  profile: () => Promise<{ id: string } | null>
+  profile: () => Promise<void>
   updateProfile: () => Promise<void>
 }

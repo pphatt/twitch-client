@@ -3,7 +3,6 @@ import { UserRepository } from "@modules/user/infrastructure/repository/user.rep
 
 export const refreshAccessToken = async (
   response: NextResponse,
-  headers: Headers,
   refreshToken: string
 ) => {
   try {

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { DEFAULT_LAYOUT } from "@/constant"
+import { DEFAULT_LAYOUT } from "src/constants"
 import {
   useEditLayout,
   useEditLayoutState,

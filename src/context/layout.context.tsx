@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { DEFAULT_LAYOUT } from "@/constant"
+import { DEFAULT_LAYOUT } from "src/constants"
 import type { MosaicNode } from "react-mosaic-component"
 import { create, type StoreApi } from "zustand"
 import createContext from "zustand/context"

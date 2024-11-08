@@ -1,21 +1,16 @@
-// server side checking auth
-
-import { cookies } from "next/headers"
+import type { NextRequest } from "next/server"
 import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import axios from "axios"
 import { jwtDecode } from "jwt-decode"
+import {handleSelectLatestAccessToken} from "@/utils/auth.utils";
 
-export const isAuthenticated = () => {
-  return !!cookies().get("access-token")?.value
-}
-
-export const whoami = async (): Promise<User | null> => {
-  const accessToken = cookies().get("access-token")?.value
+export async function GET(request: NextRequest) {
+  const accessToken = handleSelectLatestAccessToken(request)
 
   if (!accessToken) {
-    return null
+    return Response.json({ message: "Access Token Not Found" }, { status: 401 })
   }
 
   const { sub } = jwtDecode<TokenPayload>(accessToken)
@@ -32,5 +27,14 @@ export const whoami = async (): Promise<User | null> => {
     }
   )
 
-  return data.data
+  const resData = data.data
+
+  return Response.json(
+    {
+      data: resData,
+    },
+    {
+      status: 200,
+    }
+  )
 }

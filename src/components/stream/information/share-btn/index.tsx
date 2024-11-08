@@ -1,5 +1,5 @@
 import * as React from "react"
-import { SHARE_LINK } from "@/constant"
+import { SHARE_LINK } from "src/constants"
 import { cn } from "@/utils/common"
 
 import {

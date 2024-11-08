@@ -2,6 +2,9 @@
 
 import * as React from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { User } from "@modules/core/domain-base/entity/identity/user.entity"
+import axios from "axios"
+import { toast } from "sonner"
 
 import { siteConfig, supportSite } from "@/config/site"
 import {
@@ -45,15 +48,13 @@ import {
   UserItemTriggerWrapper,
   UserItemWrapper,
 } from "@/components/layouts/site-header/style"
-import {toast} from "sonner";
 
-export function SiteHeader({ username }: { username: string | null }) {
+export function SiteHeader({ user }: { user: User | null }) {
   const router = useRouter()
 
-  const [user, setUserProfile] = React.useState<{ id: string } | null>()
   const [isPending, startTransition] = React.useTransition()
 
-  const authenticated = !!username
+  const authenticated = !!user
 
   const searchParams = useSearchParams()
 
@@ -72,23 +73,37 @@ export function SiteHeader({ username }: { username: string | null }) {
     }
   }, [authenticated, isRedirected, router, searchParams])
 
-  React.useEffect(() => {
-    console.log("isPending", isPending)
+  // React.useEffect(() => {
+  //   console.log("isPending", isPending)
+  //
+  //   startTransition(async () => {
+  //     // if (authenticated) {
+  //     //   try {
+  //     //     const response = await authAxiosInstance.get(UserProfileNextAPI)
+  //     //
+  //     //     const { id } = response.data as { id: string }
+  //     //
+  //     //     setUserProfile({ id })
+  //     //   } catch (error) {
+  //     //     console.log(error)
+  //     //   }
+  //     // }
+  //   })
+  // }, [])
 
+  const handleClick = () => {
     startTransition(async () => {
-      // if (authenticated) {
-      //   try {
-      //     const response = await authAxiosInstance.get(UserProfileNextAPI)
-      //
-      //     const { id } = response.data as { id: string }
-      //
-      //     setUserProfile({ id })
-      //   } catch (error) {
-      //     console.log(error)
-      //   }
-      // }
+      try {
+        const { data } = await axios.get<{ data: User }>(
+          "http://localhost:3000/api/user/whoami"
+        )
+
+        console.log(data.data.displayName)
+      } catch(_) {
+        router.refresh()
+      }
     })
-  }, [])
+  }
 
   return (
     <SiteHeaderWrapper>
@@ -115,7 +130,7 @@ export function SiteHeader({ username }: { username: string | null }) {
           </Hint>
 
           <Hint delayDuration={250} skipDelayDuration={0} label={"Whispers"}>
-            <AdditionalItem>
+            <AdditionalItem onClick={handleClick}>
               <AdditionalItemWrapper>
                 <AdditionalItemContainer>
                   <Icons.whispers />
@@ -187,7 +202,7 @@ export function SiteHeader({ username }: { username: string | null }) {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>{username}</AccountText>
+                              <AccountText>{user?.displayName}</AccountText>
                             </AccountDetails>
                           </AccountItemContainer>
                         </AccountItemWrapper>

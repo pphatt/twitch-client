@@ -4,7 +4,7 @@ import {
   type NextRequest,
 } from "next/server"
 import type { CustomMiddleware } from "@/middleware/chain"
-import { createAuthHeaders } from "@/middleware/utils/create-auth-headers"
+// import { createAuthHeaders } from "@/middleware/utils/create-auth-headers"
 import { refreshAccessToken } from "@/middleware/utils/refresh-access-token"
 import { jwtDecode } from "jwt-decode"
 
@@ -34,10 +34,10 @@ export function withAuth(middleware: CustomMiddleware) {
     let accessToken = request.cookies.get("access-token")?.value
     let refreshToken = request.cookies.get("refresh-token")?.value
 
-    const headers = createAuthHeaders(request.headers, {
-      accessToken,
-      refreshToken,
-    })
+    // const headers = createAuthHeaders(request.headers, {
+    //   accessToken,
+    //   refreshToken,
+    // })
 
     if (accessToken) {
       const decoded = jwtDecode(accessToken)
@@ -45,9 +45,12 @@ export function withAuth(middleware: CustomMiddleware) {
       if (decoded.exp && decoded.exp < Date.now() / 1000) {
         if (refreshToken) {
           try {
-            response = await refreshAccessToken(response, headers, refreshToken)
+            response = await refreshAccessToken(response, refreshToken)
             accessToken = response.cookies.get("access-token")!.value
             refreshToken = response.cookies.get("refresh-token")!.value
+
+            request.cookies.set("access-token", accessToken)
+            request.cookies.set("refresh-token", refreshToken)
           } catch (_) {
             response.cookies.delete("access-token")
             response.cookies.delete("refresh-token")
@@ -57,13 +60,20 @@ export function withAuth(middleware: CustomMiddleware) {
     } else if (refreshToken) {
       try {
         // No access token, but we have a refresh token, so try refreshing
-        response = await refreshAccessToken(response, headers, refreshToken)
+        response = await refreshAccessToken(response, refreshToken)
         accessToken = response.cookies.get("access-token")!.value
         refreshToken = response.cookies.get("refresh-token")!.value
+
+        request.cookies.set("access-token", accessToken)
+        request.cookies.set("refresh-token", refreshToken)
       } catch (_) {
         response.cookies.delete("access-token")
         response.cookies.delete("refresh-token")
       }
+    }
+
+    if (accessToken) {
+      request.headers.set("Authorization", `Bearer ${accessToken}`)
     }
 
     const isPublicDynamicRoute = publicDynamicRouteRegex.some((regex) =>
@@ -90,8 +100,8 @@ export function withAuth(middleware: CustomMiddleware) {
     if (!isAuthenticated) {
       //  If a user tries to access a private route without being authenticated,
       //  redirect them to the home page
-      const redirectUrl = new URL("/", request.url);
-      redirectUrl.searchParams.set("redirected", "true");
+      const redirectUrl = new URL("/", request.url)
+      redirectUrl.searchParams.set("redirected", "true")
 
       return NextResponse.redirect(redirectUrl)
     }

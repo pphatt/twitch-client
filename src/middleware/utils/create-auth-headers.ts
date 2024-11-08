@@ -19,6 +19,7 @@ export const createAuthHeaders = (
 
   const newHeaders = {
     ...headers,
+    Authorization: `Bearer ${accessToken}`,
     Cookie: cookies.length ? cookies.join("; ") : headers.get("Cookie"),
   }
 

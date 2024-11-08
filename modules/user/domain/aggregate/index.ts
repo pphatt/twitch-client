@@ -1,0 +1,30 @@
+// export interface UserAggregateProps {
+//   name: string
+//   displayName: string
+//   slug: string
+//   email: string
+//   password: string
+//   phoneNumber: string
+//   dob: Date
+//   emailVerifyToken?: string
+//   phoneVerifyToken?: string
+//   forgotPasswordToken?: string
+//   otpToken?: string
+//   isLive?: boolean
+//   isActive?: boolean
+//   is2FA?: boolean
+//   view?: number
+//   bio?: string
+//   avatar?: string
+//   lastUsernameChangeAt?: Date
+//   thumbnail?: string
+//   devices?: Device[]
+//   tokens?: Token[]
+//   loginHistories?: LoginHistory[]
+//   externalLinks?: ExternalLink[]
+//   roles?: Role[]
+//   permissions?: Permission[]
+//   createdAt?: Date
+//   updatedAt?: Date
+//   deletedAt?: Date
+// }

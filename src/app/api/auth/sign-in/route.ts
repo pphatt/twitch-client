@@ -1,6 +1,6 @@
 import { cookies } from "next/headers"
 import { userAgent, type NextRequest } from "next/server"
-import { SignInAPI } from "@modules/core/presentation/endpoints/auth.endpoints"
+import { SignInAPI } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
 import type { SigninRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SigninResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import axios from "axios"
