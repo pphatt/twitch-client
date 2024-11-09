@@ -58,28 +58,25 @@ export const handleSelectLatestAccessToken = (request: NextRequest) => {
   }
 
   /**
-   * Handle access token retrieval based on access token status:
+   * Handle access token retrieval based on token status:
    *
-   * - Any case of access token expiration or absence requires the access token
-   *   to be retrieved from `set-cookie`, not directly from `cookies`
-   *   because of the refresh token process (fresh token rotation), for the first
-   *   render it is cannot get directly from request.headers.get("set-cookie") so
-   *   have to get it in `set-cookie`.
+   * - In cases where the access token is expired or missing, the new token
+   *   needs to be retrieved from `set-cookie` rather than directly from `cookies`.
+   *   This is due to refresh token rotation (handled in middleware as proxy).
+   * - For the first render, the token will be in `set-cookie` because it may
+   *   not yet be available directly from `cookies` due to middleware handling.
    * - If an initial access token is available, we check if it’s expired.
-   *   If expired, or if no token is initially found, we attempt to retrieve
-   *   the new access token from `set-cookie`.
+   *   If expired, or if no token is found, retrieve a new access token from `set-cookie`.
    */
   if (accessToken) {
     /**
-     * Handle token in two scenarios:
+     * Scenario 1: Access token is available but may be expired.
      *
-     * Scenario 1 (access token expiration):
-     * - The access token exists but is expired, requiring us to check the expiration.
-     * - Token is refreshed (refresh token rotation) (which happened in middleware due to
-     *   using route handler as proxy).
-     * - But first render it will not be available in request.headers.get("set-cookie") so
-     *   have to get it in `set-cookie` headers.
-     * - After the first render, it will be in request.headers.get("set-cookie") again.
+     * - If the access token exists but is expired, it triggers a token refresh.
+     * - Due to refresh token rotation (in middleware), the new token appears in `set-cookie`.
+     * - However, on the first render, it is not yet accessible directly from `request.headers.get("set-cookie")`
+     *   because it has just rotated. Thus, we check `set-cookie` for the updated token.
+     * - After the first render, the access token will become directly available from `cookies`.
      */
     const decoded = jwtDecode(accessToken)
 
@@ -88,22 +85,24 @@ export const handleSelectLatestAccessToken = (request: NextRequest) => {
       newAccessToken = retrieveTokenFromHeader()
     }
 
-    // do comment for this here, it goes by:
-    // if access token available and not expired return it to user
+    /**
+     * If access token is available and not expired, return it to the user
+     * */
   } else {
     /**
-     * Handle token in two scenarios:
+     * Scenario 2: Access token is missing initially.
      *
-     * Scenario 2 (absence access token):
-     * - No access token was initially found in cookies.
-     * - Token is refreshed (refresh token rotation) (which happened in middleware due to
-     *   using route handler as proxy).
-     * - But first render it will not be available in request.headers.get("set-cookie") so
-     *   have to get it in `set-cookie` headers.
-     * - After the first render, it will be in request.headers.get("set-cookie") again.
+     * - When there is no access token initially in `cookies`, we need to retrieve it
+     *   from `set-cookie` due to refresh token rotation.
+     * - This rotation (handled in middleware) places the updated token in `set-cookie`
+     *   rather than `cookies` directly.
+     * - On the first render, the access token may not yet be available from `cookies`.
+     * - After the first render, it will appear directly in `cookies` for subsequent requests.
      */
     newAccessToken = retrieveTokenFromHeader()
   }
+
+  // The reason why refresh does not set the `cookies` directly is still unknown
 
   if (!newAccessToken) {
     return undefined
