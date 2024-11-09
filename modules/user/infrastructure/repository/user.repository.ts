@@ -1,26 +1,26 @@
 import { clearTokens } from "@/utils/auth.utils"
 import {
-  NextRefreshTokenAPI,
   RefreshTokenAPI,
 } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
 import {
-  Auth,
   NextAuth,
 } from "@modules/core/presentation/endpoints/auth/auth.request"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
-import type { SigninRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import type {
+  FormSignInRequestDto
+} from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
-import type { SigninResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
+import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import axios from "axios"
 
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
 
 export const UserRepository: IUserRepository = {
-  async signin(body: SigninRequestDto): Promise<SigninResponseDto> {
+  async signin(body: FormSignInRequestDto): Promise<SignInResponseDto> {
     try {
-      const response = await Auth.signIn(body)
+      const response = await NextAuth.signIn(body)
 
-      const { refreshToken, accessToken } = response.data as SigninResponseDto
+      const { refreshToken, accessToken } = response
 
       return { refreshToken, accessToken }
     } catch (error) {

@@ -1,4 +1,4 @@
-export type SigninResponseDto = {
+export type SignInResponseDto = {
   readonly accessToken: string
   readonly refreshToken: string
 }

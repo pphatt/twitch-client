@@ -1,12 +1,10 @@
 import { cookies } from "next/headers"
 import { userAgent, type NextRequest } from "next/server"
-import { SignInAPI } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
-import type { SigninRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
-import type { SigninResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
-import axios from "axios"
+import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
+import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 
 export async function POST(request: NextRequest) {
-  const json = (await request.json()) as SigninRequestDto
+  const json = (await request.json()) as FormSignInRequestDto
 
   const { username, password } = json
 
@@ -17,9 +15,7 @@ export async function POST(request: NextRequest) {
   // const { device, ua } = userAgent(request)
 
   try {
-    const { data } = await axios.post<{
-      data: SigninResponseDto
-    }>(SignInAPI, {
+    const { data } = await Auth.signIn({
       username,
       password,
       deviceName: "iPhone 13",

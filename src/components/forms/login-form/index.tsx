@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import {
-  SigninRequestDtoSchema,
-  type SigninRequestDto,
+  FormSignInRequestDtoSchema,
+  type FormSignInRequestDto,
 } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -32,7 +32,7 @@ import {
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
 
-type Inputs = SigninRequestDto
+type Inputs = FormSignInRequestDto
 
 export default function LogInForm() {
   const router = useRouter()
@@ -42,7 +42,7 @@ export default function LogInForm() {
   // register, handleSubmit, formState
   // default-values for controlled form
   const form = useForm<Inputs>({
-    resolver: zodResolver(SigninRequestDtoSchema),
+    resolver: zodResolver(FormSignInRequestDtoSchema),
     defaultValues: {
       username: "",
       password: "",
