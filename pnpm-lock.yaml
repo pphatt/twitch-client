@@ -2447,6 +2447,7 @@ packages:
 
   critters@0.0.24:
     resolution: {integrity: sha512-Oyqew0FGM0wYUSNqR0L6AteO5MpMoUU0rhKRieXeiKs+PmRTxiJMyaunYB2KF6fQ3dzChXKCpbFOEJx3OQ1v/Q==}
+    deprecated: Ownership of Critters has moved to the Nuxt team, who will be maintaining the project going forward. If you'd like to keep using Critters, please switch to the actively-maintained fork at https://github.com/danielroe/beasties
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -3086,6 +3087,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -3393,9 +3395,9 @@ packages:
   hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
 
-  hono@4.5.11:
-    resolution: {integrity: sha512-62FcjLPtjAFwISVBUshryl+vbHOjg8rE4uIK/dxyR8GpLztunZpwFmfEvmJCUI7xoGh/Sr3CGCDPCmYxVw7wUQ==}
-    engines: {node: '>=16.0.0'}
+  hono@4.6.9:
+    resolution: {integrity: sha512-p/pN5yZLuZaHzyAOT2nw2/Ud6HhJHYmDNGH6Ck1OWBhPMVeM1r74jbCRwNi0gyFRjjbsGgoHbOyj7mT1PDNbTw==}
+    engines: {node: '>=16.9.0'}
 
   htmlparser2@8.0.2:
     resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==}
@@ -5694,9 +5696,9 @@ snapshots:
 
   '@floating-ui/utils@0.2.7': {}
 
-  '@hono/node-server@1.12.2(hono@4.5.11)':
+  '@hono/node-server@1.12.2(hono@4.6.9)':
     dependencies:
-      hono: 4.5.11
+      hono: 4.6.9
 
   '@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-5d19e1c8-20240923))':
     dependencies:
@@ -5794,14 +5796,14 @@ snapshots:
       '@axiomhq/js': 1.0.0-rc.3
       '@babel/core': 7.24.6
       '@babel/types': 7.24.6
-      '@hono/node-server': 1.12.2(hono@4.5.11)
+      '@hono/node-server': 1.12.2(hono@4.6.9)
       '@million/install': 1.0.11
       '@rollup/pluginutils': 5.1.0
       '@rrweb/types': 2.0.0-alpha.16
       babel-plugin-syntax-hermes-parser: 0.21.1
       ci-info: 4.0.0
       esbuild: 0.20.2
-      hono: 4.5.11
+      hono: 4.6.9
       isomorphic-fetch: 3.0.0
       nanoid: 5.0.7
       pako: 2.1.0
@@ -8653,7 +8655,7 @@ snapshots:
     dependencies:
       react-is: 16.13.1
 
-  hono@4.5.11: {}
+  hono@4.6.9: {}
 
   htmlparser2@8.0.2:
     dependencies:
