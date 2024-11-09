@@ -1,55 +1,129 @@
+import * as DialogPrimitive from "@radix-ui/react-dialog"
 import styled from "styled-components"
 
-import { DialogContent } from "@/components/ui/dialog"
+import { DialogPrimitiveContent } from "@/components/ui/dialog/style"
 
-export const LoginModalWrapper = styled(DialogContent)`
+export const LoginModalWrapper = styled(DialogPrimitiveContent)`
   display: flex !important;
-  justify-content: center;
-  align-items: center;
-  gap: 0 !important;
+  align-content: flex-start;
+  flex-direction: column;
 
-  background-color: hsl(var(--background)) !important;
+  gap: 1.75rem !important;
 
-  max-width: 100% !important;
-  width: 100% !important;
+  width: 100vw;
+  max-height: 100vh;
+  height: 100vh;
 
-  border: 0 solid transparent !important;
-  border-radius: var(--radius) !important;
+  border: 0 !important;
 
-  padding: 0 !important;
+  padding: 0.5rem 1rem 1.25rem;
 
-  @media (min-width: 768px) {
-    width: 768px !important;
-    height: 832px !important;
+  overflow: hidden;
+
+  animation-duration: 0.2s !important;
+
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
+
+  @supports (max-height: 100dvh) {
+    max-height: 100dvh;
+  }
+
+  @supports (width: 100dvw) {
+    width: 100dvw;
   }
 
   @media (min-width: 1024px) {
-    width: 1006px !important;
+    max-width: 500px;
+    width: 500px;
+    max-height: 90vh;
+    height: auto;
+
+    padding: 1.5rem;
   }
 
-  @media (min-width: 1280px) {
-    width: 1060px !important;
+  @supports (height: 100dvh) {
+    @media (min-width: 1024px) {
+      max-height: 90dvh;
+
+      border-radius: 0.25rem;
+    }
   }
 `
 
-export const LoginModalContainer = styled.div`
+export const ModalHeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.375rem;
+
+  color: #fff;
+
+  text-align: left;
+`
+
+export const ModalHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+export const DialogClose = styled(DialogPrimitive.Close)`
   position: relative;
 
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
 
-  width: 100%;
-  max-height: 100dvh;
-  height: 100%;
+  gap: 0.5rem;
 
-  @media (min-width: 768px) {
-    height: 832px;
+  color: rgb(255 255 255);
+  background-color: transparent;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  border-radius: 0.25rem;
+
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 600;
+
+  white-space: nowrap;
+  user-select: none;
+
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.15s;
+
+  box-shadow:
+    0 0 #0000,
+    0 0 #0000,
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+
+  svg {
+    width: 1rem;
+    height: 1rem;
   }
 
-  @media (min-width: 1024px) {
-    width: 24rem;
+  span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
-  @media (min-width: 1280px) {
-    width: 440px;
+  &:hover {
+    background-color: rgba(83, 83, 95, 0.48);
+
+    opacity: 1;
   }
 `

@@ -37,5 +37,5 @@ export const Auth = {
 export const NextAuth = {
   signIn: async (body: FormSignInRequestDto): Promise<SignInResponseDto> =>
     axios.post(NextSignInAPI, body),
-  logout: async () => axios.get(NextLogoutAPI),
+  logout: async () => axios.post(NextLogoutAPI),
 }

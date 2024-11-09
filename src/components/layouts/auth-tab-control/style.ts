@@ -1,70 +1,63 @@
 import styled from "styled-components"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export const AuthFormLayout = styled(Card)`
-  display: flex;
-  flex-direction: column;
-
-  background-color: hsl(var(--background));
-
-  width: 100%;
-
-  border: 0;
-  border-radius: var(--radius);
-
-  padding: 30px;
-
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`
-
-export const ModalHeaderWrapper = styled(CardHeader)`
-  color: #fff;
-
-  padding: 0;
-  margin-top: 5px;
-  margin-bottom: 2.5rem;
-`
-
-export const ModalHeaderContainer = styled(CardTitle)`
+export const TabControlWrapper = styled(TabsList)`
   position: relative;
 
-  font-size: 1.3rem;
-  line-height: 1;
-  font-weight: 600;
-
-  letter-spacing: -0.025em;
-`
-
-export const TabControlWrapper = styled(TabsList)`
   justify-content: flex-start;
-  gap: 1rem;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 2rem;
 
   color: initial;
   background-color: transparent;
 
+  width: calc(100% - 0.75rem);
+  height: 2.75rem !important;
+
+  border-radius: 0 !important;
+
   padding: 0;
+
+  //box-shadow:
+  //  0 0 #0000,
+  //  0 0 #0000,
+  //  inset 0 -2px 0 #393b40;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: #393b40;
+    z-index: -1;
+  }
 `
 
 export const TabControl = styled(TabsTrigger)`
+  position: relative;
+
+  align-items: center;
   align-self: center;
 
   height: 100%;
 
   border-radius: 0;
+  border-bottom-width: 2px !important;
+  border-bottom-color: transparent;
 
-  padding: 0.5rem 0;
+  padding: 0;
 
   font-size: 1rem;
+  line-height: 1.5rem;
 
   cursor: pointer;
 
   font-weight: 700;
+  white-space: nowrap;
 
   transition: none;
 
@@ -72,14 +65,22 @@ export const TabControl = styled(TabsTrigger)`
     color: initial;
     background-color: transparent;
 
-    border-bottom: 2px solid hsl(var(--color-twitch-orange-11));
+    border-bottom: solid hsl(var(--color-twitch-orange-11));
   }
 `
 
 export const FormLayoutWrapper = styled(TabsContent)`
-  margin: 2.5rem 0 0;
+  height: 100%;
+  padding-right: 0.5rem;
+  margin: 1.75rem 0 0 0;
+
+  overflow-y: scroll;
 `
 
-export const FormLayoutContainer = styled(CardContent)`
-  padding: 0;
+export const FormLayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  height: 100%;
 `

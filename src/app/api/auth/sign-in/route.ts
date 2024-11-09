@@ -8,20 +8,22 @@ export async function POST(request: NextRequest) {
 
   const { username, password } = json
 
-  // const ipAddress = (
-  //   request.headers.get("x-forwarded-for") ?? "127.0.0.1"
-  // ).split(",")[0]
+  const ipAddress =
+    (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(",")[0] ??
+    "127.0.0.1"
 
-  // const { device, ua } = userAgent(request)
+  const { device, ua } = userAgent(request)
+
+  const deviceType = device.type === "mobile" ? "MOBILE" : "DESKTOP"
 
   try {
     const { data } = await Auth.signIn({
       username,
       password,
       deviceName: "iPhone 13",
-      userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 15_2 like Mac OS X)",
-      ipAddress: "192.168.1.1",
-      deviceType: "MOBILE",
+      userAgent: ua,
+      ipAddress: ipAddress,
+      deviceType: deviceType,
     })
 
     const { refreshToken, accessToken } = data.data

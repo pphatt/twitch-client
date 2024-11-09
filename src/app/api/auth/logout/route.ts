@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server"
 import { handleSelectLatestAccessToken } from "@/utils/auth.utils"
 import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   const accessToken = handleSelectLatestAccessToken(request)
 
   if (!accessToken) {
