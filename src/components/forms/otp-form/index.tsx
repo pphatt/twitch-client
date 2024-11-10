@@ -29,13 +29,16 @@ import {
 type Inputs = FormOtpRequestDto
 
 interface OtpFormProps {
-  username: string
+  userData: {
+    username: string
+    email: string
+  }
   back: () => void
   redirectToSignIn: () => void
 }
 
 export default function OtpForm({
-  username,
+  userData,
   back,
   redirectToSignIn,
 }: OtpFormProps) {
@@ -57,7 +60,7 @@ export default function OtpForm({
       try {
         await UserRepository.confirmEmail({
           otp: data.otp,
-          username,
+          username: userData.username,
         })
 
         toast.success("Verify email successfully", {
@@ -112,7 +115,7 @@ export default function OtpForm({
           )}
         />
 
-        <ResendOtpBtn />
+        <ResendOtpBtn email={userData.email} />
 
         <SubmitLayoutWrapper>
           <NormalBtn type={"button"} onClick={back}>

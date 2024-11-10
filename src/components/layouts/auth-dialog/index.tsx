@@ -79,7 +79,10 @@ export default function AuthDialog({ children, currentTab }: AuthDialogProps) {
               </VerificationCodeDescriptionText>
 
               <OtpForm
-                username={renderOtp.username}
+                userData={{
+                  username: renderOtp.username,
+                  email: renderOtp.email,
+                }}
                 back={() => setRenderOtp(DEFAULT_OTP_STATE)}
                 redirectToSignIn={() => setTab("log-in")}
               />

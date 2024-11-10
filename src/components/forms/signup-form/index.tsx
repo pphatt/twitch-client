@@ -225,7 +225,7 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
             }
           >
             {isPending && <IconSpinner aria-hidden="true" />}
-            Sign Up
+            Sign up
           </SubmitBtn>
         </SubmitLayoutWrapper>
       </FormLayoutContainer>

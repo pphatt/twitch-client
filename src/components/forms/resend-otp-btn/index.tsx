@@ -13,10 +13,10 @@ import {
 const DEFAULT_COUNT_DOWN_TIME = 30
 
 interface ResendOtpButtonProps {
-  username: string
+  email: string
 }
 
-export default function ResendOtpBtn({ username }: ResendOtpButtonProps) {
+export default function ResendOtpBtn({ email }: ResendOtpButtonProps) {
   const [time, setTime] = React.useState<number>(DEFAULT_COUNT_DOWN_TIME)
   const [click, setClick] = React.useState<boolean>(false)
   const [isPending, startTransition] = React.useTransition()
@@ -39,10 +39,8 @@ export default function ResendOtpBtn({ username }: ResendOtpButtonProps) {
   const handleResendOtp = () => {
     startTransition(async () => {
       try {
-        setClick(true)
-
         await Auth.resendConfirmEmail({
-          name: username,
+          email,
         })
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
@@ -60,7 +58,10 @@ export default function ResendOtpBtn({ username }: ResendOtpButtonProps) {
   return (
     <ResendEmailConfirmWrapper>
       <ResendEmailConfirmButton
-        onClick={handleResendOtp}
+        onClick={() => {
+          setClick(true)
+          handleResendOtp()
+        }}
         disabled={click}
         type={"button"}
       >
