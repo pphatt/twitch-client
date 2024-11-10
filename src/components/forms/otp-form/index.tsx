@@ -102,12 +102,12 @@ export default function OtpForm({
               <FormControl>
                 <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS} {...field}>
                   <OTPContainer>
-                    <OTPSlot $error={form.formState.errors.otp} index={0} />
-                    <OTPSlot $error={form.formState.errors.otp} index={1} />
-                    <OTPSlot $error={form.formState.errors.otp} index={2} />
-                    <OTPSlot $error={form.formState.errors.otp} index={3} />
-                    <OTPSlot $error={form.formState.errors.otp} index={4} />
-                    <OTPSlot $error={form.formState.errors.otp} index={5} />
+                    <OTPSlot $error={!!form.formState.errors.otp} index={0} />
+                    <OTPSlot $error={!!form.formState.errors.otp} index={1} />
+                    <OTPSlot $error={!!form.formState.errors.otp} index={2} />
+                    <OTPSlot $error={!!form.formState.errors.otp} index={3} />
+                    <OTPSlot $error={!!form.formState.errors.otp} index={4} />
+                    <OTPSlot $error={!!form.formState.errors.otp} index={5} />
                   </OTPContainer>
                 </InputOTP>
               </FormControl>

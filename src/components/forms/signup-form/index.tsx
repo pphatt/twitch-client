@@ -114,7 +114,7 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
               <FormContentInputWrapper>
                 <FormControl>
                   <Input
-                    $error={form.formState.errors.name}
+                    $error={!!form.formState.errors.name}
                     {...field}
                     placeholder="Username"
                   />
@@ -140,7 +140,7 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
               <FormContentInputWrapper>
                 <FormControl>
                   <Input
-                    $error={form.formState.errors.email}
+                    $error={!!form.formState.errors.email}
                     {...field}
                     placeholder="Email"
                   />
@@ -166,7 +166,7 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
               <FormContentInputWrapper>
                 <FormControl>
                   <PasswordInput
-                    $error={form.formState.errors.password}
+                    $error={!!form.formState.errors.password}
                     placeholder="**********"
                     {...field}
                   />
@@ -191,7 +191,7 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
 
               <FormContentInputWrapper>
                 <FormControl>
-                  <DobInput $error={form.formState.errors.dob} {...field} />
+                  <DobInput $error={!!form.formState.errors.dob} {...field} />
                 </FormControl>
               </FormContentInputWrapper>
 

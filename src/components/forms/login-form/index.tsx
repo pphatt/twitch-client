@@ -95,7 +95,7 @@ export default function LogInForm() {
               <FormContentInputWrapper>
                 <FormControl>
                   <Input
-                    $error={form.formState.errors.username}
+                    $error={!!form.formState.errors.username}
                     {...field}
                     placeholder="Username"
                   />
@@ -121,7 +121,7 @@ export default function LogInForm() {
               <FormContentInputWrapper>
                 <FormControl>
                   <PasswordInput
-                    $error={form.formState.errors.password}
+                    $error={!!form.formState.errors.password}
                     placeholder="**********"
                     {...field}
                   />
