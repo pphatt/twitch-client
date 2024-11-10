@@ -41,7 +41,7 @@ export const UserRepository: IUserRepository = {
     body: RefreshTokenRequestDto
   ): Promise<RefreshTokenResponseDto> {
     try {
-      const response = await axios.post(RefreshTokenAPI, body)
+      const response = await Auth.refreshToken(body)
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
         response.data as RefreshTokenResponseDto
