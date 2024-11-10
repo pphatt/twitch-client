@@ -1,20 +1,26 @@
 import * as React from "react"
 
-import type { InputProps } from "@/components/ui/input"
 import {
+  InputWrapper as Input,
   Layout,
-} from "@/components/forms/password-input/style"
+} from "@/components/forms/dob-input/style"
 
-const DobInput = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, ...props }, ref) => {
+interface DobInputProps {
+  $error?: boolean
+  onChange: (...event: unknown[]) => void
+}
 
-    return (
-      <Layout>
-
-      </Layout>
-    )
-  }
-)
-DobInput.displayName = "DobInput"
+const DobInput = ({ onChange, $error, ...props }: DobInputProps) => {
+  return (
+    <Layout>
+      <Input
+        $error={$error}
+        type={"date"}
+        onChange={(e) => onChange(e.target.value)}
+        {...props}
+      />
+    </Layout>
+  )
+}
 
 export { DobInput }

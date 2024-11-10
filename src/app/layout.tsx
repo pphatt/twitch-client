@@ -1,3 +1,4 @@
+import "@/styles/vendors/otp-input.scss"
 import "@/styles/vendors/react-mosaic-component.scss"
 import "@/styles/vendors/simple-bar.scss"
 import "@/styles/vendors/stream-manager.scss"

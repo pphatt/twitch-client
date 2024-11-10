@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { DialogPrimitiveContent } from "@/components/ui/dialog/style"
 
-export const LoginModalWrapper = styled(DialogPrimitiveContent)`
+export const ModalWrapper = styled(DialogPrimitiveContent)`
   display: flex !important;
   align-content: flex-start;
   flex-direction: column;
@@ -126,4 +126,10 @@ export const DialogClose = styled(DialogPrimitive.Close)`
 
     opacity: 1;
   }
+`
+
+export const VerificationCodeDescriptionText = styled.p``
+
+export const VerificationCodeDescriptionEmail = styled.span`
+  font-weight: 600;
 `

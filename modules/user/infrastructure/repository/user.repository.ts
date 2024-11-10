@@ -1,14 +1,13 @@
 import { clearTokens } from "@/utils/auth.utils"
+import { RefreshTokenAPI } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
 import {
-  RefreshTokenAPI,
-} from "@modules/core/presentation/endpoints/auth/auth.endpoints"
-import {
+  Auth,
   NextAuth,
 } from "@modules/core/presentation/endpoints/auth/auth.request"
+import { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
-import type {
-  FormSignInRequestDto
-} from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import axios from "axios"
@@ -16,6 +15,16 @@ import axios from "axios"
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
 
 export const UserRepository: IUserRepository = {
+  async signupWithEmail(body: SignUpRequestDto): Promise<{ status: number }> {
+    try {
+      const { status } = await Auth.signUpWithEmail(body)
+      return { status }
+    } catch (error) {
+      console.log(error)
+      return Promise.reject(error)
+    }
+  },
+
   async signin(body: FormSignInRequestDto): Promise<SignInResponseDto> {
     try {
       const response = await NextAuth.signIn(body)
@@ -24,31 +33,8 @@ export const UserRepository: IUserRepository = {
 
       return { refreshToken, accessToken }
     } catch (error) {
-      throw new Error("Something went wrong. Try again!!!")
-    }
-  },
-
-  async signup(): Promise<void> {
-    return Promise.resolve(undefined)
-  },
-
-  async logout(): Promise<void> {
-    try {
-      await NextAuth.logout()
-      clearTokens()
-      return Promise.resolve()
-    } catch (error) {
-      console.log(error)
       return Promise.reject(error)
     }
-  },
-
-  async forgotPassword(): Promise<void> {
-    return Promise.resolve(undefined)
-  },
-
-  async resetPassword(): Promise<void> {
-    return Promise.resolve(undefined)
   },
 
   async refreshToken(
@@ -63,8 +49,36 @@ export const UserRepository: IUserRepository = {
       return { accessToken: newAccessToken, refreshToken: newRefreshToken }
     } catch (error) {
       console.log(error)
-      throw new Error("Unable to refresh token")
+      return Promise.reject(error)
     }
+  },
+
+  async confirmEmail(body: OtpRequestDto) {
+    try {
+      await Auth.confirmEmail(body)
+    } catch (error) {
+      console.log(error)
+      return Promise.reject(error)
+    }
+  },
+
+  async logout(): Promise<void> {
+    try {
+      await NextAuth.logout()
+      clearTokens()
+      return Promise.resolve()
+    } catch (error) {
+      console.log(error)
+      return Promise.reject(error)
+    }
+  },
+
+  async forgotPassword(): Promise<void> {
+    return Promise.resolve()
+  },
+
+  async resetPassword(): Promise<void> {
+    return Promise.resolve()
   },
 
   async profile(): Promise<void> {

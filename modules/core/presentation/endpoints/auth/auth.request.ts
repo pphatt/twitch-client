@@ -8,15 +8,18 @@ import {
   SignUpWithEmailAPI,
   SignUpWithPhoneAPI,
 } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
+import { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type {
   FormSignInRequestDto,
   SignInRequestDto,
 } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
 
 export const Auth = {
-  signUpWithEmail: async (body) => axios.post(SignUpWithEmailAPI),
+  signUpWithEmail: async (body: SignUpRequestDto) =>
+    axios.post(SignUpWithEmailAPI, body),
   signUpWithPhone: async (body) => axios.post(SignUpWithPhoneAPI),
   signIn: async (
     body: SignInRequestDto
@@ -24,7 +27,8 @@ export const Auth = {
     axios.post(SignInAPI, body),
   refreshToken: async (body) => axios.post(NextRefreshTokenAPI),
   toggle2FA: async () => axios.post(""),
-  confirmEmail: async () => axios.post(ConfirmEmailAPI),
+  confirmEmail: async (body: OtpRequestDto) =>
+    axios.post(ConfirmEmailAPI, body),
   resendConfirmEmail: async () => axios.post(""),
   forgotPassword: async () => axios.post(""),
   resetPassword: async (token: string) => axios.post(""),

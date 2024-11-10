@@ -5,8 +5,9 @@ import type { InputProps } from "@/components/ui/input/index"
 const InputDefaultVariant = css`
   background-color: hsl(var(--background));
 
-  border-color: hsl(var(--input));
   border-width: 1px;
+  border-style: solid;
+  border-color: rgba(73, 77, 85);
   border-radius: calc(0.5rem - 2px);
 
   &:focus-visible {
@@ -55,6 +56,10 @@ export const InputWrapper = styled.input<InputProps>`
 
   padding: 0.5rem 0.75rem;
 
+  &:hover {
+    border-color: rgba(170, 176, 182);
+  }
+
   &[type="file"] {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -69,5 +74,16 @@ export const InputWrapper = styled.input<InputProps>`
 
       font-weight: 600;
     }
+  }
+`
+
+export const errorCss = css`
+  border-color: rgba(233, 17, 60);
+
+  box-shadow: inset 0 0 0 1px rgba(233, 17, 60);
+
+  &:hover {
+    border-color: rgba(233, 17, 60);
+    box-shadow: inset 0 0 0 1px rgba(233, 17, 60);
   }
 `

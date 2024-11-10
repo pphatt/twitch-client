@@ -10,6 +10,10 @@ export interface InputSize {
   $size?: "default" | "dashboard" | "custom"
 }
 
+export interface InputError {
+  $error?: boolean
+}
+
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     InputVariants,

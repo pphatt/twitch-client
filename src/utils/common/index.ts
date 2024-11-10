@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker"
+import axios from "axios"
 import classNames, { type ArgumentArray } from "classnames"
 
 import type { IFollowChannelsData, MainNavItem } from "@/types/common"
@@ -192,3 +193,72 @@ export const getRandomStuffRelatedToFood = () => {
 
   return randomMessage
 }
+
+export const axiosHttpErrorHandler = (error: unknown) => {
+  if (error === null) {
+    return {
+      code: "not_axios_error",
+      description: "Error is not from http request!",
+      error: true,
+      errors: [],
+      status: 500,
+    }
+  }
+
+  if (axios.isAxiosError(error)) {
+    const response = error?.response;
+    const request = error?.request;
+
+    let code = "unknown_error";
+    let description = "An unknown error occurred.";
+    let status = 500;
+    const errors = [];
+    let message = error.message; // Default to the general error message from Axios
+
+    if (error.code === "ERR_NETWORK") {
+      code = "network_error";
+      description = "Connection problems.";
+      message = description;
+      status = 503;
+    } else if (error.code === "ERR_CANCELED") {
+      code = "request_canceled";
+      description = "Connection canceled.";
+      message = description;
+      status = 499;
+    }
+
+    if (response) {
+      status = response.status;
+      code = response.status === 400 || response.status === 422 ? "invalid_data" : code;
+      code = response.status === 401 ? "invalid_token" : code;
+      code = response.status === 403 ? "permission_denied" : code;
+      code = response.status === 500 ? "server_error" : code;
+      description = response.statusText || description;
+      message = response.data?.message || message; // Pull the message from response data if available
+    } else if (request) {
+      code = "no_response";
+      description = "The request was made, but no response was received.";
+      message = description;
+      status = 408;
+    }
+
+    return {
+      code,
+      description,
+      error: true,
+      errors,
+      status,
+      message
+    };
+  }
+
+  // General error case
+  return {
+    code: "general_error",
+    description: error instanceof Error ? error.message : "Unknown error",
+    error: true,
+    errors: [],
+    status: 500,
+    message: error instanceof Error ? error.message : "Unknown error"
+  };
+};

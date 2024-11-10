@@ -94,7 +94,11 @@ export default function LogInForm() {
 
               <FormContentInputWrapper>
                 <FormControl>
-                  <Input {...field} placeholder="Username" />
+                  <Input
+                    $error={form.formState.errors.username}
+                    {...field}
+                    placeholder="Username"
+                  />
                 </FormControl>
               </FormContentInputWrapper>
 
@@ -116,7 +120,11 @@ export default function LogInForm() {
 
               <FormContentInputWrapper>
                 <FormControl>
-                  <PasswordInput placeholder="**********" {...field} />
+                  <PasswordInput
+                    $error={form.formState.errors.password}
+                    placeholder="**********"
+                    {...field}
+                  />
                 </FormControl>
               </FormContentInputWrapper>
 

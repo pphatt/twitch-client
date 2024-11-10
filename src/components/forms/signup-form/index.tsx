@@ -1,15 +1,17 @@
 import * as React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { sleep } from "@/utils/common"
+import { axiosHttpErrorHandler } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import {
-  SignupRequestDtoSchema,
-  type SignupRequestDto,
+  SignUpRequestDtoSchema,
+  type SignUpRequestDto,
 } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 import { Form, FormControl, FormField } from "@/components/ui/form"
+import { DobInput } from "@/components/forms/dob-input"
 import {
   SubmitLayoutWrapper,
   TermLayoutWrapper,
@@ -29,24 +31,26 @@ import {
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
 
-type Inputs = SignupRequestDto
+type Inputs = SignUpRequestDto
 
 interface SignUpFormProps {
-  redirectToLogin: () => void
+  setRenderOtp: React.Dispatch<
+    React.SetStateAction<{ initial: boolean; email: string; username: string }>
+  >
 }
 
-export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
-  const router = useRouter()
+export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
   const [isPending, startTransition] = React.useTransition()
 
   // register, handleSubmit, formState
   // default-values for controlled form
   const form = useForm<Inputs>({
-    resolver: zodResolver(SignupRequestDtoSchema),
+    resolver: zodResolver(SignUpRequestDtoSchema),
     defaultValues: {
-      username: "",
+      name: "",
       email: "",
       password: "",
+      dob: "",
     },
   })
 
@@ -55,13 +59,38 @@ export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
 
     startTransition(async () => {
       try {
-        console.log(data)
-        console.log(router)
-        await sleep(1000)
-        redirectToLogin()
+        const res = await UserRepository.signupWithEmail({
+          ...data,
+          dob: new Date(data.dob).toISOString(),
+        })
+
+        if (res.status === 201) {
+          setRenderOtp({
+            initial: true,
+            email: data.email,
+            username: data.name,
+          })
+
+          toast.success("Sign up successfully", {
+            duration: 10000,
+            position: "top-right",
+          })
+        }
       } catch (err) {
         // catchError(err)
-        console.error(err)
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        console.log(error)
+
+        // set up error display
+        // form.setError("otp", {
+        //   message: "Invalid otp",
+        // })
       }
     })
   }
@@ -73,7 +102,7 @@ export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
       >
         <FormField
           control={form.control}
-          name="username"
+          name="name"
           render={({ field }) => (
             <FormItem>
               <FormContentLabelWrapper>
@@ -84,7 +113,11 @@ export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
 
               <FormContentInputWrapper>
                 <FormControl>
-                  <Input {...field} placeholder="Username" />
+                  <Input
+                    $error={form.formState.errors.name}
+                    {...field}
+                    placeholder="Username"
+                  />
                 </FormControl>
               </FormContentInputWrapper>
 
@@ -106,7 +139,11 @@ export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
 
               <FormContentInputWrapper>
                 <FormControl>
-                  <Input {...field} placeholder="Email" />
+                  <Input
+                    $error={form.formState.errors.email}
+                    {...field}
+                    placeholder="Email"
+                  />
                 </FormControl>
               </FormContentInputWrapper>
 
@@ -128,7 +165,33 @@ export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
 
               <FormContentInputWrapper>
                 <FormControl>
-                  <PasswordInput placeholder="**********" {...field} />
+                  <PasswordInput
+                    $error={form.formState.errors.password}
+                    placeholder="**********"
+                    {...field}
+                  />
+                </FormControl>
+              </FormContentInputWrapper>
+
+              <FormMessageWrapper />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="dob"
+          render={({ field: { ...field } }) => (
+            <FormItem>
+              <FormContentLabelWrapper>
+                <FormContentLabelContainer>
+                  <FormLabel>Date of birth</FormLabel>
+                </FormContentLabelContainer>
+              </FormContentLabelWrapper>
+
+              <FormContentInputWrapper>
+                <FormControl>
+                  <DobInput $error={form.formState.errors.dob} {...field} />
                 </FormControl>
               </FormContentInputWrapper>
 
@@ -153,8 +216,12 @@ export default function SignUpForm({ redirectToLogin }: SignUpFormProps) {
           <SubmitBtn
             type={"submit"}
             disabled={
-              !(form.getValues("username") && form.getValues("password")) ||
-              isPending
+              !(
+                form.getValues("name") &&
+                form.getValues("password") &&
+                form.getValues("email") &&
+                form.getValues("dob")
+              ) || isPending
             }
           >
             {isPending && <IconSpinner aria-hidden="true" />}

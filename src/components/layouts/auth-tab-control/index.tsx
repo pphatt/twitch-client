@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 
 import { Tabs } from "@/components/ui/tabs"
@@ -11,13 +9,18 @@ import {
   TabControl,
   TabControlWrapper,
 } from "@/components/layouts/auth-tab-control/style"
-import SimpleBar from "@/components/simplebar"
 
 interface AuthTabControlProps {
   currentTab: "log-in" | "sign-up"
+  setRenderOtp: React.Dispatch<
+    React.SetStateAction<{ initial: boolean; email: string, username: string }>
+  >
 }
 
-export default function AuthTabControl({ currentTab }: AuthTabControlProps) {
+export default function AuthTabControl({
+  currentTab,
+  setRenderOtp,
+}: AuthTabControlProps) {
   const [tab, setTab] = React.useState<string>(currentTab)
 
   return (
@@ -46,7 +49,7 @@ export default function AuthTabControl({ currentTab }: AuthTabControlProps) {
 
       <FormLayoutWrapper value="sign-up">
         <FormLayoutContainer>
-          <SignUpForm redirectToLogin={() => setTab("log-in")} />
+          <SignUpForm setRenderOtp={setRenderOtp} />
         </FormLayoutContainer>
       </FormLayoutWrapper>
     </Tabs>

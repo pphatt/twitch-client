@@ -10,7 +10,7 @@ export const FormItemWrapper = styled.div`
 export const FormLabelWrapper = styled(Index).attrs<{
   $error: FieldError | undefined
 }>({})`
-  color: ${(props) => props.$error && "hsl(0 62.8% 30.6%)"};
+  color: ${(props) => props.$error && "rgba(242, 112, 138)"} !important;
 `
 
 export const FormDescriptionWrapper = styled.p`
@@ -21,7 +21,7 @@ export const FormDescriptionWrapper = styled.p`
 `
 
 export const FormMessageWrapper = styled.p`
-  color: hsl(0 62.8% 30.6%);
+  color: rgba(242, 112, 138);
 
   font-size: 0.875rem;
   line-height: 1.25rem;

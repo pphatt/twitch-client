@@ -2,7 +2,8 @@ import styled, { css } from "styled-components"
 
 import { Button } from "@/components/ui/button"
 import { FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { Input, InputError } from "@/components/ui/input"
+import { errorCss } from "@/components/ui/input/style"
 import { PasswordInput } from "@/components/forms/password-input"
 import { Icons } from "@/components/icons"
 import { spinKeyframes } from "@/styles/abstract/_mixins"
@@ -53,7 +54,7 @@ const shareInputCss = css`
   max-width: 100%;
   height: 40px;
 
-  border: transparent;
+  //border: transparent;
   border-radius: var(--radius);
 
   appearance: none;
@@ -80,21 +81,42 @@ const shareInputCss = css`
   }
 `
 
-export const FormContentInput = styled(Input)`
+export const FormContentInput = styled(Input)<InputError>`
   ${shareInputCss}
+
+  ${({ $error }) => $error && errorCss};
 `
 
-export const FormPasswordInput = styled(PasswordInput)`
+export const FormPasswordInput = styled(PasswordInput)<InputError>`
   ${shareInputCss}
+
+  ${({ $error }) => $error && errorCss};
 `
 
 export const FormMessageWrapper = styled(FormMessage)`
   margin-top: 8px;
 `
 
-export const SubmitBtn = styled(Button)`
+export const NormalBtn = styled(Button)`
   color: hsl(var(--foreground-alt-2));
   background-color: rgba(83, 83, 95, 0.38);
+
+  max-width: 100%;
+  height: 30px;
+
+  padding: 5px 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  &:not([disabled]):hover:hover {
+    background-color: rgba(83, 83, 95, 0.38);
+  }
+`
+
+export const SubmitBtn = styled(Button)`
+  color: #fff;
+  background-color: hsl(var(--color-twitch-orange-11));
 
   max-width: 100%;
   width: 100%;
@@ -102,8 +124,21 @@ export const SubmitBtn = styled(Button)`
 
   padding: 5px 8px;
 
-  &:not([disabled]):hover:hover {
+  font-size: 13px;
+  font-weight: 600;
+
+  &:disabled {
+    color: hsl(var(--foreground-alt-2));
+
     background-color: rgba(83, 83, 95, 0.38);
+
+    &:hover {
+      background-color: rgba(83, 83, 95, 0.38);
+    }
+  }
+
+  &:not([disabled]):hover:hover {
+    background-color: hsl(var(--color-twitch-orange-12));
   }
 `
 
