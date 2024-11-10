@@ -15,12 +15,9 @@ import { InputOTP } from "@/components/ui/otp-input"
 import {
   OTPContainer,
   OTPSlot,
-  ResendEmailConfirmButton,
-  ResendEmailConfirmButtonContainer,
-  ResendEmailConfirmButtonText,
-  ResendEmailConfirmWrapper,
   SubmitLayoutWrapper,
 } from "@/components/forms/otp-form/style"
+import ResendOtpBtn from "@/components/forms/resend-otp-btn"
 import {
   FormContentInputWrapper,
   FormLayoutContainer,
@@ -115,18 +112,12 @@ export default function OtpForm({
           )}
         />
 
-        <ResendEmailConfirmWrapper>
-          <ResendEmailConfirmButton>
-            <ResendEmailConfirmButtonContainer>
-              <ResendEmailConfirmButtonText>
-                Resend code
-              </ResendEmailConfirmButtonText>
-            </ResendEmailConfirmButtonContainer>
-          </ResendEmailConfirmButton>
-        </ResendEmailConfirmWrapper>
+        <ResendOtpBtn />
 
         <SubmitLayoutWrapper>
-          <NormalBtn onClick={back}>Back</NormalBtn>
+          <NormalBtn type={"button"} onClick={back}>
+            Back
+          </NormalBtn>
 
           <SubmitBtn
             type={"submit"}

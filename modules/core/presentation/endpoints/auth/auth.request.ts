@@ -4,11 +4,13 @@ import {
   NextLogoutAPI,
   NextRefreshTokenAPI,
   NextSignInAPI,
+  ResendConfirmEmailAPI,
   SignInAPI,
   SignUpWithEmailAPI,
   SignUpWithPhoneAPI,
 } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
 import { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
+import { ResendOtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/resend-otp.request.dto"
 import type {
   FormSignInRequestDto,
   SignInRequestDto,
@@ -29,7 +31,8 @@ export const Auth = {
   toggle2FA: async () => axios.post(""),
   confirmEmail: async (body: OtpRequestDto) =>
     axios.post(ConfirmEmailAPI, body),
-  resendConfirmEmail: async () => axios.post(""),
+  resendConfirmEmail: async (body: ResendOtpRequestDto) =>
+    axios.post(ResendConfirmEmailAPI, body),
   forgotPassword: async () => axios.post(""),
   resetPassword: async (token: string) => axios.post(""),
   logoutFromAllDevice: async () => axios.post(""),
