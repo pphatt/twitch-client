@@ -1,6 +1,7 @@
 import * as React from "react"
-import { axiosHttpErrorHandler } from "@/utils/common"
+import { axiosHttpErrorHandler, sleep } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import {
   FormOtpRequestDtoSchema,
@@ -9,6 +10,7 @@ import {
 import { REGEXP_ONLY_DIGITS } from "input-otp"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
+import ResendOtpBtn from "src/components/forms/btn-with-cooldown"
 
 import { Form, FormControl, FormField } from "@/components/ui/form"
 import { InputOTP } from "@/components/ui/otp-input"
@@ -17,7 +19,6 @@ import {
   OTPSlot,
   SubmitLayoutWrapper,
 } from "@/components/forms/otp-form/style"
-import ResendOtpBtn from "@/components/forms/resend-otp-btn"
 import {
   FormContentInputWrapper,
   FormLayoutContainer,
@@ -48,6 +49,7 @@ export default function OtpForm({
   // default-values for controlled form
   const form = useForm<Inputs>({
     resolver: zodResolver(FormOtpRequestDtoSchema),
+    mode: "onChange",
     defaultValues: {
       otp: "",
     },
@@ -89,6 +91,31 @@ export default function OtpForm({
     })
   }
 
+  const handleResendOtp = async () => {
+    try {
+      await Auth.resendConfirmEmail({
+        email: userData.email,
+      })
+
+      toast.success("Resend email verification successfully", {
+        duration: 10000,
+        position: "top-right",
+      })
+    } catch (err) {
+      const error = axiosHttpErrorHandler(err)
+
+      toast.error(error.message, {
+        duration: 10000,
+        position: "top-right",
+      })
+
+      console.log(error)
+    }
+  }
+
+  const otpSlotError =
+    !!form.formState.errors.otp && form.getValues("otp").length === 6
+
   return (
     <Form {...form}>
       <FormLayoutContainer
@@ -102,12 +129,12 @@ export default function OtpForm({
               <FormControl>
                 <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS} {...field}>
                   <OTPContainer>
-                    <OTPSlot $error={!!form.formState.errors.otp} index={0} />
-                    <OTPSlot $error={!!form.formState.errors.otp} index={1} />
-                    <OTPSlot $error={!!form.formState.errors.otp} index={2} />
-                    <OTPSlot $error={!!form.formState.errors.otp} index={3} />
-                    <OTPSlot $error={!!form.formState.errors.otp} index={4} />
-                    <OTPSlot $error={!!form.formState.errors.otp} index={5} />
+                    <OTPSlot $error={otpSlotError} index={0} />
+                    <OTPSlot $error={otpSlotError} index={1} />
+                    <OTPSlot $error={otpSlotError} index={2} />
+                    <OTPSlot $error={otpSlotError} index={3} />
+                    <OTPSlot $error={otpSlotError} index={4} />
+                    <OTPSlot $error={otpSlotError} index={5} />
                   </OTPContainer>
                 </InputOTP>
               </FormControl>
@@ -115,7 +142,11 @@ export default function OtpForm({
           )}
         />
 
-        <ResendOtpBtn email={userData.email} />
+        <ResendOtpBtn
+          callback={handleResendOtp}
+          text={"Resend code"}
+          coolDownText={"Resend in"}
+        />
 
         <SubmitLayoutWrapper>
           <NormalBtn type={"button"} onClick={back}>
@@ -124,6 +155,7 @@ export default function OtpForm({
 
           <SubmitBtn
             type={"submit"}
+            $isSubmitting={isPending}
             disabled={!(form.getValues("otp").length === 6) || isPending}
             style={{
               width: "fit-content",

@@ -1,3 +1,4 @@
+import { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
 import { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
@@ -14,7 +15,7 @@ export interface IUserRepository {
   confirmEmail: (body: OtpRequestDto) => Promise<void>
   signin: (body: FormSignInRequestDto) => Promise<SignInResponseDto>
   logout: () => Promise<void>
-  forgotPassword: () => Promise<void>
+  forgotPassword: (body: ForgetPasswordRequestDto) => Promise<void>
   resetPassword: () => Promise<void>
 
   // user

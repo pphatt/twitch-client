@@ -2,7 +2,7 @@ import styled, { css } from "styled-components"
 
 import { Button } from "@/components/ui/button"
 import { FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { Input, InputError } from "@/components/ui/input"
+import { Input, type InputError } from "@/components/ui/input"
 import { errorCss } from "@/components/ui/input/style"
 import { PasswordInput } from "@/components/forms/password-input"
 import { Icons } from "@/components/icons"
@@ -114,9 +114,12 @@ export const NormalBtn = styled(Button)`
   }
 `
 
-export const SubmitBtn = styled(Button)`
-  color: #fff;
-  background-color: hsl(var(--color-twitch-orange-11));
+export const SubmitBtn = styled(Button)<{
+  $isSubmitting: boolean
+}>`
+  color: #fff ${({ $isSubmitting }) => $isSubmitting && "!important"};
+  background-color: hsl(var(--color-twitch-orange-11))
+    ${({ $isSubmitting }) => $isSubmitting && "!important"};
 
   max-width: 100%;
   width: 100%;

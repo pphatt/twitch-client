@@ -134,7 +134,7 @@ export default function LogInForm() {
         />
 
         <ResetPasswordLayout>
-          <Link href={"/signin/reset-password"}>
+          <Link href={"/user/account-recovery"}>
             <p>Forgot Password?</p>
           </Link>
         </ResetPasswordLayout>
@@ -142,6 +142,7 @@ export default function LogInForm() {
         <SubmitLayoutWrapper>
           <SubmitBtn
             type={"submit"}
+            $isSubmitting={isPending}
             disabled={
               !(form.getValues("username") && form.getValues("password")) ||
               isPending

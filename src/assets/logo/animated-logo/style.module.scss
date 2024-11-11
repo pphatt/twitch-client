@@ -1,0 +1,25 @@
+.icon-container {
+  display: inline-flex;
+
+  padding: 5px;
+}
+
+.icon-figure {
+  display: inline-flex;
+}
+
+.svg-wrapper {
+  fill: currentcolor;
+}
+
+.polygon-orange {
+  fill: hsl(var(--color-twitch-orange-11));
+}
+
+.polygon-white {
+  fill: #fff
+}
+
+.path-orange {
+  fill: hsl(var(--color-twitch-orange-11));
+}

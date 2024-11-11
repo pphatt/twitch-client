@@ -18,12 +18,10 @@ export const MainNavWrapper = styled.div`
 export const HomeLink = styled(Link)`
   display: inline-flex;
 
-  padding: 10px;
-
   svg {
     align-self: center;
 
-    width: 60px;
+    width: 40px;
     height: 40px;
   }
 `

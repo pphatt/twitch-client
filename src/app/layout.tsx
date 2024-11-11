@@ -10,7 +10,7 @@ import TanStackProviders from "@/providers/tanstack.provider"
 import { Toaster } from "sonner"
 
 import { siteConfig } from "@/config/site"
-import { font } from "@/lib/fonts"
+import { Inter } from "@/lib/fonts"
 import StyledComponentsRegistry from "@/lib/registry"
 import styles from "@/styles/application/root-layout/layout.module.scss"
 
@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={Inter.className}>
         <StyledComponentsRegistry>
           <GlobalStyleProvider>
             <TanStackProviders>

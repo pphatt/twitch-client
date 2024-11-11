@@ -64,18 +64,16 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
           dob: new Date(data.dob).toISOString(),
         })
 
-        if (res.status === 201) {
-          setRenderOtp({
-            initial: true,
-            email: data.email,
-            username: data.name,
-          })
+        setRenderOtp({
+          initial: true,
+          email: data.email,
+          username: data.name,
+        })
 
-          toast.success("Sign up successfully", {
-            duration: 10000,
-            position: "top-right",
-          })
-        }
+        toast.success("Sign up successfully", {
+          duration: 10000,
+          position: "top-right",
+        })
       } catch (err) {
         // catchError(err)
         const error = axiosHttpErrorHandler(err)
@@ -215,6 +213,7 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
         <SubmitLayoutWrapper>
           <SubmitBtn
             type={"submit"}
+            $isSubmitting={isPending}
             disabled={
               !(
                 form.getValues("name") &&

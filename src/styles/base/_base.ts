@@ -56,21 +56,7 @@ export const GlobalStyle = createGlobalStyle`
         //overflow-x: hidden;
         background-color: rgb(11, 14, 15);
 
-        font-family: "Roboto",
-        ui-sans-serif,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        Segoe UI,
-        Roboto,
-        Helvetica Neue,
-        Arial,
-        Noto Sans,
-        sans-serif,
-        Apple Color Emoji,
-        Segoe UI Emoji,
-        Segoe UI Symbol,
-        Noto Color Emoji;
+        font-family: var(--font-base);
     }
 
     img {

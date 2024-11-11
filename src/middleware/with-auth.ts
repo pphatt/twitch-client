@@ -18,6 +18,7 @@ const publicRoutes = [
   "/privacy",
   "/api",
   "/api/webhooks",
+  "/user/account-recovery"
 ]
 
 const authRoutes = ["/login", "/signup"]

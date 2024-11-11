@@ -7,6 +7,12 @@ import { createGlobalStyle } from "styled-components"
 
 export const GlobalColorTheme = createGlobalStyle`
     :root {
+        // font
+        --font-base: "Inter", "Roobert", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --font-display: "Roobert", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        --font-mono: monospace;
+        
+        // color
         --color-error: var(--color-red);
 
         --color-background-success: var(--color-green);

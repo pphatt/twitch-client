@@ -1,4 +1,5 @@
 import * as React from "react"
+import AnimatedLogo from "@/assets/logo/animated-logo"
 
 import type { MainNavItem, SupportNavItem } from "@/types/common"
 import {
@@ -42,7 +43,7 @@ export function MainNav({ items, supportItem }: MainNavProps) {
   return (
     <MainNavWrapper>
       <HomeLink href={"/"}>
-        <Icons.logo />
+        <AnimatedLogo />
       </HomeLink>
 
       <MainNavItems>

@@ -18,19 +18,24 @@ export const whoami = async (): Promise<User | null> => {
     return null
   }
 
-  const { sub } = jwtDecode<TokenPayload>(accessToken)
+  try {
+    const { sub } = jwtDecode<TokenPayload>(accessToken)
 
-  // const res = await fetch(`${BackendURL}/users/specific-user/${sub}`)
-  // const data = (await res.json()) as User
+    // const res = await fetch(`${BackendURL}/users/specific-user/${sub}`)
+    // const data = (await res.json()) as User
 
-  const { data } = await axios.get<{ data: User }>(
-    `${BackendURL}/users/specific-user/${sub}`,
-    {
-      data: {
-        id: sub,
-      },
-    }
-  )
+    const { data } = await axios.get<{ data: User }>(
+      `${BackendURL}/users/specific-user/${sub}`,
+      {
+        data: {
+          id: sub,
+        },
+      }
+    )
 
-  return data.data
+    return data.data
+  } catch (error) {
+    console.log(error)
+    return null
+  }
 }

@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 import { Button } from "@/components/ui/button"
 
-export const ResendEmailConfirmWrapper = styled.div`
+export const CooldownButtonWrapper = styled.div`
   display: none;
 
   margin-top: 20px;
@@ -12,7 +12,7 @@ export const ResendEmailConfirmWrapper = styled.div`
   }
 `
 
-export const ResendEmailConfirmButton = styled(Button)`
+export const CooldownButtonButton = styled(Button)`
   color: hsl(var(--foreground));
   background-color: hsla(var(--color-opac-gd-1));
 
@@ -40,7 +40,7 @@ export const ResendEmailConfirmButton = styled(Button)`
   }
 `
 
-export const ResendEmailConfirmButtonContainer = styled.div`
+export const CooldownButtonContainer = styled.div`
   display: flex;
   align-items: center;
   flex-grow: 0;
@@ -48,7 +48,7 @@ export const ResendEmailConfirmButtonContainer = styled.div`
   padding: 0 10px;
 `
 
-export const ResendEmailConfirmButtonText = styled.div`
+export const CooldownButtonText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
