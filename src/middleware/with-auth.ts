@@ -18,10 +18,9 @@ const publicRoutes = [
   "/privacy",
   "/api",
   "/api/webhooks",
-  "/user/account-recovery"
 ]
 
-const authRoutes = ["/login", "/signup"]
+const authRoutes = ["/login", "/signup", "/user/account-recovery"]
 
 const publicDynamicRouteRegex = [/^\/([^\/]+)$/, /^\/popout\/([^\/]+)$/] // ["/:username", "/popout/:username"]
 
@@ -39,6 +38,24 @@ export function withAuth(middleware: CustomMiddleware) {
     //   accessToken,
     //   refreshToken,
     // })
+
+    const isAuthRoute = authRoutes.some((path) => pathname.startsWith(path))
+    const isAuthenticated = !!accessToken
+    const url = new URL(request.nextUrl.origin)
+
+    /*
+     * CHECKING THIS EARLY DUE TO MANY REASONS AS THE FLOW BELOW:
+     * - when navigate to the auth route when authenticated while atk expire will redirect you to the home page
+     * - which is first when navigate to the authRoute it will refresh token first,
+     *   and then it will redirect to home page BUT without the cookies or set-cookie on the header causing refresh again
+     *   but with old rtf making user have to login again.
+     * */
+    if (isAuthenticated && isAuthRoute) {
+      //  If a user tries to access an auth route while being authenticated,
+      //  redirect them to the home page and open login dialog
+      url.pathname = "/"
+      return NextResponse.redirect(url)
+    }
 
     if (accessToken) {
       const decoded = jwtDecode(accessToken)
@@ -94,23 +111,13 @@ export function withAuth(middleware: CustomMiddleware) {
       return middleware(request, event, response)
     }
 
-    const isAuthRoute = authRoutes.some((path) => pathname.startsWith(path))
-
-    const isAuthenticated = !!accessToken
-
+    // Redirect unauthenticated users trying to access private routes
     if (!isAuthenticated) {
       //  If a user tries to access a private route without being authenticated,
       //  redirect them to the home page
-      const redirectUrl = new URL("/", request.url)
-      redirectUrl.searchParams.set("redirected", "true")
+      url.searchParams.set("redirected", "true")
 
-      return NextResponse.redirect(redirectUrl)
-    }
-
-    if (isAuthenticated && isAuthRoute) {
-      //  If a user tries to access an auth route while being authenticated,
-      //  redirect them to the home page and open login dialog
-      return NextResponse.redirect(new URL("/", request.url))
+      return NextResponse.redirect(url)
     }
 
     return middleware(request, event, response)

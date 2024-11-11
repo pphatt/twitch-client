@@ -8,9 +8,7 @@ export async function POST(request: NextRequest) {
 
   const { username, password } = json
 
-  const ipAddress =
-    (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(",")[0] ??
-    "127.0.0.1"
+  const ipAddress = request.headers.get("X-Forwarded-For") ?? "127.0.0.1"
 
   const { device, ua } = userAgent(request)
 
