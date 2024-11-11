@@ -4,10 +4,9 @@ import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoin
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import axios from "axios"
 import { jwtDecode } from "jwt-decode"
-import {handleSelectLatestAccessToken} from "@/utils/auth.utils";
 
 export async function GET(request: NextRequest) {
-  const accessToken = handleSelectLatestAccessToken(request)
+  const accessToken = request.cookies.get("access-token")?.value
 
   if (!accessToken) {
     return Response.json({ message: "Access Token Not Found" }, { status: 401 })
