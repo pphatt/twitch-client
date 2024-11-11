@@ -50,7 +50,7 @@ export function withAuth(middleware: CustomMiddleware) {
      *   and then it will redirect to home page BUT without the cookies or set-cookie on the header causing refresh again
      *   but with old rtf making user have to login again.
      * */
-    if (isAuthenticated && isAuthRoute) {
+    if ((isAuthenticated || refreshToken) && isAuthRoute) {
       //  If a user tries to access an auth route while being authenticated,
       //  redirect them to the home page and open login dialog
       url.pathname = "/"
