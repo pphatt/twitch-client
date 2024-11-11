@@ -101,6 +101,10 @@ export function withAuth(middleware: CustomMiddleware) {
     const isAuthenticated = !!accessToken
     const url = new URL(request.nextUrl.origin)
 
+    if (!isAuthenticated && isAuthRoute) {
+      return middleware(request, event, response)
+    }
+
     // Redirect unauthenticated users trying to access private routes
     if (!isAuthenticated) {
       //  If a user tries to access a private route without being authenticated,

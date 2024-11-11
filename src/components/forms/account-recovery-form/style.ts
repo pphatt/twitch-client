@@ -1,3 +1,4 @@
+import Link from "next/link"
 import styled from "styled-components"
 
 import { Button } from "@/components/ui/button"
@@ -21,6 +22,15 @@ export const Text2Wrapper = styled.div`
 
 export const Text2Text = styled.p`
   font-size: 18px;
+`
+
+export const HighlightText = styled.span`
+  font-weight: 600;
+`
+
+export const Text3Wrapper = styled.div`
+  margin-top: 20px;
+  margin-bottom: 20px;
 `
 
 export const InputPlaceholderWrapper = styled.div`
@@ -197,6 +207,48 @@ export const GetUsernameButtonWrapper = styled(Button)`
 
   &:not([disabled]):hover:hover {
     background-color: hsla(var(--color-opac-gd-2));
+  }
+`
+
+export const ButtonGroup = styled.div`
+  display: flex;
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+`
+
+export const DoneBtnWrapper = styled.div`
+  margin-right: 10px;
+`
+
+export const DoneBtnContainer = styled(Link)`
+  position: relative;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  background-color: hsl(var(--color-twitch-orange-11));
+
+  height: 30px;
+
+  border-radius: 4px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  vertical-align: middle;
+
+  text-decoration: none;
+  white-space: nowrap;
+
+  user-select: none;
+
+  overflow: hidden;
+
+  &:not([disabled]):hover:hover {
+    background-color: hsl(var(--color-twitch-orange-12));
   }
 `
 

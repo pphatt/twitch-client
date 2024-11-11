@@ -9,10 +9,14 @@ import {
   BackButtonOverlay,
   BackButtonWrapper,
   ButtonContainer,
+  ButtonGroup,
   ButtonGroupContainer,
   ButtonGroupWrapper,
   ButtonText,
+  DoneBtnContainer,
+  DoneBtnWrapper,
   GetUsernameButtonWrapper,
+  HighlightText,
   IconSpinner,
   InputIndicateContainer,
   InputIndicateText,
@@ -26,6 +30,7 @@ import {
   ResetPasswordButtonWrapper,
   Text2Text,
   Text2Wrapper,
+  Text3Wrapper,
   TitleText,
 } from "@/components/forms/account-recovery-form/style"
 import { Icons } from "@/components/icons"
@@ -39,6 +44,9 @@ export default function AccountRecoveryForm({
   email,
   setEmail,
 }: AccountRecoveryProps) {
+  const [openPassword, setOpenPassword] = React.useState(false)
+  const [openUsername, setOpenUsername] = React.useState(false)
+
   const [isPending, startTransition] = React.useTransition()
 
   const onSendResetPasswordSubmit = () => {
@@ -50,10 +58,7 @@ export default function AccountRecoveryForm({
           emailOrPhone: email,
         })
 
-        toast.success("Reset password link send successfully", {
-          duration: 10000,
-          position: "top-right",
-        })
+        setOpenPassword(true)
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
 
@@ -73,6 +78,7 @@ export default function AccountRecoveryForm({
     startTransition(async () => {
       try {
         await sleep(5000)
+        setOpenUsername(true)
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
 
@@ -84,6 +90,83 @@ export default function AccountRecoveryForm({
         console.log(error)
       }
     })
+  }
+
+  if (openPassword) {
+    return (
+      <AccountRecoveryWrapper>
+        <TitleText>Check your email</TitleText>
+
+        <Text2Wrapper>
+          <Text2Text>
+            Please go to your <HighlightText>{email}</HighlightText> email and
+            click the password reset link we&apos;ve sent for your Twitch
+            account.
+          </Text2Text>
+
+          <Text3Wrapper>
+            <Text2Text>
+              It could take a few minutes to appear, and be sure to check any
+              spam and promotional folders—just in case!
+            </Text2Text>
+          </Text3Wrapper>
+        </Text2Wrapper>
+
+        <ButtonGroup>
+          <DoneBtnWrapper>
+            <DoneBtnContainer href={"/"}>
+              <ButtonContainer>
+                <ButtonText>Done</ButtonText>
+              </ButtonContainer>
+            </DoneBtnContainer>
+          </DoneBtnWrapper>
+
+          <GetUsernameButtonWrapper onClick={() => setEmail("")}>
+            <ButtonContainer>
+              <ButtonText>Start Over</ButtonText>
+            </ButtonContainer>
+          </GetUsernameButtonWrapper>
+        </ButtonGroup>
+      </AccountRecoveryWrapper>
+    )
+  }
+
+  if (openUsername) {
+    return (
+      <AccountRecoveryWrapper>
+        <TitleText>Check your email</TitleText>
+
+        <Text2Wrapper>
+          <Text2Text>
+            Please go to your <HighlightText>{email}</HighlightText> email to
+            retrieve your username.
+          </Text2Text>
+
+          <Text3Wrapper>
+            <Text2Text>
+              It could take a few minutes to appear, and be sure to check any
+              spam and promotional folders—just in case!
+            </Text2Text>
+          </Text3Wrapper>
+        </Text2Wrapper>
+
+        <ButtonGroup>
+          <DoneBtnWrapper>
+            <DoneBtnContainer href={"/"}>
+              <ButtonContainer>
+                <ButtonText>Done</ButtonText>
+              </ButtonContainer>
+            </DoneBtnContainer>
+          </DoneBtnWrapper>
+
+          <GetUsernameButtonWrapper onClick={() => setEmail("")}>
+            <ButtonContainer>
+              <ButtonText>Start Over</ButtonText>
+            </ButtonContainer>
+          </GetUsernameButtonWrapper>
+        </ButtonGroup>
+      </AccountRecoveryWrapper>
+    )
   }
 
   return (

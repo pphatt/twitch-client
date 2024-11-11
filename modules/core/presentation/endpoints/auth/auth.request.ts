@@ -9,12 +9,11 @@ import {
   ResendConfirmEmailAPI,
   SignInAPI,
   SignUpWithEmailAPI,
-  SignUpWithPhoneAPI,
 } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
-import { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
-import { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
+import type { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
+import type { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
-import { ResendOtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/resend-otp.request.dto"
+import type { ResendOtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/resend-otp.request.dto"
 import type {
   FormSignInRequestDto,
   SignInRequestDto,
@@ -26,14 +25,14 @@ import axios, { type AxiosRequestConfig } from "axios"
 export const Auth = {
   signUpWithEmail: async (body: SignUpRequestDto) =>
     axios.post(SignUpWithEmailAPI, body),
-  signUpWithPhone: async (body) => axios.post(SignUpWithPhoneAPI),
+  // signUpWithPhone: async (body) => axios.post(SignUpWithPhoneAPI),
   signIn: async (
     body: SignInRequestDto
   ): Promise<{ data: { data: SignInResponseDto } }> =>
     axios.post(SignInAPI, body),
   refreshToken: async (body: RefreshTokenRequestDto) =>
     axios.post(RefreshTokenAPI, body),
-  toggle2FA: async () => axios.post(""),
+  toggle2FA: async (body) => axios.post(""),
   confirmEmail: async (body: OtpRequestDto) =>
     axios.post(ConfirmEmailAPI, body),
   resendConfirmEmail: async (body: ResendOtpRequestDto) =>
@@ -41,10 +40,10 @@ export const Auth = {
   forgotPassword: async (body: ForgetPasswordRequestDto) =>
     axios.post(ForgotPasswordAPI, body),
   resetPassword: async (token: string) => axios.post(""),
-  logoutFromAllDevice: async () => axios.post(""),
+  // logoutFromAllDevice: async (body) => axios.post(""),
   logout: async (config: AxiosRequestConfig) =>
     axios.post(LogoutAPI, {}, config),
-  logoutSpecificDevice: async () => axios.post(""),
+  // logoutSpecificDevice: async (body) => axios.post(""),
 }
 
 export const NextAuth = {
