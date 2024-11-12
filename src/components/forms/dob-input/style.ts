@@ -43,8 +43,6 @@ export const InputWrapper = styled(Input)<InputError>`
   animation-duration: 0.2s;
   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-  ${({ $error }) => $error && errorCss};
-
   &:hover {
     border-color: rgba(170, 176, 182);
   }
@@ -53,4 +51,6 @@ export const InputWrapper = styled(Input)<InputError>`
     position: absolute;
     right: 0.75rem;
   }
+
+  ${({ $error }) => $error && errorCss};
 `
