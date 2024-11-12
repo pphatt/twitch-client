@@ -3,7 +3,8 @@ import {
   Auth,
   NextAuth,
 } from "@modules/core/presentation/endpoints/auth/auth.request"
-import { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
+import type { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
+import { ForgetUsernameRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-username.request.dto"
 import type { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
@@ -55,6 +56,7 @@ export const UserRepository: IUserRepository = {
   async confirmEmail(body: OtpRequestDto) {
     try {
       await Auth.confirmEmail(body)
+      return Promise.resolve()
     } catch (error) {
       console.log(error)
       return Promise.reject(error)
@@ -75,6 +77,17 @@ export const UserRepository: IUserRepository = {
   async forgotPassword(body: ForgetPasswordRequestDto): Promise<void> {
     try {
       await Auth.forgotPassword(body)
+      return Promise.resolve()
+    } catch (error) {
+      console.log(error)
+      return Promise.reject(error)
+    }
+  },
+
+  async forgetUsername(body: ForgetUsernameRequestDto): Promise<void> {
+    try {
+      await Auth.forgetUsername(body)
+      return Promise.resolve()
     } catch (error) {
       console.log(error)
       return Promise.reject(error)

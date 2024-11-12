@@ -77,7 +77,10 @@ export default function AccountRecoveryForm({
 
     startTransition(async () => {
       try {
-        await sleep(5000)
+        await UserRepository.forgetUsername({
+          email,
+        })
+
         setOpenUsername(true)
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
