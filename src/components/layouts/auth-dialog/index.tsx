@@ -36,10 +36,20 @@ export default function AuthDialog({ children, currentTab }: AuthDialogProps) {
   const [renderOtp, setRenderOtp] =
     React.useState<typeof DEFAULT_OTP_STATE>(DEFAULT_OTP_STATE)
 
+  const [verifyEmailDialogOpen, setVerifyEmailDialogOpen] =
+    React.useState(false)
+
   const [tab, setTab] = React.useState(currentTab)
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(e) => {
+        setOpen(e)
+        setRenderOtp(DEFAULT_OTP_STATE)
+        setVerifyEmailDialogOpen(false)
+      }}
+    >
       <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogPortal>
@@ -53,7 +63,46 @@ export default function AuthDialog({ children, currentTab }: AuthDialogProps) {
           onEscapeKeyDown={(event) => event.preventDefault()}
           onPointerDownOutside={(event) => event.preventDefault()}
         >
-          {renderOtp.initial ? (
+          {verifyEmailDialogOpen && (
+            <>
+              <ModalHeaderWrapper>
+                <ModalHeaderContainer as={"div"}>
+                  <h2>Enter your verification code</h2>
+
+                  <DialogClose
+                    onClick={() => {
+                      setRenderOtp(DEFAULT_OTP_STATE)
+                    }}
+                  >
+                    <Icons.closeX />
+                    <span>Close</span>
+                  </DialogClose>
+                </ModalHeaderContainer>
+              </ModalHeaderWrapper>
+
+              <VerificationCodeDescriptionText>
+                We sent a 6-digit code to{" "}
+                <VerificationCodeDescriptionEmail>
+                  {renderOtp.email}
+                </VerificationCodeDescriptionEmail>
+                .
+              </VerificationCodeDescriptionText>
+
+              <OtpForm
+                userData={{
+                  username: renderOtp.username,
+                  email: renderOtp.email,
+                }}
+                back={() => {
+                  setRenderOtp(DEFAULT_OTP_STATE)
+                  setVerifyEmailDialogOpen(false)
+                }}
+                redirectToSignIn={() => setTab("log-in")}
+              />
+            </>
+          )}
+
+          {renderOtp.initial && (
             <>
               <ModalHeaderWrapper>
                 <ModalHeaderContainer as={"div"}>
@@ -87,7 +136,9 @@ export default function AuthDialog({ children, currentTab }: AuthDialogProps) {
                 redirectToSignIn={() => setTab("log-in")}
               />
             </>
-          ) : (
+          )}
+
+          {!renderOtp.initial && !verifyEmailDialogOpen && (
             <>
               <ModalHeaderWrapper>
                 <ModalHeaderContainer as={"div"}>
@@ -108,7 +159,11 @@ export default function AuthDialog({ children, currentTab }: AuthDialogProps) {
                 </ModalHeaderContainer>
               </ModalHeaderWrapper>
 
-              <AuthTabControl currentTab={tab} setRenderOtp={setRenderOtp} />
+              <AuthTabControl
+                currentTab={tab}
+                setRenderOtp={setRenderOtp}
+                setVerifyEmailDialogOpen={setVerifyEmailDialogOpen}
+              />
             </>
           )}
         </ModalWrapper>

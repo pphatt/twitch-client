@@ -1,5 +1,5 @@
 import * as React from "react"
-import { axiosHttpErrorHandler, sleep } from "@/utils/common"
+import { axiosHttpErrorHandler } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"

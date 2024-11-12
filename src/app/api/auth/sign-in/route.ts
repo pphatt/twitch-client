@@ -1,7 +1,10 @@
 import { cookies } from "next/headers"
 import { userAgent, type NextRequest } from "next/server"
+import { EUserStatus } from "@modules/core/domain-base/entity/enum/user-status.enum"
 import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
+import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import { jwtDecode } from "jwt-decode"
 
 export async function POST(request: NextRequest) {
   const json = (await request.json()) as FormSignInRequestDto
@@ -25,6 +28,33 @@ export async function POST(request: NextRequest) {
     })
 
     const { refreshToken, accessToken } = data.data
+
+    const decode = jwtDecode<TokenPayload>(accessToken)
+
+    // guard here for unverified user
+    if (decode.status === EUserStatus.BANNED) {
+      return Response.json(
+        {
+          message: "User account are banned",
+        },
+        {
+          status: 200,
+        }
+      )
+    }
+
+    // guard here for unverified user
+    if (decode.status === EUserStatus.UNVERIFIED) {
+      return Response.json(
+        {
+          refreshToken,
+          accessToken,
+        },
+        {
+          status: 200,
+        }
+      )
+    }
 
     if (accessToken) {
       cookies().set("access-token", accessToken)

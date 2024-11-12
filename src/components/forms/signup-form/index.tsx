@@ -35,7 +35,11 @@ type Inputs = SignUpRequestDto
 
 interface SignUpFormProps {
   setRenderOtp: React.Dispatch<
-    React.SetStateAction<{ initial: boolean; email: string; username: string }>
+    React.SetStateAction<{
+      initial: boolean
+      email: string
+      username: string
+    }>
   >
 }
 
@@ -59,7 +63,7 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
 
     startTransition(async () => {
       try {
-        const res = await UserRepository.signupWithEmail({
+        await UserRepository.signupWithEmail({
           ...data,
           dob: new Date(data.dob).toISOString(),
         })

@@ -51,7 +51,9 @@ export const Auth = {
 }
 
 export const NextAuth = {
-  signIn: async (body: FormSignInRequestDto): Promise<SignInResponseDto> =>
+  signIn: async (
+    body: FormSignInRequestDto
+  ): Promise<{ data: { message: string; data: SignInResponseDto } }> =>
     axios.post(NextSignInAPI, body),
   refreshToken: async (body: RefreshTokenRequestDto) =>
     axios.post(NextRefreshTokenAPI, body),

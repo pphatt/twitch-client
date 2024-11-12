@@ -13,13 +13,16 @@ import {
 interface AuthTabControlProps {
   currentTab: "log-in" | "sign-up"
   setRenderOtp: React.Dispatch<
-    React.SetStateAction<{ initial: boolean; email: string, username: string }>
+    React.SetStateAction<{ initial: boolean; email: string; username: string }>
   >
+
+  setVerifyEmailDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export default function AuthTabControl({
   currentTab,
   setRenderOtp,
+  setVerifyEmailDialogOpen,
 }: AuthTabControlProps) {
   const [tab, setTab] = React.useState<string>(currentTab)
 
@@ -43,7 +46,10 @@ export default function AuthTabControl({
 
       <FormLayoutWrapper value="log-in">
         <FormLayoutContainer>
-          <LogInForm />
+          <LogInForm
+            setRenderOtp={setRenderOtp}
+            setVerifyEmailDialogOpen={setVerifyEmailDialogOpen}
+          />
         </FormLayoutContainer>
       </FormLayoutWrapper>
 

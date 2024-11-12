@@ -3,13 +3,16 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-// import { useAuth } from "@/context/auth.context"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { EUserStatus } from "@modules/core/domain-base/entity/enum/user-status.enum"
+import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
+import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import {
   FormSignInRequestDtoSchema,
   type FormSignInRequestDto,
 } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import { jwtDecode } from "jwt-decode"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
@@ -34,10 +37,20 @@ import {
 
 type Inputs = FormSignInRequestDto
 
-export default function LogInForm() {
+interface LogInFormProps {
+  setRenderOtp: React.Dispatch<
+    React.SetStateAction<{ initial: boolean; email: string; username: string }>
+  >
+
+  setVerifyEmailDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export default function LogInForm({
+  setRenderOtp,
+  setVerifyEmailDialogOpen,
+}: LogInFormProps) {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
-  // const { setProfile, setIsAuthenticated } = useAuth()
 
   // register, handleSubmit, formState
   // default-values for controlled form
@@ -56,19 +69,40 @@ export default function LogInForm() {
       try {
         const { username, password } = data
 
-        await UserRepository.signin({
+        const { accessToken } = await UserRepository.signin({
           username: username,
           password: password,
         })
 
-        toast.success("Log in successfully", {
-          duration: 10000,
-          position: "top-right",
-        })
+        const decode = jwtDecode<TokenPayload>(accessToken)
 
-        router.refresh()
+        if (decode.status === EUserStatus.UNVERIFIED) {
+          await Auth.resendConfirmEmail({
+            email: decode.email!,
+          })
 
-        window.location.replace("/")
+          toast.success("Send email verification successfully", {
+            duration: 10000,
+            position: "top-right",
+          })
+
+          setRenderOtp({
+            initial: false,
+            username: decode.username!,
+            email: decode.email!,
+          })
+
+          setVerifyEmailDialogOpen(true)
+        } else {
+          toast.success("Log in successfully", {
+            duration: 10000,
+            position: "top-right",
+          })
+
+          router.refresh()
+
+          window.location.replace("/")
+        }
       } catch (err) {
         // catchError(err)
         console.error(err)

@@ -29,7 +29,7 @@ export const UserRepository: IUserRepository = {
     try {
       const response = await NextAuth.signIn(body)
 
-      const { refreshToken, accessToken } = response
+      const { refreshToken, accessToken } = response.data
 
       return { refreshToken, accessToken }
     } catch (error) {
