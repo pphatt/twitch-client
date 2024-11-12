@@ -18,9 +18,11 @@ const publicRoutes = [
   "/privacy",
   "/api",
   "/api/webhooks",
+  "/user/account-recovery",
+  "/user/password-reset",
 ]
 
-const authRoutes = ["/login", "/signup", "/user/account-recovery"]
+const authRoutes = ["/login", "/signup"]
 
 const publicDynamicRouteRegex = [/^\/([^\/]+)$/, /^\/popout\/([^\/]+)$/] // ["/:username", "/popout/:username"]
 

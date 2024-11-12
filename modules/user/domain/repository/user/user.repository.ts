@@ -6,6 +6,7 @@ import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/r
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
+import type {ResetPasswordRequestDto} from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto";
 
 export interface IUserRepository {
   // auth
@@ -18,7 +19,7 @@ export interface IUserRepository {
   logout: () => Promise<void>
   forgotPassword: (body: ForgetPasswordRequestDto) => Promise<void>
   forgetUsername: (body: ForgetUsernameRequestDto) => Promise<void>
-  resetPassword: () => Promise<void>
+  resetPassword: (body: ResetPasswordRequestDto) => Promise<void>
 
   // user
   profile: () => Promise<void>

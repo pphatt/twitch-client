@@ -5,9 +5,11 @@ import {
   LogoutAPI,
   NextLogoutAPI,
   NextRefreshTokenAPI,
+  NextResetPasswordAPI,
   NextSignInAPI,
   RefreshTokenAPI,
   ResendConfirmEmailAPI,
+  ResetPasswordAPI,
   SignInAPI,
   SignUpWithEmailAPI,
 } from "@modules/core/presentation/endpoints/auth/auth.endpoints"
@@ -16,6 +18,7 @@ import { ForgetUsernameRequestDto } from "@modules/user/presentation/http/dto/re
 import type { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
 import type { ResendOtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/resend-otp.request.dto"
+import { ResetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto"
 import type {
   FormSignInRequestDto,
   SignInRequestDto,
@@ -43,7 +46,8 @@ export const Auth = {
     axios.post(ForgotPasswordAPI, body),
   forgetUsername: async (body: ForgetUsernameRequestDto) =>
     axios.post(ForgetUsername, body),
-  resetPassword: async (token: string) => axios.post(""),
+  resetPassword: async (body: ResetPasswordRequestDto) =>
+    axios.post(`${ResetPasswordAPI}/${body.token}`, body),
   // logoutFromAllDevice: async (body) => axios.post(""),
   logout: async (config: AxiosRequestConfig) =>
     axios.post(LogoutAPI, {}, config),
@@ -57,5 +61,7 @@ export const NextAuth = {
     axios.post(NextSignInAPI, body),
   refreshToken: async (body: RefreshTokenRequestDto) =>
     axios.post(NextRefreshTokenAPI, body),
+  resetPassword: async (body: ResetPasswordRequestDto) =>
+    axios.post(NextResetPasswordAPI, body),
   logout: async () => axios.post(NextLogoutAPI),
 }

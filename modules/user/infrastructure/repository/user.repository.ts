@@ -7,6 +7,7 @@ import type { ForgetPasswordRequestDto } from "@modules/user/presentation/http/d
 import { ForgetUsernameRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-username.request.dto"
 import type { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
+import type { ResetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
@@ -94,8 +95,14 @@ export const UserRepository: IUserRepository = {
     }
   },
 
-  async resetPassword(): Promise<void> {
-    return Promise.resolve()
+  async resetPassword(body: ResetPasswordRequestDto): Promise<void> {
+    try {
+      await NextAuth.resetPassword(body)
+      return Promise.resolve()
+    } catch (error) {
+      console.log(error)
+      return Promise.reject(error)
+    }
   },
 
   async profile(): Promise<void> {
