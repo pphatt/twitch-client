@@ -27,6 +27,12 @@ const authRoutes = ["/login", "/signup"]
 
 const publicDynamicRouteRegex = [/^\/([^\/]+)$/, /^\/popout\/([^\/]+)$/] // ["/:username", "/popout/:username"]
 
+const deleteCookies = (response: NextResponse) => {
+  response.cookies.delete("access-token")
+  response.cookies.delete("refresh-token")
+  response.cookies.delete("profile")
+}
+
 export function withAuth(middleware: CustomMiddleware) {
   return async (
     request: NextRequest,
@@ -55,14 +61,16 @@ export function withAuth(middleware: CustomMiddleware) {
             request.cookies.set("access-token", accessToken)
             request.cookies.set("refresh-token", refreshToken)
           } catch (_) {
-            response.cookies.delete("access-token")
-            response.cookies.delete("refresh-token")
-            response.cookies.delete("profile")
+            deleteCookies(response)
+
+            accessToken = ""
+            refreshToken = ""
           }
         } else {
-          response.cookies.delete("access-token")
-          response.cookies.delete("refresh-token")
-          response.cookies.delete("profile")
+          deleteCookies(response)
+
+          accessToken = ""
+          refreshToken = ""
         }
       }
     } else if (refreshToken) {
@@ -75,9 +83,10 @@ export function withAuth(middleware: CustomMiddleware) {
         request.cookies.set("access-token", accessToken)
         request.cookies.set("refresh-token", refreshToken)
       } catch (_) {
-        response.cookies.delete("access-token")
-        response.cookies.delete("refresh-token")
-        response.cookies.delete("profile")
+        deleteCookies(response)
+
+        accessToken = ""
+        refreshToken = ""
       }
     }
 

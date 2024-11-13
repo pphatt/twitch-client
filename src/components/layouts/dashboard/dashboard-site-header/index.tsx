@@ -3,11 +3,13 @@
 import * as React from "react"
 import { Suspense } from "react"
 import dynamic from "next/dynamic"
+import { useAuth } from "@/context/auth.context"
 
 import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import LogoutButton from "@/components/auth/logout-button"
 import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {
@@ -58,6 +60,8 @@ const DashboardLayoutControl = dynamic(
 )
 
 export default function DashboardSiteHeader() {
+  const { profile } = useAuth((state) => state)
+
   return (
     <SiteHeaderWrapper>
       <SiteHeaderContainer>
@@ -139,7 +143,7 @@ export default function DashboardSiteHeader() {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>tienphat</AccountText>
+                              <AccountText>{profile?.displayName}</AccountText>
 
                               <AccountTextWrapper>
                                 <p>Creator</p>
@@ -158,7 +162,7 @@ export default function DashboardSiteHeader() {
                         </DropdownItem>
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/"}>
+                          <DropdownItemLink href={"/AdminUser"}>
                             <span>Channel</span>
                             <Icons.channel />
                           </DropdownItemLink>
@@ -167,7 +171,7 @@ export default function DashboardSiteHeader() {
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/"}>
+                          <DropdownItemLink href={"/u/AdminUser/settings/channel"}>
                             <span>Account Settings</span>
                             <Icons.settings style={{ fill: "none" }} />
                           </DropdownItemLink>
@@ -175,12 +179,7 @@ export default function DashboardSiteHeader() {
 
                         <DropdownMenuSeparator />
 
-                        <DropdownItem>
-                          <DropdownItemLink href={"/safety"}>
-                            <span>Log Out</span>
-                            <Icons.logout />
-                          </DropdownItemLink>
-                        </DropdownItem>
+                        <LogoutButton />
                       </div>
                     </SimpleBar>
                   </DropdownMenuContent>
