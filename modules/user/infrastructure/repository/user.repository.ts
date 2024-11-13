@@ -1,10 +1,14 @@
 import { clearTokens } from "@/utils/auth.utils"
+import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import {
   Auth,
   NextAuth,
 } from "@modules/core/presentation/endpoints/auth/auth.request"
+import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
+import { NextUser } from "@modules/core/presentation/endpoints/user/user.request"
+import { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import type { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
-import { ForgetUsernameRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-username.request.dto"
+import type { ForgetUsernameRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-username.request.dto"
 import type { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
 import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto/request/auth/refresh-token.request.dto"
 import type { ResetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto"
@@ -12,6 +16,8 @@ import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/r
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
+import axios from "axios"
+import { jwtDecode } from "jwt-decode"
 
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
 
@@ -26,13 +32,15 @@ export const UserRepository: IUserRepository = {
     }
   },
 
-  async signin(body: FormSignInRequestDto): Promise<SignInResponseDto> {
+  async signin(
+    body: FormSignInRequestDto
+  ): Promise<SignInResponseDto & { profile: User | null }> {
     try {
       const response = await NextAuth.signIn(body)
 
-      const { refreshToken, accessToken } = response.data
+      const { accessToken, refreshToken, profile } = response.data
 
-      return { refreshToken, accessToken }
+      return { accessToken, refreshToken, profile }
     } catch (error) {
       return Promise.reject(error)
     }
@@ -40,14 +48,24 @@ export const UserRepository: IUserRepository = {
 
   async refreshToken(
     body: RefreshTokenRequestDto
-  ): Promise<RefreshTokenResponseDto> {
+  ): Promise<RefreshTokenResponseDto & { profile: User }> {
     try {
       const response = await Auth.refreshToken(body)
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
-        response.data as RefreshTokenResponseDto
+        response.data
 
-      return { accessToken: newAccessToken, refreshToken: newRefreshToken }
+      const decode = jwtDecode<TokenPayload>(newAccessToken)
+
+      const { data: userProfileResponse } = (await axios.get(
+        `${BackendURL}/users/specific-user/${decode.sub}`
+      )) as { data: { data: User } }
+
+      return {
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+        profile: userProfileResponse.data,
+      }
     } catch (error) {
       console.log(error)
       return Promise.reject(error)
@@ -105,17 +123,17 @@ export const UserRepository: IUserRepository = {
     }
   },
 
-  async profile(): Promise<void> {
-    // try {
-    //   const response = await axios.get(UserProfileAPI)
-    //
-    //   const { displayName } = response.data as { displayName: string }
-    //
-    //   return { displayName }
-    // } catch (error) {
-    //   console.log("Cannot get user profile", error)
-    //   return null
-    // }
+  async profile(): Promise<{ data: User }> {
+    try {
+      const response = await NextUser.getProfile()
+
+      const userData = response.data
+
+      return Promise.resolve({ data: userData })
+    } catch (error) {
+      console.log("Cannot get user profile", error)
+      return Promise.reject(error)
+    }
   },
 
   async updateProfile(): Promise<void> {

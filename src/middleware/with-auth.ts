@@ -6,6 +6,7 @@ import {
 import type { CustomMiddleware } from "@/middleware/chain"
 // import { createAuthHeaders } from "@/middleware/utils/create-auth-headers"
 import { refreshAccessToken } from "@/middleware/utils/refresh-access-token"
+import { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import { jwtDecode } from "jwt-decode"
 
 const publicRoutes = [
@@ -56,10 +57,12 @@ export function withAuth(middleware: CustomMiddleware) {
           } catch (_) {
             response.cookies.delete("access-token")
             response.cookies.delete("refresh-token")
+            response.cookies.delete("profile")
           }
         } else {
           response.cookies.delete("access-token")
           response.cookies.delete("refresh-token")
+          response.cookies.delete("profile")
         }
       }
     } else if (refreshToken) {
@@ -74,6 +77,7 @@ export function withAuth(middleware: CustomMiddleware) {
       } catch (_) {
         response.cookies.delete("access-token")
         response.cookies.delete("refresh-token")
+        response.cookies.delete("profile")
       }
     }
 
@@ -143,6 +147,35 @@ export function withAuth(middleware: CustomMiddleware) {
       }
 
       return response
+    }
+
+    // dashboard authorization
+    // Dashboard Authorization
+    const decoded = jwtDecode<TokenPayload>(accessToken!)
+
+    // Match "/u/{username}/" pattern
+    const match = pathname.match(/^\/u\/([^\/]+)\//)
+
+    if (match) {
+      const usernameInUrl = match[1]
+
+      // Compare username in URL with decoded username from JWT
+      if (decoded.username !== usernameInUrl) {
+        // Redirect to an unauthorized page or homepage if usernames don’t match
+        url.pathname = "/"
+
+        const response = NextResponse.redirect(url, { status: 302 })
+
+        if (accessToken) {
+          response.cookies.set("access-token", accessToken)
+        }
+
+        if (refreshToken) {
+          response.cookies.set("refresh-token", refreshToken)
+        }
+
+        return response
+      }
     }
 
     return middleware(request, event, response)

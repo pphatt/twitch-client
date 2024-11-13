@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server"
+import { handleSelectLatestAccessToken } from "@/utils/auth.utils"
 import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
@@ -6,7 +7,7 @@ import axios from "axios"
 import { jwtDecode } from "jwt-decode"
 
 export async function GET(request: NextRequest) {
-  const accessToken = request.cookies.get("access-token")?.value
+  const accessToken = handleSelectLatestAccessToken(request)
 
   if (!accessToken) {
     return Response.json({ message: "Access Token Not Found" }, { status: 401 })

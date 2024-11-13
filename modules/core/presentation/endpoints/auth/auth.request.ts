@@ -1,3 +1,4 @@
+import { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import {
   ConfirmEmailAPI,
   ForgetUsername,
@@ -24,6 +25,7 @@ import type {
   SignInRequestDto,
 } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
+import { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
 
@@ -35,7 +37,9 @@ export const Auth = {
     body: SignInRequestDto
   ): Promise<{ data: { data: SignInResponseDto } }> =>
     axios.post(SignInAPI, body),
-  refreshToken: async (body: RefreshTokenRequestDto) =>
+  refreshToken: async (
+    body: RefreshTokenRequestDto
+  ): Promise<{ data: RefreshTokenResponseDto }> =>
     axios.post(RefreshTokenAPI, body),
   // toggle2FA: async (body) => axios.post(""),
   confirmEmail: async (body: OtpRequestDto) =>
@@ -57,9 +61,11 @@ export const Auth = {
 export const NextAuth = {
   signIn: async (
     body: FormSignInRequestDto
-  ): Promise<{ data: { message: string; data: SignInResponseDto } }> =>
+  ): Promise<{ data: SignInResponseDto & { profile: User | null } }> =>
     axios.post(NextSignInAPI, body),
-  refreshToken: async (body: RefreshTokenRequestDto) =>
+  refreshToken: async (
+    body: RefreshTokenRequestDto
+  ): Promise<{ data: RefreshTokenResponseDto }> =>
     axios.post(NextRefreshTokenAPI, body),
   resetPassword: async (body: ResetPasswordRequestDto) =>
     axios.post(NextResetPasswordAPI, body),

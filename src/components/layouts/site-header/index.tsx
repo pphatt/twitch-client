@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { User } from "@modules/core/domain-base/entity/identity/user.entity"
+import { useAuth } from "@/context/auth.context"
+import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import axios from "axios"
 import { toast } from "sonner"
 
@@ -49,12 +50,12 @@ import {
   UserItemWrapper,
 } from "@/components/layouts/site-header/style"
 
-export function SiteHeader({ user }: { user: User | null }) {
+export function SiteHeader() {
   const router = useRouter()
 
   const [isPending, startTransition] = React.useTransition()
 
-  const authenticated = !!user
+  const { profile, authenticated } = useAuth((state) => state)
 
   const searchParams = useSearchParams()
 
@@ -74,21 +75,9 @@ export function SiteHeader({ user }: { user: User | null }) {
   }, [authenticated, isRedirected, router, searchParams])
 
   // React.useEffect(() => {
-  //   console.log("isPending", isPending)
-  //
-  //   startTransition(async () => {
-  //     // if (authenticated) {
-  //     //   try {
-  //     //     const response = await authAxiosInstance.get(UserProfileNextAPI)
-  //     //
-  //     //     const { id } = response.data as { id: string }
-  //     //
-  //     //     setUserProfile({ id })
-  //     //   } catch (error) {
-  //     //     console.log(error)
-  //     //   }
-  //     // }
-  //   })
+  //   const { data } = await axios.get<{ data: User }>(
+  //     "http://localhost:3000/api/user/whoami"
+  //   )
   // }, [])
 
   const handleClick = () => {
@@ -99,7 +88,7 @@ export function SiteHeader({ user }: { user: User | null }) {
         )
 
         console.log(data.data.displayName)
-      } catch(_) {
+      } catch (_) {
         router.refresh()
       }
     })
@@ -202,7 +191,7 @@ export function SiteHeader({ user }: { user: User | null }) {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>{user?.displayName}</AccountText>
+                              <AccountText>{profile?.displayName}</AccountText>
                             </AccountDetails>
                           </AccountItemContainer>
                         </AccountItemWrapper>
@@ -210,7 +199,7 @@ export function SiteHeader({ user }: { user: User | null }) {
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/u/tienphat"}>
+                          <DropdownItemLink href={`/u/AdminUser`}>
                             <span>Channel</span>
                             <Icons.channel />
                           </DropdownItemLink>
@@ -218,7 +207,7 @@ export function SiteHeader({ user }: { user: User | null }) {
 
                         <DropdownItem>
                           <DropdownItemLink
-                            href={"/u/tienphat/content/video-producer"}
+                            href={`/u/AdminUser/content/video-producer`}
                           >
                             <span>Video Producer</span>
                             <Icons.videoProducer />
@@ -226,7 +215,7 @@ export function SiteHeader({ user }: { user: User | null }) {
                         </DropdownItem>
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/u/tienphat/home"}>
+                          <DropdownItemLink href={`/u/AdminUser/home`}>
                             <span>Creator Dashboard</span>
                             <Icons.creatorDashboard />
                           </DropdownItemLink>

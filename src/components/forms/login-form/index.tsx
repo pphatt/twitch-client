@@ -1,8 +1,7 @@
-"use client"
-
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/auth.context"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { EUserStatus } from "@modules/core/domain-base/entity/enum/user-status.enum"
 import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
@@ -51,6 +50,7 @@ export default function LogInForm({
 }: LogInFormProps) {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
+  const { setProfile, setAuthenticated } = useAuth((state) => state)
 
   // register, handleSubmit, formState
   // default-values for controlled form
@@ -69,7 +69,7 @@ export default function LogInForm({
       try {
         const { username, password } = data
 
-        const { accessToken } = await UserRepository.signin({
+        const { accessToken, profile } = await UserRepository.signin({
           username: username,
           password: password,
         })
@@ -94,6 +94,9 @@ export default function LogInForm({
 
           setVerifyEmailDialogOpen(true)
         } else {
+          setProfile(profile)
+          setAuthenticated(true)
+
           toast.success("Log in successfully", {
             duration: 10000,
             position: "top-right",

@@ -2,7 +2,9 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
+import { useAuth } from "@/context/auth.context"
 import { queryClientProvider } from "@/providers/query-client.provider"
+import { axiosHttpErrorHandler } from "@/utils/common"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import { toast } from "sonner"
 
@@ -13,15 +15,33 @@ export default function LogoutButton() {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
+  const { setProfile, setAuthenticated } = useAuth((state) => state)
+
   const handleLogout = () => {
     startTransition(async () => {
-      await UserRepository.logout()
+      try {
+        await UserRepository.logout()
 
-      queryClientProvider.clear()
+        queryClientProvider.clear()
 
-      toast.success("Logout successfully!")
+        setProfile(null)
+        setAuthenticated(false)
 
-      router.refresh()
+        toast.success("Logout successfully!")
+
+        router.refresh()
+
+        window.location.replace("/")
+      } catch (err) {
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        console.log(error)
+      }
     })
   }
 

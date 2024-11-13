@@ -17,6 +17,6 @@ export const LogoutAPI = `${BackendURL}/auth/logout`
 
 // USING NEXT API
 export const NextSignInAPI = `${AppURL}/api/auth/sign-in`
-export const NextRefreshTokenAPI = `${AppURL}/api/auth/set-refresh-token`
+export const NextRefreshTokenAPI = `${AppURL}/api/auth/refresh-token`
 export const NextResetPasswordAPI = `${AppURL}/api/auth/reset-password`
 export const NextLogoutAPI = `${AppURL}/api/auth/logout`

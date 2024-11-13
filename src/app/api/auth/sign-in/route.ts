@@ -1,9 +1,12 @@
 import { cookies } from "next/headers"
 import { userAgent, type NextRequest } from "next/server"
 import { EUserStatus } from "@modules/core/domain-base/entity/enum/user-status.enum"
+import { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
+import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
+import axios from "axios"
 import { jwtDecode } from "jwt-decode"
 
 export async function POST(request: NextRequest) {
@@ -49,6 +52,7 @@ export async function POST(request: NextRequest) {
         {
           refreshToken,
           accessToken,
+          profile: null,
         },
         {
           status: 200,
@@ -64,10 +68,19 @@ export async function POST(request: NextRequest) {
       cookies().set("refresh-token", refreshToken)
     }
 
+    const { data: userProfileResponse } = (await axios.get(
+      `${BackendURL}/users/specific-user/${decode.sub}`
+    )) as { data: { data: User } }
+
+    if (userProfileResponse) {
+      cookies().set("profile", JSON.stringify(userProfileResponse.data))
+    }
+
     return Response.json(
       {
         refreshToken,
         accessToken,
+        profile: userProfileResponse.data,
       },
       {
         status: 200,

@@ -5,6 +5,8 @@ import "@/styles/vendors/stream-manager.scss"
 import "@/styles/vendors/global.scss"
 
 import * as React from "react"
+import { cookies } from "next/headers"
+import { AuthStoreProvider } from "@/context/auth.context"
 import { GlobalStyleProvider } from "@/providers/global-style.provider"
 import TanStackProviders from "@/providers/tanstack.provider"
 import { Toaster } from "sonner"
@@ -25,6 +27,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const profile = cookies().get("profile")?.value
+
   return (
     <html lang="en">
       <body className={Inter.className}>
@@ -41,7 +45,9 @@ export default function RootLayout({
               <div className={styles["root"]}>
                 <div className={styles["root-layout-wrapper"]}>
                   <div className={styles["root-layout-container"]}>
-                    {children}
+                    <AuthStoreProvider profileFromCookie={profile}>
+                      {children}
+                    </AuthStoreProvider>
                   </div>
                 </div>
               </div>
