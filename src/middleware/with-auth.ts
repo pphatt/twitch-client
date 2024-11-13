@@ -42,6 +42,7 @@ export function withAuth(middleware: CustomMiddleware) {
     const pathname = request.nextUrl.pathname
     let accessToken = request.cookies.get("access-token")?.value
     let refreshToken = request.cookies.get("refresh-token")?.value
+    let profile = request.cookies.get("profile")?.value
 
     // const headers = createAuthHeaders(request.headers, {
     //   accessToken,
@@ -65,12 +66,32 @@ export function withAuth(middleware: CustomMiddleware) {
 
             accessToken = ""
             refreshToken = ""
+
+            const url = new URL(request.nextUrl.origin);
+            url.searchParams.set("session-expired", "true")
+
+            if (pathname !== "/") {  // Prevent redirect loop by checking if already on home page
+              url.pathname = "/";
+              return NextResponse.redirect(url, { status: 302 });
+            }
+
+            return response;  // Already on home page; no further action
           }
         } else {
           deleteCookies(response)
 
           accessToken = ""
           refreshToken = ""
+
+          const url = new URL(request.nextUrl.origin);
+          url.searchParams.set("session-expired", "true")
+
+          if (pathname !== "/") {  // Prevent redirect loop by checking if already on home page
+            url.pathname = "/";
+            return NextResponse.redirect(url, { status: 302 });
+          }
+
+          return response;  // Already on home page; no further action
         }
       }
     } else if (refreshToken) {
@@ -87,7 +108,31 @@ export function withAuth(middleware: CustomMiddleware) {
 
         accessToken = ""
         refreshToken = ""
+
+        const url = new URL(request.nextUrl.origin);
+        url.searchParams.set("session-expired", "true")
+
+        if (pathname !== "/") {
+          url.pathname = "/";
+          return NextResponse.redirect(url, { status: 302 });
+        }
+
+        return response;
       }
+    }
+
+    if (!accessToken && !refreshToken && profile) {
+      deleteCookies(response)
+
+      const url = new URL(request.nextUrl.origin);
+      url.searchParams.set("session-expired", "true")
+
+      if (pathname !== "/") {
+        url.pathname = "/";
+        return NextResponse.redirect(url, { status: 302 });
+      }
+
+      return response;
     }
 
     if (accessToken) {

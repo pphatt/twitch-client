@@ -60,19 +60,29 @@ export function SiteHeader() {
   const searchParams = useSearchParams()
 
   const isRedirected = searchParams.get("redirected")
+  const isSessionExpired = searchParams.get("session-expired")
 
   React.useEffect(() => {
     if (authenticated) {
       if (isRedirected === "true") {
-        router.refresh()
+        window.location.replace("/")
 
-        toast.error("You must be logged in to view this page", {
+        toast.error("You must be logged in to view this page.", {
+          duration: 10000,
+          position: "top-right",
+        })
+      }
+
+      if (isSessionExpired === "true") {
+        window.location.replace("/")
+
+        toast.error("Session expired. Please login again.", {
           duration: 10000,
           position: "top-right",
         })
       }
     }
-  }, [authenticated, isRedirected, router, searchParams])
+  }, [authenticated, isRedirected, isSessionExpired, router, searchParams])
 
   // React.useEffect(() => {
   //   const { data } = await axios.get<{ data: User }>(
