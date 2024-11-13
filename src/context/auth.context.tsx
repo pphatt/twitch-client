@@ -88,13 +88,13 @@ export const AuthStoreProvider = ({
 }
 
 export const useAuthStore = <T,>(selector: (store: AuthStore) => T): T => {
-  const counterStoreContext = React.useContext(AuthStoreContext)
+  const authStoreContext = React.useContext(AuthStoreContext)
 
-  if (!counterStoreContext) {
+  if (!authStoreContext) {
     throw new Error(`useAuthStore must be used within AuthStoreProvider`)
   }
 
-  return useStore(counterStoreContext, selector)
+  return useStore(authStoreContext, selector)
 }
 
 export { useAuthStore as useAuth }

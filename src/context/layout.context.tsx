@@ -1,15 +1,18 @@
 "use client"
 
 import * as React from "react"
-import { DEFAULT_LAYOUT } from "src/constants"
 import type { MosaicNode } from "react-mosaic-component"
-import { create, type StoreApi } from "zustand"
-import createContext from "zustand/context"
+import { DEFAULT_LAYOUT } from "src/constants"
+import { useStore } from "zustand"
+import { createStore } from "zustand/vanilla"
 
 import { useLocalStorage } from "@/hooks/useLocalStorage.hooks"
 
-type ILayoutStore = {
+type LayoutState = {
   layout: MosaicNode<string> | null
+}
+
+type LayoutAction = {
   setLayout: (
     val:
       | MosaicNode<string>
@@ -18,27 +21,29 @@ type ILayoutStore = {
   ) => void
 }
 
-const { Provider, useStore } = createContext<StoreApi<ILayoutStore>>()
+export type LayoutStore = LayoutState & LayoutAction
 
-const createLayoutStore = ({ layout, setLayout }: ILayoutStore) =>
-  create<ILayoutStore>(() => ({
+const createLayoutStore = ({ layout, setLayout }: LayoutStore) => {
+  return createStore<LayoutStore>()(() => ({
     layout,
     setLayout,
   }))
+}
 
-export default function LayoutProvider({
-  children,
-}: {
+export type LayoutStoreApi = ReturnType<typeof createLayoutStore>
+
+export const LayoutStoreContext = React.createContext<
+  LayoutStoreApi | undefined
+>(undefined)
+
+export interface LayoutStoreProviderProps {
   children: React.ReactNode
-}) {
-  /*
-   * ignore the defaultValue because it acts like an initial value and that make the UI/UX not great
-   * setting this null act like a useState + useContext
-   * */
-  const [layout, setLayout] = useLocalStorage<MosaicNode<string> | null>({
-    key: "stream-manager-drag-and-drop-layout",
-    defaultValue: null,
-  })
+}
+
+export default function LayoutStoreProvider({
+  children,
+}: LayoutStoreProviderProps) {
+  const storeRef = React.useRef<LayoutStoreApi>()
 
   const localStorageValue = window["localStorage"].getItem(
     "stream-manager-drag-and-drop-layout"
@@ -54,22 +59,37 @@ export default function LayoutProvider({
     parsedValue = JSON.parse(localStorageValue) as MosaicNode<string>
   }
 
-  if (!layout) {
-    setLayout(parsedValue)
+  /*
+   * ignore the defaultValue because it acts like an initial value and that make the UI/UX not great
+   * setting this null act like a useState + useContext
+   * */
+  const [layout, setLayout] = useLocalStorage<MosaicNode<string> | null>({
+    key: "stream-manager-drag-and-drop-layout",
+    defaultValue: parsedValue,
+  })
+
+  if (!storeRef.current) {
+    storeRef.current = createLayoutStore({
+      layout,
+      setLayout,
+    })
   }
 
   return (
-    <Provider
-      createStore={() =>
-        createLayoutStore({
-          layout,
-          setLayout,
-        })
-      }
-    >
+    <LayoutStoreContext.Provider value={storeRef.current}>
       {children}
-    </Provider>
+    </LayoutStoreContext.Provider>
   )
 }
 
-export { useStore as useUpdateLayoutContext }
+export const useLayoutStore = <T,>(selector: (store: LayoutStore) => T): T => {
+  const layoutStoreContext = React.useContext(LayoutStoreContext)
+
+  if (!layoutStoreContext) {
+    throw new Error(`useLayoutStore must be used within LayoutStoreProvider`)
+  }
+
+  return useStore(layoutStoreContext, selector)
+}
+
+export { useLayoutStore as useLayout }
