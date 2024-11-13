@@ -1,10 +1,6 @@
 import type { NextRequest } from "next/server"
 import { handleSelectLatestAccessToken } from "@/utils/auth.utils"
-import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
-import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
-import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
-import axios from "axios"
-import { jwtDecode } from "jwt-decode"
+import { UserRequest } from "@modules/core/presentation/endpoints/user/user.request"
 
 export async function GET(request: NextRequest) {
   const accessToken = handleSelectLatestAccessToken(request)
@@ -13,28 +9,31 @@ export async function GET(request: NextRequest) {
     return Response.json({ message: "Access Token Not Found" }, { status: 401 })
   }
 
-  const { sub } = jwtDecode<TokenPayload>(accessToken)
-
-  // const res = await fetch(`${BackendURL}/users/specific-user/${sub}`)
-  // const data = (await res.json()) as User
-
-  const { data } = await axios.get<{ data: User }>(
-    `${BackendURL}/users/specific-user/${sub}`,
-    {
-      data: {
-        id: sub,
+  try {
+    const { data } = await UserRequest.whoami({
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
-    }
-  )
+    })
 
-  const resData = data.data
+    const resData = data.data
 
-  return Response.json(
-    {
-      data: resData,
-    },
-    {
-      status: 200,
-    }
-  )
+    return Response.json(
+      {
+        data: resData,
+      },
+      {
+        status: 200,
+      }
+    )
+  } catch (err) {
+    return Response.json(
+      {
+        message: "UNAUTHORIZED",
+      },
+      {
+        status: 400,
+      }
+    )
+  }
 }

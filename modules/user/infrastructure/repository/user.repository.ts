@@ -1,12 +1,12 @@
 import { clearTokens } from "@/utils/auth.utils"
-import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import {
   Auth,
   NextAuth,
 } from "@modules/core/presentation/endpoints/auth/auth.request"
-import { BackendURL } from "@modules/core/presentation/endpoints/default.endpoints"
-import { NextUser } from "@modules/core/presentation/endpoints/user/user.request"
-import { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
+import {
+  NextUser,
+  UserRequest,
+} from "@modules/core/presentation/endpoints/user/user.request"
 import type { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
 import type { ForgetUsernameRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-username.request.dto"
 import type { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
@@ -16,8 +16,7 @@ import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/r
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
-import axios from "axios"
-import { jwtDecode } from "jwt-decode"
+import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
 
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
 
@@ -34,7 +33,7 @@ export const UserRepository: IUserRepository = {
 
   async signin(
     body: FormSignInRequestDto
-  ): Promise<SignInResponseDto & { profile: User | null }> {
+  ): Promise<SignInResponseDto & { profile: WhoamiResponseDto | null }> {
     try {
       const response = await NextAuth.signIn(body)
 
@@ -48,18 +47,18 @@ export const UserRepository: IUserRepository = {
 
   async refreshToken(
     body: RefreshTokenRequestDto
-  ): Promise<RefreshTokenResponseDto & { profile: User }> {
+  ): Promise<RefreshTokenResponseDto & { profile: WhoamiResponseDto }> {
     try {
       const response = await Auth.refreshToken(body)
 
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
         response.data
 
-      const decode = jwtDecode<TokenPayload>(newAccessToken)
-
-      const { data: userProfileResponse } = (await axios.get(
-        `${BackendURL}/users/specific-user/${decode.sub}`
-      )) as { data: { data: User } }
+      const { data: userProfileResponse } = await UserRequest.whoami({
+        headers: {
+          Authorization: `Bearer ${newAccessToken}`,
+        },
+      })
 
       return {
         accessToken: newAccessToken,
@@ -123,13 +122,11 @@ export const UserRepository: IUserRepository = {
     }
   },
 
-  async profile(): Promise<{ data: User }> {
+  async whoami(): Promise<{ data: WhoamiResponseDto }> {
     try {
-      const response = await NextUser.getProfile()
+      const response = await NextUser.whoami()
 
-      const userData = response.data
-
-      return Promise.resolve({ data: userData })
+      return Promise.resolve({ data: response.data })
     } catch (error) {
       console.log("Cannot get user profile", error)
       return Promise.reject(error)

@@ -1,4 +1,3 @@
-import { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import {
   ConfirmEmailAPI,
   ForgetUsername,
@@ -28,6 +27,7 @@ import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/reque
 import { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
+import type {WhoamiResponseDto} from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto";
 
 export const Auth = {
   signUpWithEmail: async (body: SignUpRequestDto) =>
@@ -61,7 +61,7 @@ export const Auth = {
 export const NextAuth = {
   signIn: async (
     body: FormSignInRequestDto
-  ): Promise<{ data: SignInResponseDto & { profile: User | null } }> =>
+  ): Promise<{ data: SignInResponseDto & { profile: WhoamiResponseDto | null } }> =>
     axios.post(NextSignInAPI, body),
   refreshToken: async (
     body: RefreshTokenRequestDto

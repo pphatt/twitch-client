@@ -1,21 +1,24 @@
 "use client"
 
 import * as React from "react"
-import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
+import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
 import { useStore } from "zustand"
 import { createStore } from "zustand/vanilla"
 
 import { useLocalStorage } from "@/hooks/useLocalStorage.hooks"
 
 export type AuthState = {
-  profile: User | null
+  profile: WhoamiResponseDto | null
 
   authenticated: boolean
 }
 
 export type AuthActions = {
   setProfile: (
-    val: User | ((prevState: User | null) => User | null) | null
+    val:
+      | WhoamiResponseDto
+      | ((prevState: WhoamiResponseDto | null) => WhoamiResponseDto | null)
+      | null
   ) => void
 
   setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
@@ -56,10 +59,10 @@ export const AuthStoreProvider = ({
 
   const [authenticated, setAuthenticated] = React.useState(!!profileFromCookie)
 
-  const [profile, setProfile] = useLocalStorage<User | null>({
+  const [profile, setProfile] = useLocalStorage<WhoamiResponseDto | null>({
     key: "profile",
     defaultValue: profileFromCookie
-      ? (JSON.parse(profileFromCookie) as User)
+      ? (JSON.parse(profileFromCookie) as WhoamiResponseDto)
       : null,
   })
 
@@ -74,7 +77,7 @@ export const AuthStoreProvider = ({
 
   React.useEffect(() => {
     if (profileFromCookie && !profile) {
-      setProfile(JSON.parse(profileFromCookie) as User)
+      setProfile(JSON.parse(profileFromCookie) as WhoamiResponseDto)
     } else if (!profileFromCookie && profile) {
       setProfile(null)
     }

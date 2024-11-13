@@ -3,8 +3,6 @@
 import * as React from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useAuth } from "@/context/auth.context"
-import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
-import axios from "axios"
 import { toast } from "sonner"
 
 import { siteConfig, supportSite } from "@/config/site"
@@ -53,8 +51,6 @@ import {
 export function SiteHeader() {
   const router = useRouter()
 
-  const [isPending, startTransition] = React.useTransition()
-
   const { profile, authenticated } = useAuth((state) => state)
 
   const searchParams = useSearchParams()
@@ -84,26 +80,6 @@ export function SiteHeader() {
     }
   }, [authenticated, isRedirected, isSessionExpired, router, searchParams])
 
-  // React.useEffect(() => {
-  //   const { data } = await axios.get<{ data: User }>(
-  //     "http://localhost:3000/api/user/whoami"
-  //   )
-  // }, [])
-
-  const handleClick = () => {
-    startTransition(async () => {
-      try {
-        const { data } = await axios.get<{ data: User }>(
-          "http://localhost:3000/api/user/whoami"
-        )
-
-        console.log(data.data.displayName)
-      } catch (_) {
-        router.refresh()
-      }
-    })
-  }
-
   return (
     <SiteHeaderWrapper>
       <SiteHeaderContainer>
@@ -129,7 +105,7 @@ export function SiteHeader() {
           </Hint>
 
           <Hint delayDuration={250} skipDelayDuration={0} label={"Whispers"}>
-            <AdditionalItem onClick={handleClick}>
+            <AdditionalItem>
               <AdditionalItemWrapper>
                 <AdditionalItemContainer>
                   <Icons.whispers />
@@ -209,7 +185,7 @@ export function SiteHeader() {
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
-                          <DropdownItemLink href={`/u/AdminUser`}>
+                          <DropdownItemLink href={`/u/${profile?.username}`}>
                             <span>Channel</span>
                             <Icons.channel />
                           </DropdownItemLink>
@@ -217,7 +193,7 @@ export function SiteHeader() {
 
                         <DropdownItem>
                           <DropdownItemLink
-                            href={`/u/AdminUser/content/video-producer`}
+                            href={`/u/${profile?.username}/content/video-producer`}
                           >
                             <span>Video Producer</span>
                             <Icons.videoProducer />
@@ -225,7 +201,7 @@ export function SiteHeader() {
                         </DropdownItem>
 
                         <DropdownItem>
-                          <DropdownItemLink href={`/u/AdminUser/home`}>
+                          <DropdownItemLink href={`/u/${profile?.username}/home`}>
                             <span>Creator Dashboard</span>
                             <Icons.creatorDashboard />
                           </DropdownItemLink>

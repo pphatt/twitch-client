@@ -1,8 +1,18 @@
-import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
-import { NextGetSpecificUserById } from "@modules/core/presentation/endpoints/user/user.endpoints"
-import axios from "axios"
+import {
+  NextWhoamiAPI,
+  WhoamiAPI,
+} from "@modules/core/presentation/endpoints/user/user.endpoints"
+import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
+import axios, { type AxiosRequestConfig } from "axios"
+
+export const UserRequest = {
+  whoami: async (
+    config: AxiosRequestConfig
+  ): Promise<{ data: { data: WhoamiResponseDto } }> =>
+    axios.get(WhoamiAPI, config),
+}
 
 export const NextUser = {
-  getProfile: async (): Promise<{ data: User }> =>
-    axios.get(NextGetSpecificUserById),
+  whoami: async (): Promise<{ data: WhoamiResponseDto }> =>
+    axios.get(NextWhoamiAPI),
 }

@@ -1,4 +1,3 @@
-import type { User } from "@modules/core/domain-base/entity/identity/user.entity"
 import type { ForgetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-password.request.dto"
 import type { ForgetUsernameRequestDto } from "@modules/user/presentation/http/dto/request/auth/forget-username.request.dto"
 import type { OtpRequestDto } from "@modules/user/presentation/http/dto/request/auth/otp.request.dto"
@@ -8,23 +7,24 @@ import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/r
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
+import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
 
 export interface IUserRepository {
   // auth
   signupWithEmail: (body: SignUpRequestDto) => Promise<{ status: number }>
   refreshToken: (
     body: RefreshTokenRequestDto
-  ) => Promise<RefreshTokenResponseDto & { profile: User }>
+  ) => Promise<RefreshTokenResponseDto & { profile: WhoamiResponseDto }>
   confirmEmail: (body: OtpRequestDto) => Promise<void>
   signin: (
     body: FormSignInRequestDto
-  ) => Promise<SignInResponseDto & { profile: User | null }>
+  ) => Promise<SignInResponseDto & { profile: WhoamiResponseDto | null }>
   logout: () => Promise<void>
   forgotPassword: (body: ForgetPasswordRequestDto) => Promise<void>
   forgetUsername: (body: ForgetUsernameRequestDto) => Promise<void>
   resetPassword: (body: ResetPasswordRequestDto) => Promise<void>
 
   // user
-  profile: () => Promise<{ data: User }>
+  whoami: () => Promise<{ data: WhoamiResponseDto }>
   updateProfile: () => Promise<void>
 }
