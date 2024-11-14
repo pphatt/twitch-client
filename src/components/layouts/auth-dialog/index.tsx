@@ -8,7 +8,7 @@ import {
   DialogPortal,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import OtpForm from "@/components/forms/otp-form"
+import OtpForm from "src/components/forms/auth/otp-form"
 import { Icons } from "@/components/icons"
 import {
   DialogClose,

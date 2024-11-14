@@ -10,14 +10,18 @@ const InputDefaultVariant = css`
   border-color: rgba(73, 77, 85);
   border-radius: calc(0.5rem - 2px);
 
+  &:focus,
   &:focus-visible {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
+    background-color: hsl(var(--background));
+
+    border-color: hsla(var(--color-twitch-orange-11));
+
+    outline-offset: -1px;
+    outline: none;
 
     box-shadow:
-      0 0 0 2px hsl(240 10% 3.9%),
-      0 0 0 4px hsl(240 3.7% 15.9%),
-      0 0 #0000;
+      0 0 0 2px hsla(var(--color-twitch-orange-11)),
+      inset 0 0 0 2px hsla(var(--color-twitch-orange-11));
   }
 `
 

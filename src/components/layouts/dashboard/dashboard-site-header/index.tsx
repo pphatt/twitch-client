@@ -162,7 +162,7 @@ export default function DashboardSiteHeader() {
                         </DropdownItem>
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/AdminUser"}>
+                          <DropdownItemLink href={`/${profile?.username}`}>
                             <span>Channel</span>
                             <Icons.channel />
                           </DropdownItemLink>
@@ -171,7 +171,9 @@ export default function DashboardSiteHeader() {
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/u/AdminUser/settings/channel"}>
+                          <DropdownItemLink
+                            href={`/u/${profile?.username}/settings/channel`}
+                          >
                             <span>Account Settings</span>
                             <Icons.settings style={{ fill: "none" }} />
                           </DropdownItemLink>

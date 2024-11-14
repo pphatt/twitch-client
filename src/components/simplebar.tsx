@@ -34,6 +34,8 @@ export interface Props
   }
   simpleContentWrapperStyle?: React.CSSProperties
   placeHolderHidden?: boolean
+  forceShowXAxis?: boolean
+  forceShowYAxis?: boolean
 }
 
 const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
@@ -44,6 +46,8 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
       scrollableNodeProps = {},
       simpleContentWrapperStyle,
       placeHolderHidden = true,
+      forceShowXAxis = true,
+      forceShowYAxis = true,
       ...otherProps
     },
     ref
@@ -125,13 +129,17 @@ const SimpleBar = React.forwardRef<SimpleBarCore | null, Props>(
         {...rest}
         className={cn("scrollable-area", className)}
       >
-        <div className={`${classNames.track} horizontal`}>
-          <div className={classNames.scrollbar} />
-        </div>
+        {forceShowXAxis && (
+          <div className={`${classNames.track} horizontal`}>
+            <div className={classNames.scrollbar} />
+          </div>
+        )}
 
-        <div className={`${classNames.track} vertical`}>
-          <div className={classNames.scrollbar} />
-        </div>
+        {forceShowYAxis && (
+          <div className={`${classNames.track} vertical`}>
+            <div className={classNames.scrollbar} />
+          </div>
+        )}
 
         <div
           className={`${classNames.wrapper}`}

@@ -1,0 +1,36 @@
+.profile-settings-header-wrapper {
+  margin-bottom: 20px;
+}
+
+.profile-settings-header-text {
+  color: hsl(var(--foreground-alt));
+
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.profile-setting-header-description-wrapper {
+  margin-top: 10px;
+}
+
+.profile-setting-header-description-text {
+  color: hsl(var(--foreground-alt-2));
+}
+
+.profile-settings-content-wrapper {
+  background-color: hsl(var(--background));
+
+  border: 1px solid hsla(var(--color-opac-gd-2));
+  border-radius: 4px;
+
+  margin-bottom: 40px;
+}
+
+.profile-settings-content-container {
+  width: 100%;
+
+  border: 1px solid hsl(var(--color-twitch-orange-11));
+
+  padding: 0;
+}

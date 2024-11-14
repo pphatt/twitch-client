@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input, type InputError } from "@/components/ui/input"
 import { errorCss } from "@/components/ui/input/style"
-import { PasswordInput } from "@/components/forms/password-input"
+import { PasswordInput } from "src/components/forms/auth/password-input"
 import { Icons } from "@/components/icons"
 import { spinKeyframes } from "@/styles/abstract/_mixins"
 

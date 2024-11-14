@@ -1,8 +1,8 @@
 import * as React from "react"
 
 import { Tabs } from "@/components/ui/tabs"
-import LogInForm from "@/components/forms/login-form"
-import SignUpForm from "@/components/forms/signup-form"
+import LogInForm from "src/components/forms/auth/login-form"
+import SignUpForm from "src/components/forms/auth/signup-form"
 import {
   FormLayoutContainer,
   FormLayoutWrapper,
