@@ -14,6 +14,8 @@ import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto
 import type { ResetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
+import { IsValidUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/is-valid-username.request.dto"
+import { UpdateUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
@@ -133,7 +135,25 @@ export const UserRepository: IUserRepository = {
     }
   },
 
-  async updateProfile(): Promise<void> {
-    return Promise.resolve(undefined)
+  async isValidUsername(
+    body: IsValidUsernameRequestDto
+  ): Promise<{ data: boolean }> {
+    try {
+      const { data: responseData } = await UserRequest.isValidUsername(body)
+
+      return Promise.resolve({ data: responseData.data })
+    } catch (error) {
+      console.log("Cannot valid username", error)
+      return Promise.reject(error)
+    }
+  },
+
+  async updateProfile(body: UpdateUsernameRequestDto): Promise<{ message: string }> {
+    try {
+      const { message } = await NextUser.updateUsername(body)
+      return Promise.resolve({ message })
+    } catch (error) {
+      return Promise.reject(error)
+    }
   },
 }

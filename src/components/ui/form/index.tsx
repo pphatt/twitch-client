@@ -90,14 +90,16 @@ FormItem.displayName = "FormItem"
 
 const FormLabel = React.forwardRef<
   React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(({ ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & {
+    $showError?: boolean
+  }
+>(({ $showError = true, ...props }, ref) => {
   const { error, formItemId } = useFormField()
 
   return (
     <FormLabelWrapper
       ref={ref}
-      $error={error}
+      $error={$showError ? error : undefined}
       htmlFor={formItemId}
       {...props}
     />

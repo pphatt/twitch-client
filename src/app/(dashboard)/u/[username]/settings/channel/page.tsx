@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useAuth } from "@/context/auth.context"
 
 import ProfilePageLayout from "@/components/dashboard-profile/profile-page-layout"
 import ShowPreviewBtn from "@/components/dashboard-profile/show-preview"
@@ -14,6 +15,8 @@ export default function ChannelSettingsPage() {
   const [openReview, setOpenReview] = React.useState(true)
 
   const [isPending, startTransition] = React.useTransition()
+
+  const { profile } = useAuth((state) => state)
 
   return (
     <ProfilePageLayout>
@@ -36,11 +39,11 @@ export default function ChannelSettingsPage() {
 
       <div className={styles["profile-settings-content-wrapper"]}>
         <div className={styles["profile-settings-content-container"]}>
-          <UsernameInput />
+          <UsernameInput username={profile!.username} />
 
-          <DisplayNameInput />
+          <DisplayNameInput displayName={profile!.displayName} />
 
-          <BioInput />
+          <BioInput bio={profile!.bio} />
         </div>
 
         <SubmitBtn isPending={isPending} disabled={isPending} />

@@ -1,14 +1,40 @@
-import { PasswordInput } from "src/components/forms/auth/password-input"
 import styled, { css } from "styled-components"
 
 import { Button } from "@/components/ui/button"
-import { FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { FormItem, FormLabel } from "@/components/ui/form"
 import { Input, type InputError } from "@/components/ui/input"
 import { errorCss } from "@/components/ui/input/style"
 import { Icons } from "@/components/icons"
 import { spinKeyframes } from "@/styles/abstract/_mixins"
 
-export const FormLayoutContainer = styled.form`
+export const FormLayoutWrapper = styled.div`
+  height: 100%;
+  padding-right: 0.5rem;
+  margin: 1.75rem 0 0 0;
+
+  overflow-y: scroll;
+`
+
+export const FormLayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  height: 100%;
+`
+
+export const FormLayoutOverlay = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: calc(100% + 0.75rem);
+  max-height: 100%;
+  height: 100%;
+
+  overflow-x: hidden;
+`
+
+export const FormContent = styled.form`
   display: flex;
   flex-direction: column;
 
@@ -37,7 +63,7 @@ export const FormContentLabelContainer = styled.div`
 `
 
 export const FormContentLabel = styled(FormLabel)`
-  color: hsl(var(--color-hinted-grey-15));
+  color: hsl(var(--color-hinted-grey-15)) !important;
 
   margin-left: 0;
 
@@ -53,10 +79,12 @@ const shareInputCss = css`
   background-color: hsl(var(--background));
 
   max-width: 100%;
-  height: 40px;
+  height: 30px;
 
   //border: transparent;
-  border-radius: var(--radius);
+  border-radius: 4px;
+
+  font-size: 13px;
 
   appearance: none;
 
@@ -88,24 +116,40 @@ export const FormContentInput = styled(Input)<InputError>`
   ${({ $error }) => $error && errorCss};
 `
 
-export const FormPasswordInput = styled(PasswordInput)<InputError>`
-  ${shareInputCss}
+export const FormMessageWrapper = styled.div`
+  height: 0;
 
-  ${({ $error }) => $error && errorCss};
+  overflow: hidden;
+
+  transition: height 0.25s linear 0.1s;
 `
 
-export const FormMessageWrapper = styled(FormMessage)`
-  margin-top: 8px;
+export const FormMessageContainer = styled.div`
+  padding-top: 5px;
+`
+
+export const FormMessage = styled.p`
+  color: #ff8280;
+
+  font-size: 12px;
+`
+
+export const SubmitLayoutWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  margin-top: 20px;
 `
 
 export const NormalBtn = styled(Button)`
   color: hsl(var(--foreground-alt-2));
   background-color: rgba(83, 83, 95, 0.38);
 
-  max-width: 100%;
   height: 30px;
 
-  padding: 5px 8px;
+  border-radius: 4px;
+
+  padding: 0 10px;
 
   font-size: 13px;
   font-weight: 600;
@@ -122,11 +166,11 @@ export const SubmitBtn = styled(Button)<{
   background-color: hsl(var(--color-twitch-orange-11))
     ${({ $isSubmitting }) => $isSubmitting && "!important"};
 
-  max-width: 100%;
-  width: 100%;
   height: 30px;
 
-  padding: 5px 8px;
+  border-radius: 4px;
+
+  padding: 0 10px;
 
   font-size: 13px;
   font-weight: 600;

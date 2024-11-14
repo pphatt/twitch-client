@@ -33,6 +33,7 @@ import {
   FormPasswordInput as PasswordInput,
   SubmitBtn,
 } from "@/components/share-styled/auth-forms/style"
+import {axiosHttpErrorHandler} from "@/utils/common";
 
 type Inputs = FormSignInRequestDto
 
@@ -107,8 +108,14 @@ export default function LogInForm({
           window.location.replace("/")
         }
       } catch (err) {
-        // catchError(err)
-        console.error(err)
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        console.log(error)
       }
     })
   }

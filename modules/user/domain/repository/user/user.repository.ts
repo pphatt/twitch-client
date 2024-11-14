@@ -5,6 +5,8 @@ import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto
 import type { ResetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
+import type { IsValidUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/is-valid-username.request.dto"
+import type { UpdateUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
@@ -26,5 +28,8 @@ export interface IUserRepository {
 
   // user
   whoami: () => Promise<{ data: WhoamiResponseDto }>
-  updateProfile: () => Promise<void>
+  isValidUsername: (
+    body: IsValidUsernameRequestDto
+  ) => Promise<{ data: boolean }>
+  updateProfile: (body: UpdateUsernameRequestDto) => Promise<{ message: string }>
 }

@@ -33,10 +33,6 @@ export const saveUserProfile = (userProfile: { userId: string }) => {
   window.localStorage.setItem("user", JSON.stringify(userProfile))
 }
 
-export const getUserProfile = cache(async () => {
-  return await UserRepository.profile()
-})
-
 export const clearUserProfile = () => {
   if (!isClientSide()) {
     return

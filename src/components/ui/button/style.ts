@@ -126,7 +126,8 @@ export const StyledButton = styled(DefaultStyledButton)`
 
     &[disabled] {
         opacity: 0.5;
-        pointer-events: none;
+        //pointer-events: none;
+        cursor: not-allowed;
     }
 
     &:focus-visible {

@@ -17,7 +17,13 @@ import {
 } from "@/components/forms/dashboard/common/style"
 import { DisplayNameInputComp } from "@/components/forms/dashboard/displayname-input/style"
 
-export default function DisplayNameInput() {
+interface DisplayNameInputProps {
+  displayName: string
+}
+
+export default function DisplayNameInput({
+  displayName,
+}: DisplayNameInputProps) {
   return (
     <RowWrapper>
       <RowContainer>
@@ -33,6 +39,7 @@ export default function DisplayNameInput() {
               <RowInputContainer>
                 <InputWrapper>
                   <DisplayNameInputComp
+                    defaultValue={displayName}
                     type="text"
                     aria-labelledby="display-label"
                     autoCapitalize="off"

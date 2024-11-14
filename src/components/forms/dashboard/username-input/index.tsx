@@ -2,6 +2,7 @@
 
 import * as React from "react"
 
+import UsernameDialog from "@/components/dashboard-profile/username-dialog"
 import {
   EditButton,
   EditButtonContainer,
@@ -28,7 +29,11 @@ import {
   RowWrapper,
 } from "../common/style"
 
-export default function UsernameInput() {
+interface UsernameInputProps {
+  username: string
+}
+
+export default function UsernameInput({ username }: UsernameInputProps) {
   return (
     <RowWrapper>
       <RowContainer>
@@ -49,29 +54,33 @@ export default function UsernameInput() {
                     autoCapitalize="off"
                     autoCorrect="off"
                     disabled={true}
+                    defaultValue={username}
+                    readOnly={true}
                   />
                 </InputWrapper>
 
                 <EditButtonWrapper>
-                  <EditButton>
-                    <EditButtonContainer>
-                      <EditButtonOverlay>
-                        <InnerEditButtonWrapper>
-                          <InnerEditButtonContainer>
-                            <InnerEditButtonPlaceholder />
+                  <UsernameDialog username={username}>
+                    <EditButton>
+                      <EditButtonContainer>
+                        <EditButtonOverlay>
+                          <InnerEditButtonWrapper>
+                            <InnerEditButtonContainer>
+                              <InnerEditButtonPlaceholder />
 
-                            <EditButtonSVG
-                              width={"100%"}
-                              height={"100%"}
-                              viewBox="0 0 20 20"
-                              x="0px"
-                              y="0px"
-                            />
-                          </InnerEditButtonContainer>
-                        </InnerEditButtonWrapper>
-                      </EditButtonOverlay>
-                    </EditButtonContainer>
-                  </EditButton>
+                              <EditButtonSVG
+                                width={"100%"}
+                                height={"100%"}
+                                viewBox="0 0 20 20"
+                                x="0px"
+                                y="0px"
+                              />
+                            </InnerEditButtonContainer>
+                          </InnerEditButtonWrapper>
+                        </EditButtonOverlay>
+                      </EditButtonContainer>
+                    </EditButton>
+                  </UsernameDialog>
                 </EditButtonWrapper>
               </RowInputContainer>
             </div>

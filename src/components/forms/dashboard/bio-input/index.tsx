@@ -16,9 +16,11 @@ import {
   RowWrapper,
 } from "@/components/forms/dashboard/common/style"
 
-interface BioInputProps extends TextareaAutosizeProps {}
+interface BioInputProps extends TextareaAutosizeProps {
+  bio: string
+}
 
-export default function BioInput({ ...props }: BioInputProps) {
+export default function BioInput({ bio, ...props }: BioInputProps) {
   return (
     <RowWrapper>
       <RowContainer>
@@ -34,6 +36,7 @@ export default function BioInput({ ...props }: BioInputProps) {
               <RowInputContainer>
                 <InputWrapper>
                   <TextArea
+                    defaultValue={bio}
                     aria-describedby="bio-description"
                     aria-labelledby="bio-label"
                     data-a-target="profile-bio-input"
