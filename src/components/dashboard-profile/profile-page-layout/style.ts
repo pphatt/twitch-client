@@ -4,6 +4,7 @@ export const PageWrapper = styled.div`
   flex-grow: 1;
 
   min-width: 0;
+  height: 100%;
 `
 
 export const PageContainer = styled.div`
@@ -13,10 +14,14 @@ export const PageContainer = styled.div`
 
 export const PageOverlay = styled.main`
   height: 100%;
+
+  .root-scrollable__wrapper {
+    min-height: auto;
+  }
 `
 
 export const ScrollContentWrapper = styled.div`
-  height: 100%;
+  //height: 100%;
 `
 
 export const EmptyPaddingWrapper = styled.div`

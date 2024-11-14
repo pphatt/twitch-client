@@ -26,7 +26,7 @@ export default function ProfilePageLayout({
     <PageWrapper>
       <PageContainer>
         <PageOverlay>
-          <SimpleBar forceShowXAxis={false} autoHide={true}>
+          <SimpleBar forceShowXAxis={false}>
             <ScrollContentWrapper>
               <EmptyPaddingWrapper>
                 <EmptyPaddingContainer>
@@ -34,15 +34,13 @@ export default function ProfilePageLayout({
                 </EmptyPaddingContainer>
               </EmptyPaddingWrapper>
 
-              <SimpleBar forceVisible={"y"}>
-                <ScrollLayoutContentWrapper>
-                  <ScrollLayoutContentContainer>
-                    <ProfilePageHeader />
+              <ScrollLayoutContentWrapper>
+                <ScrollLayoutContentContainer>
+                  <ProfilePageHeader />
 
-                    <ContentWrapper>{children}</ContentWrapper>
-                  </ScrollLayoutContentContainer>
-                </ScrollLayoutContentWrapper>
-              </SimpleBar>
+                  <ContentWrapper>{children}</ContentWrapper>
+                </ScrollLayoutContentContainer>
+              </ScrollLayoutContentWrapper>
             </ScrollContentWrapper>
           </SimpleBar>
         </PageOverlay>
