@@ -51,7 +51,7 @@ import {
 export function SiteHeader() {
   const router = useRouter()
 
-  const { profile, authenticated } = useAuth((state) => state)
+  const { profile, authenticated } = useAuth()
 
   const searchParams = useSearchParams()
 

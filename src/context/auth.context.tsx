@@ -2,14 +2,11 @@
 
 import * as React from "react"
 import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
-import { useStore } from "zustand"
-import { createStore } from "zustand/vanilla"
 
 import { useLocalStorage } from "@/hooks/useLocalStorage.hooks"
 
 export type AuthState = {
   profile: WhoamiResponseDto | null
-
   authenticated: boolean
 }
 
@@ -20,33 +17,16 @@ export type AuthActions = {
       | ((prevState: WhoamiResponseDto | null) => WhoamiResponseDto | null)
       | null
   ) => void
-
-  setAuthenticated: React.Dispatch<React.SetStateAction<boolean>>
+  setAuthenticated: (authenticated: boolean) => void
 }
 
-export type AuthStore = AuthState & AuthActions
+// Combine AuthState and AuthActions into a single type
+export type AuthContextType = AuthState & AuthActions
 
-const createAuthStore = ({
-  profile,
-  setProfile,
-  authenticated,
-  setAuthenticated,
-}: AuthStore) => {
-  return createStore<AuthStore>()(() => ({
-    profile,
-    setProfile,
-    authenticated,
-    setAuthenticated,
-  }))
-}
+// Initialize AuthContext with default values
+const AuthContext = React.createContext<AuthContextType | undefined>(undefined)
 
-export type AuthStoreApi = ReturnType<typeof createAuthStore>
-
-export const AuthStoreContext = React.createContext<AuthStoreApi | undefined>(
-  undefined
-)
-
-export interface AuthStoreProviderProps {
+export interface AuthProviderProps {
   profileFromCookie: string | undefined
   children: React.ReactNode
 }
@@ -54,11 +34,10 @@ export interface AuthStoreProviderProps {
 export const AuthStoreProvider = ({
   profileFromCookie,
   children,
-}: AuthStoreProviderProps) => {
-  const storeRef = React.useRef<AuthStoreApi>()
-
-  const [authenticated, setAuthenticated] = React.useState(!!profileFromCookie)
-
+}: AuthProviderProps) => {
+  // Initialize state using React's useState and useLocalStorage for persistence
+  const [authenticated, setAuthenticated] =
+    React.useState<boolean>(!!profileFromCookie)
   const [profile, setProfile] = useLocalStorage<WhoamiResponseDto | null>({
     key: "profile",
     defaultValue: profileFromCookie
@@ -66,15 +45,7 @@ export const AuthStoreProvider = ({
       : null,
   })
 
-  if (!storeRef.current) {
-    storeRef.current = createAuthStore({
-      profile,
-      setProfile,
-      authenticated,
-      setAuthenticated,
-    })
-  }
-
+  // Sync state with profileFromCookie when it changes
   React.useEffect(() => {
     if (profileFromCookie && !profile) {
       setProfile(JSON.parse(profileFromCookie) as WhoamiResponseDto)
@@ -83,21 +54,22 @@ export const AuthStoreProvider = ({
     }
   }, [profile, profileFromCookie, setProfile])
 
-  return (
-    <AuthStoreContext.Provider value={storeRef.current}>
-      {children}
-    </AuthStoreContext.Provider>
-  )
-}
-
-export const useAuthStore = <T,>(selector: (store: AuthStore) => T): T => {
-  const authStoreContext = React.useContext(AuthStoreContext)
-
-  if (!authStoreContext) {
-    throw new Error(`useAuthStore must be used within AuthStoreProvider`)
+  // Define context value with state and action functions
+  const value = {
+    profile,
+    authenticated,
+    setProfile,
+    setAuthenticated,
   }
 
-  return useStore(authStoreContext, selector)
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-export { useAuthStore as useAuth }
+// Custom hook to access the AuthContext
+export const useAuth = (): AuthContextType => {
+  const context = React.useContext(AuthContext)
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider")
+  }
+  return context
+}

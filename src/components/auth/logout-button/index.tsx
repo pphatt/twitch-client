@@ -15,7 +15,7 @@ export default function LogoutButton() {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
-  const { setProfile, setAuthenticated } = useAuth((state) => state)
+  const { setProfile, setAuthenticated } = useAuth()
 
   const handleLogout = () => {
     startTransition(async () => {

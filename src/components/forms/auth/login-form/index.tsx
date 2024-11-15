@@ -51,7 +51,7 @@ export default function LogInForm({
 }: LogInFormProps) {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
-  const { setProfile, setAuthenticated } = useAuth((state) => state)
+  const { setProfile, setAuthenticated } = useAuth()
 
   // register, handleSubmit, formState
   // default-values for controlled form

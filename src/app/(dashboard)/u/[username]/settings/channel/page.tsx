@@ -40,7 +40,7 @@ export default function ChannelSettingsPage() {
 
   const [isPending, startTransition] = React.useTransition()
 
-  const { profile, setProfile } = useAuth((state) => state)
+  const { profile, setProfile } = useAuth()
 
   const form = useForm<Inputs>({
     resolver: zodResolver(UpdateProfileRequestDtoSchema),

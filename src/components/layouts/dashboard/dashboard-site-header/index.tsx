@@ -60,7 +60,7 @@ const DashboardLayoutControl = dynamic(
 )
 
 export default function DashboardSiteHeader() {
-  const { profile } = useAuth((state) => state)
+  const { profile } = useAuth()
 
   return (
     <SiteHeaderWrapper>

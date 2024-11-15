@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/auth.context"
+import { axiosHttpErrorHandler } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import {
@@ -32,7 +33,6 @@ import {
   SubmitBtn,
   SubmitLayoutWrapper,
 } from "@/components/forms/dashboard/username-form/style"
-import {axiosHttpErrorHandler} from "@/utils/common";
 
 type Inputs = UpdateUsernameRequestDto
 
@@ -45,7 +45,7 @@ export default function UsernameForm({ cancel }: UsernameFormProps) {
   const [isCheckingUsername, startCheckingUsername] = React.useTransition()
   const [isPending, startTransition] = React.useTransition()
 
-  const { profile, setProfile } = useAuth((state) => state)
+  const { profile, setProfile } = useAuth()
 
   // register, handleSubmit, formState
   // default-values for controlled form
