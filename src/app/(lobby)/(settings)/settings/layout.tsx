@@ -31,10 +31,6 @@ const LINK_MAP = [
     title: "Profile",
     href: "/settings/profile",
   },
-  {
-    title: "Security and Privacy",
-    href: "/settings/security",
-  },
 ]
 
 interface SettingsLayoutProps {
