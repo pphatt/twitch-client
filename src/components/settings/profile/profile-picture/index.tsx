@@ -129,7 +129,7 @@ export default function ProfilePicture() {
                     display: "none",
                   }}
                   type="file"
-                  accept=".jpg,.jpeg,.png,.gif"
+                  accept=".jpg,.jpeg,.png"
                   ref={fileInputRef}
                   onChange={(event) => {
                     handleSelectImage(event)
@@ -150,7 +150,7 @@ export default function ProfilePicture() {
 
                 <ImageSettingsDescriptionWrapper>
                   <ImageSettingsDescriptionText>
-                    Must be JPEG, PNG, or GIF and cannot exceed 10MB.
+                    Must be JPEG or PNG and cannot exceed 10MB.
                   </ImageSettingsDescriptionText>
                 </ImageSettingsDescriptionWrapper>
               </ImageInputContentWrapper>
