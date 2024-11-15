@@ -9,6 +9,7 @@ import { cookies } from "next/headers"
 import { AuthStoreProvider } from "@/context/auth.context"
 import { GlobalStyleProvider } from "@/providers/global-style.provider"
 import TanStackProviders from "@/providers/tanstack.provider"
+import NextTopLoader from "nextjs-toploader"
 import { Toaster } from "sonner"
 
 import { siteConfig } from "@/config/site"
@@ -35,6 +36,18 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <GlobalStyleProvider>
             <TanStackProviders>
+              <NextTopLoader
+                color="hsl(12, 100%, 63%)"
+                initialPosition={0.08}
+                crawlSpeed={200}
+                height={3}
+                crawl={true}
+                showSpinner={true}
+                easing="ease"
+                speed={200}
+                shadow="0 0 10px hsl(12, 100%, 63%), 0 0 5px hsl(12, 100%, 63%)"
+              />
+
               <Toaster
                 position="top-center"
                 richColors
