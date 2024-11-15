@@ -1,8 +1,9 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-import { Input } from "@/components/ui/input"
+import { Input, type InputError } from "@/components/ui/input"
+import { errorCss } from "@/components/ui/input/style"
 
-export const DisplayNameInputComp = styled(Input)`
+export const DisplayNameInputComp = styled(Input)<InputError>`
   color: hsl(var(--foreground));
   background-color: hsl(var(--background));
   background-clip: padding-box;
@@ -42,6 +43,19 @@ export const DisplayNameInputComp = styled(Input)`
 
     pointer-events: none;
   }
+
+  ${({ $error }) =>
+    $error &&
+    css`
+      border-color: #ff4f4d;
+
+      box-shadow: inset 0 0 0 1px #ff4f4d;
+
+      &:hover {
+        border-color: #ff4f4d;
+        box-shadow: inset 0 0 0 1px #ff4f4d;
+      }
+    `};
 
   &:focus,
   &:focus-visible {

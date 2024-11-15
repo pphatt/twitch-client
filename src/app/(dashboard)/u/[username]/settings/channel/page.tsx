@@ -10,13 +10,15 @@ import {
   UpdateProfileRequestDtoSchema,
   type UpdateProfileRequestDto,
 } from "@modules/user/presentation/http/dto/request/user/update-profile.request.dto"
-import { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
+import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
 import { Form, FormField } from "@/components/ui/form"
+import PreviewPanel from "@/components/dashboard-profile/preview-panel"
 import ProfilePageLayout from "@/components/dashboard-profile/profile-page-layout"
 import ShowPreviewBtn from "@/components/dashboard-profile/show-preview"
+import { ShowPreviewButtonRowWrapper } from "@/components/dashboard-profile/show-preview/style"
 import SubmitBtn from "@/components/dashboard-profile/submit-btn"
 import { BioInput } from "@/components/forms/dashboard/bio-input"
 import { DisplayNameInput } from "@/components/forms/dashboard/displayname-input"
@@ -69,9 +71,8 @@ export default function ChannelSettingsPage() {
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
 
-        toast.error(error.message, {
-          duration: 10000,
-          position: "top-right",
+        form.setError("displayName", {
+          message: error.message,
         })
 
         console.log(error)
@@ -81,10 +82,22 @@ export default function ChannelSettingsPage() {
 
   return (
     <ProfilePageLayout>
-      <ShowPreviewBtn
-        openReview={openReview}
-        setOpenReview={() => setOpenReview(!openReview)}
-      />
+      <ShowPreviewButtonRowWrapper>
+        <ShowPreviewBtn
+          openReview={openReview}
+          setOpenReview={() => setOpenReview(!openReview)}
+        />
+
+        {openReview && (
+          <PreviewPanel
+            displayName={profile?.displayName ?? ""}
+            bio={
+              profile?.bio ??
+              `We don't know much about them, but we're sure ${profile?.displayName ?? ""} is great.`
+            }
+          />
+        )}
+      </ShowPreviewButtonRowWrapper>
 
       <div className={styles["profile-settings-header-wrapper"]}>
         <h3 className={styles["profile-settings-header-text"]}>
@@ -111,7 +124,10 @@ export default function ChannelSettingsPage() {
               name="displayName"
               render={({ field }) => (
                 <FormItem>
-                  <DisplayNameInput {...field}>
+                  <DisplayNameInput
+                    $error={!!form.formState.errors.displayName}
+                    {...field}
+                  >
                     <FormMessageWrapper
                       style={{
                         height: `${form.getFieldState("displayName").invalid ? `${23}px` : "0px"}`,
@@ -135,7 +151,7 @@ export default function ChannelSettingsPage() {
               name="bio"
               render={({ field }) => (
                 <FormItem>
-                  <BioInput {...field}>
+                  <BioInput $error={!!form.formState.errors.bio} {...field}>
                     <FormMessageWrapper
                       style={{
                         height: `${form.getFieldState("bio").invalid ? `${23}px` : "0px"}`,
@@ -155,7 +171,14 @@ export default function ChannelSettingsPage() {
             />
           </div>
 
-          <SubmitBtn isPending={isPending} disabled={isPending} />
+          <SubmitBtn
+            isPending={isPending}
+            disabled={
+              (form.watch("displayName") === (profile?.displayName ?? "") &&
+                form.watch("bio") === (profile?.bio ?? "")) ||
+              isPending
+            }
+          />
         </form>
       </Form>
     </ProfilePageLayout>

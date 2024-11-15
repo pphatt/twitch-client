@@ -2,6 +2,7 @@
 
 import * as React from "react"
 
+import { InputError } from "@/components/ui/input"
 import {
   InputDescriptionText,
   InputDescriptionWrapper,
@@ -23,7 +24,7 @@ interface DisplayNameInputProps {
 
 const DisplayNameInput = React.forwardRef<
   HTMLInputElement,
-  DisplayNameInputProps
+  DisplayNameInputProps & InputError
 >(({ children, ...props }, ref) => {
   return (
     <RowWrapper>
@@ -31,7 +32,7 @@ const DisplayNameInput = React.forwardRef<
         <RowOverlay>
           <RowTextWrapper>
             <RowTextContainer>
-              <RowText>Display Name</RowText>
+              <RowText htmlFor={"display-name-input"}>Display Name</RowText>
             </RowTextContainer>
           </RowTextWrapper>
 
@@ -40,6 +41,7 @@ const DisplayNameInput = React.forwardRef<
               <RowInputContainer>
                 <InputWrapper>
                   <DisplayNameInputComp
+                    id={"display-name-input"}
                     type="text"
                     aria-labelledby="display-label"
                     autoCapitalize="off"
@@ -56,9 +58,9 @@ const DisplayNameInput = React.forwardRef<
                 You may update display name
               </InputDescriptionText>
             </InputDescriptionWrapper>
-          </RowInputWrapper>
 
-          <>{children}</>
+            <>{children}</>
+          </RowInputWrapper>
         </RowOverlay>
       </RowContainer>
     </RowWrapper>

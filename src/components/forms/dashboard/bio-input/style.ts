@@ -1,7 +1,9 @@
 import TextareaAutosize from "react-textarea-autosize"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-export const TextArea = styled(TextareaAutosize)`
+import type { InputError } from "@/components/ui/input"
+
+export const TextArea = styled(TextareaAutosize)<InputError>`
   display: block;
 
   color: hsl(var(--foreground));
@@ -43,6 +45,19 @@ export const TextArea = styled(TextareaAutosize)`
 
     outline: none;
   }
+
+  ${({ $error }) =>
+    $error &&
+    css`
+      border-color: #ff4f4d;
+
+      box-shadow: inset 0 0 0 1px #ff4f4d;
+
+      &:hover {
+        border-color: #ff4f4d;
+        box-shadow: inset 0 0 0 1px #ff4f4d;
+      }
+    `};
 
   &:focus {
     background-color: hsl(var(--background));

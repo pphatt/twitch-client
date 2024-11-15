@@ -38,14 +38,14 @@ export async function POST(request: NextRequest) {
       }
     )
 
-    // await UserRequest.updateBio(
-    //   { displayName, bio },
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
-    //   }
-    // )
+    await UserRequest.updateBio(
+      { bio },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
 
     const {
       refreshToken: newRefreshToken,

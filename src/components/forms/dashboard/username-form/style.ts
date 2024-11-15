@@ -47,6 +47,8 @@ export const FormContentWrapper = styled(FormItem)`
   }
 
   &:not(:first-child) {
+    border-top: 1px solid rgba(83, 83, 95, 0.48);
+
     margin-top: 20px;
   }
 `

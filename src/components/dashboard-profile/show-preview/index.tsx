@@ -4,7 +4,6 @@ import {
   ShowPreviewButton,
   ShowPreviewButtonContainer,
   ShowPreviewButtonRowContainer,
-  ShowPreviewButtonRowWrapper,
   ShowPreviewButtonText,
 } from "@/components/dashboard-profile/show-preview/style"
 
@@ -18,16 +17,14 @@ export default function ShowPreviewBtn({
   setOpenReview,
 }: ShowPreviewButtonProps) {
   return (
-    <ShowPreviewButtonRowWrapper>
-      <ShowPreviewButtonRowContainer>
-        <ShowPreviewButton onClick={setOpenReview}>
-          <ShowPreviewButtonContainer>
-            <ShowPreviewButtonText>
-              {openReview ? "Hide Preview" : "Show Preview"}
-            </ShowPreviewButtonText>
-          </ShowPreviewButtonContainer>
-        </ShowPreviewButton>
-      </ShowPreviewButtonRowContainer>
-    </ShowPreviewButtonRowWrapper>
+    <ShowPreviewButtonRowContainer>
+      <ShowPreviewButton onClick={setOpenReview}>
+        <ShowPreviewButtonContainer>
+          <ShowPreviewButtonText>
+            {openReview ? "Hide Preview" : "Show Preview"}
+          </ShowPreviewButtonText>
+        </ShowPreviewButtonContainer>
+      </ShowPreviewButton>
+    </ShowPreviewButtonRowContainer>
   )
 }

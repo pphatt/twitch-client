@@ -1,6 +1,7 @@
 import * as React from "react"
 import { type TextareaAutosizeProps } from "react-textarea-autosize"
 
+import type { InputError } from "@/components/ui/input"
 import { TextArea } from "@/components/forms/dashboard/bio-input/style"
 import {
   InputDescriptionText,
@@ -20,7 +21,7 @@ interface BioInputProps extends TextareaAutosizeProps {
   children: React.ReactNode
 }
 
-const BioInput = React.forwardRef<HTMLInputElement, BioInputProps>(
+const BioInput = React.forwardRef<HTMLInputElement, BioInputProps & InputError>(
   ({ children, ...props }, ref) => {
     return (
       <RowWrapper>
@@ -28,7 +29,7 @@ const BioInput = React.forwardRef<HTMLInputElement, BioInputProps>(
           <RowOverlay>
             <RowTextWrapper>
               <RowTextContainer>
-                <RowText>Bio</RowText>
+                <RowText htmlFor={"bio-input"}>Bio</RowText>
               </RowTextContainer>
             </RowTextWrapper>
 
@@ -37,6 +38,7 @@ const BioInput = React.forwardRef<HTMLInputElement, BioInputProps>(
                 <RowInputContainer>
                   <InputWrapper>
                     <TextArea
+                      id={"bio-input"}
                       aria-describedby="bio-description"
                       aria-labelledby="bio-label"
                       data-a-target="profile-bio-input"

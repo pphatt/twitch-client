@@ -47,7 +47,7 @@ export const RowTextContainer = styled.div`
 `
 
 export const RowText = styled(FormLabel)`
-  color: hsl(var(--color-hinted-grey-15));
+  color: hsl(var(--color-hinted-grey-15)) !important;
 
   font-weight: 700;
 `
