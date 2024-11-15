@@ -36,4 +36,7 @@ export interface IUserRepository {
     body: UpdateUsernameRequestDto
   ) => Promise<{ message: string }>
   updateProfile: (body: UpdateProfileRequestDto) => Promise<void>
+  updateProfilePicture: (
+    body: FormData
+  ) => Promise<{ profile: WhoamiResponseDto | null }>
 }

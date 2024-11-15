@@ -148,9 +148,9 @@ export function SiteHeader() {
                         <UserImage
                           alt={"User Avatar"}
                           src={
-                            authenticated
-                              ? "/avatar/user-default-picture.png"
-                              : ""
+                            authenticated && profile?.image.url
+                              ? profile.image.url
+                              : "/avatar/user-default-picture.png"
                           }
                         />
                       </UserItemTriggerWrapper>
@@ -170,7 +170,11 @@ export function SiteHeader() {
                             <AccountImageWrapper>
                               <AccountImageContainer>
                                 <AccountImage
-                                  src={"/avatar/user-default-picture.png"}
+                                  src={
+                                    authenticated && profile?.image.url
+                                      ? profile.image.url
+                                      : "/avatar/user-default-picture.png"
+                                  }
                                   alt={""}
                                 />
                               </AccountImageContainer>
@@ -201,7 +205,9 @@ export function SiteHeader() {
                         </DropdownItem>
 
                         <DropdownItem>
-                          <DropdownItemLink href={`/u/${profile?.username}/home`}>
+                          <DropdownItemLink
+                            href={`/u/${profile?.username}/home`}
+                          >
                             <span>Creator Dashboard</span>
                             <Icons.creatorDashboard />
                           </DropdownItemLink>
@@ -224,9 +230,9 @@ export function SiteHeader() {
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
-                          <DropdownItemLink href={"/emote-contribute"}>
-                            <span>Emote Attribution</span>
-                            <Icons.emoteContribution />
+                          <DropdownItemLink href={`/settings/profile`}>
+                            <span>Settings</span>
+                            <Icons.siteHeaderSettings />
                           </DropdownItemLink>
                         </DropdownItem>
 

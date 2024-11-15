@@ -15,6 +15,7 @@ import type { ResetPasswordRequestDto } from "@modules/user/presentation/http/dt
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
 import type { IsValidUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/is-valid-username.request.dto"
+import { UpdateProfilePictureRequestDto } from "@modules/user/presentation/http/dto/request/user/update-profile-picture.request.dto"
 import type { UpdateProfileRequestDto } from "@modules/user/presentation/http/dto/request/user/update-profile.request.dto"
 import type { UpdateUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
@@ -29,7 +30,6 @@ export const UserRepository: IUserRepository = {
       const { status } = await Auth.signUpWithEmail(body)
       return { status }
     } catch (error) {
-      console.log(error)
       return Promise.reject(error)
     }
   },
@@ -164,6 +164,17 @@ export const UserRepository: IUserRepository = {
     try {
       await NextUser.updateProfile(body)
       return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async updateProfilePicture(
+    body: FormData
+  ): Promise<{ profile: WhoamiResponseDto | null }> {
+    try {
+      const {data} = await NextUser.updateProfilePicture(body)
+      return Promise.resolve({ profile: data.profile })
     } catch (error) {
       return Promise.reject(error)
     }

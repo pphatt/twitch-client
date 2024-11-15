@@ -35,7 +35,9 @@ const getHash = (source, length) =>
 
 /** @type {import("next").NextConfig} */
 let nextConfig = {
-  images: {},
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
   experimental: {
     optimizeCss,
     webpackBuildWorker: true,

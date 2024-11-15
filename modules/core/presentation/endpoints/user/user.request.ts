@@ -1,10 +1,12 @@
 import {
   IsValidUsernameAPI,
   NextUpdateProfileAPI,
+  NextUpdateProfilePictureAPI,
   NextUpdateUsernameAPI,
   NextWhoamiAPI,
   UpdateBioAPI,
   UpdateDisplayNameAPI,
+  UpdateProfilePictureAPI,
   UpdateUsernameAPI,
   WhoamiAPI,
 } from "@modules/core/presentation/endpoints/user/user.endpoints"
@@ -38,6 +40,10 @@ export const UserRequest = {
     body: UpdateBioRequestDto,
     config: AxiosRequestConfig
   ): Promise<void> => axios.patch(UpdateBioAPI, body, config),
+  updateProfilePicture: async (
+    body: FormData,
+    config: AxiosRequestConfig
+  ): Promise<void> => axios.post(UpdateProfilePictureAPI, body, config),
 }
 
 export const NextUser = {
@@ -48,4 +54,8 @@ export const NextUser = {
   ): Promise<{ message: string }> => axios.post(NextUpdateUsernameAPI, body),
   updateProfile: async (body: UpdateProfileRequestDto): Promise<void> =>
     axios.post(NextUpdateProfileAPI, body),
+  updateProfilePicture: async (
+    body: FormData
+  ): Promise<{ data: { profile: WhoamiResponseDto | null } }> =>
+    axios.post(NextUpdateProfilePictureAPI, body),
 }

@@ -21,10 +21,15 @@ import {
 
 interface PreviewPanelProps {
   displayName: string
+  followers: number
   bio: string
 }
 
-export default function PreviewPanel({ displayName, bio }: PreviewPanelProps) {
+export default function PreviewPanel({
+  displayName,
+  followers,
+  bio,
+}: PreviewPanelProps) {
   return (
     <PreviewPanelLayoutWrapper>
       <PreviewPanelLayoutContainer>
@@ -45,7 +50,8 @@ export default function PreviewPanel({ displayName, bio }: PreviewPanelProps) {
                     <FollowerDisplayContainer>
                       <FollowerDisplayOverlay>
                         <FollowerContentWrapper>
-                          <FollowerContentText>0</FollowerContentText> followers
+                          <FollowerContentText>{followers}</FollowerContentText>{" "}
+                          followers
                         </FollowerContentWrapper>
                       </FollowerDisplayOverlay>
                     </FollowerDisplayContainer>

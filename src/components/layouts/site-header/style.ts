@@ -1,6 +1,7 @@
 import Link from "next/link"
 import styled, { css } from "styled-components"
 
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenuContent,
@@ -219,11 +220,14 @@ export const UserItemTrigger = styled(Button)`
   }
 `
 
-export const UserItemTriggerWrapper = styled.div`
+export const UserItemTriggerWrapper = styled(Avatar)`
   background-color: hsl(var(--background));
+
+  width: 30px;
+  height: 30px;
 `
 
-export const UserImage = styled.img`
+export const UserImage = styled(AvatarImage)`
   display: block;
 
   width: 100%;
@@ -231,6 +235,9 @@ export const UserImage = styled.img`
   border-radius: 9999px;
 
   user-select: none;
+
+  object-fit: cover;
+  object-position: top;
 `
 
 export const DropdownMenuContentWrapper = styled(DropdownMenuContent)`
@@ -271,7 +278,7 @@ export const AccountImageWrapper = styled.div`
   margin-right: 10px;
 `
 
-export const AccountImageContainer = styled.div`
+export const AccountImageContainer = styled(Avatar)`
   position: relative;
 
   width: 40px;
@@ -279,12 +286,15 @@ export const AccountImageContainer = styled.div`
   height: 40px;
 `
 
-export const AccountImage = styled.img`
+export const AccountImage = styled(AvatarImage)`
   display: block;
 
   width: 100%;
 
   border-radius: 9999px;
+
+  object-fit: cover;
+  object-position: top;
 `
 
 export const AccountDetails = styled.div`

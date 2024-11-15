@@ -87,6 +87,10 @@ export const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
 
+    li {
+        list-style-position: inside;
+    }
+
     @media (prefers-color-scheme: dark) {
         html {
             color-scheme: dark;

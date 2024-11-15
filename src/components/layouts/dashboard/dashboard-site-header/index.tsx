@@ -117,7 +117,11 @@ export default function DashboardSiteHeader() {
                       <UserItemTriggerWrapper>
                         <UserImage
                           alt={"User Avatar"}
-                          src={"/avatar/user-default-picture.png"}
+                          src={
+                            profile?.image.url
+                              ? profile.image.url
+                              : "/avatar/user-default-picture.png"
+                          }
                         />
                       </UserItemTriggerWrapper>
                     </UserItemTrigger>
@@ -136,7 +140,11 @@ export default function DashboardSiteHeader() {
                             <AccountImageWrapper>
                               <AccountImageContainer>
                                 <AccountImage
-                                  src={"/avatar/user-default-picture.png"}
+                                  src={
+                                    profile?.image.url
+                                      ? profile.image.url
+                                      : "/avatar/user-default-picture.png"
+                                  }
                                   alt={""}
                                 />
                               </AccountImageContainer>
@@ -175,7 +183,7 @@ export default function DashboardSiteHeader() {
                             href={`/u/${profile?.username}/settings/channel`}
                           >
                             <span>Account Settings</span>
-                            <Icons.settings style={{ fill: "none" }} />
+                            <Icons.siteHeaderSettings />
                           </DropdownItemLink>
                         </DropdownItem>
 

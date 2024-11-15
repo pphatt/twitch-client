@@ -90,10 +90,12 @@ export default function ChannelSettingsPage() {
 
         {openReview && (
           <PreviewPanel
-            displayName={profile?.displayName ?? ""}
+            displayName={profile!.displayName ?? ""}
+            followers={profile!.numberOfFollowers}
             bio={
-              profile?.bio ??
-              `We don't know much about them, but we're sure ${profile?.displayName ?? ""} is great.`
+              profile!.bio !== ""
+                ? profile!.bio
+                : `We don't know much about them, but we're sure ${profile!.displayName ?? ""} is great.`
             }
           />
         )}

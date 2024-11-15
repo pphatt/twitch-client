@@ -1,5 +1,4 @@
 import * as React from "react"
-import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/auth.context"
 import { axiosHttpErrorHandler } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -8,7 +7,7 @@ import {
   UpdateUsernameRequestDtoSchema,
   type UpdateUsernameRequestDto,
 } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
-import { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
+import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
@@ -41,7 +40,6 @@ interface UsernameFormProps {
 }
 
 export default function UsernameForm({ cancel }: UsernameFormProps) {
-  const router = useRouter()
   const [isCheckingUsername, startCheckingUsername] = React.useTransition()
   const [isPending, startTransition] = React.useTransition()
 
