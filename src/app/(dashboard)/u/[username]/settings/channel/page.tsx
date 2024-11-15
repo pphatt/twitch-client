@@ -1,22 +1,83 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/auth.context"
+import { axiosHttpErrorHandler } from "@/utils/common"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
+import {
+  UpdateProfileRequestDtoSchema,
+  type UpdateProfileRequestDto,
+} from "@modules/user/presentation/http/dto/request/user/update-profile.request.dto"
+import { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
+import { Form, FormField } from "@/components/ui/form"
 import ProfilePageLayout from "@/components/dashboard-profile/profile-page-layout"
 import ShowPreviewBtn from "@/components/dashboard-profile/show-preview"
 import SubmitBtn from "@/components/dashboard-profile/submit-btn"
-import BioInput from "@/components/forms/dashboard/bio-input"
-import DisplayNameInput from "@/components/forms/dashboard/displayname-input"
+import { BioInput } from "@/components/forms/dashboard/bio-input"
+import { DisplayNameInput } from "@/components/forms/dashboard/displayname-input"
+import {
+  FormContentWrapper as FormItem,
+  FormMessage,
+  FormMessageContainer,
+  FormMessageWrapper,
+} from "@/components/forms/dashboard/username-form/style"
 import UsernameInput from "@/components/forms/dashboard/username-input"
 import styles from "@/styles/application/dashboard/settings/channel/page.module.scss"
 
+type Inputs = UpdateProfileRequestDto
+
 export default function ChannelSettingsPage() {
+  const router = useRouter()
+
   const [openReview, setOpenReview] = React.useState(true)
 
   const [isPending, startTransition] = React.useTransition()
 
-  const { profile } = useAuth((state) => state)
+  const { profile, setProfile } = useAuth((state) => state)
+
+  const form = useForm<Inputs>({
+    resolver: zodResolver(UpdateProfileRequestDtoSchema),
+    mode: "onChange",
+    defaultValues: {
+      displayName: profile!.displayName ?? "",
+      bio: profile!.bio ?? "",
+    },
+  })
+
+  const onSubmit = (data: Inputs) => {
+    if (isPending) return
+
+    startTransition(async () => {
+      try {
+        const { displayName, bio } = data
+
+        await UserRepository.updateProfile(data)
+
+        setProfile({ ...profile, displayName, bio } as WhoamiResponseDto)
+
+        toast.success("Update profile successfully", {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        router.refresh()
+      } catch (err) {
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        console.log(error)
+      }
+    })
+  }
 
   return (
     <ProfilePageLayout>
@@ -37,17 +98,66 @@ export default function ChannelSettingsPage() {
         </div>
       </div>
 
-      <div className={styles["profile-settings-content-wrapper"]}>
-        <div className={styles["profile-settings-content-container"]}>
-          <UsernameInput username={profile!.username} />
+      <Form {...form}>
+        <form
+          onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+          className={styles["profile-settings-content-wrapper"]}
+        >
+          <div className={styles["profile-settings-content-container"]}>
+            <UsernameInput username={profile!.username} />
 
-          <DisplayNameInput displayName={profile!.displayName} />
+            <FormField
+              control={form.control}
+              name="displayName"
+              render={({ field }) => (
+                <FormItem>
+                  <DisplayNameInput {...field}>
+                    <FormMessageWrapper
+                      style={{
+                        height: `${form.getFieldState("displayName").invalid ? `${23}px` : "0px"}`,
+                      }}
+                    >
+                      {form.getFieldState("displayName").invalid && (
+                        <FormMessageContainer>
+                          <FormMessage>
+                            {form.getFieldState("displayName").error?.message}
+                          </FormMessage>
+                        </FormMessageContainer>
+                      )}
+                    </FormMessageWrapper>
+                  </DisplayNameInput>
+                </FormItem>
+              )}
+            />
 
-          <BioInput bio={profile!.bio} />
-        </div>
+            <FormField
+              control={form.control}
+              name="bio"
+              render={({ field }) => (
+                <FormItem>
+                  <BioInput {...field}>
+                    <FormMessageWrapper
+                      style={{
+                        height: `${form.getFieldState("bio").invalid ? `${23}px` : "0px"}`,
+                      }}
+                    >
+                      {form.getFieldState("bio").invalid && (
+                        <FormMessageContainer>
+                          <FormMessage>
+                            {form.getFieldState("bio").error?.message}
+                          </FormMessage>
+                        </FormMessageContainer>
+                      )}
+                    </FormMessageWrapper>
+                  </BioInput>
+                </FormItem>
+              )}
+            />
+          </div>
 
-        <SubmitBtn isPending={isPending} disabled={isPending} />
-      </div>
+          <SubmitBtn isPending={isPending} disabled={isPending} />
+        </form>
+      </Form>
     </ProfilePageLayout>
   )
 }

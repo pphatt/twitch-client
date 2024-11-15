@@ -162,7 +162,7 @@ export const ButtonGroupContainer = styled.div`
 
 export const ResetPasswordButtonWrapper = styled(Button)`
   color: #fff;
-  background-color: hsl(var(--color-twitch-orange-11));
+  background-color: hsl(var(--color-twitch-orange-11)) !important;
 
   max-width: 100%;
   width: 100%;
@@ -174,7 +174,7 @@ export const ResetPasswordButtonWrapper = styled(Button)`
   font-weight: 600;
 
   &:not([disabled]):hover:hover {
-    background-color: hsl(var(--color-twitch-orange-12));
+    background-color: hsl(var(--color-twitch-orange-12)) !important;
   }
 `
 

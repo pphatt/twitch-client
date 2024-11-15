@@ -32,8 +32,8 @@ export const StatusLine = styled.div`
 `
 
 export const SubmitBtnComp = styled(Button)`
-  color: #fff;
-  background-color: hsl(var(--color-twitch-orange-11));
+  color: #fff !important;
+  background-color: hsl(var(--color-twitch-orange-11)) !important;
 
   height: 30px;
 
@@ -53,7 +53,7 @@ export const SubmitBtnComp = styled(Button)`
   user-select: none;
 
   &:hover {
-    background-color: hsl(var(--color-twitch-orange-12));
+    background-color: hsl(var(--color-twitch-orange-12)) !important;
   }
 
   &:disabled {

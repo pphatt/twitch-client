@@ -66,7 +66,7 @@ export default function UsernameForm({ cancel }: UsernameFormProps) {
       try {
         const { username } = data
 
-        await UserRepository.updateProfile({ username })
+        await UserRepository.updateUsername({ username })
 
         setProfile({ ...profile, username } as WhoamiResponseDto)
 

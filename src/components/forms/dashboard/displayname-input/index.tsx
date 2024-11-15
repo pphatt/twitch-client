@@ -18,12 +18,13 @@ import {
 import { DisplayNameInputComp } from "@/components/forms/dashboard/displayname-input/style"
 
 interface DisplayNameInputProps {
-  displayName: string
+  children: React.ReactNode
 }
 
-export default function DisplayNameInput({
-  displayName,
-}: DisplayNameInputProps) {
+const DisplayNameInput = React.forwardRef<
+  HTMLInputElement,
+  DisplayNameInputProps
+>(({ children, ...props }, ref) => {
   return (
     <RowWrapper>
       <RowContainer>
@@ -39,11 +40,12 @@ export default function DisplayNameInput({
               <RowInputContainer>
                 <InputWrapper>
                   <DisplayNameInputComp
-                    defaultValue={displayName}
                     type="text"
                     aria-labelledby="display-label"
                     autoCapitalize="off"
                     autoCorrect="off"
+                    ref={ref}
+                    {...props}
                   />
                 </InputWrapper>
               </RowInputContainer>
@@ -55,8 +57,13 @@ export default function DisplayNameInput({
               </InputDescriptionText>
             </InputDescriptionWrapper>
           </RowInputWrapper>
+
+          <>{children}</>
         </RowOverlay>
       </RowContainer>
     </RowWrapper>
   )
-}
+})
+DisplayNameInput.displayName = "DisplayNameInput"
+
+export { DisplayNameInput }

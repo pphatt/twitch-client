@@ -17,46 +17,52 @@ import {
 } from "@/components/forms/dashboard/common/style"
 
 interface BioInputProps extends TextareaAutosizeProps {
-  bio: string
+  children: React.ReactNode
 }
 
-export default function BioInput({ bio, ...props }: BioInputProps) {
-  return (
-    <RowWrapper>
-      <RowContainer>
-        <RowOverlay>
-          <RowTextWrapper>
-            <RowTextContainer>
-              <RowText>Bio</RowText>
-            </RowTextContainer>
-          </RowTextWrapper>
+const BioInput = React.forwardRef<HTMLInputElement, BioInputProps>(
+  ({ children, ...props }, ref) => {
+    return (
+      <RowWrapper>
+        <RowContainer>
+          <RowOverlay>
+            <RowTextWrapper>
+              <RowTextContainer>
+                <RowText>Bio</RowText>
+              </RowTextContainer>
+            </RowTextWrapper>
 
-          <RowInputWrapper>
-            <div>
-              <RowInputContainer>
-                <InputWrapper>
-                  <TextArea
-                    defaultValue={bio}
-                    aria-describedby="bio-description"
-                    aria-labelledby="bio-label"
-                    data-a-target="profile-bio-input"
-                    maxLength={300}
-                    minRows={2}
-                    {...props}
-                  />
-                </InputWrapper>
-              </RowInputContainer>
-            </div>
+            <RowInputWrapper>
+              <div>
+                <RowInputContainer>
+                  <InputWrapper>
+                    <TextArea
+                      aria-describedby="bio-description"
+                      aria-labelledby="bio-label"
+                      data-a-target="profile-bio-input"
+                      maxLength={300}
+                      minRows={2}
+                      {...props}
+                    />
+                  </InputWrapper>
+                </RowInputContainer>
+              </div>
 
-            <InputDescriptionWrapper>
-              <InputDescriptionText>
-                Description for the About panel on your channel page in under
-                300 characters
-              </InputDescriptionText>
-            </InputDescriptionWrapper>
-          </RowInputWrapper>
-        </RowOverlay>
-      </RowContainer>
-    </RowWrapper>
-  )
-}
+              <InputDescriptionWrapper>
+                <InputDescriptionText>
+                  Description for the About panel on your channel page in under
+                  300 characters
+                </InputDescriptionText>
+              </InputDescriptionWrapper>
+
+              <>{children}</>
+            </RowInputWrapper>
+          </RowOverlay>
+        </RowContainer>
+      </RowWrapper>
+    )
+  }
+)
+BioInput.displayName = "BioInput"
+
+export { BioInput }

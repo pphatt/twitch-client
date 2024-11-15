@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import {FormLabel} from "@/components/ui/form";
 
 export const RowWrapper = styled.div`
   width: 100%;
@@ -45,7 +46,7 @@ export const RowTextContainer = styled.div`
   margin-bottom: 5px;
 `
 
-export const RowText = styled.label`
+export const RowText = styled(FormLabel)`
   color: hsl(var(--color-hinted-grey-15));
 
   font-weight: 700;

@@ -56,8 +56,10 @@ export function withAuth(middleware: CustomMiddleware) {
         if (refreshToken) {
           try {
             response = await refreshAccessToken(response, refreshToken)
+
             accessToken = response.cookies.get("access-token")!.value
             refreshToken = response.cookies.get("refresh-token")!.value
+            profile = response.cookies.get("profile")!.value
 
             request.cookies.set("access-token", accessToken)
             request.cookies.set("refresh-token", refreshToken)
@@ -66,40 +68,46 @@ export function withAuth(middleware: CustomMiddleware) {
 
             accessToken = ""
             refreshToken = ""
+            profile = ""
 
-            const url = new URL(request.nextUrl.origin);
+            const url = new URL(request.nextUrl.origin)
             url.searchParams.set("session-expired", "true")
 
-            if (pathname !== "/") {  // Prevent redirect loop by checking if already on home page
-              url.pathname = "/";
-              return NextResponse.redirect(url, { status: 302 });
+            if (pathname !== "/") {
+              // Prevent redirect loop by checking if already on home page
+              url.pathname = "/"
+              return NextResponse.redirect(url, { status: 302 })
             }
 
-            return response;  // Already on home page; no further action
+            return response // Already on home page; no further action
           }
         } else {
           deleteCookies(response)
 
           accessToken = ""
           refreshToken = ""
+          profile = ""
 
-          const url = new URL(request.nextUrl.origin);
+          const url = new URL(request.nextUrl.origin)
           url.searchParams.set("session-expired", "true")
 
-          if (pathname !== "/") {  // Prevent redirect loop by checking if already on home page
-            url.pathname = "/";
-            return NextResponse.redirect(url, { status: 302 });
+          if (pathname !== "/") {
+            // Prevent redirect loop by checking if already on home page
+            url.pathname = "/"
+            return NextResponse.redirect(url, { status: 302 })
           }
 
-          return response;  // Already on home page; no further action
+          return response // Already on home page; no further action
         }
       }
     } else if (refreshToken) {
       try {
         // No access token, but we have a refresh token, so try refreshing
         response = await refreshAccessToken(response, refreshToken)
+
         accessToken = response.cookies.get("access-token")!.value
         refreshToken = response.cookies.get("refresh-token")!.value
+        profile = response.cookies.get("profile")!.value
 
         request.cookies.set("access-token", accessToken)
         request.cookies.set("refresh-token", refreshToken)
@@ -108,31 +116,32 @@ export function withAuth(middleware: CustomMiddleware) {
 
         accessToken = ""
         refreshToken = ""
+        profile = ""
 
-        const url = new URL(request.nextUrl.origin);
+        const url = new URL(request.nextUrl.origin)
         url.searchParams.set("session-expired", "true")
 
         if (pathname !== "/") {
-          url.pathname = "/";
-          return NextResponse.redirect(url, { status: 302 });
+          url.pathname = "/"
+          return NextResponse.redirect(url, { status: 302 })
         }
 
-        return response;
+        return response
       }
     }
 
     if (!accessToken && !refreshToken && profile) {
       deleteCookies(response)
 
-      const url = new URL(request.nextUrl.origin);
+      const url = new URL(request.nextUrl.origin)
       url.searchParams.set("session-expired", "true")
 
       if (pathname !== "/") {
-        url.pathname = "/";
-        return NextResponse.redirect(url, { status: 302 });
+        url.pathname = "/"
+        return NextResponse.redirect(url, { status: 302 })
       }
 
-      return response;
+      return response
     }
 
     if (accessToken) {
