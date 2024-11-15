@@ -141,7 +141,9 @@ export default function ProfilePicture() {
                     <ImageUploadButtonContainer>
                       <ImageUploadButtonOverlay>
                         <ImageUploadButtonText>
-                          Add Profile Picture
+                          {profile?.image.url
+                            ? "Update Profile Picture"
+                            : "Add Profile Picture"}
                         </ImageUploadButtonText>
                       </ImageUploadButtonOverlay>
                     </ImageUploadButtonContainer>
