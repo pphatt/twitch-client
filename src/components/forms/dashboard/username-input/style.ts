@@ -1,10 +1,12 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Icons } from "@/components/icons"
 
-export const UsernameInputComp = styled(Input)`
+export const UsernameInputComp = styled(Input)<{
+  $allowChangedUserName: boolean
+}>`
   color: hsl(var(--foreground));
   background-color: hsl(var(--background));
   background-clip: padding-box;
@@ -16,8 +18,14 @@ export const UsernameInputComp = styled(Input)`
   border-style: solid;
   border-width: 0;
   border-color: transparent;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+
+  ${({ $allowChangedUserName }) =>
+    $allowChangedUserName
+      ? css`
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        `
+      : ""};
 
   padding: 5px 10px;
 

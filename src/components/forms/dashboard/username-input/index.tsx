@@ -31,9 +31,16 @@ import {
 
 interface UsernameInputProps {
   username: string
+
+  allowChangedUserName: boolean
+  changedUsernameDaysLeft: number
 }
 
-export default function UsernameInput({ username }: UsernameInputProps) {
+export default function UsernameInput({
+  allowChangedUserName,
+  changedUsernameDaysLeft,
+  username,
+}: UsernameInputProps) {
   return (
     <RowWrapper>
       <RowContainer>
@@ -49,6 +56,7 @@ export default function UsernameInput({ username }: UsernameInputProps) {
               <RowInputContainer>
                 <InputWrapper>
                   <UsernameInputComp
+                    $allowChangedUserName={allowChangedUserName}
                     type="text"
                     aria-labelledby="username-label"
                     autoCapitalize="off"
@@ -59,35 +67,39 @@ export default function UsernameInput({ username }: UsernameInputProps) {
                   />
                 </InputWrapper>
 
-                <EditButtonWrapper>
-                  <UsernameDialog username={username}>
-                    <EditButton>
-                      <EditButtonContainer>
-                        <EditButtonOverlay>
-                          <InnerEditButtonWrapper>
-                            <InnerEditButtonContainer>
-                              <InnerEditButtonPlaceholder />
+                {allowChangedUserName && (
+                  <EditButtonWrapper>
+                    <UsernameDialog username={username}>
+                      <EditButton>
+                        <EditButtonContainer>
+                          <EditButtonOverlay>
+                            <InnerEditButtonWrapper>
+                              <InnerEditButtonContainer>
+                                <InnerEditButtonPlaceholder />
 
-                              <EditButtonSVG
-                                width={"100%"}
-                                height={"100%"}
-                                viewBox="0 0 20 20"
-                                x="0px"
-                                y="0px"
-                              />
-                            </InnerEditButtonContainer>
-                          </InnerEditButtonWrapper>
-                        </EditButtonOverlay>
-                      </EditButtonContainer>
-                    </EditButton>
-                  </UsernameDialog>
-                </EditButtonWrapper>
+                                <EditButtonSVG
+                                  width={"100%"}
+                                  height={"100%"}
+                                  viewBox="0 0 20 20"
+                                  x="0px"
+                                  y="0px"
+                                />
+                              </InnerEditButtonContainer>
+                            </InnerEditButtonWrapper>
+                          </EditButtonOverlay>
+                        </EditButtonContainer>
+                      </EditButton>
+                    </UsernameDialog>
+                  </EditButtonWrapper>
+                )}
               </RowInputContainer>
             </div>
 
             <InputDescriptionWrapper>
               <InputDescriptionText>
-                You may update your username
+                {allowChangedUserName
+                  ? "You may update your username"
+                  : `You may update your username again in ${changedUsernameDaysLeft} days`}
               </InputDescriptionText>
             </InputDescriptionWrapper>
           </RowInputWrapper>

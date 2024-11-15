@@ -43,7 +43,7 @@ export default function UsernameForm({ cancel }: UsernameFormProps) {
   const [isCheckingUsername, startCheckingUsername] = React.useTransition()
   const [isPending, startTransition] = React.useTransition()
 
-  const { profile, setProfile } = useAuth()
+  const { setProfile } = useAuth()
 
   // register, handleSubmit, formState
   // default-values for controlled form
@@ -64,9 +64,9 @@ export default function UsernameForm({ cancel }: UsernameFormProps) {
       try {
         const { username } = data
 
-        await UserRepository.updateUsername({ username })
+        const { profile } = await UserRepository.updateUsername({ username })
 
-        setProfile({ ...profile, username } as WhoamiResponseDto)
+        setProfile({ ...profile } as WhoamiResponseDto)
 
         toast.success("Update username successfully", {
           duration: 10000,

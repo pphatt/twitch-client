@@ -151,19 +151,21 @@ export const UserRepository: IUserRepository = {
 
   async updateUsername(
     body: UpdateUsernameRequestDto
-  ): Promise<{ message: string }> {
+  ): Promise<{ profile: WhoamiResponseDto | null }> {
     try {
-      const { message } = await NextUser.updateUsername(body)
-      return Promise.resolve({ message })
+      const { data } = await NextUser.updateUsername(body)
+      return Promise.resolve({ profile: data.profile })
     } catch (error) {
       return Promise.reject(error)
     }
   },
 
-  async updateProfile(body: UpdateProfileRequestDto): Promise<void> {
+  async updateProfile(
+    body: UpdateProfileRequestDto
+  ): Promise<{ profile: WhoamiResponseDto | null }> {
     try {
-      await NextUser.updateProfile(body)
-      return Promise.resolve()
+      const { data } = await NextUser.updateProfile(body)
+      return Promise.resolve({ profile: data.profile })
     } catch (error) {
       return Promise.reject(error)
     }
@@ -173,7 +175,7 @@ export const UserRepository: IUserRepository = {
     body: FormData
   ): Promise<{ profile: WhoamiResponseDto | null }> {
     try {
-      const {data} = await NextUser.updateProfilePicture(body)
+      const { data } = await NextUser.updateProfilePicture(body)
       return Promise.resolve({ profile: data.profile })
     } catch (error) {
       return Promise.reject(error)

@@ -58,7 +58,7 @@ export default function ChannelSettingsPage() {
       try {
         const { displayName, bio } = data
 
-        await UserRepository.updateProfile(data)
+        const { profile } = await UserRepository.updateProfile(data)
 
         setProfile({ ...profile, displayName, bio } as WhoamiResponseDto)
 
@@ -119,7 +119,11 @@ export default function ChannelSettingsPage() {
           className={styles["profile-settings-content-wrapper"]}
         >
           <div className={styles["profile-settings-content-container"]}>
-            <UsernameInput username={profile!.username} />
+            <UsernameInput
+              allowChangedUserName={profile!.allowedChangedUsername}
+              changedUsernameDaysLeft={profile!.changedUsernameDaysLeft}
+              username={profile!.username}
+            />
 
             <FormField
               control={form.control}

@@ -51,8 +51,11 @@ export const NextUser = {
     axios.get(NextWhoamiAPI),
   updateUsername: async (
     body: UpdateUsernameRequestDto
-  ): Promise<{ message: string }> => axios.post(NextUpdateUsernameAPI, body),
-  updateProfile: async (body: UpdateProfileRequestDto): Promise<void> =>
+  ): Promise<{ data: { profile: WhoamiResponseDto | null } }> =>
+    axios.post(NextUpdateUsernameAPI, body),
+  updateProfile: async (
+    body: UpdateProfileRequestDto
+  ): Promise<{ data: { profile: WhoamiResponseDto | null } }> =>
     axios.post(NextUpdateProfileAPI, body),
   updateProfilePicture: async (
     body: FormData
