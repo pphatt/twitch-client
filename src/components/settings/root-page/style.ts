@@ -27,4 +27,5 @@ export const ContentLayoutOverlay = styled.div`
 
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-bottom: 100px;
 `

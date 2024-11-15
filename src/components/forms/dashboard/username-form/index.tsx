@@ -36,10 +36,12 @@ import {
 type Inputs = UpdateUsernameRequestDto
 
 interface UsernameFormProps {
+  route?: string
+
   cancel: () => void
 }
 
-export default function UsernameForm({ cancel }: UsernameFormProps) {
+export default function UsernameForm({ route, cancel }: UsernameFormProps) {
   const [isCheckingUsername, startCheckingUsername] = React.useTransition()
   const [isPending, startTransition] = React.useTransition()
 
@@ -73,7 +75,9 @@ export default function UsernameForm({ cancel }: UsernameFormProps) {
           position: "top-right",
         })
 
-        window.location.replace(`/u/${username}/settings/channel`)
+        window.location.replace(
+          route ?? `/u/${profile!.username}/settings/channel`
+        )
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
 

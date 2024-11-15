@@ -21,11 +21,13 @@ import { Icons } from "@/components/icons"
 interface UsernameDialogProps {
   children: React.ReactNode
   username: string
+  route?: string
 }
 
 export default function UsernameDialog({
   username,
   children,
+  route
 }: UsernameDialogProps) {
   const [open, setOpen] = React.useState(false)
 
@@ -82,7 +84,7 @@ export default function UsernameDialog({
                 </WarningDescriptionText>
               </div>
 
-              <UsernameForm cancel={() => setOpen(false)} />
+              <UsernameForm route={route} cancel={() => setOpen(false)} />
             </ContentWrapper>
           </ModalHeaderWrapper>
         </ModalWrapper>

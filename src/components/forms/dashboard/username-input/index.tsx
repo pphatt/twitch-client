@@ -30,6 +30,9 @@ import {
 } from "../common/style"
 
 interface UsernameInputProps {
+  /* Because this component use in many places, so each place it need reload differently */
+  route?: string
+
   username: string
 
   allowChangedUserName: boolean
@@ -37,9 +40,10 @@ interface UsernameInputProps {
 }
 
 export default function UsernameInput({
+  route,
+  username,
   allowChangedUserName,
   changedUsernameDaysLeft,
-  username,
 }: UsernameInputProps) {
   return (
     <RowWrapper>
@@ -69,7 +73,7 @@ export default function UsernameInput({
 
                 {allowChangedUserName && (
                   <EditButtonWrapper>
-                    <UsernameDialog username={username}>
+                    <UsernameDialog route={route} username={username}>
                       <EditButton>
                         <EditButtonContainer>
                           <EditButtonOverlay>
