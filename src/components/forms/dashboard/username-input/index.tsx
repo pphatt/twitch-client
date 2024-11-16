@@ -19,11 +19,11 @@ import {
   InputDescriptionText,
   InputDescriptionWrapper,
   InputWrapper,
+  NormalRowText,
   RowContainer,
   RowInputContainer,
   RowInputWrapper,
   RowOverlay,
-  RowText,
   RowTextContainer,
   RowTextWrapper,
   RowWrapper,
@@ -51,7 +51,7 @@ export default function UsernameInput({
         <RowOverlay>
           <RowTextWrapper>
             <RowTextContainer>
-              <RowText>Username</RowText>
+              <NormalRowText>Username</NormalRowText>
             </RowTextContainer>
           </RowTextWrapper>
 

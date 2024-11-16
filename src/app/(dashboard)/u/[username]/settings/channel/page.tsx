@@ -113,80 +113,80 @@ export default function ChannelSettingsPage() {
         </div>
       </div>
 
-      <Form {...form}>
-        <form
-          onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
-          className={styles["profile-settings-content-wrapper"]}
-        >
-          <div className={styles["profile-settings-content-container"]}>
-            <UsernameInput
-              allowChangedUserName={profile!.allowedChangedUsername}
-              changedUsernameDaysLeft={profile!.changedUsernameDaysLeft}
-              username={profile!.username}
-            />
-
-            <FormField
-              control={form.control}
-              name="displayName"
-              render={({ field }) => (
-                <FormItem>
-                  <DisplayNameInput
-                    $error={!!form.formState.errors.displayName}
-                    {...field}
-                  >
-                    <FormMessageWrapper
-                      style={{
-                        height: `${form.getFieldState("displayName").invalid ? `${23}px` : "0px"}`,
-                      }}
-                    >
-                      {form.getFieldState("displayName").invalid && (
-                        <FormMessageContainer>
-                          <FormMessage>
-                            {form.getFieldState("displayName").error?.message}
-                          </FormMessage>
-                        </FormMessageContainer>
-                      )}
-                    </FormMessageWrapper>
-                  </DisplayNameInput>
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="bio"
-              render={({ field }) => (
-                <FormItem>
-                  <BioInput $error={!!form.formState.errors.bio} {...field}>
-                    <FormMessageWrapper
-                      style={{
-                        height: `${form.getFieldState("bio").invalid ? `${23}px` : "0px"}`,
-                      }}
-                    >
-                      {form.getFieldState("bio").invalid && (
-                        <FormMessageContainer>
-                          <FormMessage>
-                            {form.getFieldState("bio").error?.message}
-                          </FormMessage>
-                        </FormMessageContainer>
-                      )}
-                    </FormMessageWrapper>
-                  </BioInput>
-                </FormItem>
-              )}
-            />
-          </div>
-
-          <SubmitBtn
-            isPending={isPending}
-            disabled={
-              (form.watch("displayName") === (profile?.displayName ?? "") &&
-                form.watch("bio") === (profile?.bio ?? "")) ||
-              isPending
-            }
+      <div className={styles["profile-settings-content-wrapper"]}>
+        <div className={styles["profile-settings-content-container"]}>
+          <UsernameInput
+            allowChangedUserName={profile!.allowedChangedUsername}
+            changedUsernameDaysLeft={profile!.changedUsernameDaysLeft}
+            username={profile!.username}
           />
-        </form>
-      </Form>
+
+          <Form {...form}>
+            <form
+              onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
+            >
+              <FormField
+                control={form.control}
+                name="displayName"
+                render={({ field }) => (
+                  <FormItem>
+                    <DisplayNameInput
+                      $error={!!form.formState.errors.displayName}
+                      {...field}
+                    >
+                      <FormMessageWrapper
+                        style={{
+                          height: `${form.getFieldState("displayName").invalid ? `${23}px` : "0px"}`,
+                        }}
+                      >
+                        {form.getFieldState("displayName").invalid && (
+                          <FormMessageContainer>
+                            <FormMessage>
+                              {form.getFieldState("displayName").error?.message}
+                            </FormMessage>
+                          </FormMessageContainer>
+                        )}
+                      </FormMessageWrapper>
+                    </DisplayNameInput>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="bio"
+                render={({ field }) => (
+                  <FormItem>
+                    <BioInput $error={!!form.formState.errors.bio} {...field}>
+                      <FormMessageWrapper
+                        style={{
+                          height: `${form.getFieldState("bio").invalid ? `${23}px` : "0px"}`,
+                        }}
+                      >
+                        {form.getFieldState("bio").invalid && (
+                          <FormMessageContainer>
+                            <FormMessage>
+                              {form.getFieldState("bio").error?.message}
+                            </FormMessage>
+                          </FormMessageContainer>
+                        )}
+                      </FormMessageWrapper>
+                    </BioInput>
+                  </FormItem>
+                )}
+              />
+              <SubmitBtn
+                isPending={isPending}
+                disabled={
+                  (form.watch("displayName") === (profile?.displayName ?? "") &&
+                    form.watch("bio") === (profile?.bio ?? "")) ||
+                  isPending
+                }
+              />
+            </form>
+          </Form>
+        </div>
+      </div>
     </ProfilePageLayout>
   )
 }

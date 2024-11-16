@@ -4,7 +4,6 @@ import {
   handleSelectLatestAccessToken,
   handleSelectLatestRefreshToken,
 } from "@/utils/auth.utils"
-import { Auth } from "@modules/core/presentation/endpoints/auth/auth.request"
 import { UserRequest } from "@modules/core/presentation/endpoints/user/user.request"
 import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 import type { UpdateUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
