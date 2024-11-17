@@ -43,7 +43,7 @@ export const FormContent = styled.form`
 
 export const FormContentWrapper = styled(FormItem)`
   &:first-child {
-    margin-top: 10px;
+    margin-top: 0;
   }
 
   &:not(:first-child) {

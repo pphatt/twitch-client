@@ -75,9 +75,11 @@ export default function UsernameForm({ route, cancel }: UsernameFormProps) {
           position: "top-right",
         })
 
-        window.location.replace(
-          route ?? `/u/${profile!.username}/settings/channel`
-        )
+        if (route) {
+          window.location.reload()
+        } else {
+          window.location.replace(`/u/${profile!.username}/settings/channel`)
+        }
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
 

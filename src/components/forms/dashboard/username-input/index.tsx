@@ -46,7 +46,12 @@ export default function UsernameInput({
   changedUsernameDaysLeft,
 }: UsernameInputProps) {
   return (
-    <RowWrapper>
+    <RowWrapper
+      style={{
+        border: "1px solid hsl(var(--color-twitch-orange-11))",
+        borderBottom: "1px solid rgba(83, 83, 95, 0.48)",
+      }}
+    >
       <RowContainer>
         <RowOverlay>
           <RowTextWrapper>
