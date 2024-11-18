@@ -101,56 +101,67 @@ export default function UpdateProfileForm() {
             <form
               onSubmit={(...args) => void form.handleSubmit(onSubmit)(...args)}
             >
-              <FormField
-                control={form.control}
-                name="displayName"
-                render={({ field }) => (
-                  <FormItem>
-                    <DisplayNameInput
-                      $error={!!form.formState.errors.displayName}
-                      {...field}
-                    >
-                      <FormMessageWrapper
-                        style={{
-                          height: `${form.getFieldState("displayName").invalid ? `${23}px` : "0px"}`,
-                        }}
+              <div
+                style={{
+                  border: "1px solid hsl(var(--color-twitch-orange-11))",
+                  borderTop: "none",
+                  paddingTop: "10px",
+                }}
+              >
+                <FormField
+                  control={form.control}
+                  name="displayName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <DisplayNameInput
+                        $error={!!form.formState.errors.displayName}
+                        {...field}
                       >
-                        {form.getFieldState("displayName").invalid && (
-                          <FormMessageContainer>
-                            <FormMessage>
-                              {form.getFieldState("displayName").error?.message}
-                            </FormMessage>
-                          </FormMessageContainer>
-                        )}
-                      </FormMessageWrapper>
-                    </DisplayNameInput>
-                  </FormItem>
-                )}
-              />
+                        <FormMessageWrapper
+                          style={{
+                            height: `${form.getFieldState("displayName").invalid ? `${23}px` : "0px"}`,
+                          }}
+                        >
+                          {form.getFieldState("displayName").invalid && (
+                            <FormMessageContainer>
+                              <FormMessage>
+                                {
+                                  form.getFieldState("displayName").error
+                                    ?.message
+                                }
+                              </FormMessage>
+                            </FormMessageContainer>
+                          )}
+                        </FormMessageWrapper>
+                      </DisplayNameInput>
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name="bio"
-                render={({ field }) => (
-                  <FormItem>
-                    <BioInput $error={!!form.formState.errors.bio} {...field}>
-                      <FormMessageWrapper
-                        style={{
-                          height: `${form.getFieldState("bio").invalid ? `${23}px` : "0px"}`,
-                        }}
-                      >
-                        {form.getFieldState("bio").invalid && (
-                          <FormMessageContainer>
-                            <FormMessage>
-                              {form.getFieldState("bio").error?.message}
-                            </FormMessage>
-                          </FormMessageContainer>
-                        )}
-                      </FormMessageWrapper>
-                    </BioInput>
-                  </FormItem>
-                )}
-              />
+                <FormField
+                  control={form.control}
+                  name="bio"
+                  render={({ field }) => (
+                    <FormItem>
+                      <BioInput $error={!!form.formState.errors.bio} {...field}>
+                        <FormMessageWrapper
+                          style={{
+                            height: `${form.getFieldState("bio").invalid ? `${23}px` : "0px"}`,
+                          }}
+                        >
+                          {form.getFieldState("bio").invalid && (
+                            <FormMessageContainer>
+                              <FormMessage>
+                                {form.getFieldState("bio").error?.message}
+                              </FormMessage>
+                            </FormMessageContainer>
+                          )}
+                        </FormMessageWrapper>
+                      </BioInput>
+                    </FormItem>
+                  )}
+                />
+              </div>
 
               <SubmitBtn
                 isPending={isPending}

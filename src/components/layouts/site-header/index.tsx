@@ -1,9 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useRouter, useSearchParams } from "next/navigation"
 import { useAuth } from "@/context/auth.context"
-import { toast } from "sonner"
 
 import { siteConfig, supportSite } from "@/config/site"
 import {
@@ -49,36 +47,7 @@ import {
 } from "@/components/layouts/site-header/style"
 
 export function SiteHeader() {
-  const router = useRouter()
-
   const { profile, authenticated } = useAuth()
-
-  const searchParams = useSearchParams()
-
-  const isRedirected = searchParams.get("redirected")
-  const isSessionExpired = searchParams.get("session-expired")
-
-  React.useEffect(() => {
-    if (authenticated) {
-      if (isRedirected === "true") {
-        window.location.replace("/")
-
-        toast.error("You must be logged in to view this page.", {
-          duration: 10000,
-          position: "top-right",
-        })
-      }
-
-      if (isSessionExpired === "true") {
-        window.location.replace("/")
-
-        toast.error("Session expired. Please login again.", {
-          duration: 10000,
-          position: "top-right",
-        })
-      }
-    }
-  }, [authenticated, isRedirected, isSessionExpired, router, searchParams])
 
   return (
     <SiteHeaderWrapper>
