@@ -226,7 +226,7 @@ export const AccountItemContainer = styled.div`
   margin: 5px;
 `
 
-export const AccountImageWrapper = styled.div`
+export const AccountImageWrapper = styled(Link)`
   margin-right: 10px;
 `
 

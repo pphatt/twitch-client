@@ -137,7 +137,7 @@ export default function DashboardSiteHeader() {
                       <div style={{ padding: "10px" }}>
                         <AccountItemWrapper>
                           <AccountItemContainer>
-                            <AccountImageWrapper>
+                            <AccountImageWrapper href={"/settings/profile"}>
                               <AccountImageContainer>
                                 <AccountImage
                                   src={

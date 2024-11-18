@@ -136,7 +136,7 @@ export function SiteHeader() {
                       <div style={{ padding: "10px" }}>
                         <AccountItemWrapper>
                           <AccountItemContainer>
-                            <AccountImageWrapper>
+                            <AccountImageWrapper href={"/settings/profile"}>
                               <AccountImageContainer>
                                 <AccountImage
                                   src={
