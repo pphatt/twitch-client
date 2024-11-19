@@ -1,15 +1,18 @@
 "use client"
 
 import * as React from "react"
+import { useAuth } from "@/context/auth.context"
 import {
   useEditLayout,
   useEditLayoutState,
 } from "@/store/state/dashboard.state"
 import { cn } from "@/utils/common"
+import { LiveKitRoom } from "@livekit/components-react"
 import { Mosaic, MosaicWindow, type MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
 import { useMosaicUpdateLayout } from "@/hooks/useMosaicUpdateLayout.hooks"
+import { useViewerToken } from "@/hooks/useViewerToken.hooks"
 import ToastSuccess from "@/components/custom-toast/toast-success"
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import AddPanel from "@/components/stream-manager/add-panel"
@@ -17,14 +20,14 @@ import PanelHeader from "@/components/stream-manager/panel-header"
 import ActivityFeed from "@/components/stream-manager/panel/activity-feed"
 import QuickActionPanel from "@/components/stream-manager/panel/quick-action-panel"
 import Chat from "@/components/stream/chat/chat-layout"
-import VideoPreviewPlayer from "@/components/stream/video/video-preview-player"
+import VideoWrapper from "@/components/stream/video/video-wrapper"
 import styles from "@/styles/application/dashboard/stream-manager/page.module.scss"
 
 const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
-  "Stream Preview": <VideoPreviewPlayer />,
+  "Stream Preview": <></>,
   "Quick Action": <QuickActionPanel />,
   "Activity Feed": <ActivityFeed />,
-  "My Chat": <Chat isCreator={true} />,
+  "My Chat": <></>,
   new: "New Window",
 }
 
@@ -77,8 +80,21 @@ export default function StreamManagerPage() {
     [debounceUpdateLayout, isEditing, setEditLayout]
   )
 
+  const { profile } = useAuth()
+
+  const { token, name, color } = useViewerToken(profile!.id)
+
   return (
-    <div className="stream-manager--page-view">
+    <LiveKitRoom
+      options={{
+        publishDefaults: {
+          videoCodec: "av1",
+        },
+      }}
+      token={token}
+      serverUrl={process.env.NEXT_PUBLIC_LIVEKIT_WS_URL}
+      className="stream-manager--page-view"
+    >
       <Mosaic
         initialValue={layout}
         onChange={onLayoutChange}
@@ -99,16 +115,29 @@ export default function StreamManagerPage() {
                   pointerEvents: "all",
                 }}
               >
-                <PanelHeader title={id} />
+                <PanelHeader username={name} title={id} />
               </span>
             )}
           >
+            {id === "Stream Preview" && (
+              <VideoWrapper hostIdentity={profile!.id} />
+            )}
+
+            {id === "My Chat" && (
+              <Chat
+                username={name}
+                hostIdentity={profile!.id}
+                color={color}
+                isCreator={true}
+              />
+            )}
+
             {TITLE_MAP[id]}
           </MosaicWindow>
         )}
       />
 
       {isEditing && <AddPanel />}
-    </div>
+    </LiveKitRoom>
   )
 }

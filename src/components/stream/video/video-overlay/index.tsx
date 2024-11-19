@@ -42,10 +42,10 @@ export function TransitionOverlay({
 }
 
 interface TopBarOverlayProps {
-  isOffline?: boolean
+  isOffline?: "true" | "false" | "connecting"
 }
 
-export function TopBarOverlay({ isOffline = false }: TopBarOverlayProps) {
+export function TopBarOverlay({ isOffline = "false" }: TopBarOverlayProps) {
   const { isRightColumnClosedByUserAction } = useCacheLayout()
 
   return (
@@ -55,9 +55,13 @@ export function TopBarOverlay({ isOffline = false }: TopBarOverlayProps) {
       <TopBarOverlayContainer>
         <ChannelStatusWrapper>
           <ChannelStatusContainer>
-            {!isOffline ? (
+            {isOffline === "false" ? (
               <ChannelStatusTextIndicator>
                 <ChannelStatusText>LIVE</ChannelStatusText>
+              </ChannelStatusTextIndicator>
+            ) : isOffline === "connecting" ? (
+              <ChannelStatusTextIndicator $isOffline={isOffline}>
+                <ChannelStatusText>CONNECTING</ChannelStatusText>
               </ChannelStatusTextIndicator>
             ) : (
               <ChannelStatusTextIndicator $isOffline={isOffline}>

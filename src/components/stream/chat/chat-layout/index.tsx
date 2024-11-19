@@ -2,14 +2,16 @@
 
 import * as React from "react"
 import { useChatObserver } from "@/store/state/channel-chat.state"
+import { findIndex } from "@/utils/common"
 import {
-  findIndex,
-  getRandomRgb,
-  getRandomStuffRelatedToFood,
-  sleep,
-} from "@/utils/common"
-import { faker } from "@faker-js/faker"
+  useChat,
+  useConnectionState,
+  useRemoteParticipant,
+  type ReceivedChatMessage,
+} from "@livekit/components-react"
+import { ConnectionState } from "livekit-client"
 
+import ChatDisable from "@/components/stream/chat/chat-disable"
 import ChatHide from "@/components/stream/chat/chat-hide"
 import ChatInputForm from "@/components/stream/chat/chat-input-form"
 import { ChatRoomComponentLayout } from "@/components/stream/chat/chat-layout/style"
@@ -30,53 +32,55 @@ interface ChatProps {
    * Maybe would replace this with isAuth or something like that
    * */
   isCreator?: boolean
+
+  username: string
+  hostIdentity: string
+  color: string
 }
 
-export default function Chat({ popout = false, isCreator = true }: ChatProps) {
+export default function Chat({
+  popout = false,
+  username,
+  hostIdentity,
+  isCreator = true,
+  color,
+}: ChatProps) {
   const { hide } = useChatObserver()
+
+  const connectionState = useConnectionState()
+  const participant = useRemoteParticipant(hostIdentity)
+
+  const isOnline = participant && connectionState === ConnectionState.Connected
+
+  const isHidden = !isOnline
 
   const [message, setMessage] = React.useState("")
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [totalOldMessagesCount, setTotalOldMessagesCount] = React.useState(0)
-  const [oldMessages, setOldMessages] = React.useState<
-    {
-      id: string
-      message: string
-      username: string
-      color: string
-      timestamp: number
-    }[]
-  >([])
+  const [oldMessages, setOldMessages] = React.useState<ReceivedChatMessage[]>(
+    []
+  )
 
-  // this would be replaced with fetching messages from server
-  // (this represent a messages queue on the server)
-  const [messages, setMessages] = React.useState<
-    {
-      id: string
-      message: string
-      username: string
-      color: string
-      timestamp: number
-    }[]
-  >([])
-
-  const [isPending, startTransition] = React.useTransition()
+  const { chatMessages: messages, send } = useChat()
 
   // originally placed in chat-list but some decisions are made.
   const [isPausedChat, setIsPausedChat] = React.useState<boolean>(false)
 
   const [firstMessageIdInQueue, setFirstMessageIdInQueue] = React.useState<
-    string | null
+    number | null
   >(null)
-  const [lastMessageId, setLastMessageId] = React.useState<string | null>(null)
+  const [lastMessageId, setLastMessageId] = React.useState<number | null>(null)
 
   const findFirstMessageIndex = React.useMemo(() => {
-    return findIndex(messages, ({ id }) => id === firstMessageIdInQueue)
+    return findIndex(
+      messages,
+      ({ timestamp }) => timestamp === firstMessageIdInQueue
+    )
   }, [firstMessageIdInQueue, messages])
 
   const findLastMessageIndex = React.useMemo(() => {
-    return findIndex(messages, ({ id }) => id === lastMessageId)
+    return findIndex(messages, ({ timestamp }) => timestamp === lastMessageId)
   }, [lastMessageId, messages])
 
   const computeOldMessages = React.useCallback(() => {
@@ -91,40 +95,18 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
 
   const onSubmit = React.useCallback(
     (message: string) => {
-      // if (!send) return;
+      if (!message) return
 
-      // void send(message);
+      if (!send) return
 
-      if (!message) {
-        return
-      }
-
-      setMessages((prevMessages) => {
-        const id = faker.database.mongodbObjectId()
-        const username = faker.internet.userName()
-        const color = getRandomRgb()
-
-        const messageInfo = {
-          id,
-          username,
-          color,
-          message,
-          timestamp: Date.now(),
-        }
-
-        if (prevMessages) {
-          return [...prevMessages, messageInfo]
-        }
-
-        return [messageInfo]
-      })
+      void send(message)
 
       computeOldMessages()
 
       setMessage("")
       setIsPausedChat(false)
     },
-    [computeOldMessages]
+    [computeOldMessages, send]
   )
 
   /* tracking the new messages quantity */
@@ -207,46 +189,9 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
     totalOldMessagesCount,
   ])
 
-  // NOTE: use for chat dummy-data
-  React.useEffect(() => {
-    const simpleSimulationMessageFlow = setInterval(() => {
-      if (isPending) {
-        return
-      }
-
-      setMessages((prevMessages) => {
-        const id = faker.database.mongodbObjectId()
-        const username = faker.internet.userName()
-        const color = getRandomRgb()
-
-        const messageInfo = {
-          id,
-          username,
-          color,
-          message: getRandomStuffRelatedToFood(),
-          timestamp: Date.now(),
-        }
-
-        if (prevMessages) {
-          return [...prevMessages, messageInfo]
-        }
-
-        return [messageInfo]
-      })
-
-      computeOldMessages()
-    }, 1000)
-
-    return () => clearInterval(simpleSimulationMessageFlow)
-  }, [computeOldMessages, isPending, onSubmit])
-
-  React.useEffect(() => {
-    startTransition(async () => {
-      await sleep(2000)
-      // setOldMessages(chatMessages)
-      // setTotalOldMessagesCount(chatMessages.length)
-    })
-  }, [])
+  if (isHidden) {
+    return <ChatDisable username={username} />
+  }
 
   if (hide) {
     return <ChatHide />
@@ -256,9 +201,9 @@ export default function Chat({ popout = false, isCreator = true }: ChatProps) {
     <ChatRoomComponentLayout>
       <div className={styles["chat-room__content"]}>
         <ChatList
+          color={color}
           previousMessages={oldMessages}
           messages={limitMessagesQueue}
-          isPending={isPending}
           isPausedChat={isPausedChat}
           lastMessageId={lastMessageId}
           setIsPausedChat={setIsPausedChat}

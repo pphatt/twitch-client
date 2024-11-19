@@ -14,12 +14,15 @@ import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto
 import type { ResetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
+import type { GetStreamKeyRequestDto } from "@modules/user/presentation/http/dto/request/user/get-stream-key.request.dto"
 import type { IsValidUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/is-valid-username.request.dto"
-import { UpdateProfilePictureRequestDto } from "@modules/user/presentation/http/dto/request/user/update-profile-picture.request.dto"
+import { SetViewerTokenRequestDto } from "@modules/user/presentation/http/dto/request/user/set-viewer-token.request.dto"
 import type { UpdateProfileRequestDto } from "@modules/user/presentation/http/dto/request/user/update-profile.request.dto"
 import type { UpdateUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
+import type { GetStreamKeyResponseDto } from "@modules/user/presentation/http/dto/response/user/get-stream-key.response.dto"
+import { SetViewerTokenResponseDto } from "@modules/user/presentation/http/dto/response/user/set-viewer-token.response.dto"
 import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
 
 import type { IUserRepository } from "../../domain/repository/user/user.repository"
@@ -177,6 +180,37 @@ export const UserRepository: IUserRepository = {
     try {
       const { data } = await NextUser.updateProfilePicture(body)
       return Promise.resolve({ profile: data.profile })
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async getStreamKey(
+    body: GetStreamKeyRequestDto
+  ): Promise<GetStreamKeyResponseDto> {
+    try {
+      const { data } = await NextUser.getStreamKey(body)
+      return Promise.resolve({ ...data.data })
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async setStreamKey(): Promise<void> {
+    try {
+      await NextUser.setStreamKey()
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async setViewerToken(
+    body: SetViewerTokenRequestDto
+  ): Promise<SetViewerTokenResponseDto> {
+    try {
+      const { data } = await NextUser.setViewerToken(body)
+      return Promise.resolve({ viewerToken: data.viewerToken })
     } catch (error) {
       return Promise.reject(error)
     }

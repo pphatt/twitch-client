@@ -57,14 +57,14 @@ export const ChannelEmptyPadding = styled.div`
 `
 
 export const ChannelStatusTextIndicator = styled.div<{
-  $isOffline?: boolean
+  $isOffline?: "true" | "false" | "connecting"
 }>`
   display: inline-block;
 
   color: #fff;
 
   ${({ $isOffline }) => {
-    if ($isOffline) {
+    if ($isOffline === "true") {
       return css`
         background: rgba(0, 0, 0, 0.6);
       `

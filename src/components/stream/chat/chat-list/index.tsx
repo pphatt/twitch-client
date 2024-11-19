@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout.persistent"
 import { cn } from "@/utils/common"
+import type { ReceivedChatMessage } from "@livekit/components-react"
 import type SimpleBarCore from "@tienphat0809/simplebar/packages/simplebar-core"
 import { format } from "date-fns"
 
@@ -20,51 +21,32 @@ import styles from "@/components/stream/chat/chat-list/style.module.scss"
 import ChatPausedFooter from "@/components/stream/chat/chat-paused-footer"
 
 interface ChatListProps {
-  previousMessages?: {
-    id: string
-    message: string
-    username: string
-    color: string
-    timestamp: number
-  }[]
-  messages?: {
-    id: string
-    message: string
-    username: string
-    color: string
-    timestamp: number
-  }[]
-  isPending: boolean
+  previousMessages?: ReceivedChatMessage[]
+  messages?: ReceivedChatMessage[]
 
   isPausedChat: boolean
   setIsPausedChat: React.Dispatch<React.SetStateAction<boolean>>
 
-  lastMessageId: string | null
-  setLastMessageId: React.Dispatch<React.SetStateAction<string | null>>
+  lastMessageId: number | null
+  setLastMessageId: React.Dispatch<React.SetStateAction<number | null>>
 
-  newMessagesStack:
-    | {
-        id: string
-        message: string
-        username: string
-        color: string
-        timestamp: number
-      }[]
-    | null
+  color: string
 
-  setFirstMessageIdInQueue: React.Dispatch<React.SetStateAction<string | null>>
+  newMessagesStack: ReceivedChatMessage[] | null
+
+  setFirstMessageIdInQueue: React.Dispatch<React.SetStateAction<number | null>>
 }
 
 export default function ChatList({
   previousMessages,
   messages,
-  isPending,
   isPausedChat,
   setIsPausedChat,
   lastMessageId,
   setLastMessageId,
   newMessagesStack,
   setFirstMessageIdInQueue,
+  color,
 }: ChatListProps) {
   const ref = React.useRef<SimpleBarCore | null>(null)
   const listRef = React.useRef<HTMLDivElement>(null)
@@ -134,8 +116,8 @@ export default function ChatList({
           return
         }
 
-        setLastMessageId(lastMessage.id)
-        setFirstMessageIdInQueue(firstMessage.id)
+        setLastMessageId(lastMessage.timestamp)
+        setFirstMessageIdInQueue(firstMessage.timestamp)
         return
       }
     }
@@ -189,18 +171,12 @@ export default function ChatList({
           >
             <DisplayPreviousMessages
               previousMessages={previousMessages ?? []}
-              isPending={isPending}
+              color={color}
             />
 
-            <WelcomeMessage
-              newMessagesLength={messages?.length ?? 0}
-              isPending={isPending}
-            />
+            <WelcomeMessage newMessagesLength={messages?.length ?? 0} />
 
-            <DisplayLatestMessages
-              messages={messages ?? []}
-              isPending={isPending}
-            />
+            <DisplayLatestMessages color={color} messages={messages ?? []} />
           </div>
         </SimpleBar>
 
@@ -233,10 +209,9 @@ export default function ChatList({
  * */
 interface WelcomeMessageProps {
   newMessagesLength: number
-  isPending: boolean
 }
 
-function WelcomeMessage({ newMessagesLength, isPending }: WelcomeMessageProps) {
+function WelcomeMessage({ newMessagesLength }: WelcomeMessageProps) {
   // have to sync when the first messages get removed
   if (newMessagesLength >= 150) {
     return
@@ -244,16 +219,14 @@ function WelcomeMessage({ newMessagesLength, isPending }: WelcomeMessageProps) {
 
   return (
     <>
-      {!isPending && (
-        <div
-          className={styles["chat-line__status"]}
-          data-a-target={"chat-welcome-message"}
-        >
-          <span>Welcome to the chat room!</span>
-        </div>
-      )}
+      <div
+        className={styles["chat-line__status"]}
+        data-a-target={"chat-welcome-message"}
+      >
+        <span>Welcome to the chat room!</span>
+      </div>
 
-      {newMessagesLength > 0 && !isPending && (
+      {newMessagesLength > 0 && (
         <ChatLineNew className={styles["chat-line__message"]}>
           <SeparatorLine
             className={styles["live-message-separator-line__hr"]}
@@ -269,99 +242,83 @@ function WelcomeMessage({ newMessagesLength, isPending }: WelcomeMessageProps) {
 }
 
 interface DisplayPreviousMessagesProps {
-  previousMessages: {
-    id: string
-    message: string
-    username: string
-    color: string
-    timestamp: number
-  }[]
-  isPending: boolean
+  previousMessages: ReceivedChatMessage[]
+  color: string
 }
 
 function DisplayPreviousMessages({
   previousMessages,
-  isPending,
+  color,
 }: DisplayPreviousMessagesProps) {
   return (
     <>
       {previousMessages &&
-        !isPending &&
-        previousMessages.map(
-          ({ message, username, color, timestamp }, index) => (
-            <div
-              key={index}
-              className={styles["chat-line__message"]}
-              data-a-target={"chat-line-message"}
-              data-a-user={username}
-              tabIndex={0}
-            >
-              <ChatLineWrapper>
-                <div className={styles["chat-line__message-highlight"]}></div>
+        previousMessages.map(({ message, from, timestamp }, index) => (
+          <div
+            key={index}
+            className={styles["chat-line__message"]}
+            data-a-target={"chat-line-message"}
+            data-a-user={from?.name}
+            tabIndex={0}
+          >
+            <ChatLineWrapper>
+              <div className={styles["chat-line__message-highlight"]}></div>
 
-                <ChatLineContainer className="chat-line__message-container">
-                  <span
-                    className={styles["chat-line__timestamp"]}
-                    data-a-target="chat-timestamp"
-                  >
-                    {format(new Date(timestamp * 1000), "h:mm")}
-                  </span>
+              <ChatLineContainer className="chat-line__message-container">
+                <span
+                  className={styles["chat-line__timestamp"]}
+                  data-a-target="chat-timestamp"
+                >
+                  {format(new Date(timestamp * 1000), "h:mm")}
+                </span>
 
-                  <div className={styles["chat-line__username-wrapper"]}>
-                    <span className={styles["chat-line__username-container"]}>
-                      <span>
-                        <span
-                          className={styles["chat-author__display-name"]}
-                          data-a-target={"chat-message-username"}
-                          data-a-username={username}
-                          data-test-selector={"message-username"}
-                          style={{ color }}
-                        >
-                          {username}
-                        </span>
+                <div className={styles["chat-line__username-wrapper"]}>
+                  <span className={styles["chat-line__username-container"]}>
+                    <span>
+                      <span
+                        className={styles["chat-author__display-name"]}
+                        data-a-target={"chat-message-username"}
+                        data-a-username={from?.name}
+                        data-test-selector={"message-username"}
+                        style={{ color }}
+                      >
+                        {from?.name}
                       </span>
                     </span>
-                  </div>
-
-                  <span aria-hidden={true}>: </span>
-
-                  <span data-a-target={"chat-line-message-body"}>
-                    <span data-a-target={"chat-message-text"}>{message}</span>
                   </span>
-                </ChatLineContainer>
-              </ChatLineWrapper>
-            </div>
-          )
-        )}
+                </div>
+
+                <span aria-hidden={true}>: </span>
+
+                <span data-a-target={"chat-line-message-body"}>
+                  <span data-a-target={"chat-message-text"}>{message}</span>
+                </span>
+              </ChatLineContainer>
+            </ChatLineWrapper>
+          </div>
+        ))}
     </>
   )
 }
 
 interface DisplayLatestMessagesProps {
-  messages: {
-    id: string
-    message: string
-    username: string
-    color: string
-    timestamp: number
-  }[]
-  isPending: boolean
+  messages: ReceivedChatMessage[]
+  color: string
 }
 
 function DisplayLatestMessages({
   messages,
-  isPending,
+  color,
 }: DisplayLatestMessagesProps) {
   return (
     <>
       {messages &&
-        !isPending &&
-        messages.map(({ message, username, color }, index) => (
+        messages.map(({ message, from }, index) => (
           <div
             key={index}
             className={styles["chat-line__message"]}
             data-a-target={"chat-line-message"}
-            data-a-user={username}
+            data-a-user={from?.name}
             tabIndex={0}
             data-index={index + 1}
           >
@@ -375,11 +332,11 @@ function DisplayLatestMessages({
                       <span
                         className={styles["chat-author__display-name"]}
                         data-a-target={"chat-message-username"}
-                        data-a-username={username}
+                        data-a-username={from?.name}
                         data-test-selector={"message-username"}
                         style={{ color }}
                       >
-                        {username}
+                        {from?.name}
                       </span>
                     </span>
                   </span>

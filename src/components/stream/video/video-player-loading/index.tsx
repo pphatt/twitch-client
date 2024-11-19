@@ -1,7 +1,5 @@
 import * as React from "react"
 import { cn } from "@/utils/common"
-import { useTracks } from "@livekit/components-react"
-import { Track, type Participant } from "livekit-client"
 
 import { Hint } from "@/components/common/hint"
 import SpinnerLoading from "@/components/loading/spinner-loading"
@@ -37,45 +35,21 @@ import {
   VideoRefWrapper,
 } from "@/components/stream/video/video-preview-player/style"
 
-interface VideoPreviewPlayer {
-  isOffline: boolean
-  participant: Participant
-}
-
-export default function VideoPreviewPlayer({
-  isOffline,
-  participant,
-}: VideoPreviewPlayer) {
+export default function VideoPlayerLoading() {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
 
   const [isMouseEntered, setIsMouseEntered] = React.useState<boolean>(false)
 
-  const [isPlaying, setIsPlaying] = React.useState<boolean>(!isOffline)
-
   React.useEffect(() => {
     const timeOutVideoOverlayAppear = setTimeout(() => {
-      if (isMouseEntered && isPlaying && !isOffline) {
+      if (isMouseEntered) {
         setIsMouseEntered(false)
       }
     }, 5000)
 
     return () => clearTimeout(timeOutVideoOverlayAppear)
   }, [isMouseEntered])
-
-  React.useEffect(() => {
-    if (isOffline) {
-      setIsMouseEntered(true)
-    }
-  }, [isOffline])
-
-  useTracks([Track.Source.Camera, Track.Source.Microphone])
-    .filter((track) => track.participant.identity === participant.identity)
-    .forEach((track) => {
-      if (videoRef.current) {
-        track.publication.track?.attach(videoRef.current)
-      }
-    })
 
   return (
     <VideoPreviewPlayerWrapper>
@@ -110,28 +84,27 @@ export default function VideoPreviewPlayer({
                     <div
                       onMouseDown={() => setIsMouseEntered(true)}
                       onMouseMove={() => setIsMouseEntered(true)}
-                      onMouseLeave={() => {
-                        if (isPlaying && !isOffline) {
-                          setIsMouseEntered(false)
-                        }
-                      }}
                       className={cn("video-player__default-player", {
                         "video-player__inactive": !isMouseEntered,
                       })}
                     >
                       <div className="video-player__overlay">
                         <TransitionOverlay onActive={isMouseEntered}>
-                          <TopBarOverlay isOffline={`${isOffline}`} />
+                          <TopBarOverlay isOffline={"connecting"} />
                         </TransitionOverlay>
+
+                        <PlayerOverlayBackground>
+                          <SpinnerLoading />
+                        </PlayerOverlayBackground>
 
                         <TransitionOverlay onActive={isMouseEntered}>
                           <PlayerControls
                             onActive={isMouseEntered}
                             containerRef={containerRef}
                             videoRef={videoRef}
-                            isPlaying={isPlaying}
-                            setIsPlaying={setIsPlaying}
-                            isOffline={isOffline}
+                            isPlaying={false}
+                            setIsPlaying={() => {}}
+                            isOffline={true}
                           />
                         </TransitionOverlay>
                       </div>
@@ -151,8 +124,6 @@ export default function VideoPreviewPlayer({
               <StreamDescriptionImageWrapper>
                 <StreamDescriptionCategoryLink href={""}>
                   <StreamDescriptionImageContainer>
-                    {/*<StreamDescriptionImagePlaceholder />*/}
-
                     <StreamDescriptionImage src={"/category/404-1.jpg"} />
                   </StreamDescriptionImageContainer>
                 </StreamDescriptionCategoryLink>

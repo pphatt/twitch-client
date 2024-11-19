@@ -1,13 +1,17 @@
 import * as React from "react"
-import { sleep } from "@/utils/common"
+import { cookies } from "next/headers"
+import { UserRepository } from "@modules/user/infrastructure/repository/user.repository"
 
 import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/application/dashboard/settings/stream/page.module.scss"
 import { StreamKeyCard } from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-key-card"
 import StreamUrlCard from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-url-card"
+import {ConnectModal} from "@/components/settings-stream/generate-connect";
 
 export default async function StreamSettingsPage() {
-  const [] = await Promise.all([sleep(1000), sleep(1000)])
+  const { serverUrl, streamKey } = await UserRepository.getStreamKey({
+    accessToken: cookies().get("access-token")!.value,
+  })
 
   return (
     <SimpleBar forceVisible={"y"} className={styles["scrollable-area"]}>
@@ -25,9 +29,7 @@ export default async function StreamSettingsPage() {
                 </div>
               </div>
 
-              <StreamUrlCard
-                url={"live_455233884_HcemGFEb1sRyLOHgRHfLVlSwiRej1O"}
-              />
+              <StreamUrlCard url={serverUrl} />
             </div>
 
             <div className={styles["content-block-container"]}>
@@ -37,13 +39,11 @@ export default async function StreamSettingsPage() {
                 </div>
               </div>
 
-              <StreamKeyCard
-                streamKey={
-                  "sk_us-west-2_mc8IFgHGHEz0_HJZvHuBWv7BpOUGAGLz2tZtSUuJ5hR"
-                }
-              />
+              <StreamKeyCard streamKey={streamKey} />
             </div>
           </div>
+
+          <ConnectModal />
         </div>
 
         <div></div>

@@ -36,9 +36,10 @@ import {
 
 interface PanelHeaderProps extends React.ComponentPropsWithoutRef<"div"> {
   title: string
+  username: string
 }
 
-export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
+export default function PanelHeader({ title, username, ...props }: PanelHeaderProps) {
   const { isEditing, setIsEditing } = useEditLayout()
 
   const { layout } = useMosaicUpdateLayout()
@@ -58,7 +59,7 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
     switch (title) {
       case "Activity Feed": {
         window.open(
-          "/u/tienphat/stream-manager/activity-feed",
+          `/u/${username}/stream-manager/activity-feed`,
           "_blank",
           "top=600,left=800,width=360,height=450,popup=true"
         )
@@ -67,7 +68,7 @@ export default function PanelHeader({ title, ...props }: PanelHeaderProps) {
       }
       case "My Chat": {
         window.open(
-          "/u/tienphat/stream-manager/chat",
+          `/u/${username}/stream-manager/chat`,
           "_blank",
           "top=600,left=800,width=360,height=450,popup=true"
         )
