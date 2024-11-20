@@ -128,17 +128,7 @@ export default function EditStreamInfo() {
 
                               <EditFormGroup>
                                 <FormLabel>Tags</FormLabel>
-                                <FormTextarea
-                                  state={titleText}
-                                  setState={setTitleText}
-                                  placeholder={"Enter a title"}
-                                  maxLength={140}
-                                  minRows={3}
-                                />
-                              </EditFormGroup>
 
-                              <EditFormGroup>
-                                <FormLabel>Stream Language</FormLabel>
                                 <FormTextarea
                                   state={titleText}
                                   setState={setTitleText}

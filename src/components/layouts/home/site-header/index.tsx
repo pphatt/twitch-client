@@ -180,7 +180,9 @@ export default function HomeSiteHeader() {
 
                                   <AccountDetails>
                                     <AccountText>
-                                      {profile?.displayName}
+                                      {profile?.displayName !== ""
+                                        ? profile?.displayName
+                                        : profile?.username}
                                     </AccountText>
                                   </AccountDetails>
                                 </AccountItemContainer>

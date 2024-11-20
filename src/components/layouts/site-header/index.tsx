@@ -150,7 +150,11 @@ export function SiteHeader() {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>{profile?.displayName}</AccountText>
+                              <AccountText>
+                                {profile?.displayName !== ""
+                                  ? profile?.displayName
+                                  : profile?.username}
+                              </AccountText>
                             </AccountDetails>
                           </AccountItemContainer>
                         </AccountItemWrapper>

@@ -151,7 +151,11 @@ export default function DashboardSiteHeader() {
                             </AccountImageWrapper>
 
                             <AccountDetails>
-                              <AccountText>{profile?.displayName}</AccountText>
+                              <AccountText>
+                                {profile?.displayName !== ""
+                                  ? profile?.displayName
+                                  : profile?.username}
+                              </AccountText>
 
                               <AccountTextWrapper>
                                 <p>Creator</p>

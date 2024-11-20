@@ -10,6 +10,7 @@ import {
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
+import { useDebounce } from "@/hooks/useDebounce.hooks"
 import { Form, FormControl, FormField } from "@/components/ui/form"
 import { DobInput } from "@/components/forms/auth/dob-input"
 import {
@@ -44,12 +45,15 @@ interface SignUpFormProps {
 }
 
 export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
+  const [isCheckingUsername, startCheckingUsername] = React.useTransition()
+
   const [isPending, startTransition] = React.useTransition()
 
   // register, handleSubmit, formState
   // default-values for controlled form
   const form = useForm<Inputs>({
     resolver: zodResolver(SignUpRequestDtoSchema),
+    mode: "onChange",
     defaultValues: {
       name: "",
       email: "",
@@ -58,8 +62,10 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
     },
   })
 
+  const debouncedQuery = useDebounce(form.watch("name"), 300)
+
   const onSubmit = (data: Inputs) => {
-    if (isPending) return
+    if (isPending || isCheckingUsername) return
 
     startTransition(async () => {
       try {
@@ -88,14 +94,40 @@ export default function SignUpForm({ setRenderOtp }: SignUpFormProps) {
         })
 
         console.log(error)
-
-        // set up error display
-        // form.setError("otp", {
-        //   message: "Invalid otp",
-        // })
       }
     })
   }
+
+  React.useEffect(() => {
+    if (debouncedQuery.length < 4) {
+      return
+    }
+
+    async function fetchData() {
+      try {
+        const { data: isValidUsername } = await UserRepository.isValidUsername({
+          username: debouncedQuery,
+        })
+
+        if (!isValidUsername) {
+          form.setError("name", {
+            message: "*This username is unavailable.",
+          })
+
+          return
+        }
+
+        if (isValidUsername && !form.getFieldState("name").error) {
+          form.clearErrors()
+          return
+        }
+      } catch (err) {
+        throw new Error("Something went wrong...")
+      }
+    }
+
+    startCheckingUsername(fetchData)
+  }, [debouncedQuery])
 
   return (
     <Form {...form}>

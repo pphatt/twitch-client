@@ -74,6 +74,7 @@
     "cookies-next": "^4.2.1",
     "critters": "^0.0.24",
     "date-fns": "^4.1.0",
+    "emblor": "^1.4.6",
     "fast-glob": "^3.3.2",
     "immutable": "^4.3.7",
     "input-otp": "^1.4.1",
