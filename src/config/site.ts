@@ -23,6 +23,11 @@ export const siteConfig = {
       slug: "/directory",
       items: [],
     },
+    {
+      title: "Social",
+      slug: "/social/home",
+      items: [],
+    },
   ] as MainNavItem[],
   links,
 }

@@ -6,7 +6,7 @@ import {
 import type { CustomMiddleware } from "@/middleware/chain"
 // import { createAuthHeaders } from "@/middleware/utils/create-auth-headers"
 import { refreshAccessToken } from "@/middleware/utils/refresh-access-token"
-import { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
+import { type TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import { jwtDecode } from "jwt-decode"
 
 const publicRoutes = [
@@ -21,6 +21,7 @@ const publicRoutes = [
   "/api/webhooks",
   "/user/account-recovery",
   "/user/password-reset",
+  "/social/home",
 ]
 
 const authRoutes = ["/login", "/signup"]

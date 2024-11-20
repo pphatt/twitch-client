@@ -1,0 +1,20 @@
+html {
+  background-color: #0c0f1d !important;
+
+  overflow-y: scroll !important;
+}
+
+html > body {
+  min-height: auto !important;
+}
+
+html > body > div:first-of-type {
+  position: relative !important;
+}
+
+html > body > div:first-of-type > div:first-of-type {
+  position: relative !important;
+  inset: 0;
+
+  overflow: visible !important;
+}
