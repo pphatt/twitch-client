@@ -11,7 +11,7 @@ import {
 
 interface FormTextAreaProps extends TextareaAutosizeProps {
   state: string
-  setState: React.Dispatch<React.SetStateAction<string>>
+  setState: (...event: any[]) => void
 }
 
 export default function FormTextarea({

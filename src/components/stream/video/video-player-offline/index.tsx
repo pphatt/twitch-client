@@ -35,7 +35,11 @@ import {
   VideoRefWrapper,
 } from "@/components/stream/video/video-preview-player/style"
 
-export default function VideoPlayerOffline() {
+interface VideoPlayerOfflineProps {
+  title: string
+}
+
+export default function VideoPlayerOffline({ title }: VideoPlayerOfflineProps) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
 
@@ -130,9 +134,7 @@ export default function VideoPlayerOffline() {
                   <StreamDescriptionTitleOverlay>
                     <StreamDescriptionTitleLayout>
                       <StreamDescriptionTitle>
-                        🔴SUBATHON DAY 14! | MALENIA BOSS TIME ! PIXEL BOARD
-                        CLOSES TOMORROW !pixel 🔴| #VSHOJO | !subathon | !tts |
-                        !merch | !yt| !razer | !gg
+                        {title}
                       </StreamDescriptionTitle>
                     </StreamDescriptionTitleLayout>
                   </StreamDescriptionTitleOverlay>

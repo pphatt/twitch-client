@@ -11,10 +11,11 @@ import VideoPlayerOffline from "@/components/stream/video/video-player-offline"
 import VideoPreviewPlayer from "@/components/stream/video/video-preview-player"
 
 interface VideoWrapperProps {
+  title: string
   hostIdentity: string
 }
 
-export default function VideoWrapper({ hostIdentity }: VideoWrapperProps) {
+export default function VideoWrapper({ title, hostIdentity }: VideoWrapperProps) {
   const connectionState = useConnectionState()
   const participant = useRemoteParticipant(hostIdentity)
   const tracks = useTracks([
@@ -29,16 +30,16 @@ export default function VideoWrapper({ hostIdentity }: VideoWrapperProps) {
     (connectionState === ConnectionState.Disconnected ||
       connectionState === ConnectionState.Connected)
   ) {
-    content = <VideoPlayerOffline />
+    content = <VideoPlayerOffline title={title} />
   } else if (
     !participant ||
     tracks.length === 0 ||
     connectionState === ConnectionState.Connecting ||
     connectionState === ConnectionState.Reconnecting
   ) {
-    content = <VideoPlayerLoading />
+    content = <VideoPlayerLoading title={title} />
   } else {
-    content = <VideoPreviewPlayer isOffline={false} participant={participant} />
+    content = <VideoPreviewPlayer title={title} isOffline={false} participant={participant} />
   }
 
   return <>{content}</>

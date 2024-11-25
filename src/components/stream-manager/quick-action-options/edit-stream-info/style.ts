@@ -119,7 +119,6 @@ export const DialogContentWrapper = styled(DialogContent)`
 
   max-width: 600px;
   width: 100vw;
-  //height: 100vh;
 
   border-width: 0;
   border-radius: 6px;
@@ -182,7 +181,7 @@ export const DialogContentContainer = styled.div`
   padding-right: 20px;
 `
 
-export const DialogContentOverlay = styled.div`
+export const DialogContentOverlay = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

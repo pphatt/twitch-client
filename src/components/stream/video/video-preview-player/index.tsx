@@ -40,11 +40,14 @@ import {
 interface VideoPreviewPlayer {
   isOffline: boolean
   participant: Participant
+
+  title: string
 }
 
 export default function VideoPreviewPlayer({
   isOffline,
   participant,
+  title,
 }: VideoPreviewPlayer) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
@@ -162,11 +165,7 @@ export default function VideoPreviewPlayer({
                 <StreamDescriptionTitleContainer>
                   <StreamDescriptionTitleOverlay>
                     <StreamDescriptionTitleLayout>
-                      <StreamDescriptionTitle>
-                        🔴SUBATHON DAY 14! | MALENIA BOSS TIME ! PIXEL BOARD
-                        CLOSES TOMORROW !pixel 🔴| #VSHOJO | !subathon | !tts |
-                        !merch | !yt| !razer | !gg
-                      </StreamDescriptionTitle>
+                      <StreamDescriptionTitle>{title}</StreamDescriptionTitle>
                     </StreamDescriptionTitleLayout>
                   </StreamDescriptionTitleOverlay>
                 </StreamDescriptionTitleContainer>

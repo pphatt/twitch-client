@@ -5,18 +5,16 @@ import type { RefreshTokenRequestDto } from "@modules/user/presentation/http/dto
 import type { ResetPasswordRequestDto } from "@modules/user/presentation/http/dto/request/auth/reset-password.request.dto"
 import type { FormSignInRequestDto } from "@modules/user/presentation/http/dto/request/auth/signin.request.dto"
 import type { SignUpRequestDto } from "@modules/user/presentation/http/dto/request/auth/signup.request.dto"
-import { GetStreamKeyRequestDto } from "@modules/user/presentation/http/dto/request/user/get-stream-key.request.dto"
+import type { GetStreamKeyRequestDto } from "@modules/user/presentation/http/dto/request/user/get-stream-key.request.dto"
 import type { IsValidUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/is-valid-username.request.dto"
+import type { SetViewerTokenRequestDto } from "@modules/user/presentation/http/dto/request/user/set-viewer-token.request.dto"
 import type { UpdateProfileRequestDto } from "@modules/user/presentation/http/dto/request/user/update-profile.request.dto"
 import type { UpdateUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
 import type { RefreshTokenResponseDto } from "@modules/user/presentation/http/dto/response/auth/refresh-token.response.dto"
 import type { SignInResponseDto } from "@modules/user/presentation/http/dto/response/auth/signin.response.dto"
 import type { GetStreamKeyResponseDto } from "@modules/user/presentation/http/dto/response/user/get-stream-key.response.dto"
+import type { SetViewerTokenResponseDto } from "@modules/user/presentation/http/dto/response/user/set-viewer-token.response.dto"
 import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
-import {
-  SetViewerTokenResponseDto
-} from "@modules/user/presentation/http/dto/response/user/set-viewer-token.response.dto";
-import {SetViewerTokenRequestDto} from "@modules/user/presentation/http/dto/request/user/set-viewer-token.request.dto";
 
 export interface IUserRepository {
   // auth
@@ -51,5 +49,7 @@ export interface IUserRepository {
     body: GetStreamKeyRequestDto
   ) => Promise<GetStreamKeyResponseDto>
   setStreamKey: () => Promise<void>
-  setViewerToken: (body: SetViewerTokenRequestDto) => Promise<SetViewerTokenResponseDto>
+  setViewerToken: (
+    body: SetViewerTokenRequestDto
+  ) => Promise<SetViewerTokenResponseDto>
 }

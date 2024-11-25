@@ -10,19 +10,16 @@ import {
 } from "@/components/stream-manager/quick-action-options/common/edit/form-submit-btn/style"
 
 interface FormSubmitButtonProps {
-  state: boolean
-  setState: React.Dispatch<React.SetStateAction<boolean>>
-  onSubmit: () => void
+  onCancel: () => void
 }
 
 export default function FormSubmitButton({
-  state,
-  setState,
+  onCancel,
 }: FormSubmitButtonProps) {
   return (
     <EditStreamInfoBtnWrapper>
       <EditStreamInfoBtnContainer>
-        <CloseDialogButtonWrapper onClick={() => setState(!state)}>
+        <CloseDialogButtonWrapper type={"button"} onClick={onCancel}>
           <ButtonContainer>
             <ButtonText>Cancel</ButtonText>
           </ButtonContainer>

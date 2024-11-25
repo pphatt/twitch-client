@@ -35,7 +35,11 @@ import {
   VideoRefWrapper,
 } from "@/components/stream/video/video-preview-player/style"
 
-export default function VideoPlayerLoading() {
+interface VideoPlayerLoadingProps {
+  title: string
+}
+
+export default function VideoPlayerLoading({ title }: VideoPlayerLoadingProps) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
 
@@ -133,11 +137,7 @@ export default function VideoPlayerLoading() {
                 <StreamDescriptionTitleContainer>
                   <StreamDescriptionTitleOverlay>
                     <StreamDescriptionTitleLayout>
-                      <StreamDescriptionTitle>
-                        🔴SUBATHON DAY 14! | MALENIA BOSS TIME ! PIXEL BOARD
-                        CLOSES TOMORROW !pixel 🔴| #VSHOJO | !subathon | !tts |
-                        !merch | !yt| !razer | !gg
-                      </StreamDescriptionTitle>
+                      <StreamDescriptionTitle>{title}</StreamDescriptionTitle>
                     </StreamDescriptionTitleLayout>
                   </StreamDescriptionTitleOverlay>
                 </StreamDescriptionTitleContainer>

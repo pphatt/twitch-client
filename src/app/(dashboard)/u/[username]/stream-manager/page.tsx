@@ -8,6 +8,7 @@ import {
 } from "@/store/state/dashboard.state"
 import { cn } from "@/utils/common"
 import { LiveKitRoom } from "@livekit/components-react"
+import { LiveStream } from "@modules/core/presentation/endpoints/livestream/livestream.request"
 import { Mosaic, MosaicWindow, type MosaicNode } from "react-mosaic-component"
 import { toast } from "sonner"
 
@@ -84,6 +85,24 @@ export default function StreamManagerPage() {
 
   const { token, name, color } = useViewerToken(profile!.id)
 
+  const [streamInfo, setStreamInfo] = React.useState<{ title: string }>()
+
+  const [isPending, startTransition] = React.useTransition()
+
+  React.useEffect(() => {
+    startTransition(async () => {
+      if (!profile?.username) {
+        return
+      }
+
+      const { data } = await LiveStream.getStreamInfo({
+        username: profile.username,
+      })
+
+      setStreamInfo({ title: data.data.title })
+    })
+  }, [profile?.username])
+
   return (
     <LiveKitRoom
       options={{
@@ -120,7 +139,10 @@ export default function StreamManagerPage() {
             )}
           >
             {id === "Stream Preview" && (
-              <VideoWrapper hostIdentity={profile!.id} />
+              <VideoWrapper
+                title={streamInfo?.title ?? ""}
+                hostIdentity={profile!.id}
+              />
             )}
 
             {id === "My Chat" && (

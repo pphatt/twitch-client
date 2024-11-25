@@ -796,4 +796,13 @@ export const Icons = {
       <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Z" />
     </svg>
   ),
+  categorySearch: ({ ...props }: LucideProps) => (
+    <svg width="20" height="20" viewBox="0 0 20 20" {...props}>
+      <path
+        fillRule="evenodd"
+        d="M13.192 14.606a7 7 0 1 1 1.414-1.414l3.101 3.1-1.414 1.415-3.1-3.1zM14 9A5 5 0 1 1 4 9a5 5 0 0 1 10 0z"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+  ),
 }
