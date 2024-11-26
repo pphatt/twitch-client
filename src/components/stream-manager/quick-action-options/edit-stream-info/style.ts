@@ -132,7 +132,7 @@ export const DialogContentWrapper = styled(DialogContent)`
   }
 `
 
-export const ContentWrap = styled.div`
+export const ContentWrapper = styled.div`
   display: flex;
 
   //max-width: 600px;

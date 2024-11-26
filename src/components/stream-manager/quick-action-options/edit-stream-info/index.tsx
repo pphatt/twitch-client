@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { axiosHttpErrorHandler } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LivestreamRepository } from "@modules/user/infrastructure/repository/livestream.repository"
@@ -29,7 +30,7 @@ import {
   BtnIconWrapper,
   BtnInnerLayoutWrapper,
   ContentContainer,
-  ContentWrap,
+  ContentWrapper,
   DialogContentWrapper as DialogContent,
   DialogContentContainer,
   DialogContentOverlay,
@@ -58,6 +59,7 @@ interface EditStreamInfoProps {
 }
 
 export default function EditStreamInfo({ title }: EditStreamInfoProps) {
+  const router = useRouter()
   const [open, setOpen] = React.useState(false)
   const [isPending, startTransition] = React.useTransition()
 
@@ -89,7 +91,8 @@ export default function EditStreamInfo({ title }: EditStreamInfoProps) {
         })
 
         setOpen(false)
-        window.location.reload()
+
+        router.refresh()
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
 
@@ -139,8 +142,11 @@ export default function EditStreamInfo({ title }: EditStreamInfoProps) {
               </EditStreamInfoBtn>
             </DialogTrigger>
 
-            <DialogContent>
-              <ContentWrap
+            <DialogContent
+              onEscapeKeyDown={(event) => event.preventDefault()}
+              onPointerDownOutside={(event) => event.preventDefault()}
+            >
+              <ContentWrapper
                 style={{
                   maxWidth: "600px",
                   width: "100vw",
@@ -258,12 +264,15 @@ export default function EditStreamInfo({ title }: EditStreamInfoProps) {
                           </EditContentWrapper>
                         </SimpleBar>
 
-                        <FormSubmitButton onCancel={handleOnCancel} />
+                        <FormSubmitButton
+                          isPending={isPending}
+                          onCancel={handleOnCancel}
+                        />
                       </DialogContentOverlay>
                     </Form>
                   </DialogContentContainer>
                 </ContentContainer>
-              </ContentWrap>
+              </ContentWrapper>
             </DialogContent>
           </Dialog>
         </QuickActionBtnOverlay>
