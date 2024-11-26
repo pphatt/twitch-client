@@ -7,7 +7,11 @@ import {
 } from "@/components/stream-manager/panel/quick-action-panel/style"
 import EditStreamInfo from "@/components/stream-manager/quick-action-options/edit-stream-info"
 
-export default function QuickActionPanel() {
+interface QuickActionPanelProps {
+  title: string | undefined
+}
+
+export default function QuickActionPanel({ title }: QuickActionPanelProps) {
   return (
     <QuickActionPanelWrapper>
       <SimpleBar
@@ -17,7 +21,7 @@ export default function QuickActionPanel() {
         }}
       >
         <QuickActionPanelContainer>
-          <EditStreamInfo />
+          <EditStreamInfo title={title} />
         </QuickActionPanelContainer>
       </SimpleBar>
     </QuickActionPanelWrapper>

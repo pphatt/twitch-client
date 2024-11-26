@@ -1,0 +1,23 @@
+.admin-layout {
+  --sidebar-width: 16rem;
+  --sidebar-width-icon: 3rem;
+
+  display: flex;
+
+  color: hsl(var(--admin-sidebar-foreground));
+
+  width: 100%;
+  min-height: 100svh;
+}
+
+.main-layout {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0%;
+
+  background-color: hsl(var(--admin-background));
+
+  min-height: 100svh;
+}

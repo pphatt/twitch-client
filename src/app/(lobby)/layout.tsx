@@ -1,5 +1,6 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
+import { cookies } from "next/headers"
 
 import { SiteHeader } from "@/components/layouts/site-header"
 import styles from "@/styles/application/lobby/layout.module.scss"
@@ -13,9 +14,11 @@ export default function LobbyLayout({
 }: {
   children: React.ReactNode
 }) {
+  const accessToken = cookies().get("access-token")?.value
+
   return (
     <>
-      <SiteHeader />
+      <SiteHeader accessToken={accessToken} />
       <main className={styles["content-layout"]}>
         <div className={styles["side-navbar"]}>
           <SideNavBar />

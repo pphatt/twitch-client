@@ -262,3 +262,47 @@ export const axiosHttpErrorHandler = (error: unknown) => {
     message: error instanceof Error ? error.message : "Unknown error"
   };
 };
+
+export function parserPage(page: string) {
+  let pageNumber: number
+
+  try {
+    pageNumber = parseInt(page) || 1
+    if (pageNumber < 1) pageNumber = 1
+  } catch (e) {
+    pageNumber = 1
+  }
+
+  return pageNumber
+}
+
+export function parserRows(rows: string, defaultValue: number) {
+  let _rows: number
+
+  try {
+    _rows = parseInt(rows) || defaultValue
+    if (_rows < 1) _rows = defaultValue
+  } catch (e) {
+    _rows = defaultValue
+  }
+
+  return _rows
+}
+
+export function generatePagination(activePage: number, totalPages: number) {
+  const paginationLength = 5
+
+  let startPage = Math.max(1, activePage - Math.floor(paginationLength / 2))
+  const endPage = Math.min(totalPages, startPage + paginationLength - 1)
+  const pagination = []
+
+  if (endPage - startPage + 1 < paginationLength) {
+    startPage = Math.max(1, endPage - paginationLength + 1)
+  }
+
+  for (let i = startPage; i <= endPage; i++) {
+    pagination.push(i)
+  }
+
+  return pagination
+}

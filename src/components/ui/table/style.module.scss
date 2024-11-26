@@ -1,27 +1,25 @@
-import styled from "styled-components"
-
-export const TableWrapper = styled.div`
+.table-wrapper {
   width: 100%;
 
   overflow: auto;
-`
+}
 
-export const Table = styled.table`
+.table {
   width: 100%;
 
   font-size: 0.875rem;
   line-height: 1.25rem;
 
   caption-side: bottom;
-`
+}
 
-export const TableHeaderWrapper = styled.thead`
+.table-header {
   tr {
     border-bottom-width: 1px;
   }
-`
+}
 
-export const TableBodyWrapper = styled.tbody`
+.table-body {
   tr {
     border-bottom-width: 1px;
   }
@@ -29,35 +27,35 @@ export const TableBodyWrapper = styled.tbody`
   tr:last-child {
     border-width: 0;
   }
-`
+}
 
-export const TableFooterWrapper = styled.tfoot`
-  color: hsl(var(--primary-foreground));
-  background-color: hsl(var(--primary));
+.table-footer {
+  color: hsl(var(--admin-primary-foreground));
+  background-color: hsl(var(--admin-primary));
 
   font-size: 0.875rem;
   line-height: 1.25rem;
-`
+}
 
-export const TableRowWrapper = styled.tr`
+.table-row {
   border-bottom-width: 1px;
 
   transition-duration: 0.15s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-property: color, background-color, border-color,
-    text-decoration-color, fill, stroke;
+  text-decoration-color, fill, stroke;
 
   &[data-state="selected"] {
-    background-color: hsl(var(--muted));
+    background-color: hsl(var(--admin-muted));
   }
 
   &:hover {
-    background-color: hsl(var(--muted) / 0.5);
+    background-color: hsl(var(--admin-muted) / 0.5);
   }
-`
+}
 
-export const TableHeadWrapper = styled.th`
-  color: hsl(var(--muted-foreground));
+.table-head {
+  color: hsl(var(--admin-muted-foreground));
 
   height: 3rem;
 
@@ -76,25 +74,26 @@ export const TableHeadWrapper = styled.th`
   &:has(button[role="checkbox"]) {
     padding-right: 0;
   }
-`
+}
 
-export const TableCellWrapper = styled.td`
+.table-cell {
   //optional
-  padding: 0.5rem;
+  padding: .5rem;
   //padding: 1rem;
 
   vertical-align: middle;
 
+
   &:has(button[role="checkbox"]) {
     padding-right: 0;
   }
-`
+}
 
-export const TableCaptionWrapper = styled.caption`
-  color: hsl(var(--muted-foreground));
+.table-caption {
+  color: hsl(var(--admin-muted-foreground));
 
   margin-top: 1rem;
 
   font-size: 0.875rem;
   line-height: 1.25rem;
-`
+}

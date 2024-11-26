@@ -28,6 +28,8 @@ const authRoutes = ["/login", "/signup"]
 
 const publicDynamicRouteRegex = [/^\/([^\/]+)$/, /^\/popout\/([^\/]+)$/] // ["/:username", "/popout/:username"]
 
+const adminRoute = ["/staff/admin"]
+
 const deleteCookies = (response: NextResponse) => {
   response.cookies.delete("access-token")
   response.cookies.delete("refresh-token")
@@ -213,7 +215,6 @@ export function withAuth(middleware: CustomMiddleware) {
       return response
     }
 
-    // dashboard authorization
     // Dashboard Authorization
     const decoded = jwtDecode<TokenPayload>(accessToken!)
 
@@ -225,6 +226,28 @@ export function withAuth(middleware: CustomMiddleware) {
 
       // Compare username in URL with decoded username from JWT
       if (decoded.username !== usernameInUrl) {
+        // Redirect to an unauthorized page or homepage if usernames don’t match
+        url.pathname = "/"
+
+        const response = NextResponse.redirect(url, { status: 302 })
+
+        if (accessToken) {
+          response.cookies.set("access-token", accessToken)
+        }
+
+        if (refreshToken) {
+          response.cookies.set("refresh-token", refreshToken)
+        }
+
+        return response
+      }
+    }
+
+    // check admin route
+    const isAdminRoute = adminRoute.some((path) => pathname.startsWith(path))
+
+    if (isAdminRoute) {
+      if (decoded.role![0] !== "Admin") {
         // Redirect to an unauthorized page or homepage if usernames don’t match
         url.pathname = "/"
 

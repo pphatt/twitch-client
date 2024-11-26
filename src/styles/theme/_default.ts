@@ -71,6 +71,40 @@ export const GlobalColorTheme = createGlobalStyle`
         --input: 240 5.9% 90%;
         --ring: 240 5% 64.9%;
 
+        --admin-background: 0 0% 100%;
+        --admin-foreground: 222.2 84% 4.9%;
+        --admin-card: 0 0% 100%;
+        --admin-card-foreground: 222.2 84% 4.9%;
+        --admin-popover: 0 0% 100%;
+        --admin-popover-foreground: 222.2 84% 4.9%;
+        --admin-primary: 222.2 47.4% 11.2%;
+        --admin-primary-foreground: 210 40% 98%;
+        --admin-secondary: 210 40% 96.1%;
+        --admin-secondary-foreground: 222.2 47.4% 11.2%;
+        --admin-muted: 210 40% 96.1%;
+        --admin-muted-foreground: 215.4 16.3% 46.9%;
+        --admin-accent: 210 40% 96.1%;
+        --admin-accent-foreground: 222.2 47.4% 11.2%;
+        --admin-destructive: 0 84.2% 60.2%;
+        --admin-destructive-foreground: 210 40% 98%;
+        --admin-border: 214.3 31.8% 91.4%;
+        --admin-input: 214.3 31.8% 91.4%;
+        --admin-ring: 222.2 84% 4.9%;
+        --admin-radius: 0.5rem;
+        --admin-chart-1: 20 48% 72%;
+        --admin-chart-2: 173 58% 39%;
+        --admin-chart-3: 197 37% 24%;
+        --admin-chart-4: 43 74% 66%;
+        --admin-chart-5: 27 87% 67%;
+        --admin-sidebar-background: 0 0% 100%;
+        --admin-sidebar-foreground: 240 5.3% 26.1%;
+        --admin-sidebar-primary: 240 5.9% 10%;
+        --admin-sidebar-primary-foreground: 0 0% 98%;
+        --admin-sidebar-accent: 20 25% 86%;
+        --admin-sidebar-accent-foreground: 240 5.9% 10%;
+        --admin-sidebar-border: 220 13% 91%;
+        --admin-sidebar-ring: 217.2 91.2% 59.8%;
+
         --radius: 4px;
     }
 `

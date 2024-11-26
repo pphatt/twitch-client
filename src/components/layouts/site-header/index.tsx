@@ -2,6 +2,8 @@
 
 import * as React from "react"
 import { useAuth } from "@/context/auth.context"
+import { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
+import { jwtDecode } from "jwt-decode"
 
 import { siteConfig, supportSite } from "@/config/site"
 import {
@@ -46,8 +48,20 @@ import {
   UserItemWrapper,
 } from "@/components/layouts/site-header/style"
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  accessToken: string | undefined
+}
+
+export function SiteHeader({ accessToken }: SiteHeaderProps) {
   const { profile, authenticated } = useAuth()
+  const [role, setRole] = React.useState("")
+
+  React.useEffect(() => {
+    if (accessToken) {
+      const decoded = jwtDecode<TokenPayload>(accessToken)
+      setRole(decoded.role![0] ?? "")
+    }
+  }, [accessToken])
 
   return (
     <SiteHeaderWrapper>
@@ -159,21 +173,25 @@ export function SiteHeader() {
                           </AccountItemContainer>
                         </AccountItemWrapper>
 
+                        {role === "Admin" && (
+                          <>
+                            <DropdownMenuSeparator />
+
+                            <DropdownItem>
+                              <DropdownItemLink href={`/staff/admin`}>
+                                <span>Admin Dashboard</span>
+                                <Icons.admin />
+                              </DropdownItemLink>
+                            </DropdownItem>
+                          </>
+                        )}
+
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
                           <DropdownItemLink href={`/u/${profile?.username}`}>
                             <span>Channel</span>
                             <Icons.channel />
-                          </DropdownItemLink>
-                        </DropdownItem>
-
-                        <DropdownItem>
-                          <DropdownItemLink
-                            href={`/u/${profile?.username}/content/video-producer`}
-                          >
-                            <span>Video Producer</span>
-                            <Icons.videoProducer />
                           </DropdownItemLink>
                         </DropdownItem>
 
@@ -190,13 +208,6 @@ export function SiteHeader() {
                           <DropdownItemLink href={"/privacy"}>
                             <span>Privacy Center</span>
                             <Icons.privacy />
-                          </DropdownItemLink>
-                        </DropdownItem>
-
-                        <DropdownItem>
-                          <DropdownItemLink href={"/safety"}>
-                            <span>Safety</span>
-                            <Icons.safety />
                           </DropdownItemLink>
                         </DropdownItem>
 

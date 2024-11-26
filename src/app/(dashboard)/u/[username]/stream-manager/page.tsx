@@ -26,7 +26,7 @@ import styles from "@/styles/application/dashboard/stream-manager/page.module.sc
 
 const TITLE_MAP: { [key: string]: string | React.JSX.Element } = {
   "Stream Preview": <></>,
-  "Quick Action": <QuickActionPanel />,
+  "Quick Action": <></>,
   "Activity Feed": <ActivityFeed />,
   "My Chat": <></>,
   new: "New Window",
@@ -153,6 +153,8 @@ export default function StreamManagerPage() {
                 isCreator={true}
               />
             )}
+
+            {id === "Quick Action" && <QuickActionPanel title={streamInfo?.title} />}
 
             {TITLE_MAP[id]}
           </MosaicWindow>

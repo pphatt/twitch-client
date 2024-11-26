@@ -1,0 +1,16 @@
+body {
+  //color: hsl(var(--admin-foreground)) !important;
+  //background-color: hsl(var(--admin-background)) !important;
+  //
+  //overflow: hidden !important;
+}
+
+body > div:first-child,
+body > div:first-child > div,
+body > div:first-child > div > div {
+  all: unset !important;
+}
+
+.scrollable-area .simplebar-track .simplebar-scrollbar {
+  //background: #000 !important;
+}

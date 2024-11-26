@@ -1,5 +1,4 @@
 import * as React from "react"
-import { useRouter } from "next/navigation"
 import { axiosHttpErrorHandler } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LivestreamRepository } from "@modules/user/infrastructure/repository/livestream.repository"
@@ -54,8 +53,11 @@ import {
 
 type Inputs = SetStreamInfoRequestDto
 
-export default function EditStreamInfo() {
-  const router = useRouter()
+interface EditStreamInfoProps {
+  title: string | undefined
+}
+
+export default function EditStreamInfo({ title }: EditStreamInfoProps) {
   const [open, setOpen] = React.useState(false)
   const [isPending, startTransition] = React.useTransition()
 
@@ -63,10 +65,16 @@ export default function EditStreamInfo() {
     resolver: zodResolver(SetStreamInfoRequestDtoSchema),
     mode: "onChange",
     defaultValues: {
-      title: "",
+      title: title ?? "",
       categoryId: "",
     },
   })
+
+  React.useEffect(() => {
+    if (open) {
+      form.setValue("title", title ?? "")
+    }
+  }, [title, open])
 
   const onSubmit = (data: Inputs) => {
     if (isPending) return
@@ -81,7 +89,7 @@ export default function EditStreamInfo() {
         })
 
         setOpen(false)
-        router.refresh()
+        window.location.reload()
       } catch (err) {
         const error = axiosHttpErrorHandler(err)
 

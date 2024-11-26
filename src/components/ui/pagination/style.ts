@@ -27,7 +27,7 @@ export const PaginationItemWrapper = styled.li``
 export interface PaginationLinkWrapperProps
   extends StyledButtonProps,
     React.ComponentProps<typeof Link> {
-  $isActive: boolean
+  $isActive?: boolean
 }
 
 export const PaginationLinkWrapper = styled(

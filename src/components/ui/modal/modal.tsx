@@ -16,7 +16,7 @@ interface ModalProps {
   children?: React.ReactNode
 }
 
-export const Index: React.FC<ModalProps> = ({
+export const Modal: React.FC<ModalProps> = ({
   title,
   description,
   isOpen,

@@ -1,66 +1,84 @@
 import * as React from "react"
+import { cn } from "@/utils/common"
 
-import {
-  TableBodyWrapper,
-  TableCaptionWrapper,
-  TableCellWrapper,
-  TableFooterWrapper,
-  TableHeaderWrapper,
-  TableHeadWrapper,
-  TableRowWrapper,
-  TableWrapper,
-} from "@/components/ui/table/style"
+import styles from "@/components/ui/table/style.module.scss"
 
 const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
->(({ ...props }, ref) => (
-  <TableWrapper>
-    <Table ref={ref} {...props} />
-  </TableWrapper>
+>(({ className, ...props }, ref) => (
+  <div className={styles["table-wrapper"]}>
+    <table ref={ref} className={cn(styles["table"], className)} {...props} />
+  </div>
 ))
 Table.displayName = "Table"
 
 const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
->(({ ...props }, ref) => <TableHeaderWrapper ref={ref} {...props} />)
+>(({ className, ...props }, ref) => (
+  <thead
+    ref={ref}
+    className={cn(styles["table-header"], className)}
+    {...props}
+  />
+))
 TableHeader.displayName = "TableHeader"
 
 const TableBody = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
->(({ ...props }, ref) => <TableBodyWrapper ref={ref} {...props} />)
+>(({ className, ...props }, ref) => (
+  <tbody ref={ref} className={cn(styles["table-body"], className)} {...props} />
+))
 TableBody.displayName = "TableBody"
 
 const TableFooter = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
->(({ ...props }, ref) => <TableFooterWrapper ref={ref} {...props} />)
+>(({ className, ...props }, ref) => (
+  <tfoot
+    ref={ref}
+    className={cn(styles["table-footer"], className)}
+    {...props}
+  />
+))
 TableFooter.displayName = "TableFooter"
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
   React.HTMLAttributes<HTMLTableRowElement>
->(({ ...props }, ref) => <TableRowWrapper ref={ref} {...props} />)
+>(({ className, ...props }, ref) => (
+  <tr ref={ref} className={cn(styles["table-row"], className)} {...props} />
+))
 TableRow.displayName = "TableRow"
 
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
   React.ThHTMLAttributes<HTMLTableCellElement>
->(({ ...props }, ref) => <TableHeadWrapper ref={ref} {...props} />)
+>(({ className, ...props }, ref) => (
+  <th ref={ref} className={cn(styles["table-head"], className)} {...props} />
+))
 TableHead.displayName = "TableHead"
 
 const TableCell = React.forwardRef<
   HTMLTableCellElement,
   React.TdHTMLAttributes<HTMLTableCellElement>
->(({ ...props }, ref) => <TableCellWrapper ref={ref} {...props} />)
+>(({ className, ...props }, ref) => (
+  <td ref={ref} className={cn(styles["table-cell"], className)} {...props} />
+))
 TableCell.displayName = "TableCell"
 
 const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
   React.HTMLAttributes<HTMLTableCaptionElement>
->(({ ...props }, ref) => <TableCaptionWrapper ref={ref} {...props} />)
+>(({ className, ...props }, ref) => (
+  <caption
+    ref={ref}
+    className={cn(styles["table-caption"], className)}
+    {...props}
+  />
+))
 TableCaption.displayName = "TableCaption"
 
 export {

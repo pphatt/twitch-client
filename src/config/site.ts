@@ -185,3 +185,30 @@ export const dashboardSite: { sites: MainNavItem[] } = {
     },
   ],
 }
+
+export const adminSiteConfig = {
+  name: "Twitch admin dashboard",
+  description: "Twitch admin dashboard",
+  url: "",
+  image: "",
+  mainNav: [
+    {
+      title: "Dashboard",
+      slug: "/staff/admin",
+      icon: "home",
+      items: [],
+    },
+    {
+      title: "User",
+      slug: "/staff/admin/user?page=1&rows=50",
+      icon: "users",
+      items: [],
+    },
+    {
+      title: "Category",
+      slug: "/staff/admin/category?page=1&rows=10",
+      icon: "layers",
+      items: [],
+    },
+  ] as MainNavItem[],
+}
