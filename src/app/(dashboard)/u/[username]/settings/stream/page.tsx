@@ -6,7 +6,6 @@ import SimpleBar from "@/components/simplebar"
 import styles from "@/styles/application/dashboard/settings/stream/page.module.scss"
 import { StreamKeyCard } from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-key-card"
 import StreamUrlCard from "@/app/(dashboard)/u/[username]/settings/stream/_components/stream-url-card"
-import {ConnectModal} from "@/components/settings-stream/generate-connect";
 
 export default async function StreamSettingsPage() {
   const { serverUrl, streamKey } = await UserRepository.getStreamKey({
@@ -29,7 +28,9 @@ export default async function StreamSettingsPage() {
                 </div>
               </div>
 
-              <StreamUrlCard url={serverUrl} />
+              <StreamUrlCard
+                url={serverUrl !== "" ? serverUrl : process.env.LIVEKIT_API_URL!}
+              />
             </div>
 
             <div className={styles["content-block-container"]}>
@@ -42,11 +43,7 @@ export default async function StreamSettingsPage() {
               <StreamKeyCard streamKey={streamKey} />
             </div>
           </div>
-
-          <ConnectModal />
         </div>
-
-        <div></div>
       </div>
     </SimpleBar>
   )

@@ -85,8 +85,6 @@ export async function POST(request: NextRequest) {
       cookies().set("profile", JSON.stringify(profile))
     }
 
-    console.log(ingress.ingressId)
-
     await UserRequest.setStreamKey(
       {
         serverUrl: ingress.url,
