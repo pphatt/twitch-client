@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
 
     // NOTE: add delay here to make sure the image upload all the way
     //  and if refresh token too soon it return old image url
-    await sleep(5000)
+    await sleep(10000)
 
     const {
       refreshToken: newRefreshToken,

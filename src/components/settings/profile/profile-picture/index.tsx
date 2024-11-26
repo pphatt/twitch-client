@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useAuth } from "@/context/auth.context"
 import { toast } from "sonner"
 
 import { Dialog, DialogOverlay, DialogPortal } from "@/components/ui/dialog"
@@ -28,12 +27,14 @@ import {
   ModalWrapper,
 } from "@/components/settings/profile/profile-picture/style"
 
-export default function ProfilePicture() {
+interface ProfilePictureProps {
+  image: string
+}
+
+export default function ProfilePicture({ image }: ProfilePictureProps) {
   const [open, setOpen] = React.useState(false)
 
   const [previewImage, setPreviewImage] = React.useState<string | null>()
-
-  const { profile } = useAuth()
 
   const fileInputRef = React.useRef<HTMLInputElement>(null)
 
@@ -113,10 +114,11 @@ export default function ProfilePicture() {
                   <ImageSettingsContainer data-a-target="profile-image">
                     <Image
                       src={
-                        profile?.image.url
-                          ? profile.image.url
+                        image !== ""
+                          ? image
                           : "/avatar/user-default-picture.png"
                       }
+                      alt={""}
                     />
                   </ImageSettingsContainer>
                 </div>
@@ -141,7 +143,7 @@ export default function ProfilePicture() {
                     <ImageUploadButtonContainer>
                       <ImageUploadButtonOverlay>
                         <ImageUploadButtonText>
-                          {profile?.image.url
+                          {image
                             ? "Update Profile Picture"
                             : "Add Profile Picture"}
                         </ImageUploadButtonText>

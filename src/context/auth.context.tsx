@@ -47,7 +47,9 @@ export const AuthStoreProvider = ({
 
   // Sync state with profileFromCookie when it changes
   React.useEffect(() => {
-    if (profileFromCookie && !profile) {
+    const stringProfile = JSON.stringify(profile)
+
+    if (profileFromCookie && profileFromCookie !== stringProfile) {
       setProfile(JSON.parse(profileFromCookie) as WhoamiResponseDto)
     } else if (!profileFromCookie && profile) {
       setProfile(null)

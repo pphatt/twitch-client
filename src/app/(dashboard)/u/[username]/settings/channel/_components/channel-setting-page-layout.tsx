@@ -15,6 +15,10 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 
 import { Form, FormField } from "@/components/ui/form"
+import PreviewPanel from "@/components/dashboard-profile/preview-panel"
+import ProfilePageLayout from "@/components/dashboard-profile/profile-page-layout"
+import ShowPreviewBtn from "@/components/dashboard-profile/show-preview"
+import { ShowPreviewButtonRowWrapper } from "@/components/dashboard-profile/show-preview/style"
 import SubmitBtn from "@/components/dashboard-profile/submit-btn"
 import { BioInput } from "@/components/forms/dashboard/bio-input"
 import { DisplayNameInput } from "@/components/forms/dashboard/displayname-input"
@@ -29,12 +33,16 @@ import styles from "@/styles/application/dashboard/settings/channel/page.module.
 
 type Inputs = UpdateProfileRequestDto
 
-interface UpdateProfileFormProps {
+interface ChannelSettingsPageLayoutProps {
   profile: WhoamiResponseDto
 }
 
-export default function UpdateProfileForm({ profile }: UpdateProfileFormProps) {
+export default function ChannelSettingsPageLayout({
+  profile,
+}: ChannelSettingsPageLayoutProps) {
   const router = useRouter()
+
+  const [openReview, setOpenReview] = React.useState(true)
 
   const [isPending, startTransition] = React.useTransition()
 
@@ -44,8 +52,8 @@ export default function UpdateProfileForm({ profile }: UpdateProfileFormProps) {
     resolver: zodResolver(UpdateProfileRequestDtoSchema),
     mode: "onChange",
     defaultValues: {
-      displayName: profile.displayName,
-      bio: profile.bio,
+      displayName: profile.displayName ?? "",
+      bio: profile.bio ?? "",
     },
   })
 
@@ -79,7 +87,26 @@ export default function UpdateProfileForm({ profile }: UpdateProfileFormProps) {
   }
 
   return (
-    <div>
+    <ProfilePageLayout>
+      <ShowPreviewButtonRowWrapper>
+        <ShowPreviewBtn
+          openReview={openReview}
+          setOpenReview={() => setOpenReview(!openReview)}
+        />
+
+        {openReview && (
+          <PreviewPanel
+            displayName={profile.displayName ?? ""}
+            followers={profile.numberOfFollowers}
+            bio={
+              profile.bio !== ""
+                ? profile.bio
+                : `We don't know much about them, but we're sure ${profile.displayName ?? ""} is great.`
+            }
+          />
+        )}
+      </ShowPreviewButtonRowWrapper>
+
       <div className={styles["profile-settings-header-wrapper"]}>
         <h3 className={styles["profile-settings-header-text"]}>
           Profile Settings
@@ -95,7 +122,6 @@ export default function UpdateProfileForm({ profile }: UpdateProfileFormProps) {
       <div className={styles["profile-settings-content-wrapper"]}>
         <div className={styles["profile-settings-content-container"]}>
           <UsernameInput
-            route={"/settings/profile"}
             allowChangedUserName={profile.allowedChangedUsername}
             changedUsernameDaysLeft={profile.changedUsernameDaysLeft}
             username={profile.username}
@@ -170,8 +196,8 @@ export default function UpdateProfileForm({ profile }: UpdateProfileFormProps) {
               <SubmitBtn
                 isPending={isPending}
                 disabled={
-                  (form.watch("displayName") === profile.displayName &&
-                    form.watch("bio") === profile.bio) ||
+                  (form.watch("displayName") === (profile.displayName) &&
+                    form.watch("bio") === (profile.bio)) ||
                   isPending
                 }
               />
@@ -179,6 +205,6 @@ export default function UpdateProfileForm({ profile }: UpdateProfileFormProps) {
           </Form>
         </div>
       </div>
-    </div>
+    </ProfilePageLayout>
   )
 }

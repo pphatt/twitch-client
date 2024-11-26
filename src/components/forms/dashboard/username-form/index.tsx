@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { useAuth } from "@/context/auth.context"
 import { axiosHttpErrorHandler } from "@/utils/common"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -42,6 +43,8 @@ interface UsernameFormProps {
 }
 
 export default function UsernameForm({ route, cancel }: UsernameFormProps) {
+  const router = useRouter()
+
   const [isCheckingUsername, startCheckingUsername] = React.useTransition()
   const [isPending, startTransition] = React.useTransition()
 
@@ -76,9 +79,9 @@ export default function UsernameForm({ route, cancel }: UsernameFormProps) {
         })
 
         if (route) {
-          window.location.reload()
+          router.refresh()
         } else {
-          window.location.replace(`/u/${profile!.username}/settings/channel`)
+          router.push(`/u/${profile!.username}/settings/channel`)
         }
       } catch (err) {
         const error = axiosHttpErrorHandler(err)

@@ -72,8 +72,6 @@ export default function ProfilePictureForm({
         // Send request to the backend
         const { profile } = await UserRepository.updateProfilePicture(formData)
 
-        console.log(profile)
-
         setProfile({ ...profile } as WhoamiResponseDto)
 
         router.refresh()
