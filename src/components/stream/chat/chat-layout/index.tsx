@@ -36,6 +36,8 @@ interface ChatProps {
   username: string
   hostIdentity: string
   color: string
+
+  accessToken: string | undefined
 }
 
 export default function Chat({
@@ -44,6 +46,7 @@ export default function Chat({
   hostIdentity,
   isCreator = true,
   color,
+  accessToken,
 }: ChatProps) {
   const { hide } = useChatObserver()
 
@@ -218,6 +221,7 @@ export default function Chat({
           onSubmit={onSubmit}
           popout={popout}
           isCreator={isCreator}
+          accessToken={accessToken}
         />
       </div>
     </ChatRoomComponentLayout>

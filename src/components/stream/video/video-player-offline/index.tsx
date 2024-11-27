@@ -2,13 +2,11 @@ import * as React from "react"
 import { cn } from "@/utils/common"
 
 import { Hint } from "@/components/common/hint"
-import SpinnerLoading from "@/components/loading/spinner-loading"
 import {
   PlayerControls,
   TopBarOverlay,
   TransitionOverlay,
 } from "@/components/stream/video/video-overlay"
-import { PlayerOverlayBackground } from "@/components/stream/video/video-player/style"
 import {
   ShortStreamDescriptionContainer,
   ShortStreamDescriptionOverlay,

@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { GetLivestreamInfoResponseDto } from "@modules/user/presentation/http/dto/response/livestream/get-livestearm-info.response.dto"
 
-import type { LiveChannelDataI } from "@/config/data"
 import { Icons } from "@/components/icons"
 import {
   AboutPanelContainer,
@@ -25,11 +25,10 @@ import {
 } from "@/components/stream/information/about/style"
 
 interface AboutProps {
-  isFetching: boolean
-  channel?: LiveChannelDataI
+  channel: GetLivestreamInfoResponseDto
 }
 
-export default function About({ isFetching, channel }: AboutProps) {
+export default function About({ channel }: AboutProps) {
   const ref = React.useRef<HTMLDivElement | null>(null)
 
   const [height, setHeight] = React.useState<number>(0)
@@ -68,62 +67,58 @@ export default function About({ isFetching, channel }: AboutProps) {
               <AboutPanelWrapper>
                 <AboutPanelContainer>
                   <AboutSectionWrapper data-a-target="about-panel">
-                    {!isFetching && channel && (
-                      <>
-                        <AboutSectionHeaderWrapper>
-                          <AboutSectionHeader>
-                            <AboutSectionHeaderText>
-                              About {channel.channel.name}
-                            </AboutSectionHeaderText>
-                          </AboutSectionHeader>
+                    <AboutSectionHeaderWrapper>
+                      <AboutSectionHeader>
+                        <AboutSectionHeaderText>
+                          About {channel.userName}
+                        </AboutSectionHeaderText>
+                      </AboutSectionHeader>
 
-                          <AboutSectionIconWrapper>
-                            <AboutSectionIconContainer>
-                              <Icons.verifiedPartner />
-                            </AboutSectionIconContainer>
-                          </AboutSectionIconWrapper>
-                        </AboutSectionHeaderWrapper>
+                      <AboutSectionIconWrapper>
+                        <AboutSectionIconContainer>
+                          <Icons.verifiedPartner />
+                        </AboutSectionIconContainer>
+                      </AboutSectionIconWrapper>
+                    </AboutSectionHeaderWrapper>
 
-                        <AboutSectionContainer>
-                          <AboutSectionOverlay>
-                            <AboutSectionContentWrapper>
-                              <AboutSectionContentHeaderWrapper>
-                                <AboutSectionContentHeaderContainer>
-                                  <AboutSectionContentHeaderOverlay>
-                                    <FollowerCountWrapper>
-                                      <span>
-                                        {Intl.NumberFormat("en-US", {
-                                          notation: "compact",
-                                          maximumFractionDigits: 1,
-                                        })
-                                          .format(channel.channel.follower)
-                                          .replace(/\.\d*/, "")}
-                                      </span>
-                                      {channel.channel.follower > 0
-                                        ? "followers"
-                                        : "follower"}
-                                    </FollowerCountWrapper>
-                                  </AboutSectionContentHeaderOverlay>
-                                </AboutSectionContentHeaderContainer>
-                              </AboutSectionContentHeaderWrapper>
+                    <AboutSectionContainer>
+                      <AboutSectionOverlay>
+                        <AboutSectionContentWrapper>
+                          <AboutSectionContentHeaderWrapper>
+                            <AboutSectionContentHeaderContainer>
+                              <AboutSectionContentHeaderOverlay>
+                                <FollowerCountWrapper>
+                                  <span>
+                                    {Intl.NumberFormat("en-US", {
+                                      notation: "compact",
+                                      maximumFractionDigits: 1,
+                                    })
+                                      .format(channel.followersCount)
+                                      .replace(/\.\d*/, "")}
+                                  </span>
+                                  {channel.followersCount > 0
+                                    ? "followers"
+                                    : "follower"}
+                                </FollowerCountWrapper>
+                              </AboutSectionContentHeaderOverlay>
+                            </AboutSectionContentHeaderContainer>
+                          </AboutSectionContentHeaderWrapper>
 
-                              <AboutSectionContent>
-                                {channel.channel.bio
-                                  ? channel.channel.bio
-                                  : `${channel.channel.name} streams ${channel.category}`}
-                              </AboutSectionContent>
-                            </AboutSectionContentWrapper>
+                          <AboutSectionContent>
+                            {channel.bio
+                              ? channel.bio
+                              : `${channel.userName} streams ${channel.livestreamCategories[0]?._name ?? ""}`}
+                          </AboutSectionContent>
+                        </AboutSectionContentWrapper>
 
-                            <div
-                              className={"about-social-media-wrapper"}
-                              style={{
-                                minWidth: "30px",
-                              }}
-                            ></div>
-                          </AboutSectionOverlay>
-                        </AboutSectionContainer>
-                      </>
-                    )}
+                        <div
+                          className={"about-social-media-wrapper"}
+                          style={{
+                            minWidth: "30px",
+                          }}
+                        ></div>
+                      </AboutSectionOverlay>
+                    </AboutSectionContainer>
                   </AboutSectionWrapper>
 
                   <div data-a-target="goal-panel"></div>

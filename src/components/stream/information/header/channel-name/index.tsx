@@ -13,19 +13,19 @@ import {
 } from "@/components/stream/information/header/channel-name/style"
 
 interface ChannelNameProps {
-  username?: string
-  channel: LiveChannelDataI
+  username: string
+  displayName: string
 }
 
 export default function ChannelNameComp({
   username,
-  channel,
+  displayName,
 }: ChannelNameProps) {
   return (
     <ChannelNameWrapper>
       <ChannelNameContainer>
         <ChannelNameLink href={`/${username}`}>
-          <ChannelName>{channel?.channel.name}</ChannelName>
+          <ChannelName>{displayName}</ChannelName>
         </ChannelNameLink>
 
         <VerifiedPartnerIndicatorWrapper>

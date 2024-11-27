@@ -125,7 +125,10 @@ export default function StreamManagerPanel({ title }: StreamManagePanel) {
             )}
           >
             {id === "Stream Preview" && (
-              <VideoWrapper title={title} hostIdentity={profile!.id} />
+              <VideoWrapper
+                title={title ?? "Stream title will goes here."}
+                hostIdentity={profile!.id}
+              />
             )}
 
             {id === "My Chat" && (

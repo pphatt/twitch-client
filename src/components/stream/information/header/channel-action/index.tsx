@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import type { LiveChannelDataI } from "@/config/data"
 import { Icons } from "@/components/icons"
 import {
   LiveActionWrapper,
@@ -17,31 +16,32 @@ import ReportBtn from "@/components/stream/information/report-btn"
 import ShareStreamBtn from "@/components/stream/information/share-btn"
 
 interface ChannelActionProps {
-  channel: LiveChannelDataI
+  isLive: boolean
+  view: number
 }
 
-export default function ChannelAction({ channel }: ChannelActionProps) {
+export default function ChannelAction({ isLive, view }: ChannelActionProps) {
   return (
     <LiveInfoActionWrapper>
       <LiveInfoActionContainer>
         <LiveInfoActionOverlay>
-          <ViewAndTimeCountWrapper>
-            <ViewCountWrapper>
-              <ViewCountContainer>
-                <ViewCountIconWrapper>
-                  <Icons.viewer />
-                </ViewCountIconWrapper>
+          {isLive && (
+            <ViewAndTimeCountWrapper>
+              <ViewCountWrapper>
+                <ViewCountContainer>
+                  <ViewCountIconWrapper>
+                    <Icons.viewer />
+                  </ViewCountIconWrapper>
 
-                <ViewCountTextWrapper>
-                  <span>
-                    {new Intl.NumberFormat("en-US").format(channel.totalView)}
-                  </span>
-                </ViewCountTextWrapper>
-              </ViewCountContainer>
-            </ViewCountWrapper>
+                  <ViewCountTextWrapper>
+                    <span>{new Intl.NumberFormat("en-US").format(view)}</span>
+                  </ViewCountTextWrapper>
+                </ViewCountContainer>
+              </ViewCountWrapper>
 
-            <div className={"stream-time-wrapper"}></div>
-          </ViewAndTimeCountWrapper>
+              <div className={"stream-time-wrapper"}></div>
+            </ViewAndTimeCountWrapper>
+          )}
 
           <LiveActionWrapper>
             <ShareStreamBtn />

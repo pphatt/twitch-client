@@ -90,11 +90,11 @@ export const StreamGameTagWrapper = styled.div`
   vertical-align: middle;
 `
 
-export const StreamGameTagLink = styled(Link)`
+export const StreamGameTagLink = styled.div`
   display: inline-block;
 
   color: rgb(168 177 184);
-  background-color: rgb(23 28 30);
+  //background-color: rgb(23 28 30);
 
   max-width: 100%;
   height: 20px;
@@ -104,10 +104,10 @@ export const StreamGameTagLink = styled(Link)`
 
   font-weight: 600;
 
-  &:hover {
-    color: rgb(209 213 219);
-    background-color: rgb(34 41 44);
-  }
+  //&:hover {
+  //  color: rgb(209 213 219);
+  //  background-color: rgb(34 41 44);
+  //}
 `
 
 export const StreamGameTagContainer = styled.div`

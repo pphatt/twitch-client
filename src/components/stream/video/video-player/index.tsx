@@ -3,6 +3,12 @@
 import * as React from "react"
 import { useCacheLayout } from "@/store/persistent/layout.persistent"
 import { cn } from "@/utils/common"
+import {
+  useConnectionState,
+  useRemoteParticipant,
+  useTracks,
+} from "@livekit/components-react"
+import { ConnectionState, Track } from "livekit-client"
 
 import SpinnerLoading from "@/components/loading/spinner-loading"
 import {
@@ -21,10 +27,10 @@ import {
 } from "@/components/stream/video/video-player/style"
 
 interface ChannelVideoProps {
-  isFetching: boolean
+  id: string | undefined
 }
 
-export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
+export default function ChannelVideo({ id }: ChannelVideoProps) {
   const videoRef = React.useRef<HTMLVideoElement>(null)
   const containerRef = React.useRef<HTMLDivElement>(null)
 
@@ -45,6 +51,30 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
 
     return () => clearTimeout(timeOutVideoOverlayAppear)
   }, [isMouseEntered])
+
+  const connectionState = useConnectionState()
+  const participant = useRemoteParticipant(id ?? "")
+  // const tracks = useTracks([
+  //   Track.Source.Camera,
+  //   Track.Source.Microphone,
+  // ]).filter((track) => track.participant.identity === id)
+
+  useTracks([Track.Source.Camera, Track.Source.Microphone])
+    .filter((track) => track.participant.identity === participant!.identity)
+    .forEach((track) => {
+      if (videoRef.current) {
+        track.publication.track?.attach(videoRef.current)
+      }
+    })
+
+  const isOffline =
+    !participant &&
+    (connectionState === ConnectionState.Disconnected ||
+      connectionState === ConnectionState.Connected)
+
+  const isLoading =
+    connectionState === ConnectionState.Connecting ||
+    connectionState === ConnectionState.Reconnecting
 
   return (
     <PersistentPlayer
@@ -68,11 +98,7 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
         >
           <InnerLayoutContainer ref={containerRef}>
             <InnerLayoutOverlay>
-              <video
-                ref={videoRef}
-                playsInline
-                src={isFetching ? "" : "/demo-video/夜に駆ける.mp4"}
-              ></video>
+              <video ref={videoRef} playsInline />
 
               <div
                 onMouseDown={() => setIsMouseEntered(true)}
@@ -88,10 +114,12 @@ export default function ChannelVideo({ isFetching }: ChannelVideoProps) {
               >
                 <div className="video-player__overlay">
                   <TransitionOverlay onActive={isMouseEntered}>
-                    <TopBarOverlay />
+                    <TopBarOverlay
+                      isOffline={isLoading ? "connecting" : `${isOffline}`}
+                    />
                   </TransitionOverlay>
 
-                  {isFetching && (
+                  {isLoading && (
                     <PlayerOverlayBackground>
                       <SpinnerLoading />
                     </PlayerOverlayBackground>

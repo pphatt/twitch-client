@@ -29,6 +29,7 @@ import {
   InnerChatSettingButtonWrapper,
 } from "@/components/stream/chat/chat-input-form/style"
 import UserChatSetting from "@/components/stream/chat/user-chat-setting"
+import {toast} from "sonner";
 
 interface ChatInputProps {
   message: string
@@ -38,6 +39,8 @@ interface ChatInputProps {
   popout: boolean
 
   isCreator: boolean
+
+  accessToken: string | undefined
 }
 
 export default function ChatInputForm({
@@ -46,8 +49,14 @@ export default function ChatInputForm({
   onSubmit,
   popout,
   isCreator,
+  accessToken,
 }: ChatInputProps) {
   const handleSubmit = () => {
+    if (!accessToken) {
+      toast.warning("Authentication is required to chat.")
+      return
+    }
+
     if (!message) return
 
     onSubmit(message)

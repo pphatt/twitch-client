@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import type { LiveChannelDataI } from "@/config/data"
 import {
   LiveDescriptionText,
   LiveDescriptionWrapper,
@@ -19,34 +18,40 @@ import {
 } from "@/components/stream/information/header/channel-sub-info/style"
 
 interface ChannelNameProps {
-  channel: LiveChannelDataI
+  title: string | null
+  altTitle: string
+  categoryName: string
 }
 
-export default function ChannelSubInfo({ channel }: ChannelNameProps) {
+export default function ChannelSubInfo({
+  title,
+  altTitle,
+  categoryName,
+}: ChannelNameProps) {
   return (
     <LiveInfoContainer>
       <LiveInfoOverlay>
         <LiveDescriptionWrapper>
           <LiveDescriptionText
             data-a-target="stream-title"
-            title={channel.title}
+            title={title ?? altTitle}
           >
-            {channel.title}
+            {title ?? altTitle}
           </LiveDescriptionText>
         </LiveDescriptionWrapper>
 
         <StreamGameWrapper>
           <StreamGameContainer>
             <StreamGameLink href={"/"}>
-              <StreamGame>{channel.category}</StreamGame>
+              <StreamGame>{categoryName}</StreamGame>
             </StreamGameLink>
           </StreamGameContainer>
 
           <StreamGameTagsWrapper>
             <StreamGameTagsContainer>
-              {channel.tags.map(({ name, slug }, index) => (
+              {[{ name: "" }].map(({ name }, index) => (
                 <StreamGameTagWrapper key={index}>
-                  <StreamGameTagLink href={slug}>
+                  <StreamGameTagLink>
                     <StreamGameTagContainer>
                       <StreamGameTagOverlay>
                         <span>{name}</span>

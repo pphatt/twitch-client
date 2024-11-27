@@ -1,6 +1,6 @@
 import { headers } from "next/headers"
+import { LiveStream } from "@modules/core/presentation/endpoints/livestream/livestream.request"
 import { WebhookReceiver } from "livekit-server-sdk"
-import {LiveStream} from "@modules/core/presentation/endpoints/livestream/livestream.request";
 
 const receiver = new WebhookReceiver(
   process.env.LIVEKIT_API_KEY!,
@@ -24,27 +24,32 @@ export async function POST(request: Request) {
 
     console.log("PARTICIPANT COUNT")
     console.log(event.room?.maxParticipants)
-    // await db.stream.update({
-    //   where: {
-    //     ingressId: event.ingressInfo?.ingressId,
-    //   },
-    //   data: {
-    //     isLive: true,
-    //   },
-    // });
+
+    console.log(event)
+
+    await LiveStream.setStreamStatus({
+      userId: event.ingressInfo!.roomName!,
+      isLive: true,
+    })
   }
 
   if (event.event === "ingress_ended") {
-    console.log("PARTICIPANT COUNT")
-    console.log(event.room?.maxParticipants)
-    // await db.stream.update({
-    //   where: {
-    //     ingressId: event.ingressInfo?.ingressId,
-    //   },
-    //   data: {
-    //     isLive: false,
-    //   },
-    // });
+    console.log(event)
+
+    await LiveStream.setStreamStatus({
+      userId: event.ingressInfo!.roomName!,
+      isLive: false,
+    })
+  }
+
+  if (event.event === "participant_joined") {
+    console.log("participant_joined")
+    console.log(event)
+  }
+
+  if (event.event === "participant_left") {
+    console.log("participant_left")
+    console.log(event)
   }
 
   return Response.json(

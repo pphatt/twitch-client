@@ -1,8 +1,13 @@
 "use client"
 
 import * as React from "react"
+import { useAuth } from "@/context/auth.context"
+import {
+  useParticipants,
+  useRemoteParticipant,
+} from "@livekit/components-react"
+import type { GetLivestreamInfoResponseDto } from "@modules/user/presentation/http/dto/response/livestream/get-livestearm-info.response.dto"
 
-import type { LiveChannelDataI } from "@/config/data"
 import ChannelAction from "@/components/stream/information/header/channel-action"
 import { ChannelAvatar } from "@/components/stream/information/header/channel-avatar"
 import ChannelNameComp from "@/components/stream/information/header/channel-name"
@@ -13,23 +18,37 @@ import {
   ChannelInfoContentContainer,
   ChannelInfoContentOverlay,
   ChannelInfoContentWrapper,
-  ChannelInfoLoading,
-  ChannelInfoLoadingWrapper,
   ChannelInfoWrapper,
   LiveInfoWrapper,
 } from "@/components/stream/information/header/style"
 import styles from "@/components/stream/information/header/style.module.scss"
 
 interface ChannelHeaderProps {
-  isFetching: boolean
-  channel?: LiveChannelDataI
+  identity: string
+  channel: GetLivestreamInfoResponseDto
 }
 
 export default function ChannelHeader({
-  isFetching,
+  identity,
   channel,
 }: ChannelHeaderProps) {
-  const username = channel?.channel.name
+  const { authenticated } = useAuth()
+
+  const username = channel.userName
+
+  const participants = useParticipants()
+  const participant = useRemoteParticipant(
+    authenticated ? identity : channel.userId
+  )
+
+  const isLive = !!participant
+  const participantCount =
+    participants.length - 1 - 1 <
+    0
+      ? 0
+      : participants.length -
+        1 -
+        (identity === `host-${channel.userId}` ? 1 : 0)
 
   return (
     <>
@@ -40,40 +59,45 @@ export default function ChannelHeader({
         id="live-channel-stream-information"
         aria-label="Stream Information"
       >
-        {!isFetching && channel && (
-          <ChannelInfoContentWrapper>
-            <ChannelInfoContentContainer>
-              <ChannelInfoContentOverlay>
-                <ChannelAvatarWrapper aria-label="Channel is Live">
-                  <ChannelAvatar username={username} channel={channel} />
-                </ChannelAvatarWrapper>
+        <ChannelInfoContentWrapper>
+          <ChannelInfoContentContainer>
+            <ChannelInfoContentOverlay>
+              <ChannelAvatarWrapper aria-label="Channel is Live">
+                <ChannelAvatar
+                  username={username}
+                  isLive={isLive}
+                  image={
+                    channel.imageUrl !== ""
+                      ? channel.imageUrl
+                      : "/avatar/user-default-picture.png"
+                  }
+                />
+              </ChannelAvatarWrapper>
 
-                <ChannelInfoWrapper>
-                  <div className={styles["metadata-layout__support"]}>
-                    <ChannelNameComp username={username} channel={channel} />
+              <ChannelInfoWrapper>
+                <div className={styles["metadata-layout__support"]}>
+                  <ChannelNameComp
+                    username={username}
+                    displayName={channel.displayName}
+                  />
 
-                    <FollowSection />
-                  </div>
+                  <FollowSection />
+                </div>
 
-                  <LiveInfoWrapper>
-                    <ChannelSubInfo channel={channel} />
+                <LiveInfoWrapper>
+                  <ChannelSubInfo
+                    title={channel.title}
+                    altTitle={`${channel.userName} is currently streaming ${channel.livestreamCategories[0]?._name ?? ""}`}
+                    categoryName={channel.livestreamCategories[0]?._name ?? ""}
+                  />
 
-                    <ChannelAction channel={channel} />
-                  </LiveInfoWrapper>
-                </ChannelInfoWrapper>
-              </ChannelInfoContentOverlay>
-            </ChannelInfoContentContainer>
-          </ChannelInfoContentWrapper>
-        )}
-
-        {isFetching && (
-          <ChannelInfoLoadingWrapper>
-            <ChannelInfoLoading />
-          </ChannelInfoLoadingWrapper>
-        )}
+                  <ChannelAction isLive={isLive} view={participantCount} />
+                </LiveInfoWrapper>
+              </ChannelInfoWrapper>
+            </ChannelInfoContentOverlay>
+          </ChannelInfoContentContainer>
+        </ChannelInfoContentWrapper>
       </section>
-
-      {isFetching && <div style={{ minHeight: "750px" }}></div>}
     </>
   )
 }

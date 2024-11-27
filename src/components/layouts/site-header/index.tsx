@@ -189,7 +189,7 @@ export function SiteHeader({ accessToken }: SiteHeaderProps) {
                         <DropdownMenuSeparator />
 
                         <DropdownItem>
-                          <DropdownItemLink href={`/u/${profile?.username}`}>
+                          <DropdownItemLink href={`/${profile?.username}`}>
                             <span>Channel</span>
                             <Icons.channel />
                           </DropdownItemLink>

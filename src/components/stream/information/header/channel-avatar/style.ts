@@ -1,5 +1,5 @@
 import Link from "next/link"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const ChannelLinkWrapper = styled(Link)`
   position: relative;
@@ -120,7 +120,7 @@ export const LiveTextWrapper = styled.div`
   padding: 2px;
 `
 
-export const LiveTextContainer = styled.div`
+export const LiveTextContainer = styled.div<{ $isLive: boolean }>`
   display: inline-block;
 
   color: #fff;
@@ -135,6 +135,13 @@ export const LiveTextContainer = styled.div`
   text-align: center;
 
   pointer-events: none;
+
+  ${({ $isLive }) =>
+    !$isLive &&
+    css`
+      color: #000;
+      background-color: #c8c8d0;
+    `};
 `
 
 export const LiveText = styled.p`

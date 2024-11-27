@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import type { LiveChannelDataI } from "@/config/data"
 import {
   ChannelLinkContainer,
   ChannelLinkCover,
@@ -15,16 +14,17 @@ import {
 } from "@/components/stream/information/header/channel-avatar/style"
 
 interface ChannelAvatarProps {
-  username?: string
-  channel: LiveChannelDataI
+  username: string
+  image: string
+  isLive: boolean | null
 }
 
-export function ChannelAvatar({ username, channel }: ChannelAvatarProps) {
+export function ChannelAvatar({ username, image, isLive }: ChannelAvatarProps) {
   return (
     <div
       style={
         {
-          "--color-accent": channel?.themeColor ?? "hsl(12 100% 63%)",
+          "--color-accent": "hsl(12 100% 63%)",
         } as React.CSSProperties
       }
     >
@@ -33,7 +33,7 @@ export function ChannelAvatar({ username, channel }: ChannelAvatarProps) {
           <ChannelLinkCover />
 
           <ChannelLinkOverlay>
-            <img src={channel?.channel.image} alt={channel?.channel.name} />
+            <img src={image} alt={`${username}'s image`} />
           </ChannelLinkOverlay>
         </ChannelLinkContainer>
 
@@ -41,8 +41,8 @@ export function ChannelAvatar({ username, channel }: ChannelAvatarProps) {
           <LiveIndicatorContainer>
             <LiveIndicatorOverlay>
               <LiveTextWrapper>
-                <LiveTextContainer>
-                  <LiveText>LIVE</LiveText>
+                <LiveTextContainer $isLive={isLive ?? false}>
+                  <LiveText>{isLive ? "LIVE" : "OFFLINE"}</LiveText>
                 </LiveTextContainer>
               </LiveTextWrapper>
             </LiveIndicatorOverlay>

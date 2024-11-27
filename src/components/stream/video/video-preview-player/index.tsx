@@ -4,13 +4,11 @@ import { useTracks } from "@livekit/components-react"
 import { Track, type Participant } from "livekit-client"
 
 import { Hint } from "@/components/common/hint"
-import SpinnerLoading from "@/components/loading/spinner-loading"
 import {
   PlayerControls,
   TopBarOverlay,
   TransitionOverlay,
 } from "@/components/stream/video/video-overlay"
-import { PlayerOverlayBackground } from "@/components/stream/video/video-player/style"
 import {
   ShortStreamDescriptionContainer,
   ShortStreamDescriptionOverlay,
