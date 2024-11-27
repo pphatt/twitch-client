@@ -72,6 +72,13 @@ export const ChannelLinkOverlay = styled.div`
     width: 100%;
 
     border-radius: 9999px;
+
+    aspect-ratio: 1 / 1;
+
+    vertical-align: top;
+
+    object-fit: cover;
+    object-position: top;
   }
 `
 
