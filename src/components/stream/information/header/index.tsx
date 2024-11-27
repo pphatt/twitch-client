@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useAuth } from "@/context/auth.context"
 import {
   useParticipants,
   useRemoteParticipant,
@@ -32,19 +31,16 @@ export default function ChannelHeader({
   identity,
   channel,
 }: ChannelHeaderProps) {
-  const { authenticated } = useAuth()
-
   const username = channel.userName
 
   const participants = useParticipants()
   const participant = useRemoteParticipant(
-    authenticated ? identity : channel.userId
+    channel.userId
   )
 
   const isLive = !!participant
   const participantCount =
-    participants.length - 1 - 1 <
-    0
+    participants.length - 1 - 1 < 0
       ? 0
       : participants.length -
         1 -
@@ -78,7 +74,11 @@ export default function ChannelHeader({
                 <div className={styles["metadata-layout__support"]}>
                   <ChannelNameComp
                     username={username}
-                    displayName={channel.displayName}
+                    displayName={
+                      channel.displayName !== ""
+                        ? channel.displayName
+                        : channel.userName
+                    }
                   />
 
                   <FollowSection />

@@ -20,7 +20,7 @@ const publicRoutes = [
   "/api",
   "/api/webhooks",
   "/user/account-recovery",
-  "/user/password-reset",
+  "/user/reset-password",
   "/social/home",
 ]
 
