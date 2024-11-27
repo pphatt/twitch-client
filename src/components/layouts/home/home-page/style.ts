@@ -1,18 +1,24 @@
 import styled from "styled-components"
 
 export const RootPageLayoutWrapper = styled.div`
-  position: relative;
-  top: 80px;
+  //position: relative;
+  //top: 80px;
 
-  flex-grow: 1;
+  position: relative;
+
+  //flex-grow: 1;
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
-  justify-content: center;
+  //justify-content: center;
   align-items: center;
 
   width: 100%;
   min-width: 768px;
-  min-height: calc(100% - 80px);
+  height: 100%;
+  //min-height: calc(100% - 80px);
+
+  overflow-y: scroll;
 
   transition:
     padding-right,
@@ -28,6 +34,7 @@ export const RootPageLayoutContainer = styled.div`
   width: 100%;
 
   padding: 0 0;
+  margin-top: 20px;
 `
 
 export const RootPageLayoutOverlay = styled.div`

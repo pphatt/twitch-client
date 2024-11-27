@@ -12,8 +12,8 @@ import {
 import SimpleBar from "@/components/simplebar"
 
 export const SiteHeaderLayoutWrapper = styled.div`
-  position: fixed;
-  top: 0;
+  //position: fixed;
+  //top: 0;
 
   background-color: #0c0f1d;
 
