@@ -1,7 +1,10 @@
 .add-user-btn {
+  align-self: end;
+
   color: hsl(var(--primary-foreground)) !important;
   background-color: hsl(var(--primary)) !important;
 
+  width: fit-content !important;
   height: 2rem !important;
 
   padding: 0 0.75rem !important;

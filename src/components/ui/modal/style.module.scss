@@ -1,0 +1,16 @@
+.dialog-content-wrapper {
+  color: hsl(var(--admin-foreground)) !important;
+  background-color: hsl(var(--admin-background)) !important;
+
+  & > button {
+    color: hsl(var(--admin-foreground)) !important;
+
+    &:hover {
+      background-color: hsl(0 0 0 / 0.1) !important;
+    }
+  }
+}
+
+.dialog-title-text {
+  color: hsl(var(--admin-foreground)) !important;
+}

@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
-import { Modal } from "@/components/ui/modal/modal"
+import { Modal } from "@/components/ui/modal"
 import { Icons } from "@/components/icons"
 import styles from "@/components/modals/user-alert-modal/style.module.scss"
 
@@ -12,6 +12,8 @@ interface AlertModalProps {
   onClose: () => void
   onConfirm: () => void
   loading: boolean
+
+  username: string
 }
 
 export const UserAlertModal: React.FC<AlertModalProps> = ({
@@ -19,6 +21,7 @@ export const UserAlertModal: React.FC<AlertModalProps> = ({
   onClose,
   onConfirm,
   loading,
+  username
 }) => {
   const [isMounted, setIsMounted] = React.useState(false)
 
@@ -32,16 +35,17 @@ export const UserAlertModal: React.FC<AlertModalProps> = ({
 
   return (
     <Modal
-      title="Delete user"
+      title={`Delete ${username} user`}
       description="Delete user action cannot be undone."
       isOpen={isOpen}
       onClose={onClose}
     >
       <div className={styles["wrapper"]}>
-        <Button disabled={loading} $variant="outline" onClick={onClose}>
+        <Button className={styles["cancel-button"]} disabled={loading} $variant="outline" onClick={onClose}>
           Cancel
         </Button>
-        <Button disabled={loading} $variant="destructive" onClick={onConfirm}>
+
+        <Button className={styles["accept-button"]} disabled={loading} $variant="destructive" onClick={onConfirm}>
           {loading && (
             <Icons.spinner className={styles["icon"]} aria-hidden="true" />
           )}

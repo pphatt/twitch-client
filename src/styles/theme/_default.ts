@@ -83,7 +83,7 @@ export const GlobalColorTheme = createGlobalStyle`
         --admin-secondary-foreground: 222.2 47.4% 11.2%;
         --admin-muted: 210 40% 96.1%;
         --admin-muted-foreground: 215.4 16.3% 46.9%;
-        --admin-accent: 210 40% 96.1%;
+        --admin-accent: 240 4.8% 95.9%;
         --admin-accent-foreground: 222.2 47.4% 11.2%;
         --admin-destructive: 0 84.2% 60.2%;
         --admin-destructive-foreground: 210 40% 98%;

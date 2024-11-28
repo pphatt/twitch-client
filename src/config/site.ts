@@ -200,7 +200,7 @@ export const adminSiteConfig = {
     },
     {
       title: "User",
-      slug: "/staff/admin/user?page=1&rows=50",
+      slug: "/staff/admin/user?page=1&rows=10",
       icon: "users",
       items: [],
     },

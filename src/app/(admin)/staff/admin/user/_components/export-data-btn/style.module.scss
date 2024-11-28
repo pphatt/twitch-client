@@ -1,0 +1,23 @@
+.export-data-btn {
+  color: hsl(var(--primary-foreground)) !important;
+  background-color: #1D6F42 !important;
+
+  height: 2rem !important;
+
+  padding: 0 0.75rem !important;
+
+  font-size: 0.875rem !important;
+  line-height: 1.25rem !important;
+  font-weight: 500;
+
+  svg {
+    width: 0.875rem;
+    height: 0.875rem;
+
+    margin-right: 0.25rem;
+  }
+
+  &:hover {
+    background-color: hsl(var(--primary) / 0.9);
+  }
+}

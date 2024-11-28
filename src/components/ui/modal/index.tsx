@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import styles from "@/components/ui/modal/style.module.scss"
 
 interface ModalProps {
   title: string
@@ -31,11 +32,12 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
-      <DialogContent>
+      <DialogContent className={styles["dialog-content-wrapper"]}>
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle className={styles["dialog-title-text"]}>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
+
         <div>{children}</div>
       </DialogContent>
     </Dialog>

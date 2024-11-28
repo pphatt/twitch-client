@@ -11,7 +11,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
+  DropdownMenuLabel, DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { UserAlertModal } from "@/components/modals/user-alert-modal"
@@ -49,11 +49,13 @@ export const UserCellAction: React.FC<CellActionProps> = ({ data }) => {
   return (
     <>
       <UserAlertModal
+        username={data.username}
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onConfirm}
         loading={isPending}
       />
+
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
           <Button $variant="ghost" className={styles["action-btn"]}>
@@ -61,17 +63,28 @@ export const UserCellAction: React.FC<CellActionProps> = ({ data }) => {
             <MoreHorizontal />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+
+        <DropdownMenuContent
+          align="end"
+          className={styles["dropdown-content-wrapper"]}
+        >
+          <DropdownMenuLabel
+            className={styles["dropdown-content-label-wrapper"]}
+          >
+            Actions
+          </DropdownMenuLabel>
+
+          <DropdownMenuSeparator className={styles["dropdown-separator"]} />
 
           <DropdownMenuItem asChild>
-            <Link href={`/admin/user/details/${data.id}`}>
-              <Edit className="mr-2 h-4 w-4" />
+            <Link href={`/staff/admin/user/details/${data.id}`}>
+              <Edit className={styles["svg"]} />
               <span>Edit</span>
             </Link>
           </DropdownMenuItem>
+
           <DropdownMenuItem onClick={() => setOpen(true)}>
-            <Trash className="mr-2 h-4 w-4" />
+            <Trash className={styles["svg"]} />
             <span>Delete</span>
           </DropdownMenuItem>
         </DropdownMenuContent>

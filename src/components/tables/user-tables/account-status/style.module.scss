@@ -10,15 +10,17 @@
 
   padding: 0.25rem 0.625rem;
 
+  font-weight: 600;
+
   text-transform: capitalize;
 
-  &[data-status="ACTIVE"] {
-    color: hsl(180.54, 100%, 21.96%);
-    background-color: hsl(180, 38.78%, 90.39%);
+  &[data-status="VERIFIED"] {
+    color: #17C653;
+    background-color: #DFFFEA;
   }
 
-  &[data-status="SUSPENDED"] {
-    color: hsl(0, 70%, 40%);
-    background-color: hsl(0, 100%, 97%);
+  &[data-status="UNVERIFIED"] {
+    color: #F8285A;
+    background-color: #FFEEF3;
   }
 }

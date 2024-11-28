@@ -6,14 +6,6 @@ import { useAuth } from "@/context/auth.context"
 
 import { adminSiteConfig } from "@/config/site"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/bread-crumb"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -31,50 +23,6 @@ import { DropdownItemLink } from "@/components/layouts/dashboard/dashboard-site-
 
 export function AdminSiteHeader() {
   const { profile } = useAuth()
-  const pathname = usePathname() // Get the current path
-  const items = adminSiteConfig.mainNav // Main navigation configuration
-
-  const generateBreadcrumb = React.useMemo(() => {
-    // Split pathname into segments and exclude "staff" and "admin"
-    const pathSegments = pathname
-      .split("/")
-      .filter(
-        (segment) =>
-          segment !== "staff" && segment !== "admin" && segment !== ""
-      )
-
-    if (pathname === "/staff/admin") {
-      return [{ title: "Overview", href: "" }]
-    }
-
-    // Loop through the segments and build the breadcrumb
-    const breadcrumb = pathSegments.reduce<{ title: string; href: string }[]>(
-      (acc, segment, index) => {
-        const currentPath = `/${pathSegments.slice(0, index + 1).join("/")}`
-
-        // Match the segment with mainNav to find the corresponding title
-        const matchedItem = items.find((item) =>
-          (item.slug ?? "").startsWith(currentPath)
-        )
-
-        if (matchedItem) {
-          // Only add matched item title and slug
-          acc.push({ title: matchedItem.title, href: matchedItem.slug! })
-        } else {
-          // Add capitalized segments for unmatched paths
-          acc.push({
-            title: segment.charAt(0).toUpperCase() + segment.slice(1),
-            href: currentPath,
-          })
-        }
-
-        return acc
-      },
-      []
-    )
-
-    return breadcrumb
-  }, [items, pathname])
 
   if (!profile) {
     return <></>
@@ -85,6 +33,8 @@ export function AdminSiteHeader() {
       <div className={styles["site-header-breadcrumb-wrapper"]} />
 
       <div className={styles["site-header-user-action-wrapper"]}>
+        <div className={styles["role-text"]}>Administrator</div>
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button

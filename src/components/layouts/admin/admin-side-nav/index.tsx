@@ -45,7 +45,12 @@ export function AdminMainNav() {
 
             <ul className={styles["admin-side-nav-content-ul"]}>
               {items.map((item, index) => {
-                const isActive = (item.slug ?? "").split("?")[0] === pathname
+                let isActive = (item.slug ?? "").split("?")[0] === pathname
+
+                if (pathname.includes("details")) {
+                  isActive = (item.slug ?? "").split("?")[0] === pathname.split("/details")[0]
+                }
+
                 const Icon = item.icon ? Icons[item.icon] : ChevronLeftIcon
 
                 return item.slug ? (

@@ -10,6 +10,19 @@
 
   button {
     height: 32px !important;
+
+    &:focus-visible {
+      box-shadow: none !important;
+    }
+  }
+}
+
+.cancel-button {
+  color: hsl(var(--admin-foreground)) !important;
+  background-color: hsl(var(--admin-background)) !important;
+
+  &:hover {
+    background-color: hsl(0 0 0 / 0.1) !important;
   }
 }
 

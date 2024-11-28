@@ -34,43 +34,39 @@ import {
 } from "@/components/ui/select"
 import { Icons } from "@/components/icons"
 import styles from "@/app/(admin)/staff/admin/user/_components/add-user/style.module.scss"
+import { DobInput } from "@/app/(admin)/staff/admin/user/_components/dob-input"
 
-const addUserSchema = z
-  .object({
-    email: z.string().email({
-      message: "Please enter a valid email address",
-    }),
-    firstName: z.string().min(1, { message: "First name is required" }),
-    lastName: z.string().min(1, { message: "Last name is required" }),
-    role: z.string().min(1, { message: "User's role must be assigned" }),
-    faculty: z.string().optional(),
-    address: z.string().optional(),
-    city: z.string().optional(),
-    phoneNumber: z
-      .string()
-      .regex(new RegExp("^[0-9]{6,15}(-[0-9])?$"), {
-        message: "Phone must be contain only number",
-      })
-      .min(10, {
-        message: "Enter a valid phone number",
-      })
-      .max(11, {
-        message: "Maximum digits of a phone number is 11",
-      }),
-  })
-  .refine(
-    ({ role, faculty }) => {
-      if (role === "STUDENT" || role === "MARKETING_COORDINATOR") {
-        return faculty !== undefined && faculty.trim() !== ""
-      }
+const thirteenYearsAgo = new Date()
+thirteenYearsAgo.setFullYear(thirteenYearsAgo.getFullYear() - 13)
 
-      return true
+const addUserSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address",
+  }),
+  username: z.string().min(1, { message: "Username is required" }),
+  displayName: z.string().min(1, { message: "Display name is required" }),
+  role: z.string().min(1, { message: "User's role must be assigned" }),
+  dob: z.string().refine(
+    (dob) => {
+      const enteredDate = new Date(dob)
+      return enteredDate <= thirteenYearsAgo
     },
     {
-      message: "Faculty is required for student and marketing coordinator",
-      path: ["faculty"],
+      message: "*You must be at least 13 years old.",
     }
-  )
+  ),
+  phoneNumber: z
+    .string()
+    .regex(new RegExp("^[0-9]{6,15}(-[0-9])?$"), {
+      message: "Phone must be contain only number",
+    })
+    .min(10, {
+      message: "Enter a valid phone number",
+    })
+    .max(11, {
+      message: "Maximum digits of a phone number is 11",
+    }),
+})
 
 export type AddUserInputs = z.infer<typeof addUserSchema>
 
@@ -83,14 +79,14 @@ export default function AddUser() {
 
   const form = useForm<AddUserInputs>({
     resolver: zodResolver(addUserSchema),
+    mode: "onChange",
     defaultValues: {
       email: "",
-      firstName: "",
-      lastName: "",
+      username: "",
+      displayName: "",
       role: "",
-      faculty: "",
-      address: "",
-      city: "",
+      dob: "",
+      phoneNumber: "",
     },
   })
 
@@ -169,7 +165,7 @@ export default function AddUser() {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={"Enter Email"}
+                      placeholder={"Enter email"}
                       className={styles["form-input"]}
                     />
                   </FormControl>
@@ -178,47 +174,82 @@ export default function AddUser() {
               )}
             />
 
-            <div className={styles["form-group"]}>
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem className={styles["form-item"]}>
-                    <FormLabel className={styles["form-label"]}>
-                      First Name
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="Enter First Name"
-                        className={styles["form-input"]}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem className={styles["form-item"]}>
+                  <FormLabel className={styles["form-label"]}>
+                    Username
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Enter username"
+                      className={styles["form-input"]}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem className={styles["form-item"]}>
-                    <FormLabel className={styles["form-label"]}>
-                      Last Name
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="Enter Last Name"
-                        className={styles["form-input"]}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            <FormField
+              control={form.control}
+              name="displayName"
+              render={({ field }) => (
+                <FormItem className={styles["form-item"]}>
+                  <FormLabel className={styles["form-label"]}>
+                    Display name
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Enter display name"
+                      className={styles["form-input"]}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="dob"
+              render={({ field }) => (
+                <FormItem className={styles["form-item"]}>
+                  <FormLabel className={styles["form-label"]}>
+                    Date of birth
+                  </FormLabel>
+
+                  <FormControl>
+                    <DobInput {...field} className={styles["form-input"]} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem className={styles["form-item"]}>
+                  <FormLabel className={styles["form-label"]}>
+                    Phone number
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="Enter phone number"
+                      className={styles["form-input"]}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <FormField
               control={form.control}
@@ -245,64 +276,6 @@ export default function AddUser() {
                         <SelectItem value="Admin">Admin</SelectItem>
                       </SelectContent>
                     </Select>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem className={styles["form-item"]}>
-                  <FormLabel className={styles["form-label"]}>
-                    Address
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="Enter Address"
-                      className={styles["form-input"]}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="city"
-              render={({ field }) => (
-                <FormItem className={styles["form-item"]}>
-                  <FormLabel className={styles["form-label"]}>City</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="Enter City"
-                      className={styles["form-input"]}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="phoneNumber"
-              render={({ field }) => (
-                <FormItem className={styles["form-item"]}>
-                  <FormLabel className={styles["form-label"]}>
-                    Phone number
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="Enter phone number"
-                      className={styles["form-input"]}
-                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

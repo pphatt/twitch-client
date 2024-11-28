@@ -42,7 +42,6 @@ const PaginationLink = ({
 }: PaginationLinkProps) => (
   <Link {...props} passHref>
     <PaginationLinkWrapper
-      as={"a"}
       $isActive={$isActive}
       $size={$size}
       aria-current={$isActive ? "page" : undefined}

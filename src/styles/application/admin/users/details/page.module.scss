@@ -1,4 +1,8 @@
-.page-layout-wrapper {
+.scroll-area {
+  height: 100%;
+}
+
+.layout-wrapper {
   height: 100%;
 
   padding: 1rem;
@@ -7,20 +11,6 @@
     padding-right: 1.5rem;
     padding-left: 1.5rem;
   }
-}
-
-.site-header-breadcrumb-container {
-  color: hsl(var(--admin-muted-foreground)) !important;
-}
-
-.site-header-breadcrumb-link {
-  &:hover {
-    color: hsl(var(--admin-foreground)) !important;
-  }
-}
-
-.site-header-breadcrumb-span {
-  color: hsl(var(--admin-foreground)) !important;
 }
 
 .page-header-wrapper {
@@ -49,12 +39,6 @@
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
-}
-
-.action-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
 }
 
 .separator {

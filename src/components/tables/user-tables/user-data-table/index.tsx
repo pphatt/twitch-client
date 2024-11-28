@@ -139,35 +139,39 @@ export function UserDataTable<TData, TValue>({
           className={styles["search"]}
         />
 
-        <Select>
-          <SelectTrigger className={styles["select-trigger"]}>
-            <SelectValue
-              placeholder={rows ?? "Select rows"}
-              defaultValue={rows ?? 50}
-            />
-          </SelectTrigger>
+        <div className={styles["select-container"]}>
+          <p className={styles["select-container-text"]}>Rows per page</p>
 
-          <SelectContent>
-            <SelectGroup>
-              <div className={styles["select-group"]}>
-                {[20, 30, 50, 100, 200].map((value, index) => (
-                  <Link
-                    key={index}
-                    href={`${pathname}?page=1&${queryURL(value)}`}
-                    className={styles["select-item"]}
-                    data-select={value === rows}
-                  >
-                    {value}
-                  </Link>
-                ))}
-              </div>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+          <Select>
+            <SelectTrigger className={styles["select-trigger"]}>
+              <SelectValue
+                placeholder={rows ?? "Select rows"}
+                defaultValue={rows ?? 50}
+              />
+            </SelectTrigger>
+
+            <SelectContent>
+              <SelectGroup>
+                <div className={styles["select-group"]}>
+                  {[10, 20, 30, 50].map((value, index) => (
+                    <Link
+                      key={index}
+                      href={`${pathname}?page=1&${queryURL(value)}`}
+                      className={styles["select-item"]}
+                      data-select={value === rows}
+                    >
+                      {value}
+                    </Link>
+                  ))}
+                </div>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
 
       <ScrollArea className={styles["scroll-area"]}>
-        <Table className={styles["table"]}>
+        <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -191,7 +195,7 @@ export function UserDataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               isPending ? (
                 [...(Array(5) as number[])].map((_, index) => (
-                  <TableRow key={index} className={styles["table-row"]}>
+                  <TableRow key={index}>
                     {[...(Array(7) as number[])].map((_, index) => (
                       <TableCell key={index}>
                         <Skeleton
@@ -209,7 +213,6 @@ export function UserDataTable<TData, TValue>({
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className={styles["table-row"]}
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
@@ -226,7 +229,7 @@ export function UserDataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className={styles["not-result-row"]}
                 >
                   No results.
                 </TableCell>
@@ -234,6 +237,7 @@ export function UserDataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
+
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
 
@@ -242,6 +246,7 @@ export function UserDataTable<TData, TValue>({
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
+
         <div className={styles["pagination-wrapper"]}>
           <Pagination>
             <PaginationContent>
@@ -253,11 +258,13 @@ export function UserDataTable<TData, TValue>({
                   href={`${pathname}?page=${page - 1}&${queryURL()}`}
                 />
               </PaginationItem>
+
               {paginationArr[0] !== 1 && (
                 <PaginationItem>
                   <PaginationEllipsis />
                 </PaginationItem>
               )}
+
               {paginationArr.map((value, index) => (
                 <PaginationItem key={index}>
                   <PaginationLink
@@ -268,11 +275,13 @@ export function UserDataTable<TData, TValue>({
                   </PaginationLink>
                 </PaginationItem>
               ))}
+
               {paginationArr[paginationArr.length - 1] !== totalPages && (
                 <PaginationItem>
                   <PaginationEllipsis />
                 </PaginationItem>
               )}
+
               <PaginationItem>
                 <PaginationNext
                   aria-disabled={!canNextPage}

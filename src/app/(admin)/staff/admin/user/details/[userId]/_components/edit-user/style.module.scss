@@ -1,0 +1,185 @@
+.edit-user-card-wrapper {
+  color: hsl(var(--card-foreground));
+  background-color: hsl(var(--card));
+
+  width: 100%;
+  height: 100%;
+
+  border-width: 1px;
+  border-radius: 0.5rem;
+
+  padding: 2rem;
+  margin-top: 16px;
+
+  box-shadow:
+    0 0 #000,
+    0 0 #000,
+    0 2px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.header-info-section {
+  display: flex;
+
+  width: 100%;
+}
+
+.avatar {
+  position: relative;
+
+  width: 3.8rem !important;
+  height: 3.8rem !important;
+}
+
+.username-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-self: center;
+
+  width: 100%;
+
+  margin-left: 1rem;
+}
+
+.username-text {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.sub-username-text-wrapper {
+  display: flex;
+  align-items: center;
+
+  color: hsl(var(--admin-foreground) / 0.6);
+
+  width: 100%;
+
+  svg {
+    width: 20px;
+    height: 20px;
+
+    fill: currentColor;
+
+    scale: 1.3;
+  }
+}
+
+.sub-username-text {
+  color: hsl(var(--admin-foreground) / 0.6);
+
+  font-size: 16px;
+}
+
+.description-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  margin-top: 1.5rem;
+}
+
+.description-text-header {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.bio-text {
+  margin-top: 0.75rem;
+
+  font-size: 1rem;
+}
+
+.join-at-wrapper {
+  display: flex;
+  align-items: center;
+
+  color: hsl(var(--admin-foreground) / 0.6);
+
+  margin-top: 0.75rem;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.join-at-text {
+  margin-left: 0.5rem;
+}
+
+.personal-data-wrapper {
+  color: hsl(var(--card-foreground));
+  background-color: #fafcfb;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 0.5rem;
+
+  padding: 2rem;
+  margin-top: 16px;
+}
+
+.personal-data-header {
+  margin-bottom: 1rem;
+
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.personal-data-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  width: 100%;
+}
+
+.personal-data-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-item {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  margin: 0 !important;
+
+  font-size: 0.875rem;
+  line-height: 1rem;
+  font-weight: 500;
+
+  text-align: right;
+}
+
+.form-input {
+  color: inherit !important;
+  background-color: hsl(var(--admin-background)) !important;
+
+  max-width: 100% !important;
+  width: 100%;
+
+  &:focus-visible {
+    box-shadow:
+      0 0 rgba(0, 0, 0, 0),
+      0 0 0 1px hsl(var(--ring)),
+      0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  }
+}
+
+.submit-btn {
+  align-self: flex-end;
+
+  width: fit-content;
+
+  margin-top: 0 !important;
+}

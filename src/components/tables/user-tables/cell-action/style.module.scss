@@ -1,10 +1,15 @@
 .action-btn {
+  color: hsl(var(--admin-foreground)) !important;
   background-color: transparent !important;
 
   width: 2rem !important;
   height: 2rem !important;
 
   padding: 0 !important;
+
+  &:focus-visible {
+    box-shadow: none !important;
+  }
 
   svg {
     width: 1rem;
@@ -28,4 +33,41 @@
   clip: rect(0, 0, 0, 0);
 
   white-space: nowrap;
+}
+
+.dropdown-content-wrapper {
+  color: hsl(var(--admin-popover-foreground)) !important;
+  background-color: hsl(var(--admin-popover)) !important;
+
+  width: 14rem !important;
+  min-width: 8rem !important;
+
+  border-color: transparent !important;
+
+  padding: 0.25rem !important;
+
+  box-shadow:
+    0 0 #0000,
+    0 0 #0000,
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dropdown-content-label-wrapper {
+  padding: 0.375rem 0.5rem;
+
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+}
+
+.svg {
+  width: 1rem;
+  height: 1rem;
+
+  margin-right: 0.5rem;
+}
+
+.dropdown-separator {
+  background-color: hsl(var(--admin-muted)) !important;
 }

@@ -6,7 +6,6 @@ import "@/styles/vendors/admin.scss"
 
 import { AdminMainNav } from "@/components/layouts/admin/admin-side-nav"
 import { AdminSiteHeader } from "@/components/layouts/admin/admin-site-header"
-import SimpleBar from "@/components/simplebar"
 
 interface AdminLayoutProps {
   children: React.ReactNode
