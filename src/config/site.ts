@@ -195,7 +195,7 @@ export const adminSiteConfig = {
     {
       title: "Dashboard",
       slug: "/staff/admin",
-      icon: "home",
+      icon: "dashboard",
       items: [],
     },
     {
@@ -208,6 +208,18 @@ export const adminSiteConfig = {
       title: "Category",
       slug: "/staff/admin/category?page=1&rows=10",
       icon: "layers",
+      items: [],
+    },
+    {
+      title: "Post",
+      slug: "/staff/admin/post?page=1&rows=50",
+      icon: "newspaper",
+      items: [],
+    },
+    {
+      title: "Roles and Permissions",
+      slug: "/staff/admin/roles",
+      icon: "userCog",
       items: [],
     },
   ] as MainNavItem[],

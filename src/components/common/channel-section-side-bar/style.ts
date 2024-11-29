@@ -187,7 +187,7 @@ export const ChannelCurrentCategory = styled.div`
 export const ChannelLiveViewWrapper = styled.div`
   flex-shrink: 0;
 
-  min-width: 40px;
+  min-width: 28px;
 
   margin-left: 5px;
 `

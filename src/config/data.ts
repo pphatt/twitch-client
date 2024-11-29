@@ -7,7 +7,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "riot-games",
       category: "League of Legend",
       isLive: true,
-      view: 100_000,
+      view: 0,
       title: "T1 vs BLG | DAY 16 | MSI 2024",
       image: "/avatar/riot-games-avatar.png",
     },
@@ -16,7 +16,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "piratesoftware",
       category: "Once Human",
       isLive: true,
-      view: 16_634,
+      view: 0,
       title:
         "Once Human 💜 Launch Day with Drops! 💛 @FerretSoftware !Heartbound !Website !TTS\n",
       image: "/avatar/pirate-software-avatar.png",
@@ -26,7 +26,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "ewc_gold",
       category: "League of Legend",
       isLive: true,
-      view: 321_298,
+      view: 0,
       title: "EWC presenting LoL // Day 4 - Final",
       image: "/avatar/ewc-gold-avatar.png",
     },
@@ -35,7 +35,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "kyedae",
       category: "Valorant",
       isLive: true,
-      view: 16_293,
+      view: 0,
       title: "SHORT STREAM (OW at 7pm) -ending at 8pm for a dinner",
       image: "/avatar/kyedae-avatar.png",
     },
@@ -44,7 +44,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "vei",
       category: "Elden Ring",
       isLive: true,
-      view: 35_210,
+      view: 1,
       title: "Elden Ring [Part 11] + GODDESS OF VICTORY: NIKKE",
       image: "/avatar/vei-avatar.png",
     },
@@ -53,7 +53,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "ironmouse",
       category: "Just Chatting",
       isLive: true,
-      view: 19_123,
+      view: 0,
       title:
         "HANGING OUT YAPPING AND THEN GAMES. WHAT A DAY WE HAD YESTERDAY IM SO TIRED AHHH | #VSHOJO | !tts | !merch | !Youtube | !razer | !gamersupps",
       image: "/avatar/ironmouse-avatar.png",
@@ -63,7 +63,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "jynxzi",
       category: "Tom Clancy's Rainbow Six Siege",
       isLive: true,
-      view: 78_012,
+      view: 0,
       title: "I said huh",
       image: "/avatar/jynxzi-avatar.png",
     },
@@ -78,7 +78,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "sweetily",
       category: "Wuthering Waves",
       isLive: true,
-      view: 2_012,
+      view: 0,
       title:
         "UL31 🏮 200 HOURS PLAYED IN CBTS AMA !YT Gift 2 Subs for Rewards IN-Game ✦ 5 star selector sent tomorrow 「EN/中文」!WutheringWaves #ad",
       image: "/avatar/sweetily-avatar.png",
@@ -88,7 +88,7 @@ export const followedChannels: { channels: IFollowChannelsData[] } = {
       slug: "thay-giao-ba",
       category: "League of Legend",
       isLive: true,
-      view: 8_856,
+      view: 0,
       title: "T1 vs BLG | DAY 16 | MSI 2024",
       image: "/avatar/thay-giao-ba-avatar.png",
     },
@@ -108,7 +108,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
       slug: "xqc",
       category: "Just Chatting",
       isLive: true,
-      view: 163_120,
+      view: 0,
       title:
         "📕LIVE📕CLICK📕HERE📕REACT📕VIDEOS📕GAMEPLAY📕#1 AT EVERYTHING📕POGCHAMPION📕",
       image: "/avatar/xqc-avatar.jpeg",
@@ -118,7 +118,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
       slug: "kei",
       category: "League of Legend",
       isLive: true,
-      view: 10_234,
+      view: 1,
       title: "ROAD TO PLASTIC!!! ROAD TO IRON!!!",
       image: "/avatar/kei-avatar.png",
     },
@@ -127,7 +127,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
       slug: "kai-cenat",
       category: "Elden Ring",
       isLive: true,
-      view: 90_245,
+      view: 0,
       title:
         "⚔️100+ HR STREAM⚔️ELDEN RING⚔️CLICK HERE⚔️GAMER⚔️BIGGEST DWARF⚔️ELITE⚔️PRAY 4 ME⚔️",
       image: "/avatar/kai-cenat-avatar.png",
@@ -137,7 +137,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
       slug: "tenz",
       category: "Valorant",
       isLive: true,
-      view: 5_999,
+      view: 0,
       title: "feeling a little sick today",
       image: "/avatar/tenz-avatar.png",
     },
@@ -146,7 +146,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
       slug: "misanthrope",
       category: "Valorant",
       isLive: true,
-      view: 9_283,
+      view: 1,
       title: "ROAD TO PLASTIC!!! ROAD TO IRON!!!",
       image: "/avatar/misanthrope-avatar.png",
     },
@@ -155,7 +155,7 @@ export const recommendedLiveChannelsData: { channels: IChannelsData[] } = {
       slug: "cdawgva",
       category: "IRL",
       isLive: true,
-      view: 10_906,
+      view: 0,
       title: "I Rented an RV for 5 Days and Toured Japan",
       image: "/avatar/cdawgva-avatar.png",
     },
@@ -166,7 +166,7 @@ export const categoryData = {
   categories: [
     {
       title: "Valorant",
-      currentTotalView: 60_500,
+      currentTotalView: 0,
       slug: "valorant",
       image: "/category/valorant.jpg",
       tags: [
@@ -182,7 +182,7 @@ export const categoryData = {
     },
     {
       title: "Just Chatting",
-      currentTotalView: 213_130,
+      currentTotalView: 0,
       slug: "just-chatting",
       image: "/category/just-chatting.jpg",
       tags: [
@@ -194,7 +194,7 @@ export const categoryData = {
     },
     {
       title: "League of Legend",
-      currentTotalView: 109_251,
+      currentTotalView: 0,
       slug: "league-of-legend",
       image: "/category/league-of-legend.png",
       tags: [
@@ -210,7 +210,7 @@ export const categoryData = {
     },
     {
       title: "Elden Ring",
-      currentTotalView: 22_137,
+      currentTotalView: 0,
       slug: "elden-ring",
       image: "/category/elden-ring.jpg",
       tags: [
@@ -222,7 +222,7 @@ export const categoryData = {
     },
     {
       title: "Grand Theft Auto V",
-      currentTotalView: 97_600,
+      currentTotalView: 0,
       slug: "grand-theft-auto-v",
       image: "/category/grand-theft-auto-v.jpg",
       tags: [
@@ -238,7 +238,7 @@ export const categoryData = {
     },
     {
       title: "Overwatch 2",
-      currentTotalView: 33_728,
+      currentTotalView: 0,
       slug: "overwatch-2",
       image: "/category/over-watch-2.png",
       tags: [
@@ -254,7 +254,7 @@ export const categoryData = {
     },
     {
       title: "PUBG: BATTLEGROUNDS",
-      currentTotalView: 7_150,
+      currentTotalView: 0,
       slug: "pubg-battlegrounds",
       image: "/category/pubg-battlegrounds.png",
       tags: [
@@ -270,7 +270,7 @@ export const categoryData = {
     },
     {
       title: "Teamfight Tactics",
-      currentTotalView: 7_721,
+      currentTotalView: 0,
       slug: "teamfight-tactics",
       image: "/category/teamfight-tactics.jpg",
       tags: [
@@ -282,7 +282,7 @@ export const categoryData = {
     },
     {
       title: "IRL",
-      currentTotalView: 15_420,
+      currentTotalView: 0,
       slug: "irl",
       image: "/category/irl.png",
       tags: [
@@ -294,7 +294,7 @@ export const categoryData = {
     },
     {
       title: "Music",
-      currentTotalView: 4_132,
+      currentTotalView: 0,
       slug: "music",
       image: "/category/music.jpg",
       tags: [
@@ -310,7 +310,7 @@ export const categoryData = {
     },
     {
       title: "Dota 2",
-      currentTotalView: 111_000,
+      currentTotalView: 0,
       slug: "dota-2",
       image: "/category/dota-2.png",
       tags: [
@@ -326,7 +326,7 @@ export const categoryData = {
     },
     {
       title: "Tom Clancy's Rainbow Six Siege",
-      currentTotalView: 79_100,
+      currentTotalView: 0,
       slug: "tom-clancys-rainbow-six-siege",
       image: "/category/tom-clancys-rainbow-six-siege.jpg",
       tags: [
@@ -342,7 +342,7 @@ export const categoryData = {
     },
     {
       title: "Wuthering Waves",
-      currentTotalView: 54_000,
+      currentTotalView: 0,
       slug: "wuthering-waves",
       image: "/category/wuthering-waves.jpg",
       tags: [
@@ -358,7 +358,7 @@ export const categoryData = {
     },
     {
       title: "Minecraft",
-      currentTotalView: 53_400,
+      currentTotalView: 0,
       slug: "minecraft",
       image: "/category/minecraft.jpg",
       tags: [
@@ -370,7 +370,7 @@ export const categoryData = {
     },
     {
       title: "EA Sports FC 24",
-      currentTotalView: 49_900,
+      currentTotalView: 0,
       slug: "ea-sports-fc-24",
       image: "/category/ea-sports-fc-24.jpg",
       tags: [
@@ -382,7 +382,7 @@ export const categoryData = {
     },
     {
       title: "World of Warcraft",
-      currentTotalView: 47_900,
+      currentTotalView: 0,
       slug: "world-of-warcraft",
       image: "/category/world-of-warcraft.png",
       tags: [
@@ -398,7 +398,7 @@ export const categoryData = {
     },
     {
       title: "Apex Legends",
-      currentTotalView: 40_800,
+      currentTotalView: 0,
       slug: "apex-legends",
       image: "/category/apex-legends.jpg",
       tags: [
@@ -414,7 +414,7 @@ export const categoryData = {
     },
     {
       title: "Chess",
-      currentTotalView: 37_800,
+      currentTotalView: 0,
       slug: "chess",
       image: "/category/chess.jpg",
       tags: [
@@ -430,7 +430,7 @@ export const categoryData = {
     },
     {
       title: "ASMR",
-      currentTotalView: 11_400,
+      currentTotalView: 0,
       slug: "asmr",
       image: "/category/asmr.jpg",
       tags: [
@@ -442,7 +442,7 @@ export const categoryData = {
     },
     {
       title: "Rust",
-      currentTotalView: 10_800,
+      currentTotalView: 0,
       slug: "rust",
       image: "/category/rust.jpg",
       tags: [
@@ -494,7 +494,7 @@ export const liveChannels = {
       title:
         "Once Human 💜 Launch Day with Drops! 💛 @FerretSoftware !Heartbound !Website !TTS",
       slug: "/piratesoftware",
-      totalView: 16_257,
+      totalView: 1,
       isLive: true,
       category: "Once Human",
       livePreviewImage:
@@ -525,7 +525,7 @@ export const liveChannels = {
       },
       title: "idc ♡",
       slug: "/xull",
-      totalView: 1_700,
+      totalView: 1,
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-xull-preview.jpg",
@@ -555,7 +555,7 @@ export const liveChannels = {
       },
       title: "valorant then variety",
       slug: "/tenz",
-      totalView: 8_600,
+      totalView: 0,
       isLive: true,
       category: "HELLDIVERS 2",
       livePreviewImage: "/recommend-live-channel/live-tenz-preview.jpg",
@@ -586,7 +586,7 @@ export const liveChannels = {
       title:
         "🟥SAGE MAIN RETURNS🟥T1 GRIM🟥BEST VALORANT EXPERIENCE🟥DERUSTING GETTING BETTER🟥HOPEFULLY WE CAN STILL GAME AT A HIGHT LEVEL🟥",
       slug: "/grimm",
-      totalView: 1_900,
+      totalView: 0,
       isLive: true,
       category: "Valorant",
       livePreviewImage: "/recommend-live-channel/live-grimm-preview.jpg",
@@ -608,7 +608,7 @@ export const liveChannels = {
       },
       title: "Đồng hành cùng MSI !!",
       slug: "/thay-giao-ba",
-      totalView: 1_700,
+      totalView: 0,
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-thay-giao-ba-preview.jpg",
@@ -630,7 +630,7 @@ export const liveChannels = {
       },
       title: "낭만을 찾아서,,",
       slug: "/woohankyung",
-      totalView: 4_412,
+      totalView: 0,
       isLive: true,
       category: "Just Chatting",
       livePreviewImage: "/recommend-live-channel/live-woohankyung-preview.jpg",
@@ -652,7 +652,7 @@ export const liveChannels = {
       },
       title: "欸黑:D  !SNS",
       slug: "/josie5297",
-      totalView: 3_400,
+      totalView: 0,
       isLive: true,
       category: "Just Chatting",
       livePreviewImage: "/recommend-live-channel/live-josie5297-preview.jpg",
@@ -675,7 +675,7 @@ export const liveChannels = {
       title:
         "❗❗EDUCATION?!  POSITIVE VIBES ❗ ❗ !YOUTUBE !CLIPS !DISCORD !PRIME !TIERLIST !DUO",
       slug: "/jankos",
-      totalView: 4_600,
+      totalView: 0,
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-jankos-preview.jpg",
@@ -701,7 +701,7 @@ export const liveChannels = {
       },
       title: "euw soloqqq !patreon !discord !nordvpn",
       slug: "/nemesis",
-      totalView: 4_300,
+      totalView: 0,
       isLive: true,
       category: "League of Legend",
       livePreviewImage: "/recommend-live-channel/live-nemesis-preview.jpg",
@@ -724,7 +724,7 @@ export const liveChannels = {
       title:
         "ICJ ISSUES CEASEFIRE ORDER, ISRAEL RESPONDS W/ MORE FIRE -LOUISIANA RECLASSIFIES ABORTION DRUG - BATMAN FINALE LATER!",
       slug: "/hasanabi",
-      totalView: 53_000,
+      totalView: 0,
       isLive: true,
       category: "Just Chatting",
       livePreviewImage: "/recommend-live-channel/live-hasanabi-preview.jpg",
@@ -746,7 +746,7 @@ export const liveChannels = {
       },
       title: "LIVE: BetBoom Team vs Xtreme Gaming - DreamLeague S23 - LB3",
       slug: "/dota-2",
-      totalView: 21_000,
+      totalView: 0,
       isLive: true,
       category: "Dota 2",
       livePreviewImage: "/recommend-live-channel/live-dota-2-preview.jpg",
@@ -772,7 +772,7 @@ export const liveChannels = {
       },
       title: "【SF6】寝て起きたらゴウキが上手くなっていた件について",
       slug: "/mago2dgod",
-      totalView: 6_600,
+      totalView: 0,
       isLive: true,
       category: "Street Fighter 6",
       livePreviewImage: "/recommend-live-channel/live-mago2dgod-preview.jpg",

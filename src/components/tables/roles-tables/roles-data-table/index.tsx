@@ -41,7 +41,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import styles from "@/components/tables/user-tables/user-data-table/style.module.scss"
+import styles from "@/components/tables/roles-tables/roles-data-table/style.module.scss"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -52,7 +52,7 @@ interface DataTableProps<TData, TValue> {
   rows: number
 }
 
-export function UserDataTable<TData, TValue>({
+export function RoleDataTable<TData, TValue>({
   columns,
   data,
   searchKey,
@@ -158,7 +158,7 @@ export function UserDataTable<TData, TValue>({
             <SelectContent>
               <SelectGroup>
                 <div className={styles["select-group"]}>
-                  {[10, 20, 30, 50].map((value, index) => (
+                  {[5, 10, 15, 20].map((value, index) => (
                     <Link
                       key={index}
                       href={`${pathname}?page=1&${queryURL(value)}`}
