@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { LikeBtn } from "@/components/layouts/home/components/like-btn"
+import { LikeBtn } from "@/components/layouts/social/components/like-btn"
 import {
   ArticleCardTime,
   ArticleCardWrapper,
@@ -26,7 +26,7 @@ import {
   UserCardNameContainer,
   UserCardNameWrapper,
   UserCardTitleName,
-} from "@/components/layouts/home/post/style"
+} from "@/components/layouts/social/post/style"
 
 export default function Post() {
   return (

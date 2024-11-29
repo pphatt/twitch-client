@@ -270,8 +270,8 @@ export const UserItemTrigger = styled(Button)`
 
   background-color: transparent;
 
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
 
   padding: 0;
 
@@ -292,8 +292,8 @@ export const UserItemTrigger = styled(Button)`
 export const UserItemTriggerWrapper = styled(Avatar)`
   background-color: hsl(var(--background));
 
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 `
 
 export const UserImage = styled(AvatarImage)`

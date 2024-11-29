@@ -12,7 +12,7 @@ import {
   HeaderTabWrapper,
   HeaderText,
   MainNavLayoutWrapper, SearchBarWrapper,
-} from "@/components/layouts/home/main-nav/style"
+} from "@/components/layouts/social/main-nav/style"
 
 export default function MainNav() {
   return (

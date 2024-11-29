@@ -13,6 +13,9 @@ export async function GET(request: NextRequest) {
     const { data } = await AdminUsersRequest.getAllUsers({
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache',
+        'Expires': '0',
       },
     })
 

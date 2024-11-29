@@ -1,6 +1,8 @@
 import * as React from "react"
+import { unstable_noStore as noStore } from "next/cache"
 import { cookies } from "next/headers"
 import { parserPage, parserRows } from "@/utils/common"
+import { AdminUsersRequest } from "@modules/core/presentation/endpoints/admin/users/admin.users.request"
 import { AdminRepository } from "@modules/user/infrastructure/repository/admin.repository"
 import { UserDataTable } from "src/components/tables/user-tables/user-data-table"
 
@@ -17,7 +19,13 @@ interface SearchPageProps {
   searchParams: SearchParams
 }
 
+export const runtime = "nodejs"
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
 export default async function UserPage({ searchParams }: SearchPageProps) {
+  noStore()
+
   const { q, page, rows } = searchParamsSchema.parse(searchParams)
 
   const pageNumber = parserPage(page)
@@ -25,7 +33,16 @@ export default async function UserPage({ searchParams }: SearchPageProps) {
 
   const accessToken = cookies().get("access-token")?.value
 
-  const users = await AdminRepository.getAllUsers({ accessToken: accessToken! })
+  const { data } = await AdminUsersRequest.getAllUsers({
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache",
+      Expires: "0",
+    },
+  })
+
+  const users = data.data
 
   return (
     <div className={styles["page-layout-wrapper"]}>

@@ -13,16 +13,17 @@ import {
   Check,
   CheckSquare,
   ChevronDown,
-  Sheet,
   // ChevronLeft,
   // ChevronRight,
   ChevronsUpDown,
   ChevronUp,
   Circle,
+  CircleGauge,
   CirclePlus,
   CircleUserRound,
   Clock,
   Copy,
+  Dot,
   EllipsisVertical,
   Expand,
   Eye,
@@ -42,20 +43,19 @@ import {
   Moon,
   MoveHorizontal,
   MoveVertical,
+  Newspaper,
   Play,
   Search,
   Settings,
+  Sheet,
   Slash,
   Star,
   SunMedium,
   User,
+  UserCog,
   Users,
-  Newspaper,
   X,
   ZoomIn,
-  Dot,
-  CircleGauge,
-  UserCog,
   ZoomOut,
   type IconNode as LucideIcon,
   type LucideProps,
@@ -830,6 +830,28 @@ export const Icons = {
       {...props}
     >
       <path d="M680-280q25 0 42.5-17.5T740-340q0-25-17.5-42.5T680-400q-25 0-42.5 17.5T620-340q0 25 17.5 42.5T680-280Zm0 120q31 0 57-14.5t42-38.5q-22-13-47-20t-52-7q-27 0-52 7t-47 20q16 24 42 38.5t57 14.5ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v227q-19-8-39-14.5t-41-9.5v-147l-240-90-240 90v188q0 47 12.5 94t35 89.5Q310-290 342-254t71 60q11 32 29 61t41 52q-1 0-1.5.5t-1.5.5Zm200 0q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80ZM480-494Z" />
+    </svg>
+  ),
+  postImage: ({ ...props }: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      {...props}
+    >
+      <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Zm140-360q25 0 42.5-17.5T400-620q0-25-17.5-42.5T340-680q-25 0-42.5 17.5T280-620q0 25 17.5 42.5T340-560Z" />
+    </svg>
+  ),
+  plus: ({ ...props }: LucideProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24px"
+      viewBox="0 -960 960 960"
+      width="24px"
+      {...props}
+    >
+      <path d="M440-440H240q-17 0-28.5-11.5T200-480q0-17 11.5-28.5T240-520h200v-200q0-17 11.5-28.5T480-760q17 0 28.5 11.5T520-720v200h200q17 0 28.5 11.5T760-480q0 17-11.5 28.5T720-440H520v200q0 17-11.5 28.5T480-200q-17 0-28.5-11.5T440-240v-200Z" />
     </svg>
   ),
 }

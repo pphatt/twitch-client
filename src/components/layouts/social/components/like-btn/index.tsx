@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 
 import { Icons } from "@/components/icons"
-import { LikeButton } from "@/components/layouts/home/components/like-btn/style"
+import { LikeButton } from "@/components/layouts/social/components/like-btn/style"
 
 interface LikeBtnProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   likeCount: number

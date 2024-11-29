@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useAuth } from "@/context/auth.context"
-import MainNav from "src/components/layouts/home/main-nav"
+import MainNav from "src/components/layouts/social/main-nav"
 
 import {
   DropdownMenu,
@@ -44,7 +44,7 @@ import {
   UserItemTrigger,
   UserItemTriggerWrapper,
   UtilitySectionWrapper,
-} from "@/components/layouts/home/site-header/style"
+} from "@/components/layouts/social/site-header/style"
 import {
   AuthContainer,
   AuthInnerButton,
@@ -114,7 +114,7 @@ export default function HomeSiteHeader() {
                             <PostContentWrapper>
                               <PostItemWrapper>
                                 <PostItemBtn href={"/social/create-post"}>
-                                  <Icons.post />
+                                  <Icons.postImage />
 
                                   <PostItemText>Post</PostItemText>
 

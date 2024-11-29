@@ -55,7 +55,7 @@ export function AdminMainNav() {
 
                 return item.slug ? (
                   <li key={index}>
-                    <Link
+                    <a
                       className={cn(
                         styles["admin-side-nav-content-li-wrapper"],
                         isActive &&
@@ -69,7 +69,7 @@ export function AdminMainNav() {
                     >
                       <Icon aria-hidden="true" />
                       <span>{item.title}</span>
-                    </Link>
+                    </a>
                   </li>
                 ) : (
                   <span
