@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { Icons } from "@/components/icons"
-import FriendList from "@/components/layouts/social/friend-list"
+import FriendList from "@/components/layouts/social/components/friend-list"
 import {
   ContentItemSVGWrapper,
   ContentItemText,
@@ -22,8 +22,8 @@ import {
   RootPageLayoutContainer,
   RootPageLayoutOverlay,
   RootPageLayoutWrapper,
-} from "@/components/layouts/social/home-page/style"
-import Post from "@/components/layouts/social/post"
+} from "@/components/layouts/social/home/home-page/style"
+import Post from "src/components/layouts/social/home/post"
 
 export default function HomePageComponent() {
   return (

@@ -44,6 +44,8 @@
   "dependencies": {
     "@cloudflare/next-on-pages": "^1.13.3",
     "@hookform/resolvers": "^3.9.0",
+    "@lexical/react": "^0.20.1",
+    "@lexical/utils": "^0.20.1",
     "@livekit/components-react": "^1.4.2",
     "@million/lint": "1.0.0-rc.84",
     "@radix-ui/react-accordion": "^1.2.0",
@@ -80,6 +82,7 @@
     "immutable": "^4.3.7",
     "input-otp": "^1.4.1",
     "jwt-decode": "^4.0.0",
+    "lexical": "^0.20.1",
     "livekit-client": "^1.15.4",
     "livekit-server-sdk": "^1.2.7",
     "lodash": "^4.17.21",

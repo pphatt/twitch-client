@@ -1,14 +1,7 @@
 import * as React from "react"
 
-import HomePageComponent from "@/components/layouts/social/home-page"
-import HomeSiteHeader from "@/components/layouts/social/site-header"
+import HomePageComponent from "src/components/layouts/social/home/home-page"
 
 export default function HomePage() {
-  return (
-    <>
-      <HomeSiteHeader />
-
-      <HomePageComponent />
-    </>
-  )
+  return <HomePageComponent />
 }

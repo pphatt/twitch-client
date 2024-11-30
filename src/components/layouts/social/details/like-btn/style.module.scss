@@ -1,0 +1,85 @@
+.like-btn-wrapper {
+  display: flex;
+  justify-content: center;
+
+  max-width: 102px;
+}
+
+.like-btn-container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  svg {
+    width: 1em;
+    height: 1em;
+
+    padding: 4px;
+
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    overflow: hidden;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.reaction-container-wrapper {
+  background: #242734;
+
+  width: fit-content;
+  height: fit-content;
+
+  border-radius: 12px;
+
+  overflow: hidden auto;
+
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.8);
+
+  z-index: 200;
+}
+
+.reaction-container-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: fit-content;
+
+  padding: 8px 12px;
+
+  box-sizing: content-box;
+}
+
+.reaction-item-wrapper {
+  padding: 2px;
+
+  cursor: pointer;
+}
+
+.reaction-item-container {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+}

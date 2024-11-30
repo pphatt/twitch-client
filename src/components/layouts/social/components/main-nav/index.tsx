@@ -12,14 +12,14 @@ import {
   HeaderTabWrapper,
   HeaderText,
   MainNavLayoutWrapper, SearchBarWrapper,
-} from "@/components/layouts/social/main-nav/style"
+} from "@/components/layouts/social/components/main-nav/style"
 
 export default function MainNav() {
   return (
     <>
       <MainNavLayoutWrapper>
         <HeaderLogoWrapper>
-          <HeaderLogoLink href={"/"}>
+          <HeaderLogoLink href={"/social/home"}>
             <AnimatedLogo />
             <HeaderLogoText>Twitch media</HeaderLogoText>
           </HeaderLogoLink>

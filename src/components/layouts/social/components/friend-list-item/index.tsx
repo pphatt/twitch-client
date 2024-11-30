@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 
 import { Icons } from "@/components/icons"
@@ -15,9 +17,14 @@ import {
   UserNameOverlay,
   UserNameText,
   UserNameWrapper,
-} from "@/components/layouts/social/friend-list-item/style"
+} from "@/components/layouts/social/components/friend-list-item/style"
 
-export default function FriendListItem() {
+interface FriendListItemProps {
+  image: string
+  name: string
+}
+
+export default function FriendListItem({ image, name }: FriendListItemProps) {
   return (
     <RecommendFriendItemWrapper>
       <RecommendFriendItemContainer>
@@ -26,28 +33,17 @@ export default function FriendListItem() {
             <UserItemWrapper>
               <UserItemContainer href={"/social/profile/1"}>
                 <UserAvatarImageWrapper>
-                  <UserAvatarImage
-                    src={
-                      "https://s120-ava-talk.zadn.vn/d/7/5/d/4/120/aae4fe2e565d553d5f325f2aa0ef2cf1.jpg"
-                    }
-                    alt={""}
-                  />
+                  <UserAvatarImage src={image} alt={""} />
                 </UserAvatarImageWrapper>
               </UserItemContainer>
 
               <UserNameWrapper>
                 <UserNameContainer>
                   <UserNameOverlay href={"/social/profile/1"}>
-                    <UserNameText>Đặng Viễn Hào</UserNameText>
+                    <UserNameText>{name}</UserNameText>
                   </UserNameOverlay>
                 </UserNameContainer>
               </UserNameWrapper>
-
-              <FollowButtonWrapper>
-                <FollowButton>
-                  <Icons.plus />
-                </FollowButton>
-              </FollowButtonWrapper>
             </UserItemWrapper>
           </div>
         </RecommendFriendItemOverlay>

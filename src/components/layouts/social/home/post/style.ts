@@ -273,6 +273,7 @@ export const HashTagsWrapper = styled.div`
   flex-wrap: wrap;
 
   margin-top: 8px;
+  margin-bottom: 8px;
 `
 
 export const HashTagWrapper = styled(Link)`

@@ -26,7 +26,7 @@ import {
   UserCardNameContainer,
   UserCardNameWrapper,
   UserCardTitleName,
-} from "@/components/layouts/social/post/style"
+} from "@/components/layouts/social/home/post/style"
 
 export default function Post() {
   return (
@@ -62,6 +62,16 @@ export default function Post() {
           <ArticleTitleText>Road to Challenger</ArticleTitleText>
         </ArticleTitleWrapper>
 
+        <HashTagsWrapper>
+          <HashTagWrapper href={"/social/tags/anime"}>
+            <HashTagText>#Anime</HashTagText>
+          </HashTagWrapper>
+
+          <HashTagWrapper href={"/social/tags/something"}>
+            <HashTagText>#something</HashTagText>
+          </HashTagWrapper>
+        </HashTagsWrapper>
+
         <ArticleContentWrapper className="article-card-image__preview">
           <ArticleImageWrapper $count={2}>
             <ArticleImage src={"/avatar/xull-avatar.png"} />
@@ -72,16 +82,6 @@ export default function Post() {
           </ArticleImageWrapper>
         </ArticleContentWrapper>
       </ArticleCardWrapper>
-
-      <HashTagsWrapper>
-        <HashTagWrapper href={"/social/tags/anime"}>
-          <HashTagText>#Anime</HashTagText>
-        </HashTagWrapper>
-
-        <HashTagWrapper href={"/social/tags/something"}>
-          <HashTagText>#something</HashTagText>
-        </HashTagWrapper>
-      </HashTagsWrapper>
 
       <ReactionRowWrapper>
         <LikeBtn likeCount={123} initialLike={true}>

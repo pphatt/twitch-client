@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useAuth } from "@/context/auth.context"
-import MainNav from "src/components/layouts/social/main-nav"
+import MainNav from "src/components/layouts/social/components/main-nav"
 
 import {
   DropdownMenu,

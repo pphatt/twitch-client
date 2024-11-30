@@ -34,7 +34,7 @@ export const RootPageLayoutContainer = styled.div`
   max-width: 1208px;
   width: 100%;
 
-  padding: 0 0;
+  padding: 0 0 80px;
   margin-top: 15px;
 `
 
