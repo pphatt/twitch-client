@@ -3,7 +3,9 @@ import * as React from "react"
 import styles from "@/styles/application/social/layout.module.scss"
 
 import "@/styles/vendors/social.scss"
-import HomeSiteHeader from "@/components/layouts/social/site-header";
+import "@/styles/vendors/file-pond.scss"
+
+import HomeSiteHeader from "@/components/layouts/social/site-header"
 
 interface HomeLayoutProps {
   children: React.ReactNode
