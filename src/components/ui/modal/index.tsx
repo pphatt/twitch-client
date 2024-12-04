@@ -1,5 +1,7 @@
 "use client"
 
+import { cn } from "@/utils/common"
+
 import {
   Dialog,
   DialogContent,
@@ -15,6 +17,10 @@ interface ModalProps {
   isOpen: boolean
   onClose: () => void
   children?: React.ReactNode
+  contentClassname?: string
+  titleClassname?: string
+  descriptionClassname?: string
+  closeButtonClassname?: string
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -23,6 +29,10 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
+  contentClassname,
+  titleClassname,
+  descriptionClassname,
+  closeButtonClassname,
 }) => {
   const onChange = (open: boolean) => {
     if (!open) {
@@ -32,10 +42,20 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onChange}>
-      <DialogContent className={styles["dialog-content-wrapper"]}>
+      <DialogContent
+        className={cn(styles["dialog-content-wrapper"], contentClassname)}
+        closeButtonClassname={closeButtonClassname}
+      >
         <DialogHeader>
-          <DialogTitle className={styles["dialog-title-text"]}>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <DialogTitle
+            className={cn(styles["dialog-title-text"], titleClassname)}
+          >
+            {title}
+          </DialogTitle>
+
+          <DialogDescription className={descriptionClassname}>
+            {description}
+          </DialogDescription>
         </DialogHeader>
 
         <div>{children}</div>

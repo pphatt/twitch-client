@@ -46,14 +46,16 @@ const DialogContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> &
     DialogPosition &
     DialogType &
-    TweakOptions
->(({ children, $showCloseButton, ...props }, ref) => (
+    TweakOptions & {
+      closeButtonClassname?: string
+    }
+>(({ children, $showCloseButton, closeButtonClassname, ...props }, ref) => (
   <DialogPortal>
     <DialogOverlay />
     <DialogPrimitiveContent ref={ref} {...props}>
       {children}
       {($showCloseButton || $showCloseButton === undefined) && (
-        <DialogPrimitiveClose>
+        <DialogPrimitiveClose className={closeButtonClassname}>
           <Icons.close />
           <span>Close</span>
         </DialogPrimitiveClose>

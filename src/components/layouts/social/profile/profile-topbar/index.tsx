@@ -48,7 +48,9 @@ export default function ProfileTopbar({
 
               <div className={styles["user-info-row-2"]}>
                 <Icons.messageSquareText />
-                <p>{bio ?? "Default signature given to everyone~"}</p>
+                <p>
+                  {bio !== "" ? bio : "Default signature given to everyone~"}
+                </p>
               </div>
             </div>
 

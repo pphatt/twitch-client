@@ -1,22 +1,26 @@
 import * as React from "react"
 import Link from "next/link"
+import { formatTimeToNow } from "@/utils/common"
 
-import { Icons } from "@/components/icons"
+import PostAction from "@/components/layouts/social/profile/post-action"
 import styles from "@/components/layouts/social/profile/post-header/style.module.scss"
-import {formatTimeToNow} from "@/utils/common";
 
 interface PostHeaderProps {
+  postId: string
   username: string
   avatarUrl: string
   createdAt: Date
   isUserProfile: boolean
+  validateData: () => void
 }
 
 export default function PostHeader({
+  postId,
   username,
   avatarUrl,
   createdAt,
   isUserProfile,
+  validateData,
 }: PostHeaderProps) {
   return (
     <div className={styles["post-card-header-wrapper"]}>
@@ -41,7 +45,10 @@ export default function PostHeader({
 
           <div className={styles["post-card-header-user-info-overlay"]}>
             <div className={styles["user-info-row-1-wrapper"]}>
-              <Link href={`/social/profile/${username}`} className={styles["user-info-row-1-container"]}>
+              <Link
+                href={`/social/profile/${username}`}
+                className={styles["user-info-row-1-container"]}
+              >
                 <span>{username}</span>
               </Link>
             </div>
@@ -52,9 +59,7 @@ export default function PostHeader({
       </div>
 
       {isUserProfile && (
-        <div className={styles["post-action-wrapper"]}>
-          <Icons.ellipsisVertical />
-        </div>
+        <PostAction postId={postId} validateData={validateData} />
       )}
     </div>
   )

@@ -1,8 +1,11 @@
 import {
   CreatePostAPI,
+  DeletePostsAPI,
   GetAllUserPostsAPI,
   NextCreatePostAPI,
+  NextDeletePostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
+import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
@@ -12,8 +15,11 @@ export const Social = {
     body: FormData,
     config: AxiosRequestConfig
   ): Promise<{
-    data: { data: CreatePostResponseDto }
+    data: CreatePostResponseDto
   }> => axios.post(CreatePostAPI, body, config),
+
+  deletePost: async (body: DeletePostRequestDto, config: AxiosRequestConfig) =>
+    axios.delete(`${DeletePostsAPI}?postId=${body.postId}`, config),
 
   getUserPosts: async (
     username: string,
@@ -38,4 +44,7 @@ export const NextSocial = {
   ): Promise<{
     data: CreatePostResponseDto
   }> => axios.post(NextCreatePostAPI, body),
+
+  deletePost: async (body: DeletePostRequestDto) =>
+    axios.post(NextDeletePostAPI, body),
 }

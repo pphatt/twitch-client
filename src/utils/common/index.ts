@@ -364,6 +364,7 @@ function formatDistance(
 export function formatTimeToNow(date: Date): string {
   return formatDistanceToNowStrict(date, {
     addSuffix: true,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     locale: {
       ...locale,
       formatDistance,

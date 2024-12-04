@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server"
 import { handleSelectLatestAccessToken } from "@/utils/auth.utils"
+import { sleep } from "@/utils/common"
 import { Social } from "@modules/core/presentation/endpoints/social/social.request"
 
 export async function POST(request: NextRequest) {
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
     const formDataForApi = new FormData()
     formDataForApi.append("content", content)
 
-    if (images) {
+    if (images?.length) {
       for (const image of images) {
         const file = new File([image], image.name, {
           type: image.type,
@@ -48,7 +49,7 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     return Response.json(
       {
-        message: "UNAUTHORIZED",
+        message: "Something went wrong",
       },
       {
         status: 400,

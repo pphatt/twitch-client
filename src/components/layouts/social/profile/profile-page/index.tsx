@@ -38,7 +38,9 @@ export default function ProfilePageComponent({
   user,
   postsInfo,
 }: ProfilePageComponentProps) {
-  const { posts, totalPosts, totalPage } = postsInfo
+  const { posts } = postsInfo
+
+  const [totalPosts, setTotalPost] = React.useState(postsInfo.totalPosts)
 
   const middleRow = React.useRef<HTMLDivElement>(null)
   const { ref: middleRowRef, entry: middleRowEntry } = useIntersectionObserver({
@@ -52,7 +54,7 @@ export default function ProfilePageComponent({
     threshold: 1,
   })
 
-  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage, refetch } =
     useInfiniteQuery({
       queryKey: ["latest-posts"],
       queryFn: async ({ pageParam = 1 }) => {
@@ -60,6 +62,8 @@ export default function ProfilePageComponent({
           user.username,
           `page=${pageParam}&limit=10&orderBy=createdAt&order=desc`
         )
+
+        setTotalPost(postsListData.data.totalPosts)
 
         return postsListData.data.posts
       },
@@ -70,8 +74,9 @@ export default function ProfilePageComponent({
         }
       },
       initialPageParam: 1,
-      getNextPageParam: (_, pages) => pages.length + 1,
-      maxPages: totalPage,
+      getNextPageParam: (lastPage, pages) => {
+        return lastPage.length > 0 ? pages.length + 1 : undefined
+      },
       staleTime: 1000,
       refetchOnMount: true,
       refetchOnWindowFocus: true,
@@ -185,10 +190,12 @@ export default function ProfilePageComponent({
                             />
 
                             <PostHeader
+                              postId={info.id}
                               username={postUser.username}
                               avatarUrl={postUser.avatar}
                               createdAt={info.createdAt}
                               isUserProfile={isUserProfile}
+                              validateData={refetch}
                             />
 
                             <ArticleCardWrapper
