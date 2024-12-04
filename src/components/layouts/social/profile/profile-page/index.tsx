@@ -16,6 +16,8 @@ import {
   ArticleImageWrapper,
   ArticleTitleText,
   ArticleTitleWrapper,
+  LeftImageContainer,
+  LeftImageWrapper,
 } from "@/components/layouts/social/home/post/style"
 import PostHeader from "@/components/layouts/social/profile/post-header"
 import styles from "@/components/layouts/social/profile/profile-page/style.module.scss"
@@ -170,15 +172,18 @@ export default function ProfilePageComponent({
                         <div
                           className={styles["post-card-outer-wrapper"]}
                           key={index}
-                          ref={
-                            index === postsData.length - 5
-                              ? middleRowRef
-                              : index === postsData.length - 1
-                                ? lastRowRef
-                                : null
-                          }
                         >
                           <div className={styles["post-card-wrapper"]}>
+                            <div
+                              ref={
+                                index === postsData.length - 5
+                                  ? middleRowRef
+                                  : index === postsData.length - 1
+                                    ? lastRowRef
+                                    : null
+                              }
+                            />
+
                             <PostHeader
                               username={postUser.username}
                               avatarUrl={postUser.avatar}
@@ -202,19 +207,40 @@ export default function ProfilePageComponent({
                                       $count={info.images.length}
                                       key={index}
                                     >
-                                      <ArticleImage src={url} />
+                                      <ArticleImage
+                                        loading={"lazy"}
+                                        decoding={"async"}
+                                        src={url}
+                                      />
                                     </ArticleImageWrapper>
                                   ))}
 
                                 {info.images.length > 3 &&
-                                  info.images.map(({ url }, index) => (
-                                    <ArticleImageWrapper
-                                      $count={info.images.length}
-                                      key={index}
-                                    >
-                                      <ArticleImage src={url} />
-                                    </ArticleImageWrapper>
-                                  ))}
+                                  info.images
+                                    .slice(0, 3)
+                                    .map(({ url }, index) => (
+                                      <ArticleImageWrapper
+                                        $count={info.images.length}
+                                        key={index}
+                                      >
+                                        {index === 2 && (
+                                          <LeftImageWrapper>
+                                            <LeftImageContainer>
+                                              <Icons.images />
+                                              <span>
+                                                +{info.images.length - 3}
+                                              </span>
+                                            </LeftImageContainer>
+                                          </LeftImageWrapper>
+                                        )}
+
+                                        <ArticleImage
+                                          loading={"lazy"}
+                                          decoding={"async"}
+                                          src={url}
+                                        />
+                                      </ArticleImageWrapper>
+                                    ))}
                               </ArticleContentWrapper>
                             </ArticleCardWrapper>
                           </div>

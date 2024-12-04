@@ -6,7 +6,7 @@ export type GetUserPostsResponseDto = {
   }
   info: {
     id: string
-    createdAt: string
+    createdAt: Date
     visibility: string
     content: string
     images: [

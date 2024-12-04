@@ -254,6 +254,44 @@ export const ArticleImageWrapper = styled.div<{
     `}
 `
 
+export const LeftImageWrapper = styled.div`
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 0 4px;
+
+  z-index: 10;
+`
+
+export const LeftImageContainer = styled.span`
+  display: flex;
+  align-items: center;
+
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  height: 14px;
+
+  border-radius: 12px;
+
+  padding: 0 8px;
+  margin-left: 4px;
+
+  font-size: 12px;
+
+  svg {
+    color: #fff;
+
+    width: 12px;
+    height: 12px;
+
+    margin-right: 3px;
+  }
+`
+
 export const ArticleImage = styled.img`
   position: absolute;
   top: 0;

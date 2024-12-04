@@ -8,7 +8,7 @@ import {formatTimeToNow} from "@/utils/common";
 interface PostHeaderProps {
   username: string
   avatarUrl: string
-  createdAt: string
+  createdAt: Date
   isUserProfile: boolean
 }
 
@@ -23,7 +23,7 @@ export default function PostHeader({
       <div className={styles["post-card-header-user-info-wrapper"]}>
         <div className={styles["post-card-header-user-info-container"]}>
           <Link
-            href={"/"}
+            href={`/social/profile/${username}`}
             className={styles["post-card-header-user-avatar-wrapper"]}
           >
             <div className={styles["post-card-header-user-avatar-container"]}>
@@ -41,12 +41,12 @@ export default function PostHeader({
 
           <div className={styles["post-card-header-user-info-overlay"]}>
             <div className={styles["user-info-row-1-wrapper"]}>
-              <Link href={""} className={styles["user-info-row-1-container"]}>
+              <Link href={`/social/profile/${username}`} className={styles["user-info-row-1-container"]}>
                 <span>{username}</span>
               </Link>
             </div>
 
-            <p className={styles["post-time"]}>{formatTimeToNow(createdAt as Date)}</p>
+            <p className={styles["post-time"]}>{formatTimeToNow(createdAt)}</p>
           </div>
         </div>
       </div>
