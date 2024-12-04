@@ -199,19 +199,10 @@ export default function HomeSiteHeader() {
 
                               <DropdownItem>
                                 <DropdownItemLink
-                                  href={`/u/${profile?.username}`}
+                                  href={`/social/profile/${profile?.username}`}
                                 >
-                                  <span>Channel</span>
+                                  <span>Profile</span>
                                   <Icons.channel />
-                                </DropdownItemLink>
-                              </DropdownItem>
-
-                              <DropdownMenuSeparator />
-
-                              <DropdownItem>
-                                <DropdownItemLink href={`/settings/profile`}>
-                                  <span>Settings</span>
-                                  <Icons.siteHeaderSettings />
                                 </DropdownItemLink>
                               </DropdownItem>
 

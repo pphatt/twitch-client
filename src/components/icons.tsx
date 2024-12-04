@@ -61,7 +61,10 @@ import {
   Bold,
   Italic,
   Underline,
+  MessageSquareText,
+  CircleHelp,
   Strikethrough,
+  IdCard,
   type IconNode as LucideIcon,
   type LucideProps,
 } from "lucide-react"
@@ -71,7 +74,9 @@ export type Icon = LucideIcon
 export const Icons = {
   sun: SunMedium,
   moon: Moon,
+  messageSquareText: MessageSquareText,
   close: X,
+  idCard: IdCard,
   messageCircle: MessageCircle,
   dot: Dot,
   copy: Copy,
@@ -80,6 +85,7 @@ export const Icons = {
   italic: Italic,
   underline: Underline,
   strikethrough: Strikethrough,
+  circleHelp: CircleHelp,
   user: User,
   users: Users,
   dashboard: CircleGauge,

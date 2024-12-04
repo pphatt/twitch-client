@@ -1,0 +1,182 @@
+.root-page-topbar-wrapper {
+  width: 100%;
+
+  margin-bottom: 12px;
+}
+
+.root-page-topbar-container {
+  background-color: #1b1d2a;
+
+  width: 100%;
+
+  padding: 0 40px;
+}
+
+.root-page-topbar-overlay {
+  position: relative;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  max-width: 1208px;
+  width: 100%;
+
+  margin: 0 auto;
+
+  z-index: 100;
+}
+
+.topbar-image-wrapper {
+  position: relative;
+
+  height: 56px;
+}
+
+.topbar-image-container {
+  position: relative;
+  top: -80px;
+  left: 0;
+
+  display: inline-block;
+
+  width: 112px;
+  height: 112px;
+
+  transition:
+    height 300ms ease,
+    width 300ms ease,
+    top 300ms ease;
+}
+
+.topbar-image {
+  background-color: #1b1d2a;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  vertical-align: top;
+
+  box-shadow: inset 0 0 0 3px #343746;
+}
+
+.user-info-wrapper {
+  position: relative;
+
+  flex: 1;
+
+  height: 56px;
+
+  margin-left: 28px;
+  margin-right: 24px;
+
+  transition: transform 300ms ease;
+}
+
+.user-info-top-wrapper {
+  position: absolute;
+  top: -76px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  height: 76px;
+}
+
+.user-info-row-1 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-bottom: 4px;
+
+  span {
+    color: #fff;
+
+    min-height: 24px;
+
+    font-size: 22px;
+    line-height: 24px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.user-info-row-2 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 12px;
+
+  svg {
+    color: #5c5f6b;
+
+    width: 14px;
+    height: 14px;
+
+    margin-right: 4px;
+    margin-top: 3px;
+
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    max-height: 36px;
+
+    line-height: 18px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+}
+
+.user-info-bottom-wrapper {
+  display: flex;
+
+  height: 100%;
+}
+
+.user-info-bottom-item-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.item-num {
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 22px;
+}
+
+.item-name {
+  color: rgba(255, 255, 255, 0.45);
+
+  margin-left: 4px;
+
+  font-size: 14px;
+}
+
+.item-split {
+  color: #3c3f50;
+
+  margin: 0 12px;
+
+  font-size: 14px;
+}

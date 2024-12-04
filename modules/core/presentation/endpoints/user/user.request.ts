@@ -1,4 +1,5 @@
 import {
+  GetSpecificUserByName,
   GetStreamKeyAPI,
   IsValidUsernameAPI,
   NextGetStreamKeyAPI,
@@ -15,16 +16,18 @@ import {
   UpdateUsernameAPI,
   WhoamiAPI,
 } from "@modules/core/presentation/endpoints/user/user.endpoints"
-import { GetStreamKeyRequestDto } from "@modules/user/presentation/http/dto/request/user/get-stream-key.request.dto"
+import type { GetSpecificUserByNameRequestDto } from "@modules/user/presentation/http/dto/request/user/get-specific-user-by-name.request.dto"
+import type { GetStreamKeyRequestDto } from "@modules/user/presentation/http/dto/request/user/get-stream-key.request.dto"
 import type { IsValidUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/is-valid-username.request.dto"
-import { SetStreamKeyRequestDto } from "@modules/user/presentation/http/dto/request/user/set-stream-key.request.dto"
-import { SetViewerTokenRequestDto } from "@modules/user/presentation/http/dto/request/user/set-viewer-token.request.dto"
+import type { SetStreamKeyRequestDto } from "@modules/user/presentation/http/dto/request/user/set-stream-key.request.dto"
+import type { SetViewerTokenRequestDto } from "@modules/user/presentation/http/dto/request/user/set-viewer-token.request.dto"
 import type { UpdateBioRequestDto } from "@modules/user/presentation/http/dto/request/user/update-bio.request.dto"
 import type { UpdateDisplayNameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-displayname.request.dto"
 import type { UpdateProfileRequestDto } from "@modules/user/presentation/http/dto/request/user/update-profile.request.dto"
 import type { UpdateUsernameRequestDto } from "@modules/user/presentation/http/dto/request/user/update-username.request.dto"
+import type { GetSpecificUserByNameResponseDto } from "@modules/user/presentation/http/dto/response/user/get-specific-user-by-name.response.dto"
 import type { GetStreamKeyResponseDto } from "@modules/user/presentation/http/dto/response/user/get-stream-key.response.dto"
-import { SetViewerTokenResponseDto } from "@modules/user/presentation/http/dto/response/user/set-viewer-token.response.dto"
+import type { SetViewerTokenResponseDto } from "@modules/user/presentation/http/dto/response/user/set-viewer-token.response.dto"
 import type { WhoamiResponseDto } from "@modules/user/presentation/http/dto/response/user/whoami.reponse.dto"
 import axios, { type AxiosRequestConfig } from "axios"
 
@@ -33,6 +36,11 @@ export const UserRequest = {
     config: AxiosRequestConfig
   ): Promise<{ data: { data: WhoamiResponseDto } }> =>
     axios.get(WhoamiAPI, config),
+  getSpecificUserByName: async (
+    body: GetSpecificUserByNameRequestDto
+  ): Promise<{
+    data: { data: GetSpecificUserByNameResponseDto }
+  }> => axios.get(`${GetSpecificUserByName}/${body.username}`),
   isValidUsername: async (
     body: IsValidUsernameRequestDto
   ): Promise<{ data: { data: boolean } }> =>

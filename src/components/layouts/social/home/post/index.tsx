@@ -57,20 +57,10 @@ export default function Post() {
         </PostHeaderContainer>
       </PostHeaderWrapper>
 
-      <ArticleCardWrapper href={"/social/article/1"}>
+      <ArticleCardWrapper href={"/social/post/1"}>
         <ArticleTitleWrapper>
           <ArticleTitleText>Road to Challenger</ArticleTitleText>
         </ArticleTitleWrapper>
-
-        <HashTagsWrapper>
-          <HashTagWrapper href={"/social/tags/anime"}>
-            <HashTagText>#Anime</HashTagText>
-          </HashTagWrapper>
-
-          <HashTagWrapper href={"/social/tags/something"}>
-            <HashTagText>#something</HashTagText>
-          </HashTagWrapper>
-        </HashTagsWrapper>
 
         <ArticleContentWrapper className="article-card-image__preview">
           <ArticleImageWrapper $count={2}>

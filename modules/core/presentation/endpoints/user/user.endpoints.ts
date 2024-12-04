@@ -6,6 +6,7 @@ import {
 
 // USING BACKEND API
 export const WhoamiAPI = `${BackendURL}/users/who-am-i`
+export const GetSpecificUserByName = `${BackendURL}/users/specific-user-by-name`
 export const IsValidUsernameAPI = `${BackendURL}/users/is-valid-username`
 export const UpdateUsernameAPI = `${BackendURL}/users/update-username`
 export const UpdateDisplayNameAPI = `${BackendURL}/users/update-display-name`

@@ -1,6 +1,10 @@
 import { faker } from "@faker-js/faker"
 import axios from "axios"
 import classNames, { type ArgumentArray } from "classnames"
+import {
+  formatDistanceToNowStrict,
+} from "date-fns"
+import locale from "date-fns/locale/en-US"
 
 import type { IFollowChannelsData, MainNavItem } from "@/types/common"
 import type { BooleanishEnum } from "@/types/common/zod/generic"
@@ -206,40 +210,43 @@ export const axiosHttpErrorHandler = (error: unknown) => {
   }
 
   if (axios.isAxiosError(error)) {
-    const response = error?.response;
-    const request = error?.request;
+    const response = error?.response
+    const request = error?.request
 
-    let code = "unknown_error";
-    let description = "An unknown error occurred.";
-    let status = 500;
-    const errors = [];
-    let message = error.message; // Default to the general error message from Axios
+    let code = "unknown_error"
+    let description = "An unknown error occurred."
+    let status = 500
+    const errors = []
+    let message = error.message // Default to the general error message from Axios
 
     if (error.code === "ERR_NETWORK") {
-      code = "network_error";
-      description = "Connection problems.";
-      message = description;
-      status = 503;
+      code = "network_error"
+      description = "Connection problems."
+      message = description
+      status = 503
     } else if (error.code === "ERR_CANCELED") {
-      code = "request_canceled";
-      description = "Connection canceled.";
-      message = description;
-      status = 499;
+      code = "request_canceled"
+      description = "Connection canceled."
+      message = description
+      status = 499
     }
 
     if (response) {
-      status = response.status;
-      code = response.status === 400 || response.status === 422 ? "invalid_data" : code;
-      code = response.status === 401 ? "invalid_token" : code;
-      code = response.status === 403 ? "permission_denied" : code;
-      code = response.status === 500 ? "server_error" : code;
-      description = response.statusText || description;
-      message = response.data?.message || message; // Pull the message from response data if available
+      status = response.status
+      code =
+        response.status === 400 || response.status === 422
+          ? "invalid_data"
+          : code
+      code = response.status === 401 ? "invalid_token" : code
+      code = response.status === 403 ? "permission_denied" : code
+      code = response.status === 500 ? "server_error" : code
+      description = response.statusText || description
+      message = response.data?.message || message // Pull the message from response data if available
     } else if (request) {
-      code = "no_response";
-      description = "The request was made, but no response was received.";
-      message = description;
-      status = 408;
+      code = "no_response"
+      description = "The request was made, but no response was received."
+      message = description
+      status = 408
     }
 
     return {
@@ -248,8 +255,8 @@ export const axiosHttpErrorHandler = (error: unknown) => {
       error: true,
       errors,
       status,
-      message
-    };
+      message,
+    }
   }
 
   // General error case
@@ -259,9 +266,9 @@ export const axiosHttpErrorHandler = (error: unknown) => {
     error: true,
     errors: [],
     status: 500,
-    message: error instanceof Error ? error.message : "Unknown error"
-  };
-};
+    message: error instanceof Error ? error.message : "Unknown error",
+  }
+}
 
 export function parserPage(page: string) {
   let pageNumber: number
@@ -305,4 +312,61 @@ export function generatePagination(activePage: number, totalPages: number) {
   }
 
   return pagination
+}
+
+const formatDistanceLocale = {
+  lessThanXSeconds: "just now",
+  xSeconds: "just now",
+  halfAMinute: "just now",
+  lessThanXMinutes: "{{count}}m",
+  xMinutes: "{{count}}m",
+  aboutXHours: "{{count}}h",
+  xHours: "{{count}}h",
+  xDays: "{{count}}d",
+  aboutXWeeks: "{{count}}w",
+  xWeeks: "{{count}}w",
+  aboutXMonths: "{{count}}m",
+  xMonths: "{{count}}m",
+  aboutXYears: "{{count}}y",
+  xYears: "{{count}}y",
+  overXYears: "{{count}}y",
+  almostXYears: "{{count}}y",
+}
+
+interface FormatDistanceOptions {
+  addSuffix?: boolean
+  comparison?: number
+}
+
+function formatDistance(
+  token: string,
+  count: number,
+  options?: FormatDistanceOptions
+): string {
+  options = options || {}
+
+  const result = formatDistanceLocale[
+    token as keyof typeof formatDistanceLocale
+  ].replace("{{count}}", count.toString())
+
+  if (options.addSuffix) {
+    if (options.comparison && options.comparison > 0) {
+      return "in " + result
+    } else {
+      if (result === "just now") return result
+      return result + " ago"
+    }
+  }
+
+  return result
+}
+
+export function formatTimeToNow(date: Date): string {
+  return formatDistanceToNowStrict(date, {
+    addSuffix: true,
+    locale: {
+      ...locale,
+      formatDistance,
+    },
+  })
 }
