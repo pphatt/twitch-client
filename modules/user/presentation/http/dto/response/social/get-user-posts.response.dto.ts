@@ -5,6 +5,7 @@ export type GetUserPostsResponseDto = {
     avatar: string
   }
   info: {
+    id: string
     createdAt: string
     visibility: string
     content: string

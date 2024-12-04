@@ -186,7 +186,9 @@ export default function ProfilePageComponent({
                               isUserProfile={isUserProfile}
                             />
 
-                            <ArticleCardWrapper href={"/social/post/1"}>
+                            <ArticleCardWrapper
+                              href={`/social/post/${info.id}`}
+                            >
                               <ArticleTitleWrapper>
                                 <ArticleTitleText>
                                   {info.content}
