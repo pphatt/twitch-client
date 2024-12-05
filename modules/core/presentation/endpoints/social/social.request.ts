@@ -77,6 +77,7 @@ export const NextSocial = {
   }> =>
     axios.get(`${NextGetPostDetailsAPI}/${body.postId}`, {
       headers: {
+        "Cache-Control": "no-cache",
         cookie: `access-token=${body.accessToken}`,
       },
     }),

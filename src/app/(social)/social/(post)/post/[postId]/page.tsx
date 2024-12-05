@@ -16,7 +16,7 @@ export default async function PostDetailsPage({
     redirect("/social")
   }
 
-  const {data} = await SocialRepository.getPostDetails({
+  const { data } = await SocialRepository.getPostDetails({
     postId,
     accessToken: accessToken,
   })

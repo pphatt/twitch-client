@@ -41,9 +41,11 @@ export const SocialRepository: ISocialRepository = {
 
   async getPostDetails(
     body: GetPostDetailsRequestDto & { accessToken: string }
-  ): Promise<{ post: PostDetailsDto }> {
+  ): Promise<{ data: GetPostDetailsResponseDto }> {
     try {
       const { data } = await NextSocial.getPostDetails(body)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       return Promise.resolve({ ...data })
     } catch (error) {
       return Promise.reject(error)

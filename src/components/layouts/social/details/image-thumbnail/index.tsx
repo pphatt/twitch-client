@@ -55,28 +55,33 @@ export function ImageThumbnail({ slides, options }: ImageThumbnailProps) {
 
   return (
     <>
-      <div className={styles["article-thumb-wrapper"]}>
-        <div className={styles["article-thumb-container"]} ref={emblaThumbsRef}>
-          <div className={styles["article-thumb-overlay"]}>
-            {slides.map(({ url }, index) => (
-              <Thumb
-                imageSrc={url}
-                key={index}
-                onClick={() => onThumbClick(index)}
-                selected={index === selectedIndex}
-                index={index}
-              />
-            ))}
+      {slides.length > 1 && (
+        <div className={styles["article-thumb-wrapper"]}>
+          <div
+            className={styles["article-thumb-container"]}
+            ref={emblaThumbsRef}
+          >
+            <div className={styles["article-thumb-overlay"]}>
+              {slides.map(({ url }, index) => (
+                <Thumb
+                  imageSrc={url}
+                  key={index}
+                  onClick={() => onThumbClick(index)}
+                  selected={index === selectedIndex}
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
-        </div>
 
-        <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
-        <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-      </div>
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+        </div>
+      )}
 
       <div
         className={styles["article-image-slider-wrapper"]}
-        ref={emblaMainRef}
+        ref={slides.length > 1 ? emblaMainRef : null}
       >
         <div className={styles["article-image-slider-container"]}>
           {slides.map(({ url }, index) => (
