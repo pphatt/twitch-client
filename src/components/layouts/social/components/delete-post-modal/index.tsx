@@ -1,5 +1,3 @@
-"use client"
-
 import * as React from "react"
 
 import { Button } from "@/components/ui/button"
@@ -54,7 +52,6 @@ export const DeletePostModal: React.FC<AlertModalProps> = ({
           $variant="destructive"
           onClick={() => {
             onConfirm()
-            // onClose()
           }}
         >
           {loading && (

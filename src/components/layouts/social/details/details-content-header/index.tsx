@@ -27,6 +27,8 @@ export default function DetailsContentHeader() {
                   </DetailsContentHeaderText>
                 </DetailsContentHeaderTextWrapper>
               </DetailsContentInnerHeaderOverlay>
+
+              <div></div>
             </DetailsContentInnerHeaderContainer>
           </DetailsContentInnerHeaderWrapper>
         </DetailsContentHeaderOverlay>

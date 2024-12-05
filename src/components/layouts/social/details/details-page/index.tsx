@@ -1,4 +1,5 @@
 import * as React from "react"
+import type { PostDetailsDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import FriendList from "src/components/layouts/social/components/friend-list"
 import FriendListItem from "src/components/layouts/social/components/friend-list-item"
 
@@ -7,7 +8,13 @@ import CommentsSection from "@/components/layouts/social/details/comments-sectio
 import DetailsContentHeader from "@/components/layouts/social/details/details-content-header"
 import styles from "@/components/layouts/social/details/details-page/style.module.scss"
 
-export default function DetailsPageComponent() {
+interface DetailsPageComponentProps {
+  post: PostDetailsDto
+}
+
+export default function DetailsPageComponent({
+  post,
+}: DetailsPageComponentProps) {
   return (
     <div className={styles["root-page-layout-wrapper"]}>
       <div className={styles["root-page-layout-container"]}>
@@ -17,7 +24,7 @@ export default function DetailsPageComponent() {
               <DetailsContentHeader />
 
               <div>
-                <PostContent />
+                <PostContent post={post} />
 
                 <CommentsSection />
               </div>

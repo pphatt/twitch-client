@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { formatTimeToNow } from "@/utils/common"
+import type { PostDetailsDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 
 import {
   ArticleContentDate,
@@ -20,22 +22,17 @@ import {
   ArticleContentHeaderWrapper,
   ArticleContentLayoutWrapper,
   ArticlePageBodyWrapper,
-  ArticleTitleText,
-  ArticleTitleWrapper,
-  HashTagsWrapper,
-  HashTagText,
-  HashTagWrapper,
 } from "@/components/layouts/social/details/article-content/style"
 import ArticleFooter from "@/components/layouts/social/details/article-foorer"
 import { ImageThumbnail } from "@/components/layouts/social/details/image-thumbnail"
 
-export default function PostContent() {
+interface PostContentProps {
+  post: PostDetailsDto
+}
+
+export default function PostContent({ post }: PostContentProps) {
   return (
     <ArticlePageBodyWrapper className="article-page__body">
-      <ArticleTitleWrapper>
-        <ArticleTitleText>NextJs Auth Flow with middleware</ArticleTitleText>
-      </ArticleTitleWrapper>
-
       <ArticleContentHeaderLayoutWrapper>
         <ArticleContentHeaderLayoutContainer>
           <ArticleContentHeaderLayoutOverlay>
@@ -46,7 +43,9 @@ export default function PostContent() {
                     <ArticleContentHeaderUserAvatarContainer>
                       <ArticleContentHeaderUserAvatar
                         src={
-                          "https://s120-ava-talk.zadn.vn/d/7/5/d/4/120/aae4fe2e565d553d5f325f2aa0ef2cf1.jpg"
+                          post.user.avatar !== ""
+                            ? post.user.avatar
+                            : "/avatar/user-default-picture.png"
                         }
                       />
                     </ArticleContentHeaderUserAvatarContainer>
@@ -56,12 +55,14 @@ export default function PostContent() {
                     <ArticleContentHeaderUsernameWrapper>
                       <ArticleContentHeaderUsernameContainer href={"/social"}>
                         <ArticleContentHeaderUsernameText>
-                          Đặng Viễn Hào
+                          {post.user.username}
                         </ArticleContentHeaderUsernameText>
                       </ArticleContentHeaderUsernameContainer>
                     </ArticleContentHeaderUsernameWrapper>
 
-                    <ArticleContentDate>29/11</ArticleContentDate>
+                    <ArticleContentDate>
+                      {formatTimeToNow(post.info.createdAt)}
+                    </ArticleContentDate>
                   </ArticleContentHeaderInfoWrapper>
                 </ArticleContentHeaderOverlay>
               </ArticleContentHeaderContainer>
@@ -72,34 +73,12 @@ export default function PostContent() {
 
       <ArticleContentLayoutWrapper>
         <ArticleContentDescriptionWrapper>
-          Just update new profile picture while travel to Australia.
+          {post.info.content}
         </ArticleContentDescriptionWrapper>
 
-        <HashTagsWrapper>
-          <HashTagWrapper href={"/social/tags/anime"}>
-            <HashTagText>#Programing</HashTagText>
-          </HashTagWrapper>
-
-          <HashTagWrapper href={"/social/tags/something"}>
-            <HashTagText>#Myself</HashTagText>
-          </HashTagWrapper>
-        </HashTagsWrapper>
-
-        <ImageThumbnail
-          slides={[
-            { src: "/article-image/auth-flow.png" },
-            {
-              src: "https://s120-ava-talk.zadn.vn/d/7/5/d/4/120/aae4fe2e565d553d5f325f2aa0ef2cf1.jpg",
-            },
-            {
-              src: "https://res.cloudinary.com/di6qiyj4o/image/upload/v1732858709/image/user/avatar/2ba90741-7164-46e5-a9bf-2df4d21471dd/hfwrryuxyudij9wpeuy9.png",
-            },
-            { src: "/article-image/auth-flow.png" },
-            { src: "/article-image/auth-flow.png" },
-            { src: "/article-image/auth-flow.png" },
-            { src: "/article-image/auth-flow.png" },
-          ]}
-        />
+        {post.info.images.length > 0 && (
+          <ImageThumbnail slides={post.info.images} />
+        )}
       </ArticleContentLayoutWrapper>
 
       <ArticleFooter />

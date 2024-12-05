@@ -11,7 +11,7 @@ import useEmblaCarousel from "embla-carousel-react"
 import styles from "@/components/layouts/social/details/image-thumbnail/style.module.scss"
 
 type ImageThumbnailProps = {
-  slides: { src: string }[]
+  slides: { url: string }[]
   options?: EmblaOptionsType
 }
 
@@ -58,9 +58,9 @@ export function ImageThumbnail({ slides, options }: ImageThumbnailProps) {
       <div className={styles["article-thumb-wrapper"]}>
         <div className={styles["article-thumb-container"]} ref={emblaThumbsRef}>
           <div className={styles["article-thumb-overlay"]}>
-            {slides.map(({ src }, index) => (
+            {slides.map(({ url }, index) => (
               <Thumb
-                imageSrc={src}
+                imageSrc={url}
                 key={index}
                 onClick={() => onThumbClick(index)}
                 selected={index === selectedIndex}
@@ -79,7 +79,7 @@ export function ImageThumbnail({ slides, options }: ImageThumbnailProps) {
         ref={emblaMainRef}
       >
         <div className={styles["article-image-slider-container"]}>
-          {slides.map(({ src }, index) => (
+          {slides.map(({ url }, index) => (
             <div className={styles["article-image-wrapper"]} key={index}>
               <div
                 data-selected={index === selectedIndex}
@@ -90,7 +90,7 @@ export function ImageThumbnail({ slides, options }: ImageThumbnailProps) {
                     [`${styles["article-image-selected"]}`]:
                       index === selectedIndex,
                   })}
-                  src={src}
+                  src={url}
                   alt={""}
                 />
               </div>
