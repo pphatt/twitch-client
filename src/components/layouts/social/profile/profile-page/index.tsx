@@ -342,7 +342,7 @@ export default function ProfilePageComponent({
               <div className={styles["page-content-right-card-body-wrapper"]}>
                 <div className={styles["profile-information-wrapper"]}>
                   <Icons.idCard />
-                  <p>Account ID: 12345678910</p>
+                  <p>Account ID: {user.id}</p>
                 </div>
               </div>
             </div>

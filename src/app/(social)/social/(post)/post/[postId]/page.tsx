@@ -4,7 +4,7 @@ import { redirect } from "next/navigation"
 import { SocialRepository } from "@modules/user/infrastructure/repository/social.repository"
 import DetailsPageComponent from "src/components/layouts/social/details/details-page"
 
-export default async function ArticleDetailsPage({
+export default async function PostDetailsPage({
   params,
 }: {
   params: { postId: string }

@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     )
 
     return Response.json(
-      {},
+      { message: "Delete post successfully" },
       {
         status: 200,
       }
