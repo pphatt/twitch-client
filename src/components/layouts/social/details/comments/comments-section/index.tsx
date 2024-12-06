@@ -12,7 +12,12 @@ interface CommentsSectionProps {
 }
 
 function flattenReplies(comments: PostCommentType[]) {
-  const flattened = []
+  const flattened: {
+    id: string
+    user: { id: string; username: string; image: { _url: string } }
+    content: string
+    created: Date
+  }[] = []
 
   function extractReplies(comment: PostCommentType) {
     const { replies, ...rest } = comment

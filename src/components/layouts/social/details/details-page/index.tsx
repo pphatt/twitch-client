@@ -8,15 +8,20 @@ import PostContent from "src/components/layouts/social/details/post-content"
 
 import DetailsContentHeader from "@/components/layouts/social/details/details-content-header"
 import styles from "@/components/layouts/social/details/details-page/style.module.scss"
+import EmptyPostScreen from "@/components/layouts/social/details/empty-post-screen"
 
 interface DetailsPageComponentProps {
   post: PostDetailsDto
   comments: PostComment[]
+  isUserPost: boolean
+  isPostDelete: boolean
 }
 
 export default function DetailsPageComponent({
   post,
   comments,
+  isUserPost,
+  isPostDelete,
 }: DetailsPageComponentProps) {
   return (
     <div className={styles["root-page-layout-wrapper"]}>
@@ -24,12 +29,25 @@ export default function DetailsPageComponent({
         <div className={styles["root-page-layout-overlay"]}>
           <div className={styles["root-page-content-wrapper"]}>
             <div className={styles["root-page-content-container"]}>
-              <DetailsContentHeader />
+              <DetailsContentHeader
+                postId={post.info.id}
+                isUserPost={isUserPost}
+                isPostDeleted={isPostDelete}
+              />
 
               <div>
-                <PostContent post={post} commentsCount={comments.length} />
+                {isPostDelete ? (
+                  <EmptyPostScreen />
+                ) : (
+                  <>
+                    <PostContent post={post} commentsCount={comments.length} />
 
-                <CommentsSection postId={post.info.id} comments={comments} />
+                    <CommentsSection
+                      postId={post.info.id}
+                      comments={comments}
+                    />
+                  </>
+                )}
               </div>
             </div>
           </div>

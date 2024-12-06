@@ -4,6 +4,8 @@ import { redirect } from "next/navigation"
 import { Social } from "@modules/core/presentation/endpoints/social/social.request"
 import { SocialRepository } from "@modules/user/infrastructure/repository/social.repository"
 import DetailsPageComponent from "src/components/layouts/social/details/details-page"
+import {jwtDecode} from "jwt-decode";
+import type {TokenPayload} from "@modules/user/application/command/auth/jwt/token.payload";
 
 export default async function PostDetailsPage({
   params,
@@ -31,6 +33,16 @@ export default async function PostDetailsPage({
     accessToken,
   })
 
+  let isUserPost = false
+
+  if (accessToken) {
+    const decoded = jwtDecode<TokenPayload>(accessToken)
+
+    if (decoded.sub === data.post.user.id) {
+      isUserPost = true
+    }
+  }
+
   await Social.viewPost(
     { postId },
     {
@@ -44,6 +56,8 @@ export default async function PostDetailsPage({
     <DetailsPageComponent
       post={data.post}
       comments={postComments.data.comments}
+      isUserPost={isUserPost}
+      isPostDelete={false}
     />
   )
 }

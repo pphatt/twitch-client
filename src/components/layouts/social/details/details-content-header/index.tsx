@@ -12,8 +12,19 @@ import {
   DetailsContentInnerHeaderOverlay,
   DetailsContentInnerHeaderWrapper,
 } from "@/components/layouts/social/details/details-content-header/style"
+import PostAction from "@/components/layouts/social/details/post-action"
 
-export default function DetailsContentHeader() {
+interface DetailsContentHeaderProps {
+  postId: string
+  isUserPost: boolean
+  isPostDeleted: boolean
+}
+
+export default function DetailsContentHeader({
+  postId,
+  isUserPost,
+  isPostDeleted,
+}: DetailsContentHeaderProps) {
   return (
     <DetailsContentHeaderWrapper>
       <DetailsContentHeaderContainer>
@@ -28,7 +39,7 @@ export default function DetailsContentHeader() {
                 </DetailsContentHeaderTextWrapper>
               </DetailsContentInnerHeaderOverlay>
 
-              <div></div>
+              {isUserPost && !isPostDeleted && <PostAction postId={postId} />}
             </DetailsContentInnerHeaderContainer>
           </DetailsContentInnerHeaderWrapper>
         </DetailsContentHeaderOverlay>
