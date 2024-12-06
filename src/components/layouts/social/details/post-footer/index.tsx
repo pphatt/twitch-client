@@ -16,6 +16,7 @@ interface PostFooterProps {
   postId: string
   viewCount: number
   commentsCount: number
+  currentUserReactionType: string
 
   sortedReactions: GetPostReactionResponseDto[]
 }
@@ -24,6 +25,7 @@ export default function PostFooter({
   postId,
   viewCount,
   commentsCount,
+  currentUserReactionType,
   sortedReactions,
 }: PostFooterProps) {
   return (
@@ -37,11 +39,10 @@ export default function PostFooter({
 
       <div className={styles["article-footer-reaction-group"]}>
         {sortedReactions.map(({ type, reactionCount, users }, index) => (
-          <HoverCard.Root openDelay={200} closeDelay={0}>
+          <HoverCard.Root key={index} openDelay={200} closeDelay={0}>
             <HoverCard.Trigger asChild>
               <div
                 className={styles["article-footer-reaction-item-wrapper"]}
-                key={index}
               >
                 {type === EReactionType.LIKE && (
                   <img src={"/reaction/like.svg"} alt={""} />
@@ -75,7 +76,12 @@ export default function PostFooter({
             >
               <div className={styles["user-reaction-container-container"]}>
                 {users.map(({ username }, index) => (
-                  <div key={index} className={styles["user-reaction-row-wrapper"]}>{username}</div>
+                  <div
+                    key={index}
+                    className={styles["user-reaction-row-wrapper"]}
+                  >
+                    {username}
+                  </div>
                 ))}
               </div>
             </HoverCard.Content>
@@ -87,6 +93,7 @@ export default function PostFooter({
         <div className={styles["article-footer-left-group"]}>
           <ReactionButton
             postId={postId}
+            currentUserReactionType={currentUserReactionType}
             reactionCount={sortedReactions.reduce(
               (total, reaction) => total + reaction.reactionCount,
               0

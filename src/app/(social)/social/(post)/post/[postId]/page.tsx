@@ -76,6 +76,7 @@ export default async function PostDetailsPage({
   const sortedReactions = await getSortedReactions(postId, accessToken)
 
   let isUserPost = false
+  let currentUserReactionType = ""
 
   if (accessToken) {
     const decoded = jwtDecode<TokenPayload>(accessToken)
@@ -83,16 +84,12 @@ export default async function PostDetailsPage({
     if (decoded.sub === data.post.user.id) {
       isUserPost = true
     }
-  }
 
-  await Social.viewPost(
-    { postId },
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }
-  )
+    currentUserReactionType =
+      sortedReactions.find((reaction) =>
+        reaction.users.some((user) => user.id === decoded.sub)
+      )?.type ?? ""
+  }
 
   return (
     <DetailsPageComponent
@@ -100,7 +97,9 @@ export default async function PostDetailsPage({
       comments={postComments.data.comments}
       sortedReactions={sortedReactions}
       isUserPost={isUserPost}
+      currentUserReactionType={currentUserReactionType}
       isPostDelete={false}
+      accessToken={accessToken}
     />
   )
 }

@@ -16,6 +16,7 @@ import styles from "@/components/layouts/social/details/reaction-button/style.mo
 interface ReactionButtonProps {
   postId: string
   reactionCount: number
+  currentUserReactionType: string
 }
 
 export enum EReactionType {
@@ -26,7 +27,11 @@ export enum EReactionType {
   ANGRY = "ANGRY",
 }
 
-export default function ReactionButton({ postId, reactionCount }: ReactionButtonProps) {
+export default function ReactionButton({
+  postId,
+  reactionCount,
+  currentUserReactionType,
+}: ReactionButtonProps) {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
@@ -60,9 +65,38 @@ export default function ReactionButton({ postId, reactionCount }: ReactionButton
       closeDelay={300}
     >
       <HoverCard.Trigger asChild>
-        <div className={styles["reaction-btn-wrapper"]}>
+        <div
+          className={styles["reaction-btn-wrapper"]}
+          onClick={() => {
+            if (currentUserReactionType !== "") {
+              handleReaction(currentUserReactionType as EReactionType)
+            } else {
+              handleReaction(EReactionType.LIKE)
+            }
+          }}
+        >
           <div className={styles["reaction-btn-container"]}>
-            <Icons.thumbUp />
+            {currentUserReactionType === "LIKE" && (
+              <img src={"/reaction/like.svg"} alt={""} />
+            )}
+
+            {currentUserReactionType === "LOVE" && (
+              <img src={"/reaction/love.svg"} alt={""} />
+            )}
+
+            {currentUserReactionType === "HAHA" && (
+              <img src={"/reaction/haha.svg"} alt={""} />
+            )}
+
+            {currentUserReactionType === "SAD" && (
+              <img src={"/reaction/sad.svg"} alt={""} />
+            )}
+
+            {currentUserReactionType === "ANGRY" && (
+              <img src={"/reaction/angry.svg"} alt={""} />
+            )}
+
+            {currentUserReactionType === "" && <Icons.thumbUp />}
 
             <span>{reactionCount}</span>
           </div>
@@ -99,7 +133,7 @@ export default function ReactionButton({ postId, reactionCount }: ReactionButton
                   className={styles["reaction-item-container"]}
                   onClick={() => handleReaction(EReactionType.LOVE)}
                 >
-                  <img src={"/reaction/love.svg"} alt={""}/>
+                  <img src={"/reaction/love.svg"} alt={""} />
                 </Button>
               </Tooltip.Trigger>
 
@@ -115,7 +149,7 @@ export default function ReactionButton({ postId, reactionCount }: ReactionButton
                   className={styles["reaction-item-container"]}
                   onClick={() => handleReaction(EReactionType.HAHA)}
                 >
-                  <img src={"/reaction/haha.svg"} alt={""}/>
+                  <img src={"/reaction/haha.svg"} alt={""} />
                 </Button>
               </Tooltip.Trigger>
 
@@ -131,7 +165,7 @@ export default function ReactionButton({ postId, reactionCount }: ReactionButton
                   className={styles["reaction-item-container"]}
                   onClick={() => handleReaction(EReactionType.SAD)}
                 >
-                  <img src={"/reaction/sad.svg"} alt={""}/>
+                  <img src={"/reaction/sad.svg"} alt={""} />
                 </Button>
               </Tooltip.Trigger>
 
@@ -147,7 +181,7 @@ export default function ReactionButton({ postId, reactionCount }: ReactionButton
                   className={styles["reaction-item-container"]}
                   onClick={() => handleReaction(EReactionType.ANGRY)}
                 >
-                  <img src={"/reaction/angry.svg"} alt={""}/>
+                  <img src={"/reaction/angry.svg"} alt={""} />
                 </Button>
               </Tooltip.Trigger>
 

@@ -3,6 +3,7 @@
 import * as React from "react"
 import { formatTimeToNow } from "@/utils/common"
 import type { PostDetailsDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
+import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import PostFooter from "src/components/layouts/social/details/post-footer"
 
 import { ImageThumbnail } from "@/components/layouts/social/details/image-thumbnail"
@@ -25,17 +26,20 @@ import {
   ArticleContentLayoutWrapper,
   ArticlePageBodyWrapper,
 } from "@/components/layouts/social/details/post-content/style"
-import type {
-  GetPostReactionResponseDto
-} from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto";
 
 interface PostContentProps {
   post: PostDetailsDto
   sortedReactions: GetPostReactionResponseDto[]
   commentsCount: number
+  currentUserReactionType: string
 }
 
-export default function PostContent({ post, sortedReactions, commentsCount }: PostContentProps) {
+export default function PostContent({
+  post,
+  sortedReactions,
+  commentsCount,
+  currentUserReactionType,
+}: PostContentProps) {
   return (
     <ArticlePageBodyWrapper className="article-page__body">
       <ArticleContentHeaderLayoutWrapper>
@@ -91,6 +95,7 @@ export default function PostContent({ post, sortedReactions, commentsCount }: Po
         sortedReactions={sortedReactions}
         viewCount={post.info.viewCount}
         commentsCount={commentsCount}
+        currentUserReactionType={currentUserReactionType}
       />
     </ArticlePageBodyWrapper>
   )

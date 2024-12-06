@@ -35,6 +35,7 @@ const getHash = (source, length) =>
 
 /** @type {import("next").NextConfig} */
 let nextConfig = {
+  reactStrictMode: false,
   images: {
     domains: ["res.cloudinary.com"],
   },

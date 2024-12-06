@@ -1,15 +1,11 @@
 import * as React from "react"
-import dynamic from "next/dynamic"
 import { cookies } from "next/headers"
 import { Social } from "@modules/core/presentation/endpoints/social/social.request"
 import { UserRequest } from "@modules/core/presentation/endpoints/user/user.request"
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import { jwtDecode } from "jwt-decode"
 
-const ProfilePageComponent = dynamic(
-  () => import("@/components/layouts/social/profile/profile-page"),
-  { ssr: false }
-)
+import ProfilePageComponent from "@/components/layouts/social/profile/profile-page"
 
 export default async function SocialProfile({
   params,
