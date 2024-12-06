@@ -34,9 +34,7 @@ export default function ChannelHeader({
   const username = channel.userName
 
   const participants = useParticipants()
-  const participant = useRemoteParticipant(
-    channel.userId
-  )
+  const participant = useRemoteParticipant(channel.userId)
 
   const isLive = !!participant
   const participantCount =
@@ -81,7 +79,9 @@ export default function ChannelHeader({
                     }
                   />
 
-                  <FollowSection />
+                  {identity !== `host-${channel.userId}` && (
+                    <FollowSection destinationUserId={channel.userId} />
+                  )}
                 </div>
 
                 <LiveInfoWrapper>

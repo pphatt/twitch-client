@@ -1,4 +1,8 @@
 import * as React from "react"
+import { useRouter } from "next/navigation"
+import { axiosHttpErrorHandler } from "@/utils/common"
+import { SocialRepository } from "@modules/user/infrastructure/repository/social.repository"
+import { toast } from "sonner"
 
 import { Icons } from "@/components/icons"
 import {
@@ -17,8 +21,39 @@ import {
   FollowText,
 } from "@/components/stream/information/header/follow-section/style"
 
-export default function FollowSection() {
+interface FollowSectionProps {
+  destinationUserId: string
+}
+
+export default function FollowSection({
+  destinationUserId,
+}: FollowSectionProps) {
   const [hover, setHover] = React.useState<boolean>(false)
+
+  const router = useRouter()
+  const [isPending, startTransition] = React.useTransition()
+
+  const onFollowSubmit = () => {
+    if (isPending) return
+
+    startTransition(async () => {
+      try {
+        await SocialRepository.followUser({ destinationUserId })
+
+        router.refresh()
+      } catch (err) {
+        // catchError(err)
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        console.log(error)
+      }
+    })
+  }
 
   return (
     <ChannelActionWrapper>
@@ -36,6 +71,8 @@ export default function FollowSection() {
                   aria-label="Follow"
                   data-a-target="follow-button"
                   data-test-selector="follow-button"
+                  disabled={isPending}
+                  onClick={onFollowSubmit}
                   onMouseEnter={() => setHover(true)}
                   onMouseLeave={() => setHover(false)}
                 >

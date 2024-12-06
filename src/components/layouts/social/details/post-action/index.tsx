@@ -29,6 +29,8 @@ export default function PostAction({ postId }: PostActionProps) {
   const [isPending, startTransition] = React.useTransition()
 
   const onConfirm = () => {
+    if (isPending) return
+
     startTransition(async () => {
       try {
         await SocialRepository.deletePost({ postId })

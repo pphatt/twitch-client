@@ -1,5 +1,6 @@
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
+import type { FollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/follow-user.request.dto"
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
 import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
 import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
@@ -25,4 +26,6 @@ export interface ISocialRepository {
   getPostDetails: (
     body: GetPostDetailsRequestDto & { accessToken: string }
   ) => Promise<{ data: GetPostDetailsResponseDto }>
+
+  followUser: (body: FollowUserRequestDto) => Promise<void>
 }

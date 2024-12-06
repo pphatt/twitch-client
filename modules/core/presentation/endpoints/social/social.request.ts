@@ -1,5 +1,6 @@
 import {
   CreatePostCommentsAPI,
+  FollowUserAPI,
   GetAllUserPostsAPI,
   GetPostCommentsAPI,
   GetPostDetailsAPI,
@@ -7,6 +8,7 @@ import {
   NextCreatePostAPI,
   NextCreatePostCommentsAPI,
   NextDeletePostAPI,
+  NextFollowUserAPI,
   NextGetPostDetailsAPI,
   NextGetPostReactionAPI,
   NextReactToPostAPI,
@@ -17,6 +19,7 @@ import {
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
+import { FollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/follow-user.request.dto"
 import type { GetPostCommentsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-all-comments.request.dto"
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
 import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
@@ -25,7 +28,7 @@ import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/req
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
-import { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
+import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
 
@@ -103,6 +106,12 @@ export const Social = {
     config: AxiosRequestConfig
   ): Promise<{ data: { data: GetPostDetailsResponseDto } }> =>
     axios.get(`${GetPostDetailsAPI}/${body.postId}`, config),
+
+  followUser: async (
+    body: FollowUserRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> =>
+    axios.post(`${FollowUserAPI}/${body.destinationUserId}`, {}, config),
 }
 
 export const NextSocial = {
@@ -136,7 +145,7 @@ export const NextSocial = {
   getPostDetails: async (
     body: GetPostDetailsRequestDto & { accessToken: string }
   ): Promise<{
-    data: GetPostDetailsResponseDto
+    data: { data: GetPostDetailsResponseDto }
   }> =>
     axios.get(`${NextGetPostDetailsAPI}/${body.postId}`, {
       headers: {
@@ -144,4 +153,7 @@ export const NextSocial = {
         cookie: `access-token=${body.accessToken}`,
       },
     }),
+
+  followUser: async (body: FollowUserRequestDto): Promise<void> =>
+    axios.post(NextFollowUserAPI, body),
 }
