@@ -11,10 +11,10 @@ import {
   NextFollowUserAPI,
   NextGetPostDetailsAPI,
   NextGetPostReactionAPI,
-  NextReactToPostAPI,
+  NextReactToPostAPI, NextUnFollowUserAPI,
   NextUpdatePostAPI,
   PostAPI,
-  ReactToPostAPI,
+  ReactToPostAPI, UnFollowUserAPI,
   ViewPostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
@@ -31,6 +31,7 @@ import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
+import {UnFollowUserRequestDto} from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto";
 
 export const Social = {
   createPost: async (
@@ -112,6 +113,12 @@ export const Social = {
     config: AxiosRequestConfig
   ): Promise<void> =>
     axios.post(`${FollowUserAPI}/${body.destinationUserId}`, {}, config),
+
+  unFollowUser: async (
+    body: UnFollowUserRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> =>
+    axios.post(`${UnFollowUserAPI}/${body.destinationUserId}`, {}, config),
 }
 
 export const NextSocial = {
@@ -156,4 +163,7 @@ export const NextSocial = {
 
   followUser: async (body: FollowUserRequestDto): Promise<void> =>
     axios.post(NextFollowUserAPI, body),
+
+  unFollowUser: async (body: UnFollowUserRequestDto): Promise<void> =>
+    axios.post(NextUnFollowUserAPI, body),
 }

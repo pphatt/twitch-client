@@ -11,6 +11,7 @@ export const CreatePostCommentsAPI = `${BackendURL}/posts/comments`
 export const GetPostCommentsAPI = `${BackendURL}/posts/all/comments`
 
 export const FollowUserAPI = `${BackendURL}/followers/follow`
+export const UnFollowUserAPI = `${BackendURL}/followers/un-follow`
 
 // USING NEXT API
 export const NextCreatePostAPI = `${AppURL}/api/social/create-post`
@@ -22,3 +23,4 @@ export const NextGetPostDetailsAPI = `${AppURL}/api/social/post/details`
 export const NextCreatePostCommentsAPI = `${AppURL}/api/social/post/create-comment`
 
 export const NextFollowUserAPI = `${AppURL}/api/social/follow`
+export const NextUnFollowUserAPI = `${AppURL}/api/social/un-follow`
