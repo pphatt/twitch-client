@@ -30,12 +30,12 @@ export default function PostFooter({
 }: PostFooterProps) {
   return (
     <div className={styles["article-footer-layout-wrapper"]}>
-      <ArticleContentFooterContainer>
-        <ArticleViewCountWrapper>
-          <Icons.view />
-          <span>{viewCount}</span>
-        </ArticleViewCountWrapper>
-      </ArticleContentFooterContainer>
+      {/*<ArticleContentFooterContainer>*/}
+      {/*  <ArticleViewCountWrapper>*/}
+      {/*    <Icons.view />*/}
+      {/*    <span>{viewCount}</span>*/}
+      {/*  </ArticleViewCountWrapper>*/}
+      {/*</ArticleContentFooterContainer>*/}
 
       <div className={styles["article-footer-reaction-group"]}>
         {sortedReactions.map(({ type, reactionCount, users }, index) => (

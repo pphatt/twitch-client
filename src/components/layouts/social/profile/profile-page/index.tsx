@@ -258,11 +258,6 @@ export default function ProfilePageComponent({
 
                             <ArticleContentFooterWrapper>
                               <ArticleContentFooterContainer>
-                                <ArticleViewCountWrapper>
-                                  <Icons.view />
-                                  <span>{info.viewCount}</span>
-                                </ArticleViewCountWrapper>
-
                                 <ArticleCommentCountWrapper>
                                   <ArticleCommentCountContainer
                                     href={`/social/post/${info.id}`}
@@ -271,6 +266,11 @@ export default function ProfilePageComponent({
                                     <span>0</span>
                                   </ArticleCommentCountContainer>
                                 </ArticleCommentCountWrapper>
+
+                                {/*<ArticleViewCountWrapper>*/}
+                                {/*  <Icons.view />*/}
+                                {/*  <span>{info.viewCount}</span>*/}
+                                {/*</ArticleViewCountWrapper>*/}
                               </ArticleContentFooterContainer>
                             </ArticleContentFooterWrapper>
                           </div>

@@ -96,6 +96,7 @@ export default function DetailsPageComponent({
                               : "/avatar/user-default-picture.png"
                           }
                           name={post.user.username}
+                          slug={`/social/profile/${post.user.username}`}
                         />
                       </div>
                     </div>

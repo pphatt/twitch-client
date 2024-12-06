@@ -48,7 +48,7 @@ export default function PostContent({
             <ArticleContentHeaderWrapper>
               <ArticleContentHeaderContainer>
                 <ArticleContentHeaderOverlay>
-                  <ArticleContentHeaderUserAvatarWrapper href={"/social"}>
+                  <ArticleContentHeaderUserAvatarWrapper href={`/social/profile/${post.user.username}`}>
                     <ArticleContentHeaderUserAvatarContainer>
                       <ArticleContentHeaderUserAvatar
                         src={
@@ -62,7 +62,7 @@ export default function PostContent({
 
                   <ArticleContentHeaderInfoWrapper>
                     <ArticleContentHeaderUsernameWrapper>
-                      <ArticleContentHeaderUsernameContainer href={"/social"}>
+                      <ArticleContentHeaderUsernameContainer href={`/social/profile/${post.user.username}`}>
                         <ArticleContentHeaderUsernameText>
                           {post.user.username}
                         </ArticleContentHeaderUsernameText>

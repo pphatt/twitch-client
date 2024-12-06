@@ -22,16 +22,17 @@ import {
 interface FriendListItemProps {
   image: string
   name: string
+  slug: string
 }
 
-export default function FriendListItem({ image, name }: FriendListItemProps) {
+export default function FriendListItem({ image, name, slug }: FriendListItemProps) {
   return (
     <RecommendFriendItemWrapper>
       <RecommendFriendItemContainer>
         <RecommendFriendItemOverlay>
           <div className="user">
             <UserItemWrapper>
-              <UserItemContainer href={"/social/profile/1"}>
+              <UserItemContainer href={slug}>
                 <UserAvatarImageWrapper>
                   <UserAvatarImage src={image} alt={""} />
                 </UserAvatarImageWrapper>
@@ -39,7 +40,7 @@ export default function FriendListItem({ image, name }: FriendListItemProps) {
 
               <UserNameWrapper>
                 <UserNameContainer>
-                  <UserNameOverlay href={"/social/profile/1"}>
+                  <UserNameOverlay href={slug}>
                     <UserNameText>{name}</UserNameText>
                   </UserNameOverlay>
                 </UserNameContainer>

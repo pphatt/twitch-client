@@ -300,8 +300,9 @@ export const ArticleViewCountWrapper = styled.div`
 
 export const ArticleCommentCountWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+  flex: 1;
 
   width: 84px;
 

@@ -27,11 +27,13 @@ export default function FriendList() {
               "https://s120-ava-talk.zadn.vn/d/7/5/d/4/120/aae4fe2e565d553d5f325f2aa0ef2cf1.jpg"
             }
             name={"Đặng Viễn Hào"}
+            slug={""}
           />
 
           <FriendListItem
             image={"/avatar/misanthrope-avatar.png"}
             name={"Lê Nguyễn Quốc Khánh"}
+            slug={""}
           />
 
           <FriendListItem
@@ -39,6 +41,7 @@ export default function FriendList() {
               "https://cover-talk.zadn.vn/8/5/0/9/3/f9f532eea9f2f21917b6dc95d3ee3e11.jpg"
             }
             name={"DuyKa"}
+            slug={""}
           />
         </RecommendFriendContentContainer>
       </RecommendFriendContentWrapper>
