@@ -8,9 +8,11 @@ import { ContentEditable } from "@lexical/react/LexicalContentEditable"
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary"
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin"
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin"
+import { SocialRepository } from "@modules/user/infrastructure/repository/social.repository"
 import { type EditorState } from "lexical"
+import { toast } from "sonner"
 
-import styles from "@/components/layouts/social/details/comment-input/style.module.scss"
+import styles from "@/components/layouts/social/details/comments/comment-input/style.module.scss"
 import { OnChangePlugin } from "@/components/lexical/onchange-plugin"
 import { SubmitPlugin } from "@/components/lexical/submit-plugin"
 import Theme from "@/components/lexical/theme"
@@ -41,14 +43,10 @@ const editorConfig = {
 }
 
 interface CommentsInputProps {
-  articleId: string
-  replyToId?: string
+  postId: string
 }
 
-export default function CommentsInput({
-  articleId,
-  replyToId,
-}: CommentsInputProps) {
+export default function CommentsInput({ postId }: CommentsInputProps) {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
@@ -60,7 +58,16 @@ export default function CommentsInput({
   }, [])
 
   function onSubmit(callback: () => void) {
-    console.log(editorState)
+    startTransition(async () => {
+      try {
+        await SocialRepository.createComment({ postId, content: editorState })
+
+        router.refresh()
+        callback()
+      } catch (e) {
+        toast.error("Something went wrong. Try again!")
+      }
+    })
   }
 
   return (

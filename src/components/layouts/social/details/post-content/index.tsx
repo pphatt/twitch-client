@@ -3,7 +3,9 @@
 import * as React from "react"
 import { formatTimeToNow } from "@/utils/common"
 import type { PostDetailsDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
+import PostFooter from "src/components/layouts/social/details/post-footer"
 
+import { ImageThumbnail } from "@/components/layouts/social/details/image-thumbnail"
 import {
   ArticleContentDate,
   ArticleContentDescriptionWrapper,
@@ -22,15 +24,14 @@ import {
   ArticleContentHeaderWrapper,
   ArticleContentLayoutWrapper,
   ArticlePageBodyWrapper,
-} from "@/components/layouts/social/details/article-content/style"
-import ArticleFooter from "@/components/layouts/social/details/article-foorer"
-import { ImageThumbnail } from "@/components/layouts/social/details/image-thumbnail"
+} from "@/components/layouts/social/details/post-content/style"
 
 interface PostContentProps {
   post: PostDetailsDto
+  commentsCount: number
 }
 
-export default function PostContent({ post }: PostContentProps) {
+export default function PostContent({ post, commentsCount }: PostContentProps) {
   return (
     <ArticlePageBodyWrapper className="article-page__body">
       <ArticleContentHeaderLayoutWrapper>
@@ -81,7 +82,10 @@ export default function PostContent({ post }: PostContentProps) {
         )}
       </ArticleContentLayoutWrapper>
 
-      <ArticleFooter />
+      <PostFooter
+        viewCount={post.info.viewCount}
+        commentsCount={commentsCount}
+      />
     </ArticlePageBodyWrapper>
   )
 }

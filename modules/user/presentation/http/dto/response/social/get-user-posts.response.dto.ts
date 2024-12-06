@@ -15,6 +15,7 @@ export type GetUserPostsResponseDto = {
       },
     ]
     isShared: true
-    isTagged: true
+    isTagged: true,
+    viewCount: number
   }
 }

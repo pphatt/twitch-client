@@ -11,11 +11,16 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver.hooks"
 import { Icons } from "@/components/icons"
 import {
   ArticleCardWrapper,
+  ArticleCommentCountContainer,
+  ArticleCommentCountWrapper,
+  ArticleContentFooterContainer,
+  ArticleContentFooterWrapper,
   ArticleContentWrapper,
   ArticleImage,
   ArticleImageWrapper,
   ArticleTitleText,
   ArticleTitleWrapper,
+  ArticleViewCountWrapper,
   LeftImageContainer,
   LeftImageWrapper,
 } from "@/components/layouts/social/home/post/style"
@@ -250,6 +255,24 @@ export default function ProfilePageComponent({
                                     ))}
                               </ArticleContentWrapper>
                             </ArticleCardWrapper>
+
+                            <ArticleContentFooterWrapper>
+                              <ArticleContentFooterContainer>
+                                <ArticleViewCountWrapper>
+                                  <Icons.view />
+                                  <span>{info.viewCount}</span>
+                                </ArticleViewCountWrapper>
+
+                                <ArticleCommentCountWrapper>
+                                  <ArticleCommentCountContainer
+                                    href={`/social/post/${info.id}`}
+                                  >
+                                    <Icons.messageSquareText />
+                                    <span>0</span>
+                                  </ArticleCommentCountContainer>
+                                </ArticleCommentCountWrapper>
+                              </ArticleContentFooterContainer>
+                            </ArticleContentFooterWrapper>
                           </div>
                         </div>
                       ))}

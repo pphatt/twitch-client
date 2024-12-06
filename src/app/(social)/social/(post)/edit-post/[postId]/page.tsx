@@ -33,7 +33,7 @@ export default async function EditPost({
 
   const decoded = jwtDecode<TokenPayload>(accessToken)
 
-  if (data.post.user.id !== decoded.sub) {
+  if (data.post.user.id !== decoded.sub || !data) {
     redirect("/social")
   }
 

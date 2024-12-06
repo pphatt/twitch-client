@@ -14,9 +14,9 @@ export default function LikeBtn() {
       <HoverCard.Trigger asChild>
         <div className={styles["like-btn-wrapper"]}>
           <div className={styles["like-btn-container"]}>
-            <Icons.love fill={"#ef4444"} />
+            <Icons.like />
 
-            <span>1</span>
+            <span>0</span>
           </div>
         </div>
       </HoverCard.Trigger>

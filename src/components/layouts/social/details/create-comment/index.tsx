@@ -1,17 +1,16 @@
 import * as React from "react"
-import dynamic from "next/dynamic"
 
 import styles from "@/components/layouts/social/details/create-comment/style.module.scss"
+import CommentsInput from "@/components/layouts/social/details/comments/comment-input";
 
-const CommentInput = dynamic(
-  () => import("@/components/layouts/social/details/comment-input"),
-  { ssr: false }
-)
+interface CreateCommentProps {
+  postId: string
+}
 
-export default function CreateComment() {
+export default function CreateComment({ postId }: CreateCommentProps) {
   return (
     <div className={styles["reply-box-wrapper"]}>
-      <CommentInput articleId={"1"} replyToId={undefined} />
+      <CommentsInput postId={postId} />
     </div>
   )
 }

@@ -1,12 +1,10 @@
 import { NextSocial } from "@modules/core/presentation/endpoints/social/social.request"
 import type { ISocialRepository } from "@modules/user/domain/repository/social/social.repository"
+import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
-import {
-  GetPostDetailsResponseDto,
-  PostDetailsDto
-} from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
+import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 
 export const SocialRepository: ISocialRepository = {
   async createPost(body: FormData): Promise<{ data: CreatePostResponseDto }> {
@@ -32,6 +30,16 @@ export const SocialRepository: ISocialRepository = {
   async deletePost(body: DeletePostRequestDto): Promise<void> {
     try {
       await NextSocial.deletePost(body)
+
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async createComment(body: CreateCommentRequestDto): Promise<void> {
+    try {
+      await NextSocial.createPostComment(body)
 
       return Promise.resolve()
     } catch (error) {

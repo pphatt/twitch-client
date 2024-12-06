@@ -1,16 +1,23 @@
 import {
+  CreatePostCommentsAPI,
   GetAllUserPostsAPI,
+  GetPostCommentsAPI,
   GetPostDetailsAPI,
   NextCreatePostAPI,
+  NextCreatePostCommentsAPI,
   NextDeletePostAPI,
   NextGetPostDetailsAPI,
   NextUpdatePostAPI,
   PostAPI,
+  ViewPostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
+import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
-import type { EditPostRequestDto } from "@modules/user/presentation/http/dto/request/social/edit-post.request.dto"
+import type { GetPostCommentsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-all-comments.request.dto"
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
+import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
+import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
@@ -29,8 +36,25 @@ export const Social = {
   ): Promise<void> =>
     axios.patch(`${PostAPI}/${body.postId}`, body.data, config),
 
-  deletePost: async (body: DeletePostRequestDto, config: AxiosRequestConfig) =>
-    axios.delete(`${PostAPI}?postId=${body.postId}`, config),
+  deletePost: async (
+    body: DeletePostRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> => axios.delete(`${PostAPI}?postId=${body.postId}`, config),
+
+  viewPost: async (
+    body: ViewPostRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> =>
+    axios.patch(`${ViewPostAPI}/${body.postId}`, body, config),
+
+  getPostComments: async (
+    body: GetPostCommentsRequestDto
+  ): Promise<{ data: { data: GetPostCommentsResponseDto } }> =>
+    axios.get(`${GetPostCommentsAPI}/${body.postId}`, {
+      headers: {
+        Authorization: `Bearer ${body.accessToken}`,
+      },
+    }),
 
   getUserPosts: async (
     username: string,
@@ -47,6 +71,11 @@ export const Social = {
     axios.get(
       `${GetAllUserPostsAPI}/${username}?${query ?? "?page=1&limit=10&orderBy=createdAt&order=desc"}`
     ),
+
+  createPostComment: async (
+    body: CreateCommentRequestDto,
+    config: AxiosRequestConfig
+  ) => axios.post(`${CreatePostCommentsAPI}/${body.postId}`, body, config),
 
   getPostDetails: async (
     body: GetPostDetailsRequestDto,
@@ -69,6 +98,9 @@ export const NextSocial = {
 
   deletePost: async (body: DeletePostRequestDto) =>
     axios.post(NextDeletePostAPI, body),
+
+  createPostComment: async (body: CreateCommentRequestDto) =>
+    axios.post(NextCreatePostCommentsAPI, body),
 
   getPostDetails: async (
     body: GetPostDetailsRequestDto & { accessToken: string }

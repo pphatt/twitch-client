@@ -17,6 +17,7 @@ export type PostDetailsDto = {
       {
         url: string
       },
-    ]
+    ],
+    viewCount: number
   }
 }

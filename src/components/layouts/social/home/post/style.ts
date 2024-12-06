@@ -254,6 +254,85 @@ export const ArticleImageWrapper = styled.div<{
     `}
 `
 
+export const ArticleContentFooterWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+
+  margin-top: 16px;
+`
+
+export const ArticleContentFooterContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+
+  width: 100%;
+  height: 24px;
+`
+
+export const ArticleViewCountWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+
+  width: 84px;
+
+  svg {
+    color: rgba(255, 255, 255, 0.25);
+
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    display: inline-block;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    margin-left: 8px;
+
+    font-size: 12px;
+    line-height: 16px;
+  }
+`
+
+export const ArticleCommentCountWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  width: 84px;
+
+  margin-left: 8px;
+`
+
+export const ArticleCommentCountContainer = styled(Link)`
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  svg {
+    color: rgba(255, 255, 255, 0.25);
+
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    display: inline-block;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    margin-left: 8px;
+
+    font-size: 12px;
+    line-height: 16px;
+  }
+`
+
 export const LeftImageWrapper = styled.div`
   position: absolute;
   bottom: 8px;

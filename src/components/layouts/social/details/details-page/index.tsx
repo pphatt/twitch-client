@@ -1,19 +1,22 @@
 import * as React from "react"
+import type { PostComment } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
+import type { PostDetailsDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import FriendList from "src/components/layouts/social/components/friend-list"
 import FriendListItem from "src/components/layouts/social/components/friend-list-item"
+import CommentsSection from "src/components/layouts/social/details/comments/comments-section"
+import PostContent from "src/components/layouts/social/details/post-content"
 
-import PostContent from "@/components/layouts/social/details/article-content"
-import CommentsSection from "@/components/layouts/social/details/comments-section"
 import DetailsContentHeader from "@/components/layouts/social/details/details-content-header"
 import styles from "@/components/layouts/social/details/details-page/style.module.scss"
-import type {PostDetailsDto} from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto";
 
 interface DetailsPageComponentProps {
   post: PostDetailsDto
+  comments: PostComment[]
 }
 
 export default function DetailsPageComponent({
-  post
+  post,
+  comments,
 }: DetailsPageComponentProps) {
   return (
     <div className={styles["root-page-layout-wrapper"]}>
@@ -24,9 +27,9 @@ export default function DetailsPageComponent({
               <DetailsContentHeader />
 
               <div>
-                <PostContent post={post} />
+                <PostContent post={post} commentsCount={comments.length} />
 
-                <CommentsSection />
+                <CommentsSection postId={post.info.id} comments={comments} />
               </div>
             </div>
           </div>

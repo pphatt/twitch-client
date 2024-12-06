@@ -41,7 +41,7 @@ export const SubmitPlugin = ({
         {isPending && (
           <Icons.spinner className={styles["icon"]} aria-hidden="true" />
         )}
-        <span>Post</span>
+        <span>Send</span>
       </Button>
     </div>
   )
