@@ -21,7 +21,6 @@ const publicRoutes = [
   "/api/webhooks",
   "/user/account-recovery",
   "/user/reset-password",
-  "/social/home",
 ]
 
 const authRoutes = ["/login", "/signup"]
