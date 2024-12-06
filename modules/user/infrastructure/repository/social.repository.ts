@@ -3,8 +3,11 @@ import type { ISocialRepository } from "@modules/user/domain/repository/social/s
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
+import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
+import { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
+import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 
 export const SocialRepository: ISocialRepository = {
   async createPost(body: FormData): Promise<{ data: CreatePostResponseDto }> {
@@ -32,6 +35,28 @@ export const SocialRepository: ISocialRepository = {
       await NextSocial.deletePost(body)
 
       return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async reactToPost(body: ReactToPostRequestDto): Promise<void> {
+    try {
+      await NextSocial.reactToPost(body)
+
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async getPostReaction(
+    body: GetPostReactionRequestDto
+  ): Promise<{ data: GetPostReactionResponseDto }> {
+    try {
+      const { data } = await NextSocial.getPostReaction(body)
+
+      return Promise.resolve({ data })
     } catch (error) {
       return Promise.reject(error)
     }

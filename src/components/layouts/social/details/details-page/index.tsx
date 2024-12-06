@@ -1,6 +1,7 @@
 import * as React from "react"
 import type { PostComment } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
 import type { PostDetailsDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
+import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import FriendList from "src/components/layouts/social/components/friend-list"
 import FriendListItem from "src/components/layouts/social/components/friend-list-item"
 import CommentsSection from "src/components/layouts/social/details/comments/comments-section"
@@ -13,6 +14,7 @@ import EmptyPostScreen from "@/components/layouts/social/details/empty-post-scre
 interface DetailsPageComponentProps {
   post: PostDetailsDto
   comments: PostComment[]
+  sortedReactions: GetPostReactionResponseDto[]
   isUserPost: boolean
   isPostDelete: boolean
 }
@@ -20,6 +22,7 @@ interface DetailsPageComponentProps {
 export default function DetailsPageComponent({
   post,
   comments,
+  sortedReactions,
   isUserPost,
   isPostDelete,
 }: DetailsPageComponentProps) {
@@ -40,7 +43,11 @@ export default function DetailsPageComponent({
                   <EmptyPostScreen />
                 ) : (
                   <>
-                    <PostContent post={post} commentsCount={comments.length} />
+                    <PostContent
+                      post={post}
+                      sortedReactions={sortedReactions}
+                      commentsCount={comments.length}
+                    />
 
                     <CommentsSection
                       postId={post.info.id}

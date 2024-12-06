@@ -25,13 +25,17 @@ import {
   ArticleContentLayoutWrapper,
   ArticlePageBodyWrapper,
 } from "@/components/layouts/social/details/post-content/style"
+import type {
+  GetPostReactionResponseDto
+} from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto";
 
 interface PostContentProps {
   post: PostDetailsDto
+  sortedReactions: GetPostReactionResponseDto[]
   commentsCount: number
 }
 
-export default function PostContent({ post, commentsCount }: PostContentProps) {
+export default function PostContent({ post, sortedReactions, commentsCount }: PostContentProps) {
   return (
     <ArticlePageBodyWrapper className="article-page__body">
       <ArticleContentHeaderLayoutWrapper>
@@ -83,6 +87,8 @@ export default function PostContent({ post, commentsCount }: PostContentProps) {
       </ArticleContentLayoutWrapper>
 
       <PostFooter
+        postId={post.info.id}
+        sortedReactions={sortedReactions}
         viewCount={post.info.viewCount}
         commentsCount={commentsCount}
       />

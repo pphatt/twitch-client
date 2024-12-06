@@ -3,22 +3,29 @@ import {
   GetAllUserPostsAPI,
   GetPostCommentsAPI,
   GetPostDetailsAPI,
+  GetPostReactionAPI,
   NextCreatePostAPI,
   NextCreatePostCommentsAPI,
   NextDeletePostAPI,
   NextGetPostDetailsAPI,
+  NextGetPostReactionAPI,
+  NextReactToPostAPI,
   NextUpdatePostAPI,
   PostAPI,
+  ReactToPostAPI,
   ViewPostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
 import type { GetPostCommentsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-all-comments.request.dto"
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
+import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
+import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
 import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
+import { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
 
@@ -72,6 +79,20 @@ export const Social = {
       `${GetAllUserPostsAPI}/${username}?${query ?? "?page=1&limit=10&orderBy=createdAt&order=desc"}`
     ),
 
+  getPostReaction: async (
+    body: GetPostReactionRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<{ data: { data: GetPostReactionResponseDto } }> =>
+    axios.get(
+      `${GetPostReactionAPI}?postId=${body.postId}&reactionType=${body.reactionType}`,
+      config
+    ),
+
+  reactToPost: async (
+    body: ReactToPostRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> => axios.post(ReactToPostAPI, body, config),
+
   createPostComment: async (
     body: CreateCommentRequestDto,
     config: AxiosRequestConfig
@@ -98,6 +119,16 @@ export const NextSocial = {
 
   deletePost: async (body: DeletePostRequestDto) =>
     axios.post(NextDeletePostAPI, body),
+
+  reactToPost: async (body: ReactToPostRequestDto) =>
+    axios.post(NextReactToPostAPI, body),
+
+  getPostReaction: async (
+    body: GetPostReactionRequestDto
+  ): Promise<{ data: { data: GetPostReactionResponseDto } }> =>
+    axios.get(
+      `${NextGetPostReactionAPI}?postId=${body.postId}&reactionType=${body.reactionType}`
+    ),
 
   createPostComment: async (body: CreateCommentRequestDto) =>
     axios.post(NextCreatePostCommentsAPI, body),

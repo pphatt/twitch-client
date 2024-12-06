@@ -17,6 +17,7 @@ import { OnChangePlugin } from "@/components/lexical/onchange-plugin"
 import { SubmitPlugin } from "@/components/lexical/submit-plugin"
 import Theme from "@/components/lexical/theme"
 import ToolbarPlugin from "@/components/lexical/toolbar-plugin"
+import {axiosHttpErrorHandler} from "@/utils/common";
 
 function Placeholder() {
   return (
@@ -64,8 +65,15 @@ export default function CommentsInput({ postId }: CommentsInputProps) {
 
         router.refresh()
         callback()
-      } catch (e) {
-        toast.error("Something went wrong. Try again!")
+      } catch (err) {
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 5000,
+          position: "top-right",
+        })
+
+        console.log(error)
       }
     })
   }
