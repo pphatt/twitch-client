@@ -6,6 +6,7 @@ import type { PostDetailsDto } from "@modules/user/presentation/http/dto/respons
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import PostFooter from "src/components/layouts/social/details/post-footer"
 
+import FollowUserPostBtn from "@/components/layouts/social/details/follow-user-post-btn"
 import { ImageThumbnail } from "@/components/layouts/social/details/image-thumbnail"
 import {
   ArticleContentDate,
@@ -31,6 +32,8 @@ interface PostContentProps {
   post: PostDetailsDto
   sortedReactions: GetPostReactionResponseDto[]
   commentsCount: number
+  isUserPost: boolean
+  isUserFollowed: boolean
   currentUserReactionType: string
 }
 
@@ -38,6 +41,8 @@ export default function PostContent({
   post,
   sortedReactions,
   commentsCount,
+  isUserPost,
+  isUserFollowed,
   currentUserReactionType,
 }: PostContentProps) {
   return (
@@ -77,6 +82,13 @@ export default function PostContent({
                       {formatTimeToNow(post.info.createdAt)}
                     </ArticleContentDate>
                   </ArticleContentHeaderInfoWrapper>
+
+                  {!isUserPost && (
+                    <FollowUserPostBtn
+                      isUserFollowed={isUserFollowed}
+                      destinationUserId={post.user.id}
+                    />
+                  )}
                 </ArticleContentHeaderOverlay>
               </ArticleContentHeaderContainer>
             </ArticleContentHeaderWrapper>

@@ -27,6 +27,7 @@ export default async function SocialProfile({
   const { data: postsListData } = await Social.getUserPosts(username)
 
   let isUserProfile = false
+  let isUserFollowed = undefined
 
   if (accessToken) {
     const decoded = jwtDecode<TokenPayload>(accessToken)
@@ -34,6 +35,19 @@ export default async function SocialProfile({
     if (decoded.sub === userData.data.id) {
       isUserProfile = true
     }
+
+    const { data: isUserFollowedData } = await Social.isFollowUser(
+      {
+        destinationUserId: userData.data.id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+
+    isUserFollowed = isUserFollowedData.data
   }
 
   return (
@@ -41,6 +55,8 @@ export default async function SocialProfile({
       isUserProfile={isUserProfile}
       user={userData.data}
       postsInfo={postsListData.data}
+      isUserFollowed={!!isUserFollowed}
+      isTheSameUser={isUserProfile}
     />
   )
 }

@@ -1,0 +1,39 @@
+.follow-button-wrapper {
+  flex-shrink: 0;
+
+  margin-left: 8px;
+}
+
+.follow-button {
+  color: #fff !important;
+  background-color: hsl(var(--color-twitch-orange-12)) !important;
+
+  width: auto !important;
+  min-width: 88px !important;
+  height: 30px !important;
+
+  border-radius: 15px !important;
+
+  padding: 0 24px !important;
+
+  font-size: 12px !important;
+  line-height: 30px !important;
+
+  &[data-is-followed="true"] {
+    color: rgba(255, 255, 255, 0.65) !important;
+    background-color: #242a34 !important;
+
+    &:hover {
+      color: rgba(255, 255, 255) !important;
+      background-color: #666e80 !important;
+    }
+  }
+
+  &:hover {
+    background-color: hsl(var(--color-twitch-orange-11)) !important;
+  }
+
+  span {
+    font-weight: bold !important;
+  }
+}

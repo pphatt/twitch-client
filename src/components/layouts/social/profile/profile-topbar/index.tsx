@@ -1,6 +1,7 @@
 import * as React from "react"
 
 import { Icons } from "@/components/icons"
+import FollowButton from "@/components/layouts/social/profile/follow-btn"
 import styles from "@/components/layouts/social/profile/profile-topbar/style.module.scss"
 
 interface ProfileTopbarProps {
@@ -11,6 +12,10 @@ interface ProfileTopbarProps {
   numberOfFollowers: number
   numberOfFollowings: number
   numberOfPosts: number
+
+  userId: string
+  isUserFollowed: boolean
+  isTheSameUser: boolean
 }
 
 export default function ProfileTopbar({
@@ -21,6 +26,9 @@ export default function ProfileTopbar({
   numberOfFollowers,
   numberOfFollowings,
   numberOfPosts,
+  userId,
+  isUserFollowed,
+  isTheSameUser,
 }: ProfileTopbarProps) {
   return (
     <div className={styles["root-page-topbar-wrapper"]}>
@@ -78,7 +86,12 @@ export default function ProfileTopbar({
             </div>
           </div>
 
-          <div></div>
+          {!isTheSameUser && (
+            <FollowButton
+              destinationUserId={userId}
+              isUserFollowed={isUserFollowed}
+            />
+          )}
         </div>
       </div>
     </div>

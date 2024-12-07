@@ -82,6 +82,7 @@ export default async function PostDetailsPage({
 
   let isUserPost = false
   let currentUserReactionType = ""
+  let isUserFollowed = undefined
 
   if (accessToken) {
     const decoded = jwtDecode<TokenPayload>(accessToken)
@@ -94,6 +95,19 @@ export default async function PostDetailsPage({
       sortedReactions.find((reaction) =>
         reaction.users.some((user) => user.id === decoded.sub)
       )?.type ?? ""
+
+    const { data: isUserFollowedData } = await Social.isFollowUser(
+      {
+        destinationUserId: data.post.user.id,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+
+    isUserFollowed = isUserFollowedData.data
   }
 
   return (
@@ -104,6 +118,7 @@ export default async function PostDetailsPage({
       isUserPost={isUserPost}
       currentUserReactionType={currentUserReactionType}
       isPostDelete={false}
+      isUserFollowed={!!isUserFollowed}
       accessToken={accessToken}
     />
   )

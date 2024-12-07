@@ -32,12 +32,16 @@ interface ProfilePageComponentProps {
     totalPosts: number
     totalPage: number
   }
+  isUserFollowed: boolean
+  isTheSameUser: boolean
 }
 
 export default function ProfilePageComponent({
   isUserProfile,
   user,
   postsInfo,
+  isUserFollowed,
+  isTheSameUser,
 }: ProfilePageComponentProps) {
   const { posts } = postsInfo
 
@@ -127,6 +131,9 @@ export default function ProfilePageComponent({
         numberOfFollowers={user.numberOfFollowers}
         numberOfFollowings={user.numberOfFollowings}
         numberOfPosts={totalPosts}
+        userId={user.id}
+        isUserFollowed={isUserFollowed}
+        isTheSameUser={isTheSameUser}
       />
 
       <div className={styles["root-page-container"]}>

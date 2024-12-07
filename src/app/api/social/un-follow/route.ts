@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     )
 
     return Response.json(
-      { message: "unfollow user successfully" },
+      { message: "Unfollow user successfully" },
       {
         status: 200,
       }

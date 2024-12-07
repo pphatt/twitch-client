@@ -1,0 +1,43 @@
+.follow-btn-wrapper {
+  border-radius: 22px;
+
+  transform: translateY(-56px);
+
+  transition: top 300ms ease;
+
+  z-index: 10;
+}
+
+.follow-btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.follow-btn {
+  color: #fff !important;
+  background-color: hsl(var(--color-twitch-orange-12)) !important;
+
+  width: auto !important;
+  height: 36px !important;
+
+  border-radius: 18px !important;
+
+  padding: 0 24px !important;
+
+  font-size: 16px !important;
+  font-weight: 700 !important;
+
+  &[data-is-followed="true"] {
+    color: rgba(255, 255, 255, 0.65) !important;
+    background-color: #242a34 !important;
+
+    &:hover {
+      color: rgba(255, 255, 255) !important;
+      background-color: #666e80 !important;
+    }
+  }
+
+  &:hover {
+    background-color: hsl(var(--color-twitch-orange-11)) !important;
+  }
+}

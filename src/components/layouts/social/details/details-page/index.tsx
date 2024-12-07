@@ -7,6 +7,7 @@ import FriendListItem from "src/components/layouts/social/components/friend-list
 import CommentsSection from "src/components/layouts/social/details/comments/comments-section"
 import PostContent from "src/components/layouts/social/details/post-content"
 
+import CreatorInformation from "@/components/layouts/social/details/creator-information"
 import DetailsContentHeader from "@/components/layouts/social/details/details-content-header"
 import styles from "@/components/layouts/social/details/details-page/style.module.scss"
 import EmptyPostScreen from "@/components/layouts/social/details/empty-post-screen"
@@ -19,6 +20,7 @@ interface DetailsPageComponentProps {
   isUserPost: boolean
   currentUserReactionType: string
   isPostDelete: boolean
+  isUserFollowed: boolean
 
   accessToken: string
 }
@@ -30,6 +32,7 @@ export default function DetailsPageComponent({
   isUserPost,
   currentUserReactionType,
   isPostDelete,
+  isUserFollowed,
   accessToken,
 }: DetailsPageComponentProps) {
   return (
@@ -54,6 +57,8 @@ export default function DetailsPageComponent({
                         post={post}
                         sortedReactions={sortedReactions}
                         commentsCount={comments.length}
+                        isUserPost={isUserPost}
+                        isUserFollowed={isUserFollowed}
                         currentUserReactionType={currentUserReactionType}
                       />
 
@@ -72,35 +77,12 @@ export default function DetailsPageComponent({
             <div className={styles["root-page-container-right-container"]}>
               <div className={styles["root-page-container-right-overlay"]}>
                 <div>
-                  <div className={styles["post-now-side-section-wrapper"]}>
-                    <div
-                      className={styles["post-now-side-section-header-wrapper"]}
-                    >
-                      <h2
-                        className={
-                          styles["post-now-side-section-header-text-wrapper"]
-                        }
-                      >
-                        Creator Information
-                      </h2>
-                    </div>
-
-                    <div className={styles["recommend-friend-content-wrapper"]}>
-                      <div
-                        className={styles["recommend-friend-content-container"]}
-                      >
-                        <FriendListItem
-                          image={
-                            post.user.avatar !== ""
-                              ? post.user.avatar
-                              : "/avatar/user-default-picture.png"
-                          }
-                          name={post.user.username}
-                          slug={`/social/profile/${post.user.username}`}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  <CreatorInformation
+                    username={post.user.username}
+                    avatarUrl={post.user.avatar}
+                    isUserFollowed={isUserFollowed}
+                    destinationUserId={post.user.id}
+                  />
 
                   <div>
                     <FriendList />
