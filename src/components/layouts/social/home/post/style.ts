@@ -176,7 +176,7 @@ export const ArticleTitleText = styled.span`
   color: rgba(255, 255, 255, 0.85);
 
   font-size: 16px;
-  font-weight: bold;
+  font-weight: normal;
 
   vertical-align: top;
 
@@ -258,7 +258,9 @@ export const ArticleContentFooterWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
 
-  margin-top: 16px;
+  &[data-reactions="true"] {
+    margin-top: 16px;
+  }
 `
 
 export const ArticleContentFooterContainer = styled.div`
@@ -431,6 +433,7 @@ export const HashTagText = styled.span`
 
 export const ReactionRowWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
 
   margin-top: 16px;

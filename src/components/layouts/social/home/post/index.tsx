@@ -1,6 +1,8 @@
 import * as React from "react"
+import type { PostDto } from "@modules/user/presentation/http/dto/response/social/post.dto"
+import { format, parseISO } from "date-fns"
 
-import { LikeBtn } from "@/components/layouts/social/components/like-btn"
+import { Icons } from "@/components/icons"
 import {
   ArticleCardTime,
   ArticleCardWrapper,
@@ -12,11 +14,8 @@ import {
   AvatarImageComponent,
   AvatarImageContainer,
   AvatarImageWrapper,
-  FollowButton,
-  FollowButtonWrapper,
-  HashTagsWrapper,
-  HashTagText,
-  HashTagWrapper,
+  LeftImageContainer,
+  LeftImageWrapper,
   PostHeaderContainer,
   PostHeaderOverlay,
   PostHeaderWrapper,
@@ -27,56 +26,92 @@ import {
   UserCardNameWrapper,
   UserCardTitleName,
 } from "@/components/layouts/social/home/post/style"
+import PostFooter from "@/components/layouts/social/profile/post-footer"
 
-export default function Post() {
+interface PostProps {
+  post: PostDto
+  refetch: () => void
+}
+
+export default function Post({ post, refetch }: PostProps) {
+  const date = parseISO(post.info.createdAt.toString())
+
   return (
     <PostLayoutWrapper>
       <PostHeaderWrapper>
         <PostHeaderContainer>
           <PostHeaderOverlay>
-            <AvatarImageWrapper href={"/social/article/1"}>
+            <AvatarImageWrapper href={`/social/profile/${post.user.username}`}>
               <AvatarImageContainer>
-                <AvatarImageComponent src={"/avatar/kei-avatar.png"} />
+                <AvatarImageComponent
+                  src={
+                    post.user.avatar !== ""
+                      ? post.user.avatar
+                      : "/avatar/user-default-picture.png"
+                  }
+                />
               </AvatarImageContainer>
             </AvatarImageWrapper>
 
             <UserCardInfoWrapper>
               <UserCardNameWrapper>
-                <UserCardNameContainer href={"/social/home"}>
-                  <UserCardTitleName title="Kei">Kei</UserCardTitleName>
+                <UserCardNameContainer
+                  href={`/social/profile/${post.user.username}`}
+                >
+                  <UserCardTitleName title={post.user.username}>
+                    {post.user.username}
+                  </UserCardTitleName>
                 </UserCardNameContainer>
               </UserCardNameWrapper>
 
-              <ArticleCardTime>19/03 • 5:20 PM</ArticleCardTime>
+              <ArticleCardTime>
+                {`${format(date, "dd/MM")} • ${format(date, "h:mm a")}`}
+              </ArticleCardTime>
             </UserCardInfoWrapper>
-
-            <FollowButtonWrapper>
-              <FollowButton>Follow</FollowButton>
-            </FollowButtonWrapper>
           </PostHeaderOverlay>
         </PostHeaderContainer>
       </PostHeaderWrapper>
 
-      <ArticleCardWrapper href={"/social/post/1"}>
+      <ArticleCardWrapper href={`/social/post/${post.info.id}`}>
         <ArticleTitleWrapper>
-          <ArticleTitleText>Road to Challenger</ArticleTitleText>
+          <ArticleTitleText>{post.info.content}</ArticleTitleText>
         </ArticleTitleWrapper>
 
-        <ArticleContentWrapper className="article-card-image__preview">
-          <ArticleImageWrapper $count={2}>
-            <ArticleImage src={"/avatar/xull-avatar.png"} />
-          </ArticleImageWrapper>
+        <ArticleContentWrapper className="post-card-image__preview">
+          {post.info.images.length <= 3 &&
+            post.info.images.map((url, index) => (
+              <ArticleImageWrapper $count={post.info.images.length} key={index}>
+                <ArticleImage loading={"lazy"} decoding={"async"} src={url} />
+              </ArticleImageWrapper>
+            ))}
 
-          <ArticleImageWrapper $count={2}>
-            <ArticleImage src={"/avatar/xull-avatar.png"} />
-          </ArticleImageWrapper>
+          {post.info.images.length > 3 &&
+            post.info.images.slice(0, 3).map((url, index) => (
+              <ArticleImageWrapper $count={post.info.images.length} key={index}>
+                {index === 2 && (
+                  <LeftImageWrapper>
+                    <LeftImageContainer>
+                      <Icons.images />
+                      <span>+{post.info.images.length - 3}</span>
+                    </LeftImageContainer>
+                  </LeftImageWrapper>
+                )}
+
+                <ArticleImage loading={"lazy"} decoding={"async"} src={url} />
+              </ArticleImageWrapper>
+            ))}
         </ArticleContentWrapper>
       </ArticleCardWrapper>
 
       <ReactionRowWrapper>
-        <LikeBtn likeCount={123} initialLike={true}>
-          <span>123 likes</span>
-        </LikeBtn>
+        <PostFooter
+          postId={post.info.id}
+          commentCount={post.info.commentCount}
+          reactions={post.info.reactions}
+          reactionCount={post.info.reactionCount}
+          currentReaction={post.info.currentReaction}
+          validateData={refetch}
+        />
       </ReactionRowWrapper>
     </PostLayoutWrapper>
   )
