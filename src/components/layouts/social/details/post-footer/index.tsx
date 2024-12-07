@@ -29,6 +29,9 @@ export default function PostFooter({
           <HoverCard.Root key={index} openDelay={200} closeDelay={0}>
             <HoverCard.Trigger asChild>
               <div
+                data-current={
+                  (currentUserReactionType as EReactionType) === type
+                }
                 className={styles["article-footer-reaction-item-wrapper"]}
               >
                 {type === EReactionType.LIKE && (

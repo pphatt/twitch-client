@@ -17,6 +17,7 @@ interface ReactionButtonProps {
   postId: string
   reactionCount: number
   currentUserReactionType: string
+  callback: () => void
 }
 
 export enum EReactionType {
@@ -31,6 +32,7 @@ export default function ReactionButton({
   postId,
   reactionCount,
   currentUserReactionType,
+  callback,
 }: ReactionButtonProps) {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
@@ -38,11 +40,14 @@ export default function ReactionButton({
   const [openReactionDrawer, setOpenReactionDrawer] = React.useState(false)
 
   const handleReaction = (reactionType: EReactionType) => {
+    if (isPending) return
+
     startTransition(async () => {
       try {
         await SocialRepository.reactToPost({ postId, reactionType })
 
         router.refresh()
+        void callback()
         setOpenReactionDrawer(false)
       } catch (err) {
         const error = axiosHttpErrorHandler(err)

@@ -22,5 +22,6 @@ export type GetUserPostsResponseDto = {
     commentCount: number
     reactionCount: number
     reactions: { type: EReactionType; count: number }[]
+    currentReaction?: EReactionType
   }
 }

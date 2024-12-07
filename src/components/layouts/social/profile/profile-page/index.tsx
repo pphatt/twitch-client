@@ -257,6 +257,8 @@ export default function ProfilePageComponent({
                               commentCount={info.commentCount}
                               reactions={info.reactions}
                               reactionCount={info.reactionCount}
+                              currentReaction={info.currentReaction}
+                              validateData={refetch}
                             />
                           </div>
                         </div>

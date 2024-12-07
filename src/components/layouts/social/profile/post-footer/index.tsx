@@ -1,8 +1,8 @@
 import * as React from "react"
 import * as HoverCard from "@radix-ui/react-hover-card"
 
-import { Icons } from "@/components/icons"
-import { EReactionType } from "@/components/layouts/social/details/reaction-button"
+import {Icons} from "@/components/icons"
+import {EReactionType} from "@/components/layouts/social/details/reaction-button"
 import {
   ArticleCommentCountContainer,
   ArticleCommentCountWrapper,
@@ -17,40 +17,47 @@ interface PostFooterProps {
   commentCount: number
   reactions: { type: EReactionType; count: number }[]
   reactionCount: number
+  currentReaction?: EReactionType
+  validateData: () => void
 }
 
 export default function PostFooter({
-  postId,
-  commentCount,
-  reactions,
-  reactionCount,
-}: PostFooterProps) {
+                                     postId,
+                                     commentCount,
+                                     reactions,
+                                     reactionCount,
+                                     currentReaction,
+                                     validateData
+                                   }: PostFooterProps) {
   return (
     <>
       {reactions.length > 0 && (
         <div className={styles["article-footer-reaction-group"]}>
-          {reactions.map(({ type, count }, index) => (
+          {reactions.map(({type, count}, index) => (
             <HoverCard.Root key={index} openDelay={200} closeDelay={0}>
               <HoverCard.Trigger asChild>
-                <div className={styles["article-footer-reaction-item-wrapper"]}>
+                <div
+                  data-current={currentReaction === type}
+                  className={styles["article-footer-reaction-item-wrapper"]}
+                >
                   {type === EReactionType.LIKE && (
-                    <img src={"/reaction/like.svg"} alt={""} />
+                    <img src={"/reaction/like.svg"} alt={""}/>
                   )}
 
                   {type === EReactionType.LOVE && (
-                    <img src={"/reaction/love.svg"} alt={""} />
+                    <img src={"/reaction/love.svg"} alt={""}/>
                   )}
 
                   {type === EReactionType.HAHA && (
-                    <img src={"/reaction/haha.svg"} alt={""} />
+                    <img src={"/reaction/haha.svg"} alt={""}/>
                   )}
 
                   {type === EReactionType.SAD && (
-                    <img src={"/reaction/sad.svg"} alt={""} />
+                    <img src={"/reaction/sad.svg"} alt={""}/>
                   )}
 
                   {type === EReactionType.ANGRY && (
-                    <img src={"/reaction/angry.svg"} alt={""} />
+                    <img src={"/reaction/angry.svg"} alt={""}/>
                   )}
 
                   <span>{count}</span>
@@ -77,12 +84,15 @@ export default function PostFooter({
           <ReactionButton
             postId={postId}
             reactionCount={reactionCount}
-            currentUserReactionType={""}
+            currentUserReactionType={
+              (currentReaction as string | undefined) ?? ""
+            }
+            callback={validateData}
           />
 
           <ArticleCommentCountWrapper>
             <ArticleCommentCountContainer href={`/social/post/${postId}`}>
-              <Icons.messageSquareText />
+              <Icons.messageSquareText/>
               <span>{commentCount}</span>
             </ArticleCommentCountContainer>
           </ArticleCommentCountWrapper>
