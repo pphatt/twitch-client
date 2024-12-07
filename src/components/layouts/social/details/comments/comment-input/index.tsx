@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
+import { axiosHttpErrorHandler } from "@/utils/common"
 import { ClearEditorPlugin } from "@lexical/react/LexicalClearEditorPlugin"
 import { LexicalComposer } from "@lexical/react/LexicalComposer"
 import { ContentEditable } from "@lexical/react/LexicalContentEditable"
@@ -17,7 +18,6 @@ import { OnChangePlugin } from "@/components/lexical/onchange-plugin"
 import { SubmitPlugin } from "@/components/lexical/submit-plugin"
 import Theme from "@/components/lexical/theme"
 import ToolbarPlugin from "@/components/lexical/toolbar-plugin"
-import {axiosHttpErrorHandler} from "@/utils/common";
 
 function Placeholder() {
   return (

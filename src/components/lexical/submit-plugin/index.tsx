@@ -1,6 +1,7 @@
 import * as React from "react"
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
-import { $getRoot, type SerializedElementNode } from "lexical"
+import { useLexicalIsTextContentEmpty } from "@lexical/react/useLexicalIsTextContentEmpty"
+import { $getRoot } from "lexical"
 
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
@@ -14,9 +15,9 @@ export const SubmitPlugin = ({
   isPending: boolean
 }) => {
   const [editor] = useLexicalComposerContext()
+  const isEmpty = useLexicalIsTextContentEmpty(editor)
+
   const editorStateJSON = editor.toJSON()
-  const rootChildren = editorStateJSON.editorState.root
-    .children as SerializedElementNode[]
 
   const handleClearEditor = React.useCallback(() => {
     onSubmit(() => {
@@ -31,10 +32,7 @@ export const SubmitPlugin = ({
     <div className={styles["post-btn"]}>
       <Button
         type="submit"
-        disabled={
-          isPending ||
-          (rootChildren.length <= 1 && rootChildren[0]?.children?.length === 0)
-        }
+        disabled={isPending || isEmpty}
         className={styles["submit-btn"]}
         onClick={handleClearEditor}
       >

@@ -1,13 +1,18 @@
 import * as React from "react"
+import dynamic from "next/dynamic"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { Social } from "@modules/core/presentation/endpoints/social/social.request"
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import { SocialRepository } from "@modules/user/infrastructure/repository/social.repository"
 import { jwtDecode } from "jwt-decode"
-import DetailsPageComponent from "src/components/layouts/social/details/details-page"
 
 import type { EReactionType } from "@/components/layouts/social/details/reaction-button"
+
+const DetailsPageComponent = dynamic(
+  () => import("@/components/layouts/social/details/details-page"),
+  { ssr: false }
+)
 
 async function getSortedReactions(postId: string, accessToken: string) {
   const reactionTypes = [
