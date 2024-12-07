@@ -10,7 +10,6 @@ import styles from "@/components/layouts/social/details/post-footer/style.module
 
 interface PostFooterProps {
   postId: string
-  viewCount: number
   commentsCount: number
   currentUserReactionType: string
 
@@ -19,20 +18,12 @@ interface PostFooterProps {
 
 export default function PostFooter({
   postId,
-  viewCount,
   commentsCount,
   currentUserReactionType,
   sortedReactions,
 }: PostFooterProps) {
   return (
     <div className={styles["article-footer-layout-wrapper"]}>
-      {/*<ArticleContentFooterContainer>*/}
-      {/*  <ArticleViewCountWrapper>*/}
-      {/*    <Icons.view />*/}
-      {/*    <span>{viewCount}</span>*/}
-      {/*  </ArticleViewCountWrapper>*/}
-      {/*</ArticleContentFooterContainer>*/}
-
       <div className={styles["article-footer-reaction-group"]}>
         {sortedReactions.map(({ type, reactionCount, users }, index) => (
           <HoverCard.Root key={index} openDelay={200} closeDelay={0}>

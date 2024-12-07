@@ -51,8 +51,10 @@ export const AuthStoreProvider = ({
 
     if (profileFromCookie && profileFromCookie !== stringProfile) {
       setProfile(JSON.parse(profileFromCookie) as WhoamiResponseDto)
+      setAuthenticated(true)
     } else if (!profileFromCookie && profile) {
       setProfile(null)
+      setAuthenticated(false)
     }
   }, [profile, profileFromCookie, setProfile])
 

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cookies } from "next/headers"
 import { LiveStream } from "@modules/core/presentation/endpoints/livestream/livestream.request"
+import { Social } from "@modules/core/presentation/endpoints/social/social.request"
 
 import Room from "@/app/(lobby)/(channel)/[username]/_components/room"
 
@@ -19,5 +20,28 @@ export default async function ChannelPage({
 
   const streamInfo = data.data
 
-  return <Room accessToken={accessToken} stream={streamInfo} />
+  let isUserFollowed = undefined
+
+  if (accessToken) {
+    const { data: isUserFollowedData } = await Social.isFollowUser(
+      {
+        destinationUserId: data.data.userId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+
+    isUserFollowed = isUserFollowedData.data
+  }
+
+  return (
+    <Room
+      accessToken={accessToken}
+      stream={streamInfo}
+      isUserFollowed={!!isUserFollowed}
+    />
+  )
 }

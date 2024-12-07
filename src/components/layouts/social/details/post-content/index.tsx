@@ -93,7 +93,6 @@ export default function PostContent({
       <PostFooter
         postId={post.info.id}
         sortedReactions={sortedReactions}
-        viewCount={post.info.viewCount}
         commentsCount={commentsCount}
         currentUserReactionType={currentUserReactionType}
       />

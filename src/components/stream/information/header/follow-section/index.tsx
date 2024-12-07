@@ -4,6 +4,7 @@ import { axiosHttpErrorHandler } from "@/utils/common"
 import { SocialRepository } from "@modules/user/infrastructure/repository/social.repository"
 import { toast } from "sonner"
 
+import { Hint } from "@/components/common/hint"
 import { Icons } from "@/components/icons"
 import {
   ChannelActionContainer,
@@ -19,14 +20,18 @@ import {
   FollowIconContainer,
   FollowIconWrapper,
   FollowText,
+  UnFollowButton,
+  UnFollowIconWrapper,
 } from "@/components/stream/information/header/follow-section/style"
 
 interface FollowSectionProps {
   destinationUserId: string
+  isUserFollowed: boolean
 }
 
 export default function FollowSection({
   destinationUserId,
+  isUserFollowed,
 }: FollowSectionProps) {
   const [hover, setHover] = React.useState<boolean>(false)
 
@@ -55,6 +60,28 @@ export default function FollowSection({
     })
   }
 
+  const onUnfollowSubmit = () => {
+    if (isPending) return
+
+    startTransition(async () => {
+      try {
+        await SocialRepository.unFollowUser({ destinationUserId })
+
+        router.refresh()
+      } catch (err) {
+        // catchError(err)
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        console.log(error)
+      }
+    })
+  }
+
   return (
     <ChannelActionWrapper>
       <ChannelActionContainer>
@@ -67,37 +94,85 @@ export default function FollowSection({
                   transition: "transform 200ms ease-in 200ms",
                 }}
               >
-                <FollowButton
-                  aria-label="Follow"
-                  data-a-target="follow-button"
-                  data-test-selector="follow-button"
-                  disabled={isPending}
-                  onClick={onFollowSubmit}
-                  onMouseEnter={() => setHover(true)}
-                  onMouseLeave={() => setHover(false)}
-                >
-                  <FollowButtonWrapper>
-                    <FollowButtonContainer>
-                      <FollowButtonOverlay>
-                        <FollowIconWrapper
-                          style={{
-                            opacity: "1",
-                            transition: "transform 200ms ease 0ms",
-                            transform: hover ? "scale(1.2)" : undefined,
-                          }}
-                        >
-                          <FollowIconContainer>
-                            {hover ? <Icons.heartFill /> : <Icons.heart />}
-                          </FollowIconContainer>
-                        </FollowIconWrapper>
+                {isUserFollowed ? (
+                  <Hint
+                    delayDuration={200}
+                    skipDelayDuration={0}
+                    side={"top"}
+                    label={"Unfollow"}
+                  >
+                    <UnFollowButton
+                      aria-label="Unfollow"
+                      data-a-target="unfollow-button"
+                      data-test-selector="unfollow-button"
+                      disabled={isPending}
+                      onClick={onUnfollowSubmit}
+                      onMouseEnter={() => setHover(true)}
+                      onMouseLeave={() => setHover(false)}
+                    >
+                      <FollowButtonWrapper>
+                        <FollowButtonContainer>
+                          <FollowButtonOverlay>
+                            <UnFollowIconWrapper
+                              style={{
+                                opacity: "1",
+                                transition: "transform 200ms ease 0ms",
+                                transform: hover ? "scale(1.2)" : undefined,
+                              }}
+                            >
+                              <FollowIconContainer>
+                                {hover ? (
+                                  <Icons.heartBroken />
+                                ) : (
+                                  <Icons.heartFill />
+                                )}
+                              </FollowIconContainer>
+                            </UnFollowIconWrapper>
+                          </FollowButtonOverlay>
+                        </FollowButtonContainer>
+                      </FollowButtonWrapper>
+                    </UnFollowButton>
+                  </Hint>
+                ) : (
+                  <Hint
+                    delayDuration={200}
+                    skipDelayDuration={0}
+                    side={"top"}
+                    label={"Follow"}
+                  >
+                    <FollowButton
+                      aria-label="Follow"
+                      data-a-target="follow-button"
+                      data-test-selector="follow-button"
+                      disabled={isPending}
+                      onClick={onFollowSubmit}
+                      onMouseEnter={() => setHover(true)}
+                      onMouseLeave={() => setHover(false)}
+                    >
+                      <FollowButtonWrapper>
+                        <FollowButtonContainer>
+                          <FollowButtonOverlay>
+                            <FollowIconWrapper
+                              style={{
+                                opacity: "1",
+                                transition: "transform 200ms ease 0ms",
+                                transform: hover ? "scale(1.2)" : undefined,
+                              }}
+                            >
+                              <FollowIconContainer>
+                                {hover ? <Icons.heartFill /> : <Icons.heart />}
+                              </FollowIconContainer>
+                            </FollowIconWrapper>
 
-                        <span>
-                          <FollowText>Follow</FollowText>
-                        </span>
-                      </FollowButtonOverlay>
-                    </FollowButtonContainer>
-                  </FollowButtonWrapper>
-                </FollowButton>
+                            <span>
+                              <FollowText>Follow</FollowText>
+                            </span>
+                          </FollowButtonOverlay>
+                        </FollowButtonContainer>
+                      </FollowButtonWrapper>
+                    </FollowButton>
+                  </Hint>
+                )}
               </FollowButtonLayoutOverlay>
             </FollowButtonLayoutContainer>
           </FollowButtonLayoutWrapper>

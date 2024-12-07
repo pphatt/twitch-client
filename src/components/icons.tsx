@@ -1,76 +1,12 @@
-import * as React from "react"
-import {
-  AlertCircle,
-  AlignJustify,
-  ArrowDownWideNarrow,
-  ArrowUpFromDot,
-  AudioWaveform,
-  Ban,
-  BarChart3,
-  Bold,
-  Bookmark,
-  BookMarked,
-  BookOpen,
-  Check,
-  CheckSquare,
-  ChevronDown,
-  // ChevronLeft,
-  // ChevronRight,
-  ChevronsUpDown,
-  ChevronUp,
-  Circle,
-  CircleGauge,
-  CircleHelp,
-  CirclePlus,
-  CircleUserRound,
-  Clock,
-  Copy,
-  Dot,
-  Ellipsis,
-  EllipsisVertical,
-  Expand,
-  Eye,
-  EyeOff,
-  File,
-  FilePen,
-  FileTerminal,
-  Filter,
-  GalleryVerticalEnd,
-  Globe,
-  History,
-  Home,
-  IdCard,
-  Images,
-  Italic,
-  Laptop2,
-  Layers,
-  Loader2,
-  LogIn,
-  MessageCircle,
-  MessageSquareText,
-  Moon,
-  MoveHorizontal,
-  MoveVertical,
-  Newspaper,
-  Play,
-  Search,
-  Settings,
-  Sheet,
-  Slash,
-  Star,
-  Strikethrough,
-  ThumbsUp,
-  SunMedium,
-  Underline,
-  User,
-  UserCog,
-  Users,
-  X,
-  ZoomIn,
-  ZoomOut,
-  type IconNode as LucideIcon,
-  type LucideProps,
-} from "lucide-react"
+import * as React from "react";
+import { AlertCircle, AlignJustify, ArrowDownWideNarrow, ArrowUpFromDot, AudioWaveform, Ban, BarChart3, Bold, Bookmark, BookMarked, BookOpen, Check, CheckSquare, ChevronDown,
+// ChevronLeft,
+// ChevronRight,
+ChevronsUpDown, ChevronUp, Circle, CircleGauge, CircleHelp, CirclePlus, CircleUserRound, Clock, Copy, Dot, Ellipsis, EllipsisVertical, Expand, Eye, EyeOff, File, FilePen, FileTerminal, Filter, GalleryVerticalEnd, Globe, History, Home, IdCard, Images, Italic, Laptop2, Layers, Loader2, LogIn, MessageCircle, MessageSquareText, Moon, MoveHorizontal, MoveVertical, Newspaper, Play, Search, Settings, Sheet, Slash, Star, Strikethrough, SunMedium, ThumbsUp, Underline, User, UserCog, Users, X, ZoomIn, ZoomOut, type IconNode as LucideIcon, type LucideProps } from "lucide-react";
+
+
+
+
 
 export type Icon = LucideIcon
 
@@ -562,6 +498,22 @@ export const Icons = {
           d="M9.171 4.171A4 4 0 006.343 3H6a4 4 0 00-4 4v.343a4 4 0 001.172 2.829L10 17l6.828-6.828A4 4 0 0018 7.343V7a4 4 0 00-4-4h-.343a4 4 0 00-2.829 1.172L10 5l-.829-.829z"
           clipRule="evenodd"
         ></path>
+      </g>
+    </svg>
+  ),
+  heartBroken: ({ ...props }: LucideProps) => (
+    <svg
+      width="20px"
+      height="20px"
+      version="1.1"
+      viewBox="0 0 20 20"
+      x="0px"
+      y="0px"
+      {...props}
+    >
+      <g>
+        <path d="M9.188 4.188L9.17 4.17A4 4 0 006.343 3H6a4 4 0 00-4 4v.343a4 4 0 001.172 2.829l5.367 5.367L10.484 11H6.538l2.65-6.812z"></path>
+        <path d="M10.154 16.846l6.674-6.674A4 4 0 0018 7.343V7a4 4 0 00-4-4h-.343a4 4 0 00-2.091.59L9.462 9h4.055l-3.363 7.846z"></path>
       </g>
     </svg>
   ),

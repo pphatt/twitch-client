@@ -19,9 +19,11 @@ import ChannelWrapper from "@/components/wrapper/channel-wrapper"
 export default function Room({
   accessToken,
   stream,
+  isUserFollowed,
 }: {
   accessToken: string | undefined
   stream: GetLivestreamInfoResponseDto
+  isUserFollowed: boolean
 }) {
   const { token, color, identity } = useViewerToken(stream.userId)
 
@@ -42,7 +44,7 @@ export default function Room({
             <Background />
 
             <HeaderWrapper>
-              <ChannelHeader identity={identity} channel={stream} />
+              <ChannelHeader identity={identity} channel={stream} isUserFollowed={isUserFollowed} />
 
               <About channel={stream} />
             </HeaderWrapper>

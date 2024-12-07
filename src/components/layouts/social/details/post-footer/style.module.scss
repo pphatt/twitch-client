@@ -16,11 +16,15 @@
   justify-content: center;
   align-items: center;
 
-  background-color: hsla(234.935 calc(1 * 85.556%) 64.706% / 0.15);
+  background-color: color-mix(
+    in oklab,
+    hsl(220 calc(1 * 6.522%) 18.039% / 1) 100%,
+    black 0%
+  );
 
   //height: 24px;
 
-  border: 1px solid hsl(234.935 calc(1 * 85.556%) 64.706% / 1);
+  border: 1px solid transparent;
   border-radius: 6px;
 
   padding: 3px 6px;
@@ -28,6 +32,12 @@
   margin-bottom: 4px;
 
   cursor: pointer;
+
+  &[data-current="true"] {
+    background-color: hsla(234.935 calc(1 * 85.556%) 64.706% / 0.15);
+
+    border: 1px solid hsl(234.935 calc(1 * 85.556%) 64.706% / 1);
+  }
 
   img {
     width: 18px;

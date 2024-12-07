@@ -75,6 +75,32 @@ export const FollowButton = styled(Button)`
   }
 `
 
+export const UnFollowButton = styled(Button)`
+  color: #efeff1;
+  background-color: rgba(83, 83, 95, 0.38);
+
+  width: 100%;
+  height: 30px;
+
+  border-radius: 4px;
+
+  padding: 0;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  overflow: hidden;
+  vertical-align: middle;
+
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #ffaaa8;
+  }
+`
+
 export const FollowButtonWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -104,6 +130,14 @@ export const FollowIconWrapper = styled.div`
   height: 100%;
 
   margin-right: 5px;
+`
+
+export const UnFollowIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
 `
 
 export const FollowIconContainer = styled.div`

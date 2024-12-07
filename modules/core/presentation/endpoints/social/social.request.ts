@@ -5,6 +5,7 @@ import {
   GetPostCommentsAPI,
   GetPostDetailsAPI,
   GetPostReactionAPI,
+  IsFollowUserAPI,
   NextCreatePostAPI,
   NextCreatePostCommentsAPI,
   NextDeletePostAPI,
@@ -25,6 +26,7 @@ import { FollowUserRequestDto } from "@modules/user/presentation/http/dto/reques
 import type { GetPostCommentsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-all-comments.request.dto"
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
 import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
+import { IsFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/is-follow-user.request.dto"
 import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
 import { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto"
 import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto"
@@ -33,6 +35,7 @@ import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
+import { IsFollowUserResponseDto } from "@modules/user/presentation/http/dto/response/social/is-follow-user.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
 
 export const Social = {
@@ -121,6 +124,14 @@ export const Social = {
     config: AxiosRequestConfig
   ): Promise<void> =>
     axios.post(`${UnFollowUserAPI}/${body.destinationUserId}`, {}, config),
+
+  isFollowUser: async (
+    body: IsFollowUserRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<{
+    data: IsFollowUserResponseDto
+  }> =>
+    axios.get(`${IsFollowUserAPI}?destinationUserId=${body.destinationUserId}`, config),
 }
 
 export const NextSocial = {

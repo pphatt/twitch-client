@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useAuth } from "@/context/auth.context"
 import {
   useParticipants,
   useRemoteParticipant,
@@ -25,12 +26,15 @@ import styles from "@/components/stream/information/header/style.module.scss"
 interface ChannelHeaderProps {
   identity: string
   channel: GetLivestreamInfoResponseDto
+  isUserFollowed: boolean
 }
 
 export default function ChannelHeader({
   identity,
   channel,
+  isUserFollowed,
 }: ChannelHeaderProps) {
+  const { authenticated } = useAuth()
   const username = channel.userName
 
   const participants = useParticipants()
@@ -79,8 +83,11 @@ export default function ChannelHeader({
                     }
                   />
 
-                  {identity !== `host-${channel.userId}` && (
-                    <FollowSection destinationUserId={channel.userId} />
+                  {identity !== `host-${channel.userId}` && authenticated && (
+                    <FollowSection
+                      destinationUserId={channel.userId}
+                      isUserFollowed={isUserFollowed}
+                    />
                   )}
                 </div>
 
