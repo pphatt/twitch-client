@@ -82,12 +82,7 @@ export const Social = {
     }
   }> =>
     axios.get(
-      `${GetAllUserPostsAPI}/${username}?${query ?? "?page=1&limit=10&orderBy=createdAt&order=desc"}`,
-      {
-        headers: {
-          "Cache-Control": "no-cache",
-        },
-      }
+      `${GetAllUserPostsAPI}/${username}?${query ?? "?page=1&limit=10&orderBy=createdAt&order=desc"}`
     ),
 
   getPostReaction: async (

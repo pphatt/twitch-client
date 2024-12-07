@@ -268,7 +268,7 @@ export const ArticleContentFooterContainer = styled.div`
   flex-shrink: 0;
 
   width: 100%;
-  height: 24px;
+  height: 30px;
 `
 
 export const ArticleViewCountWrapper = styled.div`
@@ -306,7 +306,7 @@ export const ArticleCommentCountWrapper = styled.div`
 
   width: 84px;
 
-  margin-left: 8px;
+  margin-left: 24px;
 `
 
 export const ArticleCommentCountContainer = styled(Link)`

@@ -1,3 +1,5 @@
+import type { EReactionType } from "@/components/layouts/social/details/reaction-button"
+
 export type GetUserPostsResponseDto = {
   user: {
     id: string
@@ -14,10 +16,11 @@ export type GetUserPostsResponseDto = {
         url: string
       },
     ]
-    commentCount: number,
-    reactionCount: number,
     isShared: true
-    isTagged: true,
+    isTagged: true
     viewCount: number
+    commentCount: number
+    reactionCount: number
+    reactions: { type: EReactionType; count: number }[]
   }
 }

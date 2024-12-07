@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
 import { Social } from "@modules/core/presentation/endpoints/social/social.request"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
 import type { GetSpecificUserByNameResponseDto } from "@modules/user/presentation/http/dto/response/user/get-specific-user-by-name.response.dto"
@@ -11,10 +10,6 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver.hooks"
 import { Icons } from "@/components/icons"
 import {
   ArticleCardWrapper,
-  ArticleCommentCountContainer,
-  ArticleCommentCountWrapper,
-  ArticleContentFooterContainer,
-  ArticleContentFooterWrapper,
   ArticleContentWrapper,
   ArticleImage,
   ArticleImageWrapper,
@@ -23,9 +18,11 @@ import {
   LeftImageContainer,
   LeftImageWrapper,
 } from "@/components/layouts/social/home/post/style"
+import PostFooter from "@/components/layouts/social/profile/post-footer"
 import PostHeader from "@/components/layouts/social/profile/post-header"
 import styles from "@/components/layouts/social/profile/profile-page/style.module.scss"
 import ProfileTopbar from "@/components/layouts/social/profile/profile-topbar"
+import RightSection from "@/components/layouts/social/profile/right-section"
 
 interface ProfilePageComponentProps {
   isUserProfile: boolean
@@ -255,18 +252,12 @@ export default function ProfilePageComponent({
                               </ArticleContentWrapper>
                             </ArticleCardWrapper>
 
-                            <ArticleContentFooterWrapper>
-                              <ArticleContentFooterContainer>
-                                <ArticleCommentCountWrapper>
-                                  <ArticleCommentCountContainer
-                                    href={`/social/post/${info.id}`}
-                                  >
-                                    <Icons.messageSquareText />
-                                    <span>{info.commentCount}</span>
-                                  </ArticleCommentCountContainer>
-                                </ArticleCommentCountWrapper>
-                              </ArticleContentFooterContainer>
-                            </ArticleContentFooterWrapper>
+                            <PostFooter
+                              postId={info.id}
+                              commentCount={info.commentCount}
+                              reactions={info.reactions}
+                              reactionCount={info.reactionCount}
+                            />
                           </div>
                         </div>
                       ))}
@@ -289,82 +280,7 @@ export default function ProfilePageComponent({
           </div>
         </div>
 
-        <div className={styles["page-content-right-wrapper"]}>
-          <div className={styles["page-content-right-container"]}>
-            <div className={styles["page-content-right-card-wrapper"]}>
-              <div className={styles["page-content-right-card-header-wrapper"]}>
-                <h2
-                  className={styles["page-content-right-card-header-container"]}
-                >
-                  <div
-                    className={styles["page-content-right-card-header-overlay"]}
-                  >
-                    <span>Creator LAB</span>
-
-                    <Icons.circleHelp />
-                  </div>
-                </h2>
-              </div>
-
-              <div className={styles["page-content-right-card-body-wrapper"]}>
-                <div className={styles["right-card-body-content-wrapper"]}>
-                  <div className={styles["data-1-wrapper"]}>
-                    <div className={styles["data-1-icon-wrapper"]}>
-                      <img
-                        className={styles["data-1-icon"]}
-                        src={"/icon/view.webp"}
-                        alt={""}
-                      />
-                    </div>
-
-                    <div className={styles["data-1-num"]}>0</div>
-
-                    <div className={styles["data-1-text"]}>Post Views</div>
-                  </div>
-
-                  <div className={styles["data-1-wrapper"]}>
-                    <div className={styles["data-1-icon-wrapper"]}>
-                      <img
-                        className={styles["data-1-icon"]}
-                        src={"/icon/like.webp"}
-                        alt={""}
-                      />
-                    </div>
-
-                    <div className={styles["data-1-num"]}>0</div>
-
-                    <div className={styles["data-1-text"]}>Post Likes</div>
-                  </div>
-                </div>
-
-                <Link href={"/"} className={styles["view-dashboard"]}>
-                  Dashboard
-                </Link>
-              </div>
-            </div>
-
-            <div className={styles["page-content-right-card-wrapper"]}>
-              <div className={styles["page-content-right-card-header-wrapper"]}>
-                <h2
-                  className={styles["page-content-right-card-header-container"]}
-                >
-                  <div
-                    className={styles["page-content-right-card-header-overlay"]}
-                  >
-                    <span>Profile Information</span>
-                  </div>
-                </h2>
-              </div>
-
-              <div className={styles["page-content-right-card-body-wrapper"]}>
-                <div className={styles["profile-information-wrapper"]}>
-                  <Icons.idCard />
-                  <p>Account ID: {user.id}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <RightSection userId={user.id} />
       </div>
     </div>
   )

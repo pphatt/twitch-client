@@ -3,6 +3,7 @@
 import React from "react"
 import { queryClientProvider } from "@/providers/query-client.provider"
 import { QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 export default function TanStackProviders({
   children,
@@ -12,6 +13,7 @@ export default function TanStackProviders({
   return (
     <QueryClientProvider client={queryClientProvider}>
       {children}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }
