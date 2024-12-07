@@ -11,10 +11,12 @@ import {
   NextFollowUserAPI,
   NextGetPostDetailsAPI,
   NextGetPostReactionAPI,
-  NextReactToPostAPI, NextUnFollowUserAPI,
+  NextReactToPostAPI,
+  NextUnFollowUserAPI,
   NextUpdatePostAPI,
   PostAPI,
-  ReactToPostAPI, UnFollowUserAPI,
+  ReactToPostAPI,
+  UnFollowUserAPI,
   ViewPostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
@@ -24,6 +26,7 @@ import type { GetPostCommentsRequestDto } from "@modules/user/presentation/http/
 import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
 import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
 import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
+import { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto"
 import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
@@ -31,7 +34,6 @@ import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
-import {UnFollowUserRequestDto} from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto";
 
 export const Social = {
   createPost: async (
@@ -80,7 +82,12 @@ export const Social = {
     }
   }> =>
     axios.get(
-      `${GetAllUserPostsAPI}/${username}?${query ?? "?page=1&limit=10&orderBy=createdAt&order=desc"}`
+      `${GetAllUserPostsAPI}/${username}?${query ?? "?page=1&limit=10&orderBy=createdAt&order=desc"}`,
+      {
+        headers: {
+          "Cache-Control": "no-cache",
+        },
+      }
     ),
 
   getPostReaction: async (

@@ -7,10 +7,6 @@ import ReactionButton, {
 
 import { Icons } from "@/components/icons"
 import styles from "@/components/layouts/social/details/post-footer/style.module.scss"
-import {
-  ArticleContentFooterContainer,
-  ArticleViewCountWrapper,
-} from "@/components/layouts/social/home/post/style"
 
 interface PostFooterProps {
   postId: string

@@ -5,7 +5,12 @@ import { UserRequest } from "@modules/core/presentation/endpoints/user/user.requ
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
 import { jwtDecode } from "jwt-decode"
 
-import ProfilePageComponent from "@/components/layouts/social/profile/profile-page"
+import dynamic from "next/dynamic"
+
+const ProfilePageComponent = dynamic(
+  () => import("@/components/layouts/social/profile/profile-page"),
+  { ssr: false }
+)
 
 export default async function SocialProfile({
   params,
