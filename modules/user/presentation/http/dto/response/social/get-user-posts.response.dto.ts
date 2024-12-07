@@ -14,6 +14,8 @@ export type GetUserPostsResponseDto = {
         url: string
       },
     ]
+    commentCount: number,
+    reactionCount: number,
     isShared: true
     isTagged: true,
     viewCount: number

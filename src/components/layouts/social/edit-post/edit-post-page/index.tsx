@@ -202,7 +202,7 @@ export default function EditPostPage({
                       aria-hidden="true"
                     />
                   )}
-                  Publish
+                  Update
                 </Button>
               </div>
             </form>

@@ -20,7 +20,6 @@ import {
   ArticleImageWrapper,
   ArticleTitleText,
   ArticleTitleWrapper,
-  ArticleViewCountWrapper,
   LeftImageContainer,
   LeftImageWrapper,
 } from "@/components/layouts/social/home/post/style"
@@ -263,14 +262,9 @@ export default function ProfilePageComponent({
                                     href={`/social/post/${info.id}`}
                                   >
                                     <Icons.messageSquareText />
-                                    <span>0</span>
+                                    <span>{info.commentCount}</span>
                                   </ArticleCommentCountContainer>
                                 </ArticleCommentCountWrapper>
-
-                                {/*<ArticleViewCountWrapper>*/}
-                                {/*  <Icons.view />*/}
-                                {/*  <span>{info.viewCount}</span>*/}
-                                {/*</ArticleViewCountWrapper>*/}
                               </ArticleContentFooterContainer>
                             </ArticleContentFooterWrapper>
                           </div>
