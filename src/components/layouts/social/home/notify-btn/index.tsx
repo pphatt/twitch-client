@@ -34,7 +34,7 @@ export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
   >([])
 
   React.useEffect(() => {
-    socket = io(`${env.NEXT_PUBLIC_BACK_END_API_URL}/notifications`, {
+    socket = io(env.NEXT_PUBLIC_BACK_END_API_URL, {
       auth: {
         token: `Bearer ${accessToken}`,
       },
