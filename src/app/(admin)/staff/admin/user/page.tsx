@@ -3,7 +3,6 @@ import { unstable_noStore as noStore } from "next/cache"
 import { cookies } from "next/headers"
 import { parserPage, parserRows } from "@/utils/common"
 import { AdminUsersRequest } from "@modules/core/presentation/endpoints/admin/users/admin.users.request"
-import { AdminRepository } from "@modules/user/infrastructure/repository/admin.repository"
 import { UserDataTable } from "src/components/tables/user-tables/user-data-table"
 
 import type { SearchParams } from "@/types/common"

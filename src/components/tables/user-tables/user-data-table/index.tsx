@@ -4,6 +4,8 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { generatePagination } from "@/utils/common"
+import { AdminRepository } from "@modules/user/infrastructure/repository/admin.repository"
+import { useQuery } from "@tanstack/react-query"
 import {
   flexRender,
   getCoreRowModel,
@@ -60,6 +62,24 @@ export function UserDataTable<TData, TValue>({
   page,
   rows,
 }: DataTableProps<TData, TValue>) {
+  // const { data: userData } = useQuery({
+  //   queryKey: ["users-dashboard"],
+  //   queryFn: async ({ pageParam = 1 }) => {
+  //     const { data } = await AdminRepository.getAllUsers()
+  //
+  //     return
+  //   },
+  //   initialData: () => {
+  //     return {
+  //       pages: [data],
+  //       pageParams: [page],
+  //     }
+  //   },
+  //   initialPageParam: 1,
+  //   refetchOnMount: true,
+  //   refetchOnWindowFocus: true,
+  // })
+
   const table = useReactTable({
     data,
     columns,

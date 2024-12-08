@@ -3,7 +3,6 @@ import {
   GetUserDetailsAPI,
   NextGetAllUsersAPI,
 } from "@modules/core/presentation/endpoints/admin/users/admin.users.endpoints"
-import type { GetAllUsersRequestDto } from "@modules/user/presentation/http/dto/request/admin/user/get-all-users.request.dto"
 import type { GetSpecificUserRequestDto } from "@modules/user/presentation/http/dto/request/admin/user/get-specific-user.request.dto"
 import type { GetAllUsersResponseDto } from "@modules/user/presentation/http/dto/response/admin/user/get-all-users.response.dto"
 import axios, { type AxiosRequestConfig } from "axios"
@@ -22,12 +21,7 @@ export const AdminUsersRequest = {
 }
 
 export const NextAdminUsersRequest = {
-  getAllUsers: async (
-    body: GetAllUsersRequestDto
-  ): Promise<{ data: { data: GetAllUsersResponseDto[] } }> =>
-    axios.get(NextGetAllUsersAPI, {
-      headers: {
-        cookie: `access-token=${body.accessToken}`,
-      },
-    }),
+  getAllUsers: async (): Promise<{
+    data: { data: GetAllUsersResponseDto[] }
+  }> => axios.get(NextGetAllUsersAPI),
 }

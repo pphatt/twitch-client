@@ -12,6 +12,12 @@ import LogoutButton from "@/components/auth/logout-button"
 import { Icons } from "@/components/icons"
 import AuthDialog from "@/components/layouts/auth-dialog"
 import {
+  AuthContainer,
+  AuthInnerButton,
+  AuthWrapper,
+} from "@/components/layouts/site-header/style"
+import NotifyBtn from "@/components/layouts/social/home/notify-btn"
+import {
   AccountDetails,
   AccountImage,
   AccountImageContainer,
@@ -45,14 +51,13 @@ import {
   UserItemTriggerWrapper,
   UtilitySectionWrapper,
 } from "@/components/layouts/social/site-header/style"
-import {
-  AuthContainer,
-  AuthInnerButton,
-  AuthWrapper,
-} from "@/components/layouts/site-header/style"
 import SimpleBar from "@/components/simplebar"
 
-export default function HomeSiteHeader() {
+interface HomeSiteHeaderProps {
+  accessToken: string
+}
+
+export default function HomeSiteHeader({ accessToken }: HomeSiteHeaderProps) {
   const { profile, authenticated } = useAuth()
 
   return (
@@ -128,6 +133,8 @@ export default function HomeSiteHeader() {
                     </DropdownMenu>
                   </HeaderItemContentDropdown>
                 </HeaderItemWrapper>
+
+                <NotifyBtn accessToken={accessToken} />
 
                 <HeaderItemWrapper>
                   <HeaderItemContentDropdown>
