@@ -3,6 +3,7 @@ import * as React from "react"
 import { Icons } from "@/components/icons"
 import FollowButton from "@/components/layouts/social/profile/follow-btn"
 import styles from "@/components/layouts/social/profile/profile-topbar/style.module.scss"
+import AddFriendButton from "@/components/layouts/social/profile/add-friend-btn";
 
 interface ProfileTopbarProps {
   username: string
@@ -87,10 +88,21 @@ export default function ProfileTopbar({
           </div>
 
           {!isTheSameUser && (
-            <FollowButton
-              destinationUserId={userId}
-              isUserFollowed={isUserFollowed}
-            />
+            <div
+              style={{
+                display: "flex",
+                gap: "12px",
+              }}
+            >
+              <AddFriendButton
+                receiverId={userId}
+              />
+
+              <FollowButton
+                destinationUserId={userId}
+                isUserFollowed={isUserFollowed}
+              />
+            </div>
           )}
         </div>
       </div>

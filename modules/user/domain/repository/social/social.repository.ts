@@ -8,6 +8,7 @@ import type { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
+import type {AddFriendRequestDto} from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto";
 
 export interface ISocialRepository {
   createPost: (body: FormData) => Promise<{ data: CreatePostResponseDto }>
@@ -30,4 +31,6 @@ export interface ISocialRepository {
 
   followUser: (body: FollowUserRequestDto) => Promise<void>
   unFollowUser: (body: UnFollowUserRequestDto) => Promise<void>
+
+  addFriend: (body: AddFriendRequestDto) => Promise<void>
 }

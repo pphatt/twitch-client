@@ -10,6 +10,7 @@ import type { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
+import {AddFriendRequestDto} from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto";
 
 export const SocialRepository: ISocialRepository = {
   async createPost(body: FormData): Promise<{ data: CreatePostResponseDto }> {
@@ -102,4 +103,13 @@ export const SocialRepository: ISocialRepository = {
       return Promise.reject(error)
     }
   },
+
+  async addFriend(body: AddFriendRequestDto): Promise<void> {
+    try {
+      await NextSocial.addFriend(body)
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  }
 }

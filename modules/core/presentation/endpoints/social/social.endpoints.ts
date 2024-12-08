@@ -16,6 +16,8 @@ export const FollowUserAPI = `${BackendURL}/followers/follow`
 export const UnFollowUserAPI = `${BackendURL}/followers/un-follow`
 export const IsFollowUserAPI = `${BackendURL}/followers/is-follow`
 
+export const AddFriendRequestAPI = `${BackendURL}/friends/send-request`
+
 // USING NEXT API
 export const NextCreatePostAPI = `${AppURL}/api/social/create-post`
 export const NextUpdatePostAPI = `${AppURL}/api/social/edit-post`
@@ -29,3 +31,5 @@ export const NextGetUserFeedAPI = `${AppURL}/api/social/post/get/my-feed`
 
 export const NextFollowUserAPI = `${AppURL}/api/social/follow`
 export const NextUnFollowUserAPI = `${AppURL}/api/social/un-follow`
+
+export const NextAddFriendRequestAPI = `${AppURL}/api/social/friends/send-request`

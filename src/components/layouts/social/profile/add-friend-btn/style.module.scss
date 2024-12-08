@@ -14,8 +14,8 @@
 }
 
 .follow-btn {
-  color: #000 !important;
-  background-color: #e2e5e9 !important;
+  color: #fff !important;
+  background-color: hsl(var(--color-twitch-orange-12)) !important;
 
   width: auto !important;
   height: 36px !important;
@@ -38,6 +38,6 @@
   }
 
   &:hover {
-    background-color: #b4b7bb !important;
+    background-color: hsl(var(--color-twitch-orange-11)) !important;
   }
 }

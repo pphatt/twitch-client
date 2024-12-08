@@ -1,4 +1,5 @@
 import {
+  AddFriendRequestAPI,
   CreatePostCommentsAPI,
   FollowUserAPI,
   GetAllUserPostsAPI,
@@ -7,6 +8,7 @@ import {
   GetPostReactionAPI,
   GetUserFeedAPI,
   IsFollowUserAPI,
+  NextAddFriendRequestAPI,
   NextCreatePostAPI,
   NextCreatePostCommentsAPI,
   NextDeletePostAPI,
@@ -21,6 +23,7 @@ import {
   UnFollowUserAPI,
   ViewPostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
+import { AddFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
 import type { FollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/follow-user.request.dto"
@@ -146,6 +149,11 @@ export const Social = {
       `${IsFollowUserAPI}?destinationUserId=${body.destinationUserId}`,
       config
     ),
+
+  addFriend: async (
+    body: AddFriendRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> => axios.post(AddFriendRequestAPI, body, config),
 }
 
 export const NextSocial = {
@@ -193,4 +201,7 @@ export const NextSocial = {
 
   unFollowUser: async (body: UnFollowUserRequestDto): Promise<void> =>
     axios.post(NextUnFollowUserAPI, body),
+
+  addFriend: async (body: AddFriendRequestDto): Promise<void> =>
+    axios.post(NextAddFriendRequestAPI, body),
 }
