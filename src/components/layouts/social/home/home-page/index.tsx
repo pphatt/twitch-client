@@ -9,6 +9,7 @@ import Post from "src/components/layouts/social/home/post"
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver.hooks"
 import { Icons } from "@/components/icons"
 import FriendList from "@/components/layouts/social/components/friend-list"
+import EmptyPostScreen from "@/components/layouts/social/details/empty-post-screen"
 import {
   ContentItemSVGWrapper,
   ContentItemText,
@@ -113,20 +114,23 @@ export default function HomePageComponent({
               }}
               className="article-list"
             >
-              {feedData.map((post, index) => (
-                <>
-                  <div
-                    ref={
-                      index === feedData.length - 5
-                        ? middleRowRef
-                        : index === feedData.length - 1
-                          ? lastRowRef
-                          : null
-                    }
-                  />
-                  <Post key={index} post={post} refetch={refetch} />
-                </>
-              ))}
+              {feedData.length === 0 && <EmptyPostScreen />}
+
+              {feedData.length > 0 &&
+                feedData.map((post, index) => (
+                  <>
+                    <div
+                      ref={
+                        index === feedData.length - 5
+                          ? middleRowRef
+                          : index === feedData.length - 1
+                            ? lastRowRef
+                            : null
+                      }
+                    />
+                    <Post key={index} post={post} refetch={refetch} />
+                  </>
+                ))}
             </div>
           </RootPageContentWrapper>
         </RootPageLayoutOverlay>
