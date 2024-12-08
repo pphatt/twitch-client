@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
-import { socketNotification } from "@/socket/socket"
-import { io, Socket } from "socket.io-client"
+import { env } from "@/utils/common/env"
+import type { NotificationResponseDto } from "@modules/user/presentation/http/dto/response/socket/notification.response.dto"
+import { io, type Socket } from "socket.io-client"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -26,70 +26,40 @@ interface NotifyBtnProps {
   accessToken: string
 }
 
-let socket: Socket | null = null
+let socket: Socket
 
 export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
-  const router = useRouter()
-
-  const [isConnected, setIsConnected] = React.useState(false)
-  const [transport, setTransport] = React.useState("N/A")
-
-  const [listNotification, setListNotification] = React.useState([])
+  const [listNotifications, setListNotifications] = React.useState<
+    NotificationResponseDto[]
+  >([])
 
   React.useEffect(() => {
-    console.log(accessToken)
-
-    socket = io("http://localhost:3300/notifications", {
+    socket = io(`${env.NEXT_PUBLIC_BACK_END_API_URL}/notifications`, {
       auth: {
         token: `Bearer ${accessToken}`,
       },
       transports: ["websocket"],
     })
 
-    // if (socket.connected) {
-    //   onConnect()
-    // }
-
-    function onConnect(data) {
-      setIsConnected(true)
-      setTransport(socket.io.engine.transport.name)
-
-      socket.io.engine.on("upgrade", (transport) => {
-        setTransport(transport.name)
-      })
-    }
-
-    function onDisconnect(reason) {
-      console.log(reason)
-      // if (reason === 'io server disconnect') {
-      //   socket.connect();
-      // }
-
-      setIsConnected(false)
-      setTransport("N/A")
-    }
-
-    function onNotify(data) {
+    function onNotify(payload: NotificationResponseDto) {
       console.log("Follow notification")
-      console.log(data)
+      setListNotifications((prevListNotifications) => [
+        payload,
+        ...prevListNotifications,
+      ])
     }
 
-    function setListNotifications(data) {}
+    function innitListNotifications(payload: NotificationResponseDto[]) {
+      setListNotifications(payload)
+    }
 
-    socket.emit("list-notification", setListNotifications)
-
-    socket.on("connect", onConnect)
+    socket.on("getNotifications", innitListNotifications)
     socket.on("notification", onNotify)
-    socket.on("disconnect", onDisconnect)
 
     return () => {
-      socket.off("connect", onConnect)
       socket.off("notification", onNotify)
-      socket.off("disconnect", onDisconnect)
     }
-  }, [accessToken])
-
-  console.log(isConnected)
+  }, [])
 
   return (
     <HeaderItemWrapper>
@@ -105,15 +75,13 @@ export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
             </HeaderItemTrigger>
           </HoverCardTrigger>
 
-          <Button onClick={() => router.refresh()}>Test refresh route</Button>
-
           <HoverCardContent
             className={styles["notify-content-wrapper"]}
             align={"end"}
             side={"bottom"}
             sideOffset={15}
           >
-            <NotifyContent />
+            <NotifyContent notifications={listNotifications} />
           </HoverCardContent>
         </HoverCard>
       </HeaderItemContentDropdown>
