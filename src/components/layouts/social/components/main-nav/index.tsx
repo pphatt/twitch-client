@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { usePathname } from "next/navigation"
 import AnimatedLogo from "@/assets/logo/animated-logo"
 
 import {
@@ -11,10 +12,13 @@ import {
   HeaderTab,
   HeaderTabWrapper,
   HeaderText,
-  MainNavLayoutWrapper, SearchBarWrapper,
+  MainNavLayoutWrapper,
+  SearchBarWrapper,
 } from "@/components/layouts/social/components/main-nav/style"
 
 export default function MainNav() {
+  const pathname = usePathname()
+
   return (
     <>
       <MainNavLayoutWrapper>
@@ -26,13 +30,23 @@ export default function MainNav() {
         </HeaderLogoWrapper>
 
         <HeaderTabWrapper>
-          <HeaderTab $active={true} href={"/social/home"}>
+          <HeaderTab $active={pathname.includes("home")} href={"/social/home"}>
             <HeaderText>Home</HeaderText>
             <HeaderActiveUnderline />
           </HeaderTab>
 
-          <HeaderTab href={"/social/home/post"}>
+          <HeaderTab $active={pathname.includes("post")} href={"/social/home"}>
             <HeaderText>Post</HeaderText>
+            <HeaderActiveUnderline />
+          </HeaderTab>
+
+          <HeaderTab
+            $active={
+              pathname.includes("friends") || pathname.includes("profile")
+            }
+            href={"/social/friends"}
+          >
+            <HeaderText>Friends</HeaderText>
             <HeaderActiveUnderline />
           </HeaderTab>
         </HeaderTabWrapper>
