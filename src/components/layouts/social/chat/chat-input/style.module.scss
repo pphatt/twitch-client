@@ -1,0 +1,36 @@
+.textarea {
+  display: flex;
+  align-items: center;
+
+  background-color: hsl(0 0% 9%);
+
+  width: 100%;
+  max-height: 3rem;
+  height: 4rem;
+
+  border-width: 1px;
+  border-color: hsl(240 3.7% 15.9%);
+  border-radius: 9999px;
+
+  padding: 0.75rem 1rem;
+
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+
+  resize: none;
+
+  box-shadow:
+    0 0 #0000,
+    0 0 #0000,
+    0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  &:focus-within {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+
+    box-shadow:
+      0 0 #0000,
+      0 0 #0000,
+      0 0 0 1px hsl(240 4.9% 83.9%);
+  }
+}

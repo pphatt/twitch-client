@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { cn } from "@/utils/common"
-import { MoreHorizontal, SquarePen } from "lucide-react"
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -11,6 +10,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import type { Message } from "@/components/layouts/social/chat/mock-data"
+import styles from "@/components/layouts/social/chat/side-bar/style.module.scss"
 
 interface SidebarProps {
   isCollapsed: boolean
@@ -28,27 +29,18 @@ export function Sidebar({ chats, isCollapsed, isMobile }: SidebarProps) {
   return (
     <div
       data-collapsed={isCollapsed}
-      className="relative group flex flex-col h-full bg-muted/10 dark:bg-muted/20 gap-4 p-2 data-[collapsed=true]:p-2 "
+      className={styles["side-bar-layout-wrapper"]}
     >
       {!isCollapsed && (
-        <div className="flex justify-between p-2 items-center">
-          <div className="flex gap-2 items-center text-2xl">
-            <p className="font-medium">Chats</p>
-            <span className="text-zinc-300">({chats.length})</span>
-          </div>
-
-          <div>
-            <Link href="#">
-              <MoreHorizontal size={20} />
-            </Link>
-
-            <Link href="#">
-              <SquarePen size={20} />
-            </Link>
+        <div className={styles["side-bar-header-wrapper"]}>
+          <div className={styles["side-bar-header-text-wrapper"]}>
+            <p>Chats</p>
+            <span>({chats.length})</span>
           </div>
         </div>
       )}
-      <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
+
+      <nav className={styles["list-user-wrapper"]}>
         {chats.map((chat, index) =>
           isCollapsed ? (
             <TooltipProvider key={index}>
@@ -56,27 +48,25 @@ export function Sidebar({ chats, isCollapsed, isMobile }: SidebarProps) {
                 <TooltipTrigger asChild>
                   <Link
                     href="#"
-                    className={cn(
-                      "h-11 w-11 md:h-16 md:w-16",
-                      chat.variant === "secondary" &&
-                        "dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white"
-                    )}
+                    className={styles["list-user-item-collapsed-wrapper"]}
                   >
-                    <Avatar className="flex justify-center items-center">
+                    <Avatar className={styles["list-user-item-avatar-wrapper"]}>
                       <AvatarImage
                         src={chat.avatar}
                         alt={chat.avatar}
                         width={6}
                         height={6}
-                        className="w-10 h-10 "
+                        className={styles["list-user-item-avatar-image"]}
                       />
-                    </Avatar>{" "}
-                    <span className="sr-only">{chat.name}</span>
+                    </Avatar>
+
+                    <span className={styles["hidden-text"]}>{chat.name}</span>
                   </Link>
                 </TooltipTrigger>
+
                 <TooltipContent
                   side="right"
-                  className="flex items-center gap-4"
+                  className={styles["tooltip-content"]}
                 >
                   {chat.name}
                 </TooltipContent>
@@ -86,31 +76,22 @@ export function Sidebar({ chats, isCollapsed, isMobile }: SidebarProps) {
             <Link
               key={index}
               href="#"
-              className={cn(
-                chat.variant === "secondary" &&
-                  "dark:bg-muted dark:text-white dark:hover:bg-muted dark:hover:text-white shrink",
-                "justify-start gap-4"
-              )}
+              className={styles["list-user-item-wrapper"]}
             >
-              <Avatar className="flex justify-center items-center">
+              <Avatar className={styles["list-user-item-avatar-wrapper"]}>
                 <AvatarImage
                   src={chat.avatar}
                   alt={chat.avatar}
                   width={6}
                   height={6}
-                  className="w-10 h-10 "
+                  className={styles["list-user-item-avatar-image"]}
                 />
               </Avatar>
-              <div className="flex flex-col max-w-28">
+
+              <div className={styles["list-user-item-info"]}>
                 <span>{chat.name}</span>
                 {chat.messages.length > 0 && (
-                  <span className="text-zinc-300 text-xs truncate ">
-                    {/*{chat.messages[chat.messages.length - 1].name.split(" ")[0]}*/}
-                    {/*:{" "}*/}
-                    {/*{chat.messages[chat.messages.length - 1].isLoading*/}
-                    {/*  ? "Typing..."*/}
-                    {/*  : chat.messages[chat.messages.length - 1].message}*/}
-                  </span>
+                  <span className={styles["list-user-item-text"]}></span>
                 )}
               </div>
             </Link>

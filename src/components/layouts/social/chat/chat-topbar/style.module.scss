@@ -1,0 +1,83 @@
+.chat-topbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom-width: 1px;
+  border-color: hsl(240 3.7% 15.9%);
+
+  padding: 1rem;
+}
+
+.chat-topbar-user-info-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chat-topbar-user-info-avatar-wrapper {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  border-radius: 9999px;
+
+  overflow: hidden;
+}
+
+.chat-topbar-user-info-avatar-image {
+  max-width: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  aspect-ratio: 1 / 1;
+}
+
+.user-info-username-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info-username-text {
+  font-weight: 500;
+}
+
+.user-info-last-active-text {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.user-info-action {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.user-info-btn {
+  color: hsl(0 0% 98%) !important;
+  background-color: transparent !important;
+
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+
+  border-radius: calc(1rem - 2px) !important;
+
+  padding: 0 !important;
+
+  svg {
+    color: hsl(240 5% 64.9%);
+
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    color: hsl(0 0% 98%) !important;
+    background-color: hsl(240 3.7% 15.9%) !important;
+  }
+}

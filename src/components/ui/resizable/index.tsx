@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { GripVertical } from "lucide-react"
+// import { GripVertical } from "lucide-react"
 import * as ResizablePrimitive from "react-resizable-panels"
+import { DragHandleDots2Icon } from "@radix-ui/react-icons";
 
 import {
   ResizableHandleGripWrapper,
@@ -28,7 +29,7 @@ const ResizableHandle = ({
   <ResizablePrimitivePanelResizeHandle {...props}>
     {withHandle && (
       <ResizableHandleGripWrapper>
-        <GripVertical />
+        <DragHandleDots2Icon />
       </ResizableHandleGripWrapper>
     )}
   </ResizablePrimitivePanelResizeHandle>

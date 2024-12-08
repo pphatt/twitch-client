@@ -20,7 +20,10 @@ export default function NotifyContent({ notifications }: NotifyContentProps) {
         <div className={styles["content-container"]}>
           <div>
             {notifications.map(
-              ({ message, senderName, avatar, type, createdAt }, index) => (
+              (
+                { message, senderName, senderAvatar, type, createdAt },
+                index
+              ) => (
                 <div
                   key={index}
                   className={styles["notification-item-wrapper"]}
@@ -28,7 +31,11 @@ export default function NotifyContent({ notifications }: NotifyContentProps) {
                   <div className={styles["notification-item-avatar-wrapper"]}>
                     <img
                       className={styles["notification-item-avatar"]}
-                      src={avatar ?? "/avatar/user-default-picture.png"}
+                      src={
+                        senderAvatar !== ""
+                          ? senderAvatar
+                          : "/avatar/user-default-picture.png"
+                      }
                       alt={""}
                     />
                   </div>

@@ -1,0 +1,27 @@
+.resizable-panel-group {
+  align-items: stretch !important;
+
+  width: 100% !important;
+}
+
+.user-side-collapse {
+  animation-duration: 300ms;
+
+  transition-property: all;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (min-width: 768px) {
+    min-width: 70px;
+  }
+}
+
+.resizable-handle {
+  background-color: hsl(240 3.7% 15.9%) !important;
+
+  div {
+    background-color: hsl(240 3.7% 15.9%) !important;
+
+    border: 0 !important;
+    border-radius: calc(1rem - 4px) !important;
+  }
+}
