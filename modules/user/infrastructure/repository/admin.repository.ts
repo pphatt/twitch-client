@@ -2,6 +2,7 @@ import { NextAdminRolesRequest } from "@modules/core/presentation/endpoints/admi
 import { NextAdminUsersRequest } from "@modules/core/presentation/endpoints/admin/users/admin.users.request"
 import type { IAdminRepository } from "@modules/user/domain/repository/admin/admin.repository"
 import type { GetAllRolesRequestDto } from "@modules/user/presentation/http/dto/request/admin/role/get-all-roles.request.dto"
+import type { DeleteUserRequestDto } from "@modules/user/presentation/http/dto/request/admin/user/delete-user.request.dto"
 import type { GetAllRolesResponseDto } from "@modules/user/presentation/http/dto/response/admin/role/getl-all-roles.response.dto"
 import type { GetAllUsersResponseDto } from "@modules/user/presentation/http/dto/response/admin/user/get-all-users.response.dto"
 
@@ -22,6 +23,16 @@ export const AdminRepository: IAdminRepository = {
     try {
       const { data } = await NextAdminRolesRequest.getAllRoles(body)
       return Promise.resolve(data.data)
+    } catch (error) {
+      console.log(error)
+      return Promise.reject(error)
+    }
+  },
+
+  async deleteUser(body: DeleteUserRequestDto): Promise<void> {
+    try {
+      await NextAdminUsersRequest.deleteUser(body)
+      return Promise.resolve()
     } catch (error) {
       console.log(error)
       return Promise.reject(error)

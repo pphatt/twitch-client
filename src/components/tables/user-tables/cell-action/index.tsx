@@ -4,14 +4,17 @@ import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import type { User } from "@modules/user/domain/entity/user.entity"
+import { AdminRepository } from "@modules/user/infrastructure/repository/admin.repository"
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
+import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel, DropdownMenuSeparator,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { UserAlertModal } from "@/components/modals/user-alert-modal"
@@ -29,20 +32,16 @@ export const UserCellAction: React.FC<CellActionProps> = ({ data }) => {
 
   const onConfirm = () => {
     startTransition(async () => {
-      // try {
-      //   const req = await deleteUser({ userId: data.id })
-      //
-      //   if ("success" in req) {
-      //     setOpen(false)
-      //     router.refresh()
-      //
-      //     toast.success("Delete user successfully")
-      //   } else {
-      //     toast.error(req.error)
-      //   }
-      // } catch (e) {
-      //   toast.error("Something went wrong. Try again!")
-      // }
+      try {
+        await AdminRepository.deleteUser({ userId: data.id })
+
+        setOpen(false)
+        router.refresh()
+
+        toast.success("Delete user successfully")
+      } catch (e) {
+        toast.error("Something went wrong. Try again!")
+      }
     })
   }
 

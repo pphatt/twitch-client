@@ -12,3 +12,5 @@ export const DeletedUserAPI = `${BackendURL}/users`
 
 // USING NEXT API
 export const NextGetAllUsersAPI = `${AppURL}/api/admin/users/get-all-users`
+
+export const NextDeleteUserAPI = `${AppURL}/api/admin/users/delete`

@@ -62,24 +62,6 @@ export function UserDataTable<TData, TValue>({
   page,
   rows,
 }: DataTableProps<TData, TValue>) {
-  // const { data: userData } = useQuery({
-  //   queryKey: ["users-dashboard"],
-  //   queryFn: async ({ pageParam = 1 }) => {
-  //     const { data } = await AdminRepository.getAllUsers()
-  //
-  //     return
-  //   },
-  //   initialData: () => {
-  //     return {
-  //       pages: [data],
-  //       pageParams: [page],
-  //     }
-  //   },
-  //   initialPageParam: 1,
-  //   refetchOnMount: true,
-  //   refetchOnWindowFocus: true,
-  // })
-
   const table = useReactTable({
     data,
     columns,
