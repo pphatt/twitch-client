@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useRouter } from "next/navigation"
 import { socketNotification } from "@/socket/socket"
 import { io, Socket } from "socket.io-client"
 
@@ -28,10 +29,16 @@ interface NotifyBtnProps {
 let socket: Socket | null = null
 
 export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
+  const router = useRouter()
+
   const [isConnected, setIsConnected] = React.useState(false)
   const [transport, setTransport] = React.useState("N/A")
 
+  const [listNotification, setListNotification] = React.useState([])
+
   React.useEffect(() => {
+    console.log(accessToken)
+
     socket = io("http://localhost:3300/notifications", {
       auth: {
         token: `Bearer ${accessToken}`,
@@ -43,8 +50,7 @@ export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
     //   onConnect()
     // }
 
-    function onConnect() {
-      console.log("data")
+    function onConnect(data) {
       setIsConnected(true)
       setTransport(socket.io.engine.transport.name)
 
@@ -63,17 +69,27 @@ export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
       setTransport("N/A")
     }
 
+    function onNotify(data) {
+      console.log("Follow notification")
+      console.log(data)
+    }
+
+    function setListNotifications(data) {}
+
+    socket.emit("list-notification", setListNotifications)
+
     socket.on("connect", onConnect)
+    socket.on("notification", onNotify)
     socket.on("disconnect", onDisconnect)
 
     return () => {
       socket.off("connect", onConnect)
+      socket.off("notification", onNotify)
       socket.off("disconnect", onDisconnect)
     }
-  }, [])
+  }, [accessToken])
 
   console.log(isConnected)
-  console.log(transport)
 
   return (
     <HeaderItemWrapper>
@@ -88,6 +104,8 @@ export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
               </SVGWrapper>
             </HeaderItemTrigger>
           </HoverCardTrigger>
+
+          <Button onClick={() => router.refresh()}>Test refresh route</Button>
 
           <HoverCardContent
             className={styles["notify-content-wrapper"]}

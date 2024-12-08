@@ -50,7 +50,7 @@ export default async function UserPage({ searchParams }: SearchPageProps) {
       <div className={styles["page-header-wrapper"]}>
         <div className={styles["page-header-text-wrapper"]}>
           <h2>Users ({users.length})</h2>
-          <p>Manage users and view their roles</p>
+          <p>Manage users and view their roles.</p>
         </div>
 
         <div className={styles["action-wrapper"]}>
