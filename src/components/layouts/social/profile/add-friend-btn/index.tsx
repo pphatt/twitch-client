@@ -11,9 +11,14 @@ import styles from "@/components/layouts/social/profile/add-friend-btn/style.mod
 
 interface AddFriendButtonProps {
   receiverId: string
+
+  friendStatus: string
 }
 
-export default function AddFriendButton({ receiverId }: AddFriendButtonProps) {
+export default function AddFriendButton({
+  receiverId,
+  friendStatus,
+}: AddFriendButtonProps) {
   const router = useRouter()
 
   const [isPending, startTransition] = React.useTransition()
@@ -43,14 +48,21 @@ export default function AddFriendButton({ receiverId }: AddFriendButtonProps) {
   return (
     <div className={styles["follow-btn-wrapper"]}>
       <div className={styles["follow-btn-container"]}>
-        <Button
-          data-is-followed={false}
-          className={styles["follow-btn"]}
-          disabled={isPending}
-          onClick={onAddFriendSubmit}
-        >
-          <span>Add Friend</span>
-        </Button>
+        {friendStatus === "Pending" && (
+          <Button className={styles["follow-btn"]}>
+            <span>Pending</span>
+          </Button>
+        )}
+
+        {friendStatus === "No friend request" && (
+          <Button
+            className={styles["follow-btn"]}
+            disabled={isPending}
+            onClick={onAddFriendSubmit}
+          >
+            <span>Add Friend</span>
+          </Button>
+        )}
       </div>
     </div>
   )

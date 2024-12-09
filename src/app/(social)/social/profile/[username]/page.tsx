@@ -28,6 +28,7 @@ export default async function SocialProfile({
 
   let isUserProfile = false
   let isUserFollowed = undefined
+  let friendStatus = ""
 
   if (accessToken) {
     const decoded = jwtDecode<TokenPayload>(accessToken)
@@ -47,12 +48,26 @@ export default async function SocialProfile({
       }
     )
 
+    if (decoded.username !== username) {
+      const { data } = await Social.isFriend(
+        { username },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+
+      friendStatus = data.data
+    }
+
     isUserFollowed = isUserFollowedData.data
   }
 
   return (
     <ProfilePageComponent
       isUserProfile={isUserProfile}
+      friendStatus={friendStatus}
       user={userData.data}
       postsInfo={postsListData.data}
       isUserFollowed={!!isUserFollowed}

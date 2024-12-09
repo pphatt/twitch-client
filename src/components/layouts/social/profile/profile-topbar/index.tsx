@@ -1,9 +1,9 @@
 import * as React from "react"
 
 import { Icons } from "@/components/icons"
+import AddFriendButton from "@/components/layouts/social/profile/add-friend-btn"
 import FollowButton from "@/components/layouts/social/profile/follow-btn"
 import styles from "@/components/layouts/social/profile/profile-topbar/style.module.scss"
-import AddFriendButton from "@/components/layouts/social/profile/add-friend-btn";
 
 interface ProfileTopbarProps {
   username: string
@@ -17,6 +17,7 @@ interface ProfileTopbarProps {
   userId: string
   isUserFollowed: boolean
   isTheSameUser: boolean
+  friendStatus: string
 }
 
 export default function ProfileTopbar({
@@ -30,6 +31,7 @@ export default function ProfileTopbar({
   userId,
   isUserFollowed,
   isTheSameUser,
+  friendStatus,
 }: ProfileTopbarProps) {
   return (
     <div className={styles["root-page-topbar-wrapper"]}>
@@ -94,9 +96,7 @@ export default function ProfileTopbar({
                 gap: "12px",
               }}
             >
-              <AddFriendButton
-                receiverId={userId}
-              />
+              <AddFriendButton friendStatus={friendStatus} receiverId={userId} />
 
               <FollowButton
                 destinationUserId={userId}

@@ -1,47 +1,29 @@
-import {
-  AddFriendRequestAPI,
-  CreatePostCommentsAPI,
-  FollowUserAPI,
-  GetAllUserPostsAPI,
-  GetPostCommentsAPI,
-  GetPostDetailsAPI,
-  GetPostReactionAPI,
-  GetUserFeedAPI,
-  IsFollowUserAPI,
-  NextAddFriendRequestAPI,
-  NextCreatePostAPI,
-  NextCreatePostCommentsAPI,
-  NextDeletePostAPI,
-  NextFollowUserAPI,
-  NextGetPostDetailsAPI,
-  NextGetPostReactionAPI,
-  NextReactToPostAPI,
-  NextUnFollowUserAPI,
-  NextUpdatePostAPI,
-  PostAPI,
-  ReactToPostAPI,
-  UnFollowUserAPI,
-  ViewPostAPI,
-} from "@modules/core/presentation/endpoints/social/social.endpoints"
-import { AddFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto"
-import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
-import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
-import type { FollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/follow-user.request.dto"
-import type { GetPostCommentsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-all-comments.request.dto"
-import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto"
-import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
-import type { IsFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/is-follow-user.request.dto"
-import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
-import type { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto"
-import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto"
-import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
-import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
-import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
-import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
-import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto"
-import type { IsFollowUserResponseDto } from "@modules/user/presentation/http/dto/response/social/is-follow-user.response.dto"
-import type { PostDto } from "@modules/user/presentation/http/dto/response/social/post.dto"
-import axios, { type AxiosRequestConfig } from "axios"
+import { AddFriendRequestAPI, CreatePostCommentsAPI, FollowUserAPI, FriendStatusAPI, GetAllUserPostsAPI, GetPostCommentsAPI, GetPostDetailsAPI, GetPostReactionAPI, GetUserFeedAPI, IsFollowUserAPI, NextAddFriendRequestAPI, NextCreatePostAPI, NextCreatePostCommentsAPI, NextDeletePostAPI, NextFollowUserAPI, NextGetPostDetailsAPI, NextGetPostReactionAPI, NextReactToPostAPI, NextUnFollowUserAPI, NextUpdatePostAPI, PostAPI, ReactToPostAPI, UnFollowUserAPI, ViewPostAPI } from "@modules/core/presentation/endpoints/social/social.endpoints";
+import type { AddFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto";
+import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto";
+import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto";
+import type { FollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/follow-user.request.dto";
+import type { GetPostCommentsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-all-comments.request.dto";
+import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-details.request.dto";
+import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto";
+import type { IsFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/is-follow-user.request.dto";
+import type { IsFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/is-friend.request.dto";
+import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto";
+import type { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto";
+import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto";
+import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto";
+import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto";
+import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto";
+import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto";
+import type { GetUserPostsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-user-posts.response.dto";
+import type { IsFollowUserResponseDto } from "@modules/user/presentation/http/dto/response/social/is-follow-user.response.dto";
+import { IsFriendResponseDto } from "@modules/user/presentation/http/dto/response/social/is-friend.response.dto";
+import type { PostDto } from "@modules/user/presentation/http/dto/response/social/post.dto";
+import axios, { type AxiosRequestConfig } from "axios";
+
+
+
+
 
 export const Social = {
   createPost: async (
@@ -154,6 +136,12 @@ export const Social = {
     body: AddFriendRequestDto,
     config: AxiosRequestConfig
   ): Promise<void> => axios.post(AddFriendRequestAPI, body, config),
+
+  isFriend: async (
+    body: IsFriendRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<{ data: IsFriendResponseDto }> =>
+    axios.get(`${FriendStatusAPI}/${body.username}`, config),
 }
 
 export const NextSocial = {

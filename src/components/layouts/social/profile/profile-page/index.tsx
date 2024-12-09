@@ -26,6 +26,7 @@ import RightSection from "@/components/layouts/social/profile/right-section"
 
 interface ProfilePageComponentProps {
   isUserProfile: boolean
+  friendStatus: string
   user: GetSpecificUserByNameResponseDto
   postsInfo: {
     posts: GetUserPostsResponseDto[]
@@ -38,6 +39,7 @@ interface ProfilePageComponentProps {
 
 export default function ProfilePageComponent({
   isUserProfile,
+  friendStatus,
   user,
   postsInfo,
   isUserFollowed,
@@ -134,6 +136,7 @@ export default function ProfilePageComponent({
         userId={user.id}
         isUserFollowed={isUserFollowed}
         isTheSameUser={isTheSameUser}
+        friendStatus={friendStatus}
       />
 
       <div className={styles["root-page-container"]}>
