@@ -1,15 +1,18 @@
 import {
+  AcceptFriendRequestAPI,
   AddFriendRequestAPI,
   CreatePostCommentsAPI,
   FollowUserAPI,
   FriendStatusAPI,
   GetAllUserPostsAPI,
+  GetMyFriendRequestListAPI,
   GetMyListFriendAPI,
   GetPostCommentsAPI,
   GetPostDetailsAPI,
   GetPostReactionAPI,
   GetUserFeedAPI,
   IsFollowUserAPI,
+  NextAcceptFriendRequestAPI,
   NextAddFriendRequestAPI,
   NextCreatePostAPI,
   NextCreatePostCommentsAPI,
@@ -19,15 +22,18 @@ import {
   NextGetPostDetailsAPI,
   NextGetPostReactionAPI,
   NextReactToPostAPI,
+  NextRejectFriendRequestAPI,
   NextUnFollowUserAPI,
   NextUnfriendRequestAPI,
   NextUpdatePostAPI,
   PostAPI,
   ReactToPostAPI,
+  RejectFriendRequestAPI,
   UnFollowUserAPI,
   UnfriendRequestAPI,
   ViewPostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
+import { AcceptFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/accept-friend.request.dto"
 import type { AddFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
@@ -38,10 +44,12 @@ import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/
 import type { IsFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/is-follow-user.request.dto"
 import type { IsFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/is-friend.request.dto"
 import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
+import { RejectFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/reject-friend.request.dto"
 import type { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto"
 import { UnfriendRequestDto } from "@modules/user/presentation/http/dto/request/social/unfriend.request.dto"
 import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
+import { ListRequestFriendResponseDto } from "@modules/user/presentation/http/dto/response/social/friend-requests.response.dto"
 import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
@@ -170,11 +178,26 @@ export const Social = {
   ): Promise<void> =>
     axios.delete(`${UnfriendRequestAPI}?friendId=${body.friendId}`, config),
 
+  acceptFriend: async (
+    body: AcceptFriendRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> => axios.post(AcceptFriendRequestAPI, body, config),
+
+  rejectFriend: async (
+    body: RejectFriendRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> => axios.post(RejectFriendRequestAPI, body, config),
+
   isFriend: async (
     body: IsFriendRequestDto,
     config: AxiosRequestConfig
   ): Promise<{ data: IsFriendResponseDto }> =>
     axios.get(`${FriendStatusAPI}/${body.username}`, config),
+
+  getMyFriendRequest: async (
+    config: AxiosRequestConfig
+  ): Promise<{ data: { data: ListRequestFriendResponseDto } }> =>
+    axios.get(GetMyFriendRequestListAPI, config),
 
   getMyListFriend: async (
     config: AxiosRequestConfig
@@ -233,6 +256,16 @@ export const NextSocial = {
 
   unFriend: async (body: UnfriendRequestDto): Promise<void> =>
     axios.post(NextUnfriendRequestAPI, body),
+
+  acceptFriend: async (body: AcceptFriendRequestDto): Promise<void> =>
+    axios.post(NextAcceptFriendRequestAPI, body),
+
+  rejectFriend: async (body: RejectFriendRequestDto): Promise<void> =>
+    axios.post(NextRejectFriendRequestAPI, body),
+
+  getMyFriendRequest: async (): Promise<{
+    data: ListRequestFriendResponseDto
+  }> => axios.get(GetMyFriendRequestListAPI),
 
   getMyListFriend: async (): Promise<{ data: MyListFriendResponseDto }> =>
     axios.get(NextGetMyListFriendAPI),

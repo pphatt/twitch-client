@@ -10,6 +10,8 @@ import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
 import type {AddFriendRequestDto} from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto";
 import {UnfriendRequestDto} from "@modules/user/presentation/http/dto/request/social/unfriend.request.dto";
+import {AcceptFriendRequestDto} from "@modules/user/presentation/http/dto/request/social/accept-friend.request.dto";
+import {RejectFriendRequestDto} from "@modules/user/presentation/http/dto/request/social/reject-friend.request.dto";
 
 export interface ISocialRepository {
   createPost: (body: FormData) => Promise<{ data: CreatePostResponseDto }>
@@ -35,4 +37,7 @@ export interface ISocialRepository {
 
   addFriend: (body: AddFriendRequestDto) => Promise<void>
   unFriend: (body: UnfriendRequestDto) => Promise<void>
+
+  acceptFriend: (body: AcceptFriendRequestDto) => Promise<void>
+  rejectFriend: (body: RejectFriendRequestDto) => Promise<void>
 }

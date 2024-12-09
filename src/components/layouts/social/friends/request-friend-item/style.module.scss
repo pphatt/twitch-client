@@ -1,0 +1,62 @@
+.button {
+  color: #fff !important;
+  background-color: hsl(var(--color-twitch-orange-12)) !important;
+
+  width: auto !important;
+  min-width: 64px !important;
+  height: 30px !important;
+
+  border-radius: 15px !important;
+
+  padding: 0 24px !important;
+  margin-left: 12px;
+
+  font-size: 16px !important;
+  line-height: 30px !important;
+
+  &[data-is-friend="true"] {
+    color: rgba(255, 255, 255, 0.65) !important;
+    background-color: #242a34 !important;
+
+    &:hover {
+      color: rgba(255, 255, 255) !important;
+      background-color: #666e80 !important;
+    }
+  }
+
+  &:hover {
+    background-color: hsl(var(--color-twitch-orange-11)) !important;
+  }
+
+  svg {
+    color: currentColor !important;
+
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
+
+  span {
+    font-weight: bold !important;
+  }
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: rgba(255, 255, 255, 0.65);
+  background-color: #242a34;
+
+  width: auto;
+  min-width: 64px;
+  height: 26px;
+
+  border-radius: 15px;
+
+  padding: 0 10px;
+  margin-left: 12px;
+
+  font-size: 14px;
+  line-height: 20px;
+}

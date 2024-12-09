@@ -3,6 +3,7 @@
 import * as React from "react"
 import { env } from "@/utils/common/env"
 import {
+  AcceptFriendNotificationResponseDto,
   FriendNotificationItemResponseDto,
   FriendNotificationResponseDto,
   NotificationItemResponseDto,
@@ -67,6 +68,14 @@ export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
       toast.success(`${payload.name} send friend request`)
     }
 
+    function onAcceptFriendRequestReceived(
+      payload: AcceptFriendNotificationResponseDto
+    ) {
+      console.log("Accept Friend Request")
+      console.log(payload)
+      toast.success(`${payload.name} accept your friend request`)
+    }
+
     function innitListNotifications(payload: NotificationResponseDto) {
       console.log(payload)
       setListNotifications(payload)
@@ -83,6 +92,7 @@ export default function NotifyBtn({ accessToken }: NotifyBtnProps) {
     socket.on("friendRequestsList", innitListFriendNotifications)
 
     socket.on("friendRequestReceived", onFriendRequestReceived)
+    socket.on("friendRequestAccepted", onAcceptFriendRequestReceived)
     socket.on("notification", onNotify)
 
     return () => {

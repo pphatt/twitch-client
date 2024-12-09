@@ -45,12 +45,42 @@ export default function AddFriendButton({
     })
   }
 
+  const onUnFriendSubmit = () => {
+    if (isPending) return
+
+    startTransition(async () => {
+      try {
+        await SocialRepository.unFriend({ friendId: receiverId })
+      } catch (err) {
+        // catchError(err)
+        const error = axiosHttpErrorHandler(err)
+
+        toast.error(error.message, {
+          duration: 10000,
+          position: "top-right",
+        })
+
+        console.log(error)
+      }
+    })
+  }
+
   return (
     <div className={styles["follow-btn-wrapper"]}>
       <div className={styles["follow-btn-container"]}>
         {friendStatus === "Pending" && (
           <Button className={styles["follow-btn"]}>
             <span>Pending</span>
+          </Button>
+        )}
+
+        {friendStatus === "Accepted" && (
+          <Button
+            className={styles["follow-btn"]}
+            disabled={isPending}
+            onClick={onUnFriendSubmit}
+          >
+            <span>Unfriend</span>
           </Button>
         )}
 

@@ -21,3 +21,11 @@ export type FriendNotificationItemResponseDto = {
   readonly status: "PENDING" | "ACCEPTED"
   readonly createdAt: Date
 }
+
+export type AcceptFriendNotificationResponseDto = {
+  message: string
+  name: string
+  createdAt: Date
+  avatar: string
+  type: string
+}

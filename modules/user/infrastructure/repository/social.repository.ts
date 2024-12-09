@@ -1,5 +1,6 @@
 import { NextSocial } from "@modules/core/presentation/endpoints/social/social.request"
 import type { ISocialRepository } from "@modules/user/domain/repository/social/social.repository"
+import { AcceptFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/accept-friend.request.dto"
 import { AddFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
@@ -12,6 +13,7 @@ import { UnfriendRequestDto } from "@modules/user/presentation/http/dto/request/
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
+import {RejectFriendRequestDto} from "@modules/user/presentation/http/dto/request/social/reject-friend.request.dto";
 
 export const SocialRepository: ISocialRepository = {
   async createPost(body: FormData): Promise<{ data: CreatePostResponseDto }> {
@@ -122,4 +124,22 @@ export const SocialRepository: ISocialRepository = {
       return Promise.reject(error)
     }
   },
+
+  async acceptFriend(body: AcceptFriendRequestDto): Promise<void> {
+    try {
+      await NextSocial.acceptFriend(body)
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
+
+  async rejectFriend(body: RejectFriendRequestDto): Promise<void> {
+    try {
+      await NextSocial.rejectFriend(body)
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  }
 }

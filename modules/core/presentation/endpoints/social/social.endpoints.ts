@@ -17,10 +17,14 @@ export const UnFollowUserAPI = `${BackendURL}/followers/un-follow`
 export const IsFollowUserAPI = `${BackendURL}/followers/is-follow`
 
 export const AddFriendRequestAPI = `${BackendURL}/friends/send-request`
-export const FriendStatusAPI = `${BackendURL}/friends/is-friend`
-
 export const UnfriendRequestAPI = `${BackendURL}/friends`
 
+export const AcceptFriendRequestAPI = `${BackendURL}/friends/accept`
+export const RejectFriendRequestAPI = `${BackendURL}/friends/reject`
+
+export const FriendStatusAPI = `${BackendURL}/friends/is-friend`
+
+export const GetMyFriendRequestListAPI = `${BackendURL}/friends/friend-requests`
 export const GetMyListFriendAPI = `${BackendURL}/friends/my-list-friend`
 
 // USING NEXT API
@@ -40,4 +44,8 @@ export const NextUnFollowUserAPI = `${AppURL}/api/social/un-follow`
 export const NextAddFriendRequestAPI = `${AppURL}/api/social/friends/send-request`
 export const NextUnfriendRequestAPI = `${AppURL}/api/social/friends/un-friend`
 
+export const NextAcceptFriendRequestAPI = `${AppURL}/api/social/friends/accept-friend`
+export const NextRejectFriendRequestAPI = `${AppURL}/api/social/friends/reject-friend`
+
+export const NextGetMyFriendRequestListAPI = `${AppURL}/api/social/friends/friend-requests`
 export const NextGetMyListFriendAPI = `${AppURL}/api/social/friends/my-list-friend`
