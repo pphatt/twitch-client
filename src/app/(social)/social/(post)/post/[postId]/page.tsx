@@ -110,9 +110,16 @@ export default async function PostDetailsPage({
     isUserFollowed = isUserFollowedData.data
   }
 
+  const { data: listFriendData } = await Social.getMyListFriend({
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+
   return (
     <DetailsPageComponent
       post={data.post}
+      listFriendData={listFriendData.data.friends}
       comments={postComments.data.comments}
       sortedReactions={sortedReactions}
       isUserPost={isUserPost}

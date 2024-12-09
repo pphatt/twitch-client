@@ -2,8 +2,8 @@ import * as React from "react"
 import type { PostComment } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
 import type { PostDetailsDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
+import type { MyListFriendItemResponseDto } from "@modules/user/presentation/http/dto/response/social/my-list-friend.response.dto"
 import FriendList from "src/components/layouts/social/components/friend-list"
-import FriendListItem from "src/components/layouts/social/components/friend-list-item"
 import CommentsSection from "src/components/layouts/social/details/comments/comments-section"
 import PostContent from "src/components/layouts/social/details/post-content"
 
@@ -16,6 +16,7 @@ import ProcessViewCountWrap from "@/components/layouts/social/details/process-vi
 interface DetailsPageComponentProps {
   post: PostDetailsDto
   comments: PostComment[]
+  listFriendData: MyListFriendItemResponseDto[]
   sortedReactions: GetPostReactionResponseDto[]
   isUserPost: boolean
   currentUserReactionType: string
@@ -28,6 +29,7 @@ interface DetailsPageComponentProps {
 export default function DetailsPageComponent({
   post,
   comments,
+  listFriendData,
   sortedReactions,
   isUserPost,
   currentUserReactionType,
@@ -84,9 +86,11 @@ export default function DetailsPageComponent({
                     destinationUserId={post.user.id}
                   />
 
-                  <div>
-                    <FriendList />
-                  </div>
+                  {listFriendData.length > 0 && (
+                    <div>
+                      <FriendList listFriendData={listFriendData} />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

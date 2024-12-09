@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import type { MyListFriendItemResponseDto } from "@modules/user/presentation/http/dto/response/social/my-list-friend.response.dto"
 import FriendListItem from "src/components/layouts/social/components/friend-list-item"
 
 import {
@@ -11,7 +12,11 @@ import {
   RecommendFriendContentWrapper,
 } from "@/components/layouts/social/components/friend-list/style"
 
-export default function FriendList() {
+interface FriendListProps {
+  listFriendData: MyListFriendItemResponseDto[]
+}
+
+export default function FriendList({ listFriendData }: FriendListProps) {
   return (
     <PostNowSideSectionWrapper>
       <PostNowSideSectionHeaderWrapper>
@@ -22,27 +27,16 @@ export default function FriendList() {
 
       <RecommendFriendContentWrapper>
         <RecommendFriendContentContainer>
-          <FriendListItem
-            image={
-              "https://s120-ava-talk.zadn.vn/d/7/5/d/4/120/aae4fe2e565d553d5f325f2aa0ef2cf1.jpg"
-            }
-            name={"Đặng Viễn Hào"}
-            slug={""}
-          />
-
-          <FriendListItem
-            image={"/avatar/misanthrope-avatar.png"}
-            name={"Lê Nguyễn Quốc Khánh"}
-            slug={""}
-          />
-
-          <FriendListItem
-            image={
-              "https://cover-talk.zadn.vn/8/5/0/9/3/f9f532eea9f2f21917b6dc95d3ee3e11.jpg"
-            }
-            name={"DuyKa"}
-            slug={""}
-          />
+          {listFriendData.map(({ username, avatar }, index) => (
+            <FriendListItem
+              key={index}
+              image={
+                avatar !== "" ? avatar : "/avatar/user-default-picture.png"
+              }
+              name={username}
+              slug={`/social/profile/${username}`}
+            />
+          ))}
         </RecommendFriendContentContainer>
       </RecommendFriendContentWrapper>
     </PostNowSideSectionWrapper>

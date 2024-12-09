@@ -24,7 +24,13 @@ export default async function HomePage() {
     },
   })
 
+  const { data: listFriendData } = await Social.getMyListFriend({
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  })
+
   return (
-    <HomePageComponent feed={feedData.data.posts} accessToken={accessToken} />
+    <HomePageComponent feed={feedData.data.posts} listFriendData={listFriendData.data.friends} accessToken={accessToken} />
   )
 }

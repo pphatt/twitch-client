@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Social } from "@modules/core/presentation/endpoints/social/social.request"
+import { MyListFriendItemResponseDto } from "@modules/user/presentation/http/dto/response/social/my-list-friend.response.dto"
 import type { PostDto } from "@modules/user/presentation/http/dto/response/social/post.dto"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import Post from "src/components/layouts/social/home/post"
@@ -32,11 +33,13 @@ import {
 
 interface HomePageComponentProps {
   feed: PostDto[]
+  listFriendData: MyListFriendItemResponseDto[]
   accessToken: string
 }
 
 export default function HomePageComponent({
   feed,
+  listFriendData,
   accessToken,
 }: HomePageComponentProps) {
   const middleRow = React.useRef<HTMLDivElement>(null)
@@ -165,9 +168,11 @@ export default function HomePageComponent({
                   </PostNowSideSectionWrapper>
                 </div>
 
-                <div>
-                  <FriendList />
-                </div>
+                {listFriendData.length > 0 && (
+                  <div>
+                    <FriendList listFriendData={listFriendData}/>
+                  </div>
+                )}
               </div>
             </RootPageContainerRightOverlay>
           </RootPageContainerRightContainer>
