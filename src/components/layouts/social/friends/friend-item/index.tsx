@@ -106,7 +106,7 @@ export default function FriendItem({
                 </UserNameContainer>
               </UserNameWrapper>
 
-              {!currentIsFriend && (
+              {!currentIsFriend && !requestPendingState && (
                 <Button
                   data-is-friend={false}
                   className={styles["button"]}

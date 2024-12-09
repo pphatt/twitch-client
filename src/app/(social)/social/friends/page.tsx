@@ -14,6 +14,7 @@ export default async function FriendsPage() {
 
   const { data } = await Social.getMyListFriend({
     headers: {
+      "Cache-Control": "no-cache",
       Authorization: `Bearer ${accessToken}`,
     },
   })

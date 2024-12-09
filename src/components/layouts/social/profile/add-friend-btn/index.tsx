@@ -51,6 +51,8 @@ export default function AddFriendButton({
     startTransition(async () => {
       try {
         await SocialRepository.unFriend({ friendId: receiverId })
+
+        router.refresh()
       } catch (err) {
         // catchError(err)
         const error = axiosHttpErrorHandler(err)

@@ -59,7 +59,7 @@ export function SiteHeader({ accessToken }: SiteHeaderProps) {
   React.useEffect(() => {
     if (accessToken) {
       const decoded = jwtDecode<TokenPayload>(accessToken)
-      setRole(decoded.role![0] ?? "")
+      setRole(decoded.role?.includes("Admin") ? "Admin" : "User")
     }
   }, [accessToken])
 
@@ -178,7 +178,7 @@ export function SiteHeader({ accessToken }: SiteHeaderProps) {
                             <DropdownMenuSeparator />
 
                             <DropdownItem>
-                              <DropdownItemLink href={`/staff/admin`}>
+                              <DropdownItemLink href={`/staff/admin/user?page=1&rows=10`}>
                                 <span>Admin Dashboard</span>
                                 <Icons.admin />
                               </DropdownItemLink>

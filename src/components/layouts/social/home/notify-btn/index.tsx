@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { env } from "@/utils/common/env"
-import {
+import type {
   AcceptFriendNotificationResponseDto,
   FriendNotificationItemResponseDto,
   FriendNotificationResponseDto,

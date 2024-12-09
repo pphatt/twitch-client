@@ -23,7 +23,7 @@ export function AdminMainNav() {
       <div className={styles["admin-main-nav-container"]}>
         <div className={styles["admin-side-nav-header-wrapper"]}>
           <Link
-            href={"/staff/admin"}
+            href={"/staff/admin/user?page=1&rows=10"}
             className={styles["admin-side-nav-header-container"]}
           >
             <div className={styles["admin-side-nav-header-icon-wrapper"]}>

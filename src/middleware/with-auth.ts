@@ -244,9 +244,10 @@ export function withAuth(middleware: CustomMiddleware) {
 
     // check admin route
     const isAdminRoute = adminRoute.some((path) => pathname.startsWith(path))
+    const role = decoded.role?.includes("Admin") ? "Admin" : "User"
 
     if (isAdminRoute) {
-      if (decoded.role![0] !== "Admin") {
+      if (role !== "Admin") {
         // Redirect to an unauthorized page or homepage if usernames don’t match
         url.pathname = "/"
 

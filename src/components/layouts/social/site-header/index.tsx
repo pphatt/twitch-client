@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
 import { useAuth } from "@/context/auth.context"
 import MainNav from "src/components/layouts/social/components/main-nav"
 
@@ -30,7 +31,7 @@ import {
   DropdownMenuContentWrapper as DropdownMenuContent,
   DropdownMenuSeparatorWrapper as DropdownMenuSeparator,
   DropdownMenuWrapper,
-  HeaderItemContentDropdown,
+  HeaderItemContentDropdown, HeaderItemLink,
   HeaderItemTrigger,
   HeaderItemWrapper,
   HiddenTitle,
@@ -135,6 +136,20 @@ export default function HomeSiteHeader({ accessToken }: HomeSiteHeaderProps) {
                 </HeaderItemWrapper>
 
                 <NotifyBtn accessToken={accessToken} />
+
+                <HeaderItemLink
+                  style={{
+                    marginRight: "24px",
+                  }}
+                  as={Link}
+                  href={"/social/message"}
+                >
+                  <SVGWrapper>
+                    <SVGContainer>
+                      <Icons.whispers />
+                    </SVGContainer>
+                  </SVGWrapper>
+                </HeaderItemLink>
 
                 <HeaderItemWrapper>
                   <HeaderItemContentDropdown>

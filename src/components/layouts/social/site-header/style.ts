@@ -109,6 +109,61 @@ export const HeaderItemTrigger = styled(Button)`
   }
 `
 
+export const HeaderItemLink = styled(Link)`
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    color: hsl(var(--foreground));
+    background-color: transparent;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 4px;
+
+    padding: 0;
+
+    user-select: none;
+
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+
+    cursor: pointer;
+
+    transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+
+    &[disabled] {
+        opacity: 0.5;
+        //pointer-events: none;
+        cursor: not-allowed;
+    }
+
+    &:focus-visible {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+
+        box-shadow: 0 0 0 2px hsl(var(--background)), 0 0 0 4px hsl(var(--ring)),
+        0 0 #000;
+    }
+
+    &:not([disabled]):hover {
+        color: hsl(var(--foreground));
+        background-color: #343746;
+    }
+
+    &:focus-visible {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+
+        box-shadow: none;
+    }
+`
+
 export const SVGWrapper = styled.div`
   width: 24px;
   height: 24px;
