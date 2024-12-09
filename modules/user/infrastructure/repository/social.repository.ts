@@ -1,5 +1,6 @@
 import { NextSocial } from "@modules/core/presentation/endpoints/social/social.request"
 import type { ISocialRepository } from "@modules/user/domain/repository/social/social.repository"
+import { AddFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto"
 import type { CreateCommentRequestDto } from "@modules/user/presentation/http/dto/request/social/create-comment.request.dto"
 import type { DeletePostRequestDto } from "@modules/user/presentation/http/dto/request/social/delete-post.request.dto"
 import type { FollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/follow-user.request.dto"
@@ -7,10 +8,10 @@ import type { GetPostDetailsRequestDto } from "@modules/user/presentation/http/d
 import type { GetPostReactionRequestDto } from "@modules/user/presentation/http/dto/request/social/get-post-reaction.request.dto"
 import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
 import type { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto"
+import { UnfriendRequestDto } from "@modules/user/presentation/http/dto/request/social/unfriend.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostDetailsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-details.response.dto"
 import type { GetPostReactionResponseDto } from "@modules/user/presentation/http/dto/response/social/get-post-reaction.response.dto"
-import {AddFriendRequestDto} from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto";
 
 export const SocialRepository: ISocialRepository = {
   async createPost(body: FormData): Promise<{ data: CreatePostResponseDto }> {
@@ -111,5 +112,14 @@ export const SocialRepository: ISocialRepository = {
     } catch (error) {
       return Promise.reject(error)
     }
-  }
+  },
+
+  async unFriend(body: UnfriendRequestDto): Promise<void> {
+    try {
+      await NextSocial.unFriend(body)
+      return Promise.resolve()
+    } catch (error) {
+      return Promise.reject(error)
+    }
+  },
 }

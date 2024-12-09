@@ -20,10 +20,12 @@ import {
   NextGetPostReactionAPI,
   NextReactToPostAPI,
   NextUnFollowUserAPI,
+  NextUnfriendRequestAPI,
   NextUpdatePostAPI,
   PostAPI,
   ReactToPostAPI,
   UnFollowUserAPI,
+  UnfriendRequestAPI,
   ViewPostAPI,
 } from "@modules/core/presentation/endpoints/social/social.endpoints"
 import type { AddFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/add-friend.request.dto"
@@ -37,6 +39,7 @@ import type { IsFollowUserRequestDto } from "@modules/user/presentation/http/dto
 import type { IsFriendRequestDto } from "@modules/user/presentation/http/dto/request/social/is-friend.request.dto"
 import type { ReactToPostRequestDto } from "@modules/user/presentation/http/dto/request/social/react-to-post.request.dto"
 import type { UnFollowUserRequestDto } from "@modules/user/presentation/http/dto/request/social/unfollow-user.request.dto"
+import { UnfriendRequestDto } from "@modules/user/presentation/http/dto/request/social/unfriend.request.dto"
 import type { ViewPostRequestDto } from "@modules/user/presentation/http/dto/request/social/view-post.request.dto"
 import type { CreatePostResponseDto } from "@modules/user/presentation/http/dto/response/social/create-post.response.dto"
 import type { GetPostCommentsResponseDto } from "@modules/user/presentation/http/dto/response/social/get-all-comments.response.dto"
@@ -161,6 +164,12 @@ export const Social = {
     config: AxiosRequestConfig
   ): Promise<void> => axios.post(AddFriendRequestAPI, body, config),
 
+  unFriend: async (
+    body: UnfriendRequestDto,
+    config: AxiosRequestConfig
+  ): Promise<void> =>
+    axios.delete(`${UnfriendRequestAPI}?friendId=${body.friendId}`, config),
+
   isFriend: async (
     body: IsFriendRequestDto,
     config: AxiosRequestConfig
@@ -221,6 +230,9 @@ export const NextSocial = {
 
   addFriend: async (body: AddFriendRequestDto): Promise<void> =>
     axios.post(NextAddFriendRequestAPI, body),
+
+  unFriend: async (body: UnfriendRequestDto): Promise<void> =>
+    axios.post(NextUnfriendRequestAPI, body),
 
   getMyListFriend: async (): Promise<{ data: MyListFriendResponseDto }> =>
     axios.get(NextGetMyListFriendAPI),

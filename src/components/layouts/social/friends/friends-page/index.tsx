@@ -102,13 +102,13 @@ export default function FriendsPageComponent({
                   </div>
                 )}
 
-                {friends.map(({ userId, username, avatar }, index) => (
+                {friends.map(({ userId, username, isFriend, avatar }, index) => (
                   <FriendItem
                     key={index}
                     image={avatar}
                     name={username}
-                    destinationUserId={userId}
-                    isUserFollowed={true}
+                    friendId={userId}
+                    isFriend={isFriend}
                   />
                 ))}
               </FriendListContentContainer>

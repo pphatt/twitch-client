@@ -19,33 +19,32 @@ import {
   UserNameWrapper,
 } from "@/components/layouts/social/components/friend-list-item/style"
 import styles from "@/components/layouts/social/friends/friend-item/style.module.scss"
-import {useRouter} from "next/navigation";
 
 interface FriendItemProps {
   image: string
   name: string
-  isUserFollowed: boolean
-  destinationUserId: string
+  isFriend: boolean
+  friendId: string
 }
 
 export default function FriendItem({
   name,
   image,
-  isUserFollowed,
-  destinationUserId,
+  isFriend,
+  friendId,
 }: FriendItemProps) {
-  const router = useRouter()
-
   const [isPending, startTransition] = React.useTransition()
+  const [currentIsFriend, setCurrentIsFriend] = React.useState(isFriend)
+  const [requestPendingState, setRequestPendingState] = React.useState("")
 
-  const onFollowSubmit = () => {
+  const onAddFriendSubmit = () => {
     if (isPending) return
 
     startTransition(async () => {
       try {
-        await SocialRepository.followUser({ destinationUserId })
+        await SocialRepository.addFriend({ receiverId: friendId })
 
-        router.refresh()
+        setRequestPendingState("PENDING")
       } catch (err) {
         // catchError(err)
         const error = axiosHttpErrorHandler(err)
@@ -60,14 +59,14 @@ export default function FriendItem({
     })
   }
 
-  const onUnfollowSubmit = () => {
+  const onUnFriendSubmit = () => {
     if (isPending) return
 
     startTransition(async () => {
       try {
-        await SocialRepository.unFollowUser({ destinationUserId })
+        await SocialRepository.unFriend({ friendId })
 
-        router.refresh()
+        setCurrentIsFriend(false)
       } catch (err) {
         // catchError(err)
         const error = axiosHttpErrorHandler(err)
@@ -107,12 +106,12 @@ export default function FriendItem({
                 </UserNameContainer>
               </UserNameWrapper>
 
-              {!isUserFollowed ? (
+              {!currentIsFriend && (
                 <Button
-                  data-is-followed={false}
+                  data-is-friend={false}
                   className={styles["button"]}
                   disabled={isPending}
-                  onClick={onFollowSubmit}
+                  onClick={onAddFriendSubmit}
                 >
                   <Icons.plus
                     style={{
@@ -120,14 +119,22 @@ export default function FriendItem({
                     }}
                   />
                 </Button>
-              ) : (
+              )}
+
+              {currentIsFriend && !requestPendingState && (
                 <Button
-                  data-is-followed={true}
+                  data-is-friend={true}
                   className={styles["button"]}
                   disabled={isPending}
-                  onClick={onUnfollowSubmit}
+                  onClick={onUnFriendSubmit}
                 >
                   <Icons.check />
+                </Button>
+              )}
+
+              {requestPendingState && (
+                <Button className={styles["button"]}>
+                  <div>Pending</div>
                 </Button>
               )}
             </UserItemWrapper>
