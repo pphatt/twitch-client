@@ -1,6 +1,7 @@
 import * as React from "react"
 import dynamic from "next/dynamic"
 import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 import { Social } from "@modules/core/presentation/endpoints/social/social.request"
 import { UserRequest } from "@modules/core/presentation/endpoints/user/user.request"
 import type { TokenPayload } from "@modules/user/application/command/auth/jwt/token.payload"
@@ -20,6 +21,10 @@ export default async function SocialProfile({
 
   const accessToken = cookies().get("access-token")?.value
 
+  if (!accessToken) {
+    redirect("/")
+  }
+
   const { data: userData } = await UserRequest.getSpecificUserByName({
     username,
   })
@@ -30,17 +35,26 @@ export default async function SocialProfile({
   let isUserFollowed = undefined
   let friendStatus = ""
 
-  if (accessToken) {
-    const decoded = jwtDecode<TokenPayload>(accessToken)
+  const decoded = jwtDecode<TokenPayload>(accessToken)
 
-    if (decoded.sub === userData.data.id) {
-      isUserProfile = true
-    }
+  if (decoded.sub === userData.data.id) {
+    isUserProfile = true
+  }
 
-    const { data: isUserFollowedData } = await Social.isFollowUser(
-      {
-        destinationUserId: userData.data.id,
+  const { data: isUserFollowedData } = await Social.isFollowUser(
+    {
+      destinationUserId: userData.data.id,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       },
+    }
+  )
+
+  if (decoded.username !== username) {
+    const { data } = await Social.isFriend(
+      { username },
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -48,21 +62,12 @@ export default async function SocialProfile({
       }
     )
 
-    if (decoded.username !== username) {
-      const { data } = await Social.isFriend(
-        { username },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      )
+    console.log(data)
 
-      friendStatus = data.data
-    }
-
-    isUserFollowed = isUserFollowedData.data
+    friendStatus = data.data
   }
+
+  isUserFollowed = isUserFollowedData.data
 
   return (
     <ProfilePageComponent

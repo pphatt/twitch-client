@@ -118,7 +118,7 @@ export default function HomePageComponent({
 
               {feedData.length > 0 &&
                 feedData.map((post, index) => (
-                  <>
+                  <div key={index}>
                     <div
                       ref={
                         index === feedData.length - 5
@@ -128,8 +128,8 @@ export default function HomePageComponent({
                             : null
                       }
                     />
-                    <Post key={index} post={post} refetch={refetch} />
-                  </>
+                    <Post post={post} refetch={refetch} />
+                  </div>
                 ))}
             </div>
           </RootPageContentWrapper>

@@ -101,6 +101,10 @@ export const UserNameOverlay = styled(Link)`
 
   overflow: hidden;
   white-space: nowrap;
+
+  &:hover {
+    color: hsl(var(--color-twitch-orange-11));
+  }
 `
 
 export const UserNameText = styled.span`

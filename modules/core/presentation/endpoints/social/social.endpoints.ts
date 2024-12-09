@@ -19,6 +19,8 @@ export const IsFollowUserAPI = `${BackendURL}/followers/is-follow`
 export const AddFriendRequestAPI = `${BackendURL}/friends/send-request`
 export const FriendStatusAPI = `${BackendURL}/friends/is-friend`
 
+export const GetMyListFriendAPI = `${BackendURL}/friends/my-list-friend`
+
 // USING NEXT API
 export const NextCreatePostAPI = `${AppURL}/api/social/create-post`
 export const NextUpdatePostAPI = `${AppURL}/api/social/edit-post`
@@ -34,3 +36,5 @@ export const NextFollowUserAPI = `${AppURL}/api/social/follow`
 export const NextUnFollowUserAPI = `${AppURL}/api/social/un-follow`
 
 export const NextAddFriendRequestAPI = `${AppURL}/api/social/friends/send-request`
+
+export const NextGetMyListFriendAPI = `${AppURL}/api/social/friends/my-list-friend`

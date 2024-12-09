@@ -11,8 +11,8 @@ export const ModalWrapper = styled(DialogPrimitiveContent)`
   gap: 1.75rem !important;
 
   width: 100vw;
-  max-height: 100vh;
-  height: 100vh;
+  //max-height: 100vh;
+  //height: 100vh;
 
   border: 0 !important;
 
@@ -23,11 +23,11 @@ export const ModalWrapper = styled(DialogPrimitiveContent)`
   animation-duration: 0.2s !important;
 
   @supports (height: 100dvh) {
-    height: 100dvh;
+    //height: 100dvh;
   }
 
   @supports (max-height: 100dvh) {
-    max-height: 100dvh;
+    //max-height: 100dvh;
   }
 
   @supports (width: 100dvw) {
