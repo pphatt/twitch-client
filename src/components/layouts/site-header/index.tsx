@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import LogoutButton from "@/components/auth/logout-button"
 import { Hint } from "@/components/common/hint"
-import { SearchCommandMenu } from "@/components/common/search-command-menu"
 import { Icons } from "@/components/icons"
 import AuthDialog from "@/components/layouts/auth-dialog"
 import { MainNav } from "@/components/layouts/main-nav"
@@ -35,7 +34,6 @@ import {
   DropdownMenuContentWrapper as DropdownMenuContent,
   DropdownMenuSeparatorWrapper as DropdownMenuSeparator,
   LoginButton,
-  SearchWrapper,
   SignUpButton,
   SimpleBarWrapper as SimpleBar,
   SiteHeaderContainer,
@@ -67,10 +65,6 @@ export function SiteHeader({ accessToken }: SiteHeaderProps) {
     <SiteHeaderWrapper>
       <SiteHeaderContainer>
         <MainNav items={siteConfig.mainNav} supportItem={supportSite.sites} />
-
-        <SearchWrapper>
-          <SearchCommandMenu />
-        </SearchWrapper>
 
         <SiteHeaderItems>
           <Hint
